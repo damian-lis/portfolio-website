@@ -64,6 +64,7 @@ a {
 
 ul {
   list-style: none;
+  padding: 0;
 }
 
 p,
@@ -78,6 +79,12 @@ textarea {
 
 .s1 {
   background-color: var(--mainColor);
+  border-bottom: 1px solid var(--borderColor);
+  overflow: auto;
+}
+
+.s2 {
+  background-color: var(--secondaryColor);
   border-bottom: 1px solid var(--borderColor);
   overflow: auto;
 }
@@ -277,6 +284,44 @@ textarea {
   left: -5px;
 }
 
+.about-wrapper {
+  display: flex;
+  padding: 50px 0 50px 0;
+  justify-content: space-around;
+}
+
+.about-me {
+  flex-basis: 40%;
+}
+
+#skills {
+  display: flex;
+  justify-content: center;
+  background-color: var(--previewShadow);
+}
+
+#social_img {
+  width: 100%;
+}
+
+.social-links {
+  flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.social-links a {
+  margin-top: 5px;
+  font-size: 18px;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 800px) {
   .intro-wrapper {
     grid-template-columns: 1fr;
@@ -302,5 +347,19 @@ textarea {
     padding: 15px;
     height: 100%;
     text-align: center;
+  }
+
+  .about-wrapper {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .about-me {
+    width: 80%;
+  }
+
+  .social-links {
+    width: 80%;
   }
 }
