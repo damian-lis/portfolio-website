@@ -83,18 +83,25 @@ textarea {
 
 .s1 {
   background-color: var(--mainColor);
-  border-bottom: 1px solid var(--borderColor);
+  /* border-bottom: 1px solid var(--borderColor); */
+
   overflow: auto;
 }
 
 .s2 {
   background-color: var(--secondaryColor);
-  border-bottom: 1px solid var(--borderColor);
+  /* border-bottom: 1px solid var(--borderColor); */
   overflow: auto;
 }
 
 .main-container {
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.secondary-container {
+  max-width: 1350px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -134,6 +141,7 @@ textarea {
 .intro-wrapper {
   background-color: var(--secondaryColor);
   border: 1px solid var(--borderColor);
+  border-bottom: none;
   border-radius: 5px 5px 0 0;
 
   -webkit-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
@@ -308,6 +316,14 @@ textarea {
 }
 
 .about-wrapper {
+  background-color: var(--secondaryColor);
+  border: 1px solid var(--borderColor);
+  border-radius: 5px;
+
+  -webkit-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
+
   display: flex;
   padding: 50px 0 50px 0;
   justify-content: space-around;
