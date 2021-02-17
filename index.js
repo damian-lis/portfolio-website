@@ -1,4 +1,5 @@
 let theme = localStorage.getItem('theme')
+const themeDots = [...document.getElementsByClassName('theme-dot')]
 
 if (theme === null) {
   setTheme('light')
@@ -6,29 +7,17 @@ if (theme === null) {
   setTheme(theme)
 }
 
-const themeDots = document.getElementsByClassName('theme-dot')
-
 for (let i = 0; themeDots.length > i; i++) {
   themeDots[i].addEventListener('click', function (e) {
     const mode = this.dataset.mode
 
-    setActive(this)
+    setActive(this, themeDots)
     setTheme(mode)
   })
 }
 
-function setActive(obj) {
-  removeAllActive('.theme-dot')
-  obj.classList.add('active')
-  console.log(obj.classList)
-}
-
-function removeAllActive(selector) {
-  const themeDots = document.querySelectorAll(selector)
-  themeDots.forEach((dot) => dot.classList.remove('active'))
-}
-
 function setTheme(mode) {
+  setActive(document.querySelector(`[data-mode=${mode}]`), themeDots)
   if (mode === 'light') {
     document.getElementById('theme-style').href = 'default.css'
   }
@@ -46,6 +35,15 @@ function setTheme(mode) {
   }
 
   localStorage.setItem('theme', mode)
+}
+
+function setActive(objToActive, objsToDisactive) {
+  removeAllActive(objsToDisactive)
+  objToActive.classList.add('active')
+}
+
+function removeAllActive(objsToDisactive) {
+  objsToDisactive.forEach((obj) => obj.classList.remove('active'))
 }
 
 const sections = document.querySelectorAll('section')
@@ -66,3 +64,9 @@ window.onscroll = function () {
     window.onscroll = null
   }
 }
+
+const greetingRightColumn = document.querySelector('.greeteing-right-column')
+
+setTimeout(() => {
+  greetingRightColumn.classList.add('shakeAnimation')
+}, 1700)
