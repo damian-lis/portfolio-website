@@ -215,8 +215,8 @@ textarea {
 #profile_pic {
   display: block;
   margin: 0 auto;
-  height: 200px;
-  width: 200px;
+  border-radius: 5px;
+  width: 300px;
   object-fit: cover;
   border: 2px solid var(--borderColor);
 }
@@ -263,11 +263,10 @@ textarea {
 
 .intro-right-column {
   grid-area: intro-right-column;
-  display: grid;
+  display: flex;
   align-content: center;
 
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding: 50px 0 50px 50px;
 }
 
 #preview {
@@ -280,6 +279,7 @@ textarea {
 
 #preview-shadow {
   background-color: var(--previewShadow);
+  border-radius: 5px;
   width: 300px;
   height: auto;
   padding-left: 30px;
@@ -336,11 +336,15 @@ textarea {
 #skills {
   display: flex;
   justify-content: center;
+  border-radius: 5px;
+  border: 1px solid var(--borderColor);
   background-color: var(--previewShadow);
 }
 
 #social_img {
   width: 100%;
+  border: 2px solid var(--borderColor);
+  border-radius: 5px;
 }
 
 .social-links {
@@ -409,6 +413,7 @@ textarea {
 
   .intro-right-column {
     justify-content: center;
+    padding: 50px 0;
   }
 
   #preview-shadow {
