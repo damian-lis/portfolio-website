@@ -83,15 +83,7 @@ textarea {
 
 .s1 {
   background-color: var(--mainColor);
-  /* border-bottom: 1px solid var(--borderColor); */
-
-  overflow: auto;
-}
-
-.s2 {
-  background-color: var(--secondaryColor);
-  /* border-bottom: 1px solid var(--borderColor); */
-  overflow: auto;
+  overflow: hidden;
 }
 
 .main-container {
@@ -125,6 +117,9 @@ textarea {
   border: 1px solid var(--borderColor);
   border-bottom: none;
   border-radius: 5px 5px 0 0;
+  transform: translateY(-200%);
+
+  animation: slideInFromTop 0.5s 1s ease-in forwards;
 }
 
 .greeteing-right-column h5 {
@@ -153,6 +148,11 @@ textarea {
   grid-template-areas:
     'nav-wrapper nav-wrapper'
     'intro-left-column intro-right-column';
+
+  transform: translateX(-100%);
+  opacity: 0;
+
+  animation: slideInFromLeft 0.5s 0.5s ease-in forwards;
 }
 
 .nav-wrapper {
@@ -284,6 +284,8 @@ textarea {
   height: auto;
   padding-left: 30px;
   padding-top: 30px;
+
+  animation: showObject 2s ease-in;
 }
 
 .corner {
@@ -327,6 +329,8 @@ textarea {
   display: flex;
   padding: 50px 0 50px 0;
   justify-content: space-around;
+
+  animation: slideInFromRight 0.3s ease-in;
 }
 
 .about-me {
@@ -446,5 +450,69 @@ textarea {
 
   #social_img {
     margin-top: 30px;
+  }
+}
+
+/* Animations */
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes showObject {
+  0% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
