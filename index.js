@@ -9,11 +9,23 @@ if (theme === null) {
 const themeDots = document.getElementsByClassName('theme-dot')
 
 for (let i = 0; themeDots.length > i; i++) {
-  themeDots[i].addEventListener('click', function () {
-    let mode = this.dataset.mode
+  themeDots[i].addEventListener('click', function (e) {
+    const mode = this.dataset.mode
 
+    setActive(this)
     setTheme(mode)
   })
+}
+
+function setActive(obj) {
+  removeAllActive('.theme-dot')
+  obj.classList.add('active')
+  console.log(obj.classList)
+}
+
+function removeAllActive(selector) {
+  const themeDots = document.querySelectorAll(selector)
+  themeDots.forEach((dot) => dot.classList.remove('active'))
 }
 
 function setTheme(mode) {
