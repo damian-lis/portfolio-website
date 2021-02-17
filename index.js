@@ -47,3 +47,22 @@ function setTheme(mode) {
 
   localStorage.setItem('theme', mode)
 }
+
+const sections = document.querySelectorAll('section')
+const lastSection = sections[sections.length - 1]
+let lastSectionHeight = lastSection.clientHeight
+
+window.addEventListener('resize', () => {
+  lastSectionHeight = lastSection.clientHeight
+})
+
+window.onscroll = function () {
+  if (
+    window.innerHeight + window.pageYOffset + lastSectionHeight * 0.75 >=
+    document.body.offsetHeight
+  ) {
+    lastSection.style.transform = 'translateY(0)'
+    lastSection.style.opacity = 1
+    window.onscroll = null
+  }
+}
