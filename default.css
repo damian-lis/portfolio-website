@@ -357,10 +357,17 @@ textarea {
 
 #skills {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   border-radius: 5px;
+  padding: 10px;
   border: 1px solid var(--borderColor);
   background-color: var(--previewShadow);
+}
+
+#skills ul {
+  list-style: circle;
+  padding-left: 20px;
 }
 
 #social_img {
@@ -460,6 +467,11 @@ textarea {
 
   .about-me {
     width: 80%;
+  }
+
+  #skills ul {
+    list-style: none;
+    padding-left: 0;
   }
 
   .social-links {
