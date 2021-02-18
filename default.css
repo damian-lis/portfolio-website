@@ -119,7 +119,7 @@ textarea {
   margin: 10px 10px 0 10px;
 }
 
-.greeteing-right-column {
+.greeting-right-column {
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -139,7 +139,7 @@ textarea {
   opacity: 1;
 }
 
-.greeteing-right-column h5 {
+.greeting-right-column h5 {
   margin: 20px 0;
 }
 
