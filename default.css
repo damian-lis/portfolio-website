@@ -365,9 +365,18 @@ textarea {
   background-color: var(--previewShadow);
 }
 
-#skills ul {
-  list-style: circle;
-  padding-left: 20px;
+#skills ul li {
+  margin-bottom: 15px;
+}
+
+#skills ul li::before {
+  content: '-';
+  display: inline-block;
+  margin-right: 7px;
+}
+
+#skills ul li:last-of-type {
+  margin-bottom: 0px;
 }
 
 #social_img {
@@ -469,9 +478,8 @@ textarea {
     width: 80%;
   }
 
-  #skills ul {
-    list-style: none;
-    padding-left: 0;
+  #skills ul li::before {
+    content: '';
   }
 
   .social-links {
