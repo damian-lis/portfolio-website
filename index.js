@@ -46,21 +46,20 @@ function removeAllActive(objsToDisactive) {
   objsToDisactive.forEach((obj) => obj.classList.remove('active'))
 }
 
-const sections = document.querySelectorAll('section')
-const lastSection = sections[sections.length - 1]
-let lastSectionHeight = lastSection.clientHeight
+const postSection = document.querySelector('#post-section')
+let postSectionHeight = postSection.clientHeight
 
 window.addEventListener('resize', () => {
-  lastSectionHeight = lastSection.clientHeight
+  postSectionHeight = postSection.clientHeight
 })
 
 window.onscroll = function () {
   if (
-    window.innerHeight + window.pageYOffset + lastSectionHeight * 0.75 >=
+    window.innerHeight + window.pageYOffset + postSectionHeight * 0.9 >=
     document.body.offsetHeight
   ) {
-    lastSection.style.transform = 'translateY(0)'
-    lastSection.style.opacity = 1
+    postSection.style.transform = 'translateY(0)'
+    postSection.style.opacity = 1
     window.onscroll = null
   }
 }

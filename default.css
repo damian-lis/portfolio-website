@@ -90,13 +90,6 @@ textarea {
   overflow: hidden;
 }
 
-.s1:last-of-type {
-  transform: translateY(-100%);
-  position: relative;
-  opacity: 0;
-  transition: 1s;
-}
-
 .main-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -402,6 +395,13 @@ textarea {
 
 .social-links a:hover {
   text-decoration: underline;
+}
+
+#post-section {
+  transform: translateY(-100%);
+  position: relative;
+  opacity: 0;
+  transition: 1s;
 }
 
 .post-wrapper {
