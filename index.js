@@ -47,20 +47,23 @@ function removeAllActive(objsToDisactive) {
 }
 
 const postSection = document.querySelector('#post-section')
-let postSectionHeight = postSection.clientHeight
 
-window.addEventListener('resize', () => {
-  postSectionHeight = postSection.clientHeight
-})
+if (postSection) {
+  let postSectionHeight = postSection.clientHeight
 
-window.onscroll = function () {
-  if (
-    window.innerHeight + window.pageYOffset + postSectionHeight * 0.9 >=
-    document.body.offsetHeight
-  ) {
-    postSection.style.transform = 'translateY(0)'
-    postSection.style.opacity = 1
-    window.onscroll = null
+  window.addEventListener('resize', () => {
+    postSectionHeight = postSection.clientHeight
+  })
+
+  window.onscroll = function () {
+    if (
+      window.innerHeight + window.pageYOffset + postSectionHeight * 0.9 >=
+      document.body.offsetHeight
+    ) {
+      postSection.style.transform = 'translateY(0)'
+      postSection.style.opacity = 1
+      window.onscroll = null
+    }
   }
 }
 
