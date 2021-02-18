@@ -424,6 +424,10 @@ textarea {
   transition: 1s;
 }
 
+#post-section a {
+  text-decoration: none;
+}
+
 .post-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, 320px);
