@@ -65,7 +65,7 @@ window.onscroll = function () {
   }
 }
 
-const greetingRightColumn = document.querySelector('.greeteing-right-column')
+const greetingRightColumn = document.querySelector('.greeting-right-column')
 
 setTimeout(() => {
   greetingRightColumn.classList.add('shakeAnimation')
