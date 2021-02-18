@@ -357,7 +357,6 @@ textarea {
 .about-my-skills {
   margin-top: 50px;
   flex-basis: 80%;
-  
 }
 
 .about-image {
@@ -365,8 +364,8 @@ textarea {
 }
 
 #skills {
-  max-width:650px;
-  margin:0 auto;
+  max-width: 650px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -505,7 +504,7 @@ textarea {
   }
 
   .about-image {
-    width: 90%;#
+    width: 90%;
   }
 
   .about-my-skills {
