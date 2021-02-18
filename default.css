@@ -82,10 +82,6 @@ textarea {
   font-family: 'Roboto Mono', monospace;
 }
 
-.active {
-  border-width: 5px;
-}
-
 .section {
   overflow: hidden;
 }
@@ -230,9 +226,8 @@ textarea {
   display: block;
   margin: 0 auto;
   border-radius: 5px;
-  width: 300px;
-  object-fit: cover;
-  border: 2px solid var(--borderColor);
+  width: 80%;
+  border: 1px solid var(--borderColor);
 }
 
 #theme-options-wrapper {
@@ -255,6 +250,10 @@ textarea {
   cursor: pointer;
 }
 
+.active {
+  border-width: 5px;
+}
+
 #light-mode {
   background-color: #fff;
 }
@@ -274,13 +273,12 @@ textarea {
 .intro-right-column {
   grid-area: intro-right-column;
   display: flex;
-  align-content: center;
-
+  align-items: center;
   padding: 50px 0 50px 50px;
 }
 
 #preview {
-  width: 300px;
+  /* width: 300px; */
   border: 1.5px solid #17a2b8;
   background-color: var(--previewBg);
   padding: 15px;
@@ -291,7 +289,6 @@ textarea {
   background-color: var(--previewShadow);
   border-radius: 5px;
   width: 300px;
-  height: auto;
   padding-left: 30px;
   padding-top: 30px;
 
@@ -375,7 +372,7 @@ textarea {
 
 #social_img {
   width: 100%;
-  border: 2px solid var(--borderColor);
+  border: 1px solid var(--borderColor);
   border-radius: 5px;
 }
 
@@ -414,6 +411,8 @@ textarea {
 
 .post {
   border: 1px solid var(--borderColor);
+  border-radius: 5px;
+  padding: 2px;
   -webkit-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
@@ -421,6 +420,10 @@ textarea {
   background-color: #fff;
   display: flex;
   flex-direction: column;
+}
+
+.post:hover {
+  transform: scale(1.03);
 }
 
 .thubnail {
@@ -437,22 +440,21 @@ textarea {
   flex-direction: column;
 }
 
-.post-preview a {
-  margin-top: auto;
-  align-self: flex-start;
-}
-
 .post-title {
   color: black;
   margin: 0;
 }
 
 .post-intro {
-  columns: #4b5156;
   font-size: 14px;
+  color: #222222;
 }
 
 @media screen and (max-width: 800px) {
+  .greeting-left-column h1 {
+    font-size: 40px;
+  }
+
   .intro-wrapper {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -500,6 +502,10 @@ textarea {
 
   #social_img {
     margin-top: 30px;
+  }
+
+  .post-wrapper {
+    grid-template-columns: repeat(auto-fit, 280px);
   }
 }
 
