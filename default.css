@@ -93,7 +93,6 @@ textarea {
 .s1:last-of-type {
   transform: translateY(-100%);
   position: relative;
-  z-index: -1;
   opacity: 0;
   transition: 1s;
 }
@@ -344,6 +343,8 @@ textarea {
   -moz-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
 
+  position: relative;
+  z-index: 1;
   display: flex;
   padding: 50px 0 50px 0;
   justify-content: space-around;
@@ -416,6 +417,10 @@ textarea {
   -webkit-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 .thubnail {
@@ -426,8 +431,15 @@ textarea {
 }
 
 .post-preview {
-  background-color: #fff;
+  flex-grow: 1;
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-preview a {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .post-title {
