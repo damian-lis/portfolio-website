@@ -1,49 +1,22 @@
-let theme = localStorage.getItem('theme')
+import themes from './data/themes.js'
+import setVariables from './helpers/setVariables.js'
+import initialSetActive from './helpers/initialSetActive.js'
+import setActive from './helpers/setActive.js'
+import removeAllActive from './helpers/removeAllActive.js'
+
+let themeMode = localStorage.getItem('themeMode')
 const themeDots = [...document.getElementsByClassName('theme-dot')]
 
-if (theme === null) {
-  setTheme('light')
-} else {
-  setTheme(theme)
-}
+setVariables(themes[themeMode || 'blue'])
+initialSetActive(themeDots, themeMode, setActive, removeAllActive)
 
 for (let i = 0; themeDots.length > i; i++) {
   themeDots[i].addEventListener('click', function (e) {
     const mode = this.dataset.mode
-
-    setActive(this, themeDots)
-    setTheme(mode)
+    setVariables(themes[mode])
+    setActive(this, themeDots, removeAllActive)
+    localStorage.setItem('themeMode', mode)
   })
-}
-
-function setTheme(mode) {
-  setActive(document.querySelector(`[data-mode=${mode}]`), themeDots)
-  if (mode === 'light') {
-    document.getElementById('theme-style').href = 'default.css'
-  }
-
-  if (mode === 'blue') {
-    document.getElementById('theme-style').href = 'blue.css'
-  }
-
-  if (mode === 'green') {
-    document.getElementById('theme-style').href = 'green.css'
-  }
-
-  if (mode === 'purple') {
-    document.getElementById('theme-style').href = 'purple.css'
-  }
-
-  localStorage.setItem('theme', mode)
-}
-
-function setActive(objToActive, objsToDisactive) {
-  removeAllActive(objsToDisactive)
-  objToActive.classList.add('active')
-}
-
-function removeAllActive(objsToDisactive) {
-  objsToDisactive.forEach((obj) => obj.classList.remove('active'))
 }
 
 const postSection = document.querySelector('#post-section')
