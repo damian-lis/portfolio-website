@@ -4,10 +4,10 @@ import initialSetActive from './helpers/initialSetActive.js'
 import setActive from './helpers/setActive.js'
 import removeAllActive from './helpers/removeAllActive.js'
 
-let themeMode = localStorage.getItem('themeMode')
+let themeMode = localStorage.getItem('theme') || Object.keys(themes)[0]
 const themeDots = [...document.getElementsByClassName('theme-dot')]
 
-setVariables(themes[themeMode || 'blue'])
+setVariables(themes[themeMode])
 initialSetActive(themeDots, themeMode, setActive, removeAllActive)
 
 for (let i = 0; themeDots.length > i; i++) {
@@ -15,7 +15,7 @@ for (let i = 0; themeDots.length > i; i++) {
     const mode = this.dataset.mode
     setVariables(themes[mode])
     setActive(this, themeDots, removeAllActive)
-    localStorage.setItem('themeMode', mode)
+    localStorage.setItem('theme', mode)
   })
 }
 

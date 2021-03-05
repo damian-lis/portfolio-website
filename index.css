@@ -1,20 +1,19 @@
 /* Variables */
 :root {
-  --mainColor: rgba(255, 255, 255, 0.7);
-  --secondaryColor: rgba(226, 224, 224, 0.7);
+  --mainColor: #000000;
+  --secondaryColor: #000000;
 
-  --borderColor: #c1c1c1;
+  --borderColor: #000000;
 
-  --mainText: black;
-  --secondaryText: #4b5156;
+  --mainText: #000000;
+  --secondaryText: #000000;
 
-  --themeDotBorder: #24292e;
+  --themeDotBorder: #000000;
 
-  --previewBg: rgba(251, 249, 243, 0.8);
+  --previewBg: #000000;
+  --previewShadow: #000000;
 
-  --previewShadow: rgba(251, 249, 243, 0.8);
-
-  --btnColor: black;
+  --buttonColor: #000000;
 }
 
 /* Normalize */
