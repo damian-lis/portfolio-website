@@ -48,7 +48,7 @@
 }
 
 #preview {
-  border: 1.5px solid #17a2b8;
+  border: 1.5px solid var(--borderColor);
   background-color: var(--previewBg);
   padding: 15px;
   position: relative;
@@ -59,7 +59,6 @@
   border-radius: 5px;
   padding-left: 30px;
   padding-top: 30px;
-
   animation: showObject 2s ease-in;
 }
 
@@ -67,7 +66,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  border: 1.5px solid #17a2b8;
+  border: 1.5px solid var(--borderColor);
   background-color: #fff;
   position: absolute;
 }
@@ -96,6 +95,10 @@
   .intro-right-column {
     justify-content: center;
     padding: 50px 0;
+  }
+
+  .intro-left-column {
+    padding-bottom: 0;
   }
 
   #preview-shadow {

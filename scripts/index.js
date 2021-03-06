@@ -1,5 +1,6 @@
 import themes from '../data/themes.js'
 import Particles from './Particles.js'
+import Sound from './Sound.js'
 import {
   setVariables,
   initialSetActive,
@@ -12,6 +13,11 @@ const themeDots = [...document.getElementsByClassName('theme-dot')]
 const postSection = document.querySelector('#post-section')
 const greetingRightColumn = document.querySelector('.greeting-right-column')
 const particles = new Particles()
+if (document.title === 'Portfolio') {
+  new Sound()
+}
+
+console.log(document.title)
 
 setVariables(themes[themeMode])
 initialSetActive(themeDots, themeMode, setActive, removeAllActive)

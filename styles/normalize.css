@@ -63,6 +63,7 @@ li,
 span,
 label,
 input,
+button,
 textarea {
   color: var(--secondaryText);
   font-family: 'Roboto Mono', monospace;
