@@ -7,7 +7,6 @@ export default class Particle {
     this.directionX = directionX
     this.directionY = directionY
     this.size = size
-
     this.speedX = this.directionX
     this.speedY = this.directionY
   }

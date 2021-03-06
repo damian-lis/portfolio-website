@@ -12,18 +12,11 @@ export default class Particles {
       y: null,
       radius: (this.canvas.height / 80) * (this.canvas.width / 80),
     }
-    this.strokeColor = 'white'
-    this.ctx.fillStyle = 'white'
-
-    this.init()
   }
 
-  changeStrokeColor(rgbNumbers) {
-    this.strokeColor = rgbNumbers
-  }
-
-  changeFillColor(color) {
-    this.ctx.fillStyle = color
+  setColors(themeMode) {
+    this.strokeColor = themeMode.strokeColor
+    this.ctx.fillStyle = themeMode.ctxFillStyle
   }
 
   connect() {
@@ -70,5 +63,12 @@ export default class Particles {
       this.particleArray[i].update()
     }
     this.connect()
+  }
+
+  resize() {
+    this.particleArray = []
+    this.canvas.width = innerWidth
+    this.canvas.height = innerHeight
+    this.init()
   }
 }
