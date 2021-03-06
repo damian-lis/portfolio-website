@@ -3,7 +3,7 @@ export default {
     mainColor: '#15202b',
     secondaryColor: '#192734',
 
-    borderColor: 'rgb(22, 77, 86)',
+    borderColor: 'rgb(57, 119, 179)',
 
     strokeColor: '57, 119, 179',
     ctxFillStyle: 'rgb(57, 119, 179)',
@@ -22,7 +22,7 @@ export default {
     mainColor: '#606b56',
     secondaryColor: '#515a48',
 
-    borderColor: '#161914',
+    borderColor: 'rgb(169, 209, 132)',
 
     strokeColor: '169, 209, 132',
     ctxFillStyle: 'rgb(169, 209, 132)',
@@ -41,7 +41,7 @@ export default {
     mainColor: '#46344e',
     secondaryColor: '#382a3f',
 
-    borderColor: '#1d1520',
+    borderColor: 'rgb(154, 0, 154)',
 
     strokeColor: '154, 0, 154',
     ctxFillStyle: 'rgb(154, 0, 154)',
