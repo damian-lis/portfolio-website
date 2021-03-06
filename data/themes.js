@@ -5,6 +5,9 @@ export default {
 
     borderColor: 'rgb(22, 77, 86)',
 
+    strokeColor: '57, 119, 179',
+    ctxFillStyle: 'rgb(57, 119, 179)',
+
     mainText: '#fff',
     secondaryText: '#eeeeee',
 
@@ -21,6 +24,9 @@ export default {
 
     borderColor: '#161914',
 
+    strokeColor: '169, 209, 132',
+    ctxFillStyle: 'rgb(169, 209, 132)',
+
     mainText: '#fff',
     secondaryText: '#eeeeee',
 
@@ -36,6 +42,9 @@ export default {
     secondaryColor: '#382a3f',
 
     borderColor: '#1d1520',
+
+    strokeColor: '154, 0, 154',
+    ctxFillStyle: 'rgb(154, 0, 154)',
 
     mainText: '#fff',
     secondaryText: '#eeeeee',

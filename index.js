@@ -3,7 +3,7 @@ import setVariables from './helpers/setVariables.js'
 import initialSetActive from './helpers/initialSetActive.js'
 import setActive from './helpers/setActive.js'
 import removeAllActive from './helpers/removeAllActive.js'
-import setCtxStyle from './helpers/setCtxStyle.js'
+import setParticlesStyle from './helpers/setParticlesStyle.js'
 import Particles from './Particles.js'
 
 const particles = new Particles()
@@ -20,7 +20,7 @@ update()
 let themeMode = localStorage.getItem('theme') || Object.keys(themes)[0]
 const themeDots = [...document.getElementsByClassName('theme-dot')]
 
-setCtxStyle(themes[themeMode])
+setParticlesStyle(themes[themeMode], particles)
 setVariables(themes[themeMode])
 initialSetActive(themeDots, themeMode, setActive, removeAllActive)
 
@@ -29,7 +29,7 @@ for (let i = 0; themeDots.length > i; i++) {
     const mode = this.dataset.mode
     setVariables(themes[mode])
     setActive(this, themeDots, removeAllActive)
-    setCtxStyle(themes[mode])
+    setParticlesStyle(themes[mode], particles)
     localStorage.setItem('theme', mode)
   })
 }

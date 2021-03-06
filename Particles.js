@@ -12,10 +12,18 @@ export default class Particles {
       y: null,
       radius: (this.canvas.height / 80) * (this.canvas.width / 80),
     }
+    this.strokeColor = 'white'
+    this.ctx.fillStyle = 'white'
 
     this.init()
-    // this.animate()
-    // requestAnimationFrame(this.animate)
+  }
+
+  changeStrokeColor(rgbNumbers) {
+    this.strokeColor = rgbNumbers
+  }
+
+  changeFillColor(color) {
+    this.ctx.fillStyle = color
   }
 
   connect() {
@@ -29,7 +37,7 @@ export default class Particles {
             (this.particleArray[a].y - this.particleArray[b].y)
         if (distance < (this.canvas.width / 7) * (this.canvas.height / 7)) {
           opacityValue = 1 - distance / 10000
-          this.ctx.strokeStyle = 'rgba(100, 191, 232,' + opacityValue + ')'
+          this.ctx.strokeStyle = `rgba(${this.strokeColor}, ${opacityValue} )`
           this.ctx.beginPath()
           this.ctx.lineWidth = 2
           this.ctx.moveTo(this.particleArray[a].x, this.particleArray[a].y)
