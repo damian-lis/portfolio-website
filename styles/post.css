@@ -43,7 +43,7 @@
 
 .post-preview {
   flex-grow: 1;
-  padding: 15px;
+  padding: 15px 15px 0px 15px;
   display: flex;
   flex-direction: column;
 }
@@ -56,6 +56,19 @@
 .post-intro {
   font-size: 14px;
   color: #222222;
+}
+
+.icons-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  padding: 0 10px 10px 10px;
+}
+
+.icons-container img {
+  width: 45px;
+  height: 45px;
+  margin: 3px 0;
 }
 
 @media screen and (max-width: 800px) {
