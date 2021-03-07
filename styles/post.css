@@ -36,9 +36,14 @@
 
 .thubnail {
   display: block;
-  width: 100%;
+  border-radius: 5px;
+  width: 98%;
   height: 180px;
+  margin: 3px auto;
   object-fit: cover;
+  -webkit-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
 }
 
 .post-preview {
