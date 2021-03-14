@@ -30,63 +30,80 @@
                 </div>
                
             </div>
-            <div  class="intro-wrapper">
-               
-                <div class="intro-column-wrapper">
-                <div class="intro-left-column">
-                    <img id="profile_pic" src="images/projects/FluentBlog/viewSites.gif" alt="">
-                </div>
-                <div class="intro-right-column">
-                    <div id="preview-shadow">
-                        <div id="preview">
-                            <div id="corner-tl" class="corner"></div>
-                            <div id="corner-tr" class="corner"></div>
-                            <h3>About Project</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quibusdam vitae voluptatem, incidunt maiores velit delectus dolor reiciendis omnis, accusamus qui eveniet. Quam amet sunt nulla fuga similique earum deserunt praesentium nesciunt, at provident libero rem dolores. Incidunt at nihil, neque tenetur voluptatibus ipsum exercitationem autem quo sint doloremque a!</p>
-                            <div id="corner-br" class="corner"></div>
-                            <div id="corner-bl" class="corner"></div>
-                        </div>
+            <div class="project-container">
+                <div class="project-wrapper">
+                    <h2 class="project-headline"> Short app description </h2>  
+                    <h3 class="project-subheadline">1. Introduction</h3>
+                    <div class="project-description-wrapper">   
+                        <p>The application was built using the Next.js technology due to the speed and ease of development, efficiency and the ability to render the code on the server side, which contributes to better SEO.</p>
+                        <p>Below is quickly view of app:</p>
                     </div>
-                </div>
-            </div>
+                    <div class="project-image-wrapper">
+                        <img class="project-image" src="images/projects/FluentBlog/viewSites.gif" alt="">
+                    </div>
+                    <div class="project-description-wrapper">   
+                        <p>In the case of application styling, a utility-first CSS framework called tailwind css was used, which enables efficient, fast and easy styling. In addition to the framework, custom styles have been added to the more custom parts of the application.
+                       </p>
+                       <p>All styles and packages in Next.js applications are imported in the main file named _app. It is a convention that has been adopted by the creators. Below is an example of the structure of styles in the project</p>
+                    </div>
+                    <div class="project-image-wrapper">
+                        <img class="project-image" src="images/projects/FluentBlog/styles.gif" alt="">
+                    </div>
+                    <h3 class="project-subheadline">2. Application content</h3>
+                    <div class="project-description-wrapper">   
+                        <p>The project includes 3 subpages such as: Blog, About and Projects nad one which generate article from .md file</p>
+                        <p>You can see it in the example below</p>
+                    </div>
+                    <div class="project-image-wrapper">
+                        <img class="project-image" src="images/projects/FluentBlog/browseArticle.gif" alt="">
+                    </div>
+                    <div class="project-description-wrapper">   
+                        <p> Below is a high abstraction of code that is responsible for dynamic article creation using the getStaticPaths and getStaticProps methods characteristic of Next.js</p>
+                        <p>(all logic under the visible layer is available on my repository, the link to which will be at the bottom of page)</p>          
+                    </div>
+                    <div class="project-image-wrapper">
+                        <img class="project-image" src="images/projects/FluentBlog/articleCode.gif" alt="">
+                    </div>
+                    <div class="project-description-wrapper">   
+                        <p> Below is article example write in markdown extension</p>               
+                    </div>
+                    <div class="project-image-wrapper">
+                        <img class="project-image" src="images/projects/FluentBlog/article.gif" alt="">
+                    </div>
 
-            <div style="flex-direction: row-reverse;" class="intro-column-wrapper">
-                <div class="intro-left-column">
-                    <img id="profile_pic" src="images/projects/FluentBlog/loading.gif" alt="">
-                </div>
-                <div class="intro-right-column">
-                    <div id="preview-shadow">
-                        <div id="preview">
-                            <div id="corner-tl" class="corner"></div>
-                            <div id="corner-tr" class="corner"></div>
-                            <h3>About Project</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quibusdam vitae voluptatem, incidunt maiores velit delectus dolor reiciendis omnis, accusamus qui eveniet. Quam amet sunt nulla fuga similique earum deserunt praesentium nesciunt, at provident libero rem dolores. Incidunt at nihil, neque tenetur voluptatibus ipsum exercitationem autem quo sint doloremque a!</p>
-                            <div id="corner-br" class="corner"></div>
-                            <div id="corner-bl" class="corner"></div>
-                        </div>
+                    <h3 class="project-subheadline">3. Loader component</h3>
+                    <div class="project-description-wrapper">   
+                        <p>Due to the fact that not everyone can access high-speed internet, the Loader component was created to inform the user that his article is loading. Thanks to this, the user will immediately receive feedback on what is happening on the website.</p>
                     </div>
-                </div>
-            </div>
-
-            <div class="intro-column-wrapper">
-                <div class="intro-left-column">
-                    <img id="profile_pic" src="images/projects/FluentBlog/mobile.gif" alt="">
-                </div>
-                <div class="intro-right-column">
-                    <div id="preview-shadow">
-                        <div id="preview">
-                            <div id="corner-tl" class="corner"></div>
-                            <div id="corner-tr" class="corner"></div>
-                            <h3>About Project</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error quibusdam vitae voluptatem, incidunt maiores velit delectus dolor reiciendis omnis, accusamus qui eveniet. Quam amet sunt nulla fuga similique earum deserunt praesentium nesciunt, at provident libero rem dolores. Incidunt at nihil, neque tenetur voluptatibus ipsum exercitationem autem quo sint doloremque a!</p>
-                            <div id="corner-br" class="corner"></div>
-                            <div id="corner-bl" class="corner"></div>
-                        </div>
+                    <div class="project-image-wrapper">
+                        <img class="project-image" src="images/projects/FluentBlog/loading.gif" alt="">
                     </div>
+                    <div class="project-description-wrapper">   
+                        <p>Below is a solution in the code.</p>
+                    </div>
+                    <div class="project-image-wrapper">
+                        <img class="project-image" src="images/projects/FluentBlog/loaderCode.gif" alt="">
+                    </div>
+                    
+                    <h3 class="project-subheadline">3. Mobile version</h3>
+                   <div class="project-image-wrapper">
+                       <img class="project-image" src="images/projects/FluentBlog/mobile.gif" alt="">
+                   </div>
+                   <div class="project-description-wrapper">   
+                       <p>The use of the application with intuitively arranged website components was made as pleasant as possible. The mobile version has a responsive layout and hamburger menu to fast navigate..</p>
+                   </div>
+                   <h3 class="project-subheadline">4. Check the app!</h3>
+                   <div class="project-description-wrapper">   
+                    <p>Check entire website <a href="https://fluent-blog.vercel.app/" target="blank">here</a>!</p>
+                    <p>Check github repository <a href="https://github.com/damian-lis/Fluent-Blog" target="blank">here</a>!</p>
+                </div>
+                <h3 class="project-subheadline center">Thank you for your attention! 😎</h3>
+                   </div>
+                   
+                  </div>
                 </div>
             </div>
-            </div>
-        </div>
+            
     </section>
     
     <canvas id="canvas1"></canvas>
