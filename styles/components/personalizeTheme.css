@@ -1,18 +1,10 @@
-.greeting-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-  align-content: flex-end;
-  justify-content: space-around;
-  min-height: 10em;
-  margin: 10px 10px 0 10px;
-}
-
-.greeting-right-column {
+.personalize-theme {
+  height: 140px;
+  max-width: 250px;
   opacity: 0;
   display: flex;
   flex-direction: column;
-  align-content: center;
+  text-align: center;
   justify-content: center;
   background-color: var(--mainColor);
   border: 1px solid var(--borderColor);
@@ -20,12 +12,6 @@
   border-radius: 5px 5px 0 0;
   transform: translateY(-200%);
   animation: slideInFromTop 0.5s 1s ease-in forwards;
-}
-
-.greeting-right-column h5 {
-  margin: 20px 0;
-  text-align: center;
-  line-height: 0;
 }
 
 #theme-options-wrapper {

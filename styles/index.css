@@ -1,12 +1,8 @@
 @import './variables.css';
 @import './normalize.css';
-@import './global.css';
 @import './animations.css';
 @import './particles.css';
-@import './greeting.css';
-@import './intro.css';
-@import './about.css';
-@import './post.css';
 @import './project.css';
 @import './sound.css';
-@import './helpers.css';
+@import './components/index.css';
+@import './utils.css';

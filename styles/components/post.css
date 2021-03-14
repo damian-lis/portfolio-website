@@ -78,6 +78,12 @@
 
 @media screen and (max-width: 800px) {
   .post-wrapper {
-    grid-template-columns: repeat(auto-fit, 280px);
+    grid-template-columns: repeat(auto-fit, 300px);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .post-wrapper {
+    grid-template-columns: repeat(auto-fit, 270px);
   }
 }
