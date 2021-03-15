@@ -2,7 +2,6 @@
   transform: translateY(-100%);
   position: relative;
   opacity: 0;
-  transition: 1s;
 }
 
 #post-section a {
@@ -28,6 +27,7 @@
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s;
 }
 
 .post:hover {

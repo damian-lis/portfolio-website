@@ -8,20 +8,19 @@
         rel="stylesheet">
         <link rel="stylesheet" href="./styles/index.css">
   
-    <title>Portfolio</title>
-  
+    <title>Portfolio</title> 
 </head>
 <body>
-
-
-
     <div class="wrapper">
+        <div class="relative z-1">
         <section>
-            <div class="row mt-20">
-                <div class="col col-w-70">
-                    <h1 class="center sm-my-20">Hi, I' am Damian Lis</h1>
+            <div class="row mt-20 mt-50">
+                <div class="col col-w-60 center-el ">
+                    <div class="layer slideInFromLeft m-0 sm-mb-30 sm-p-10">
+                        <h1 class="center sm-my-20 text-center">Hi, I am Damian Lis!</h1>
+                    </div>  
                 </div>
-                <div class="col col-w-30 center-el">
+                <div id="theme-settings" class="col col-w-40 center-el">
                     <div class="personalize-theme">
                         <h5>Personalize theme</h5>
                     <div id="theme-options-wrapper">
@@ -36,12 +35,12 @@
             </div>
         </section>
         <section>
-        <div class="layer">
+        <div class="layer p-20 slideInFromLeft">
            <div class="row">
-               <div class="col col-w-50 sm-my-20">
-                <img class="wrap-500" id="profile_pic" src="images/avatar.jpg" alt="">
+               <div class="col col-w-50 center-el p-20 sm-p-0 showObject">
+                <img class="wrap-400 w-full rounded " id="profile_pic" src="images/avatar.jpg" alt="">
                </div>
-               <div class="col col-w-50 sm-my-20 px-20">
+               <div class="col col-w-50 sm-my-20 showObject">
                 <div id="preview-shadow">
                     <div id="preview">
                         <div id="corner-tl" class="corner"></div>
@@ -61,40 +60,40 @@
     
    
     <section>
-        <div class="layer">
+        <div class="layer p-20 slideInFromRight">
             <div class="row py-20">
-                <div class="col col-w-50 sm-my-20 px-20 justify">
-                    <h3>About me</h3>
+                <div class="col col-w-50 showObject text-justify">
+                    <h3 class="sm-text-center">About me</h3>
                     <p>For about half a year, I have been developing as a frontend developer with basic backend skills.</p>
                     <p>I fell in love with programming because of the logic it uses, the ability to create amazing projects and developing my problem-solving skills.</p>
                     <p>On a daily basis I love creating React technology applications, mainly e-commerce with lots of useful business options in the admin dashbord. Apart from that, for the artist's soul, I also like to play around creating various pseudo-intelligent games in JavaScript technology.</p>
                 
                 </div>
-                <div class="col col-w-50 sm-my-20">
-                    <img class="wrap-500" id="profile_pic" src="images/konferencja.jpg" alt="">
+                <div class="col col-w-50 center-el p-20 sm-p-0 showObject">
+                    <img class="wrap-400 w-full rounded" id="profile_pic" src="images/konferencja.jpg" alt="">
                    </div>
             </div>
          </div>
     </section>
     <section>
-        <div class="layer wrap-700">
+        <div class="layer wrap-700 p-20 slideInFromLeft">
             <div class="row ">  
-                <div class="col col-w-100 sm-my-20">
-                    <h3 class="my-20 center">My skills</h3>
+                <div class="col col-w-100">
+                    <h3 class="my-20 text-center">My skills</h3>
                     <div id="skills">
-                        <h5 style="margin:10px 0">1. Level enough to write more advanced frontend</h5>
+                        <h5 class="mt-10">1. Level enough to write more advanced frontend</h5>
                         <ul >
                             <li>HTML (Semanthic writing)</li>
                             <li>CSS (SASS, BEM, basic level of Bootstrap)</li>
                             <li>JavaScript (OOP, Design Patterns, Functional Programming)</li>
                             <li>React (Redux, Hooks, Styled Components, Compound Components etc.)</li>
                         </ul>
-                        <h5 style="margin:35px 0 10px 0">2. Level enough to write basic backend</h5>
+                        <h5 class="mt-30 ">2. Level enough to write basic backend</h5>
                         <ul>
                             <li>Node/Express (simple E-COMMERCE backend with REST API)</li>
                             <li>MongoDB (simple handle with Express)</li>
                         </ul>
-                        <h5 style="margin:35px 0 10px 0">3. When i have a free time</h5>
+                        <h5  class="mt-30 ">3. When i have a free time</h5>
                         <ul>
                        
                             <li>PHP (basic level)</li>
@@ -106,9 +105,9 @@
          </div>
     </section>
     <section>
-        <div class="layer wrap-500">
+        <div class="layer wrap-400 slideInFromRight">
             <div class="row">
-                <div class="col col-w-100 center">
+                <div class="col col-w-100 text-center">
                     <p >Description my person <a target="_blank"
                         href="#">Download CV</a></p>
                
@@ -120,10 +119,17 @@
             </div>
         </div>
     </section>
+</div>
 
-    <section class="mt-20" id="post-section">
+    <section class="mt-20 " id="post-section">
         
-                <h3 class= "my-20 center">Moje projekty</h3>
+        <div class="row">
+            <div class="col col-w-40 center-el ">
+                <div class="layer slideInFromLeft">
+                    <h3 class="center sm-my-20 ">Moje projekty</h3>
+                </div>  
+            </div>
+        </div>
             <div class="post-wrapper">
                 <a target="_blank" href="uniqueShop.html">
                     <div class="post">

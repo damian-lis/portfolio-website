@@ -11,13 +11,11 @@ import {
 let themeMode = localStorage.getItem('theme') || Object.keys(themes)[0]
 const themeDots = [...document.getElementsByClassName('theme-dot')]
 const postSection = document.querySelector('#post-section')
-const greetingRightColumn = document.querySelector('.greeting-right-column')
+const themeSettings = document.querySelector('#theme-settings')
 const particles = new Particles()
 if (document.title === 'Portfolio') {
   new Sound()
 }
-
-console.log(document.title)
 
 setVariables(themes[themeMode])
 initialSetActive(themeDots, themeMode, setActive, removeAllActive)
@@ -58,10 +56,10 @@ if (postSection) {
 
   window.onscroll = function () {
     if (
-      window.innerHeight + window.pageYOffset + postSectionHeight * 0.9 >=
+      window.innerHeight + window.pageYOffset + postSectionHeight >=
       document.body.offsetHeight
     ) {
-      postSection.style.transform = 'translateY(0)'
+      postSection.style.animation = 'slideInFromTop 1s forwards'
       postSection.style.opacity = 1
       window.onscroll = null
     }
@@ -69,5 +67,5 @@ if (postSection) {
 }
 
 setTimeout(() => {
-  greetingRightColumn.classList.add('shakeAnimation')
+  themeSettings.classList.add('shakeAnimation')
 }, 1700)

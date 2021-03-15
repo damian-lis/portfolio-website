@@ -11,13 +11,15 @@
     <title>Fluent Blog</title>
 </head>
 <body>
-    <div class="wrapper wrap-900">
+    <div class="wrapper wrap-900 ">
         <section>
-            <div class="row">
-                <div class="col col-w-70">
-                    <h1 class="center sm-my-20">Fluent Blog</h1>
+            <div class="row mt-20">
+                <div class="col col-w-60 center-el ">
+                    <div class="layer slideInFromLeft m-0 sm-mb-30 sm-p-10">
+                        <h1 class="center sm-my-20 ">Fluent Blog</h1>
+                    </div>  
                 </div>
-                <div class="col col-w-30 center-el">
+                <div class="col col-w-40 center-el">
                     <div class="personalize-theme">
                         <h5>Personalize theme</h5>
                     <div id="theme-options-wrapper">
@@ -32,71 +34,80 @@
             </div>
         </section>
         <section>
-        <div class="layer sm-px-20">
-           <div class="row">
+        <div class="layer sm-px-20 slideInFromLeft">
+           <div class="row showObject">
                <div class="col col-w-100 sm-my-20 wrap-600">
-                <h2 class="mb-20"> Short app description </h2>  
+                <h2 class="my-30 center"> Short app description </h2>  
                 <h3 class="my-20">1. Introduction</h3>
                 <div class="center">
-                    <img class="wrap-700 w-full" id="profile_pic" src="images/projects/FluentBlog/viewSites.gif" alt="" />
+                    <img class="wrap-700 w-full rounded" id="profile_pic" src="images/projects/FluentBlog/viewSites.gif" alt="" />
                 </div>
-                <div class="justify my-30">
+                <div class="text-justify my-30">
                     <p>The application was built using the Next.js technology due to the speed and ease of development, efficiency and the ability to render the code on the server side, which contributes to better SEO.</p>
                     <p>Below is quickly view of app:</p>
                 </div>
                 <div class="center">
-                    <img class="wrap-700 w-full" id="profile_pic" src="images/projects/FluentBlog/styles.gif" alt="" />
+                    <img class="wrap-700 w-full rounded" id="profile_pic" src="images/projects/FluentBlog/styles.gif" alt="" />
                 </div>
                 <h3 class="mt-40">2. Application content</h3>
-                <div class="justify my-30">   
+                <div class="text-justify my-30">   
                     <p>The project includes 3 subpages such as: Blog, About and Projects nad one which generate article from .md file</p>
                     <p>You can see it in the example below</p>
                 </div>
                 <div class="center">
-                    <img class="wrap-700 w-full" id="profile_pic" src="images/projects/FluentBlog/browseArticle.gif" alt="" />
+                    <img class="wrap-700 w-full rounded" id="profile_pic" src="images/projects/FluentBlog/browseArticle.gif" alt="" />
                 </div>
-                <div class="justify my-30">   
+                <div class="text-justify my-30">   
                     <p> Below is a high abstraction of code that is responsible for dynamic article creation using the getStaticPaths and getStaticProps methods characteristic of Next.js</p>
                     <p>(all logic under the visible layer is available on my repository, the link to which will be at the bottom of page)</p>          
                 </div>
                 <div class="center">
-                    <img class="wrap-700 w-full" id="profile_pic" src="images/projects/FluentBlog/articleCode.gif" alt="" />
+                    <img class="wrap-700 w-full rounded" id="profile_pic" src="images/projects/FluentBlog/articleCode.gif" alt="" />
                 </div>
-                <div class="justify my-30">   
+                <div class="text-justify my-30">   
                     <p> Below is article example write in markdown extension</p>               
                 </div>
                 <div class="center">
-                    <img class="wrap-700 w-full" id="profile_pic" src="images/projects/FluentBlog/article.gif" alt="" />
+                    <img class="wrap-700 w-full rounded" id="profile_pic" src="images/projects/FluentBlog/article.gif" alt="" />
                 </div>
                 <h3 class="mt-40">3. Loader component</h3>
-                <div class="justify my-30">   
+                <div class="text-justify my-30">   
                     <p>Due to the fact that not everyone can access high-speed internet, the Loader component was created to inform the user that his article is loading. Thanks to this, the user will immediately receive feedback on what is happening on the website.</p>
                 </div>
                 <div class="center">
-                    <img class="wrap-700 w-full" id="profile_pic" src="images/projects/FluentBlog/loading.gif" alt="" />
+                    <img class="wrap-700 w-full rounded" id="profile_pic" src="images/projects/FluentBlog/loading.gif" alt="" />
                 </div>
-                <div class="justify my-30">   
+                <div class="text-justify my-30">   
                     <p>Below is a solution in the code.</p>
                 </div>
                 <div class="center">
-                    <img class="wrap-700 w-full" id="profile_pic" src="images/projects/FluentBlog/loaderCode.gif" alt="" />
+                    <img class="wrap-700 w-full rounded" id="profile_pic" src="images/projects/FluentBlog/loaderCode.gif" alt="" />
                 </div>
                 <h3 class="mt-40">3. Mobile version</h3>
                 <div class="center">
-                    <img class="wrap-700 w-full mt-20" id="profile_pic" src="images/projects/FluentBlog/mobile.gif" alt="" />
+                    <img class="wrap-700 w-full mt-20 rounded" id="profile_pic" src="images/projects/FluentBlog/mobile.gif" alt="" />
                 </div>
-                <div class="justify my-30">   
+                <div class="text-justify my-30">   
                     <p>The use of the application with intuitively arranged website components was made as pleasant as possible. The mobile version has a responsive layout and hamburger menu to fast navigate..</p>
                     
                 </div>
                 <h3 class="mt-40">4. Check the app!</h3>
-                <div class="justify">   
+                <div class="text-justify sm-text-left">   
                     <p>Check entire website <a href="https://fluent-blog.vercel.app/" target="blank">here</a>!</p>
                     <p>Check github repository <a href="https://github.com/damian-lis/Fluent-Blog" target="blank">here</a>!</p>
                 </div>
-                <h3 class="center mt-30">Thank you for your attention! 😎</h3>
+               
                </div>      
            </div>
+        </div>
+    </section>
+    <section>
+        <div class="row mt-20">
+            <div class="col col-w-60 center-el ">
+                <div class="layer slideInFromLeft ">
+                    <h1 class="center sm-my-20 text-center">Thank You for your attention! 😎</h1>
+                </div>  
+            </div>
         </div>
     </section>
 </div>

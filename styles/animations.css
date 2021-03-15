@@ -36,12 +36,12 @@
     transform: translateY(-200%);
   }
 
-  60% {
+  50% {
     opacity: 0;
   }
 
   100% {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -92,4 +92,16 @@
   animation: shake 3s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
   transform: translate3d(0, 0, 0);
   opacity: 1;
+}
+
+.slideInFromLeft {
+  animation: slideInFromLeft 0.5s 0.5s ease-in forwards;
+}
+
+.slideInFromRight {
+  animation: slideInFromRight 0.5s 0.5s ease-in forwards;
+}
+
+.showObject {
+  animation: showObject 2s ease-in;
 }
