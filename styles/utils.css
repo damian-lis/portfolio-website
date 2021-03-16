@@ -210,12 +210,16 @@
   border-radius: 5px;
 }
 
+/* Cursor */
+.pointer {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 800px) {
   /* Row */
   .row {
     flex-direction: column;
     text-align: center;
-    align-items: center;
   }
 
   /* Margin */

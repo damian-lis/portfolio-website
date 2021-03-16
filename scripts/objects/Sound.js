@@ -20,6 +20,7 @@ export default class Sound {
 
   createSoundButton() {
     const soundButton = document.createElement('button')
+    soundButton.classList.add('pointer')
     soundButton.id = 'sound'
     soundButton.textContent = 'Play sound'
     soundButton.addEventListener('click', () => {

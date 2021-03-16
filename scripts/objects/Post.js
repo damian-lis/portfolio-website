@@ -3,7 +3,6 @@ export default class Post {
     this.mainContainer = container
     this.post = post
     this.linkContainer = this.createLinkContainer()
-    console.log(this.linkContainer)
     this.postContainer = this.createPostContainer()
     this.thubnail = this.createThubnail()
     this.postPrevContainer = this.createPostPrevContainer()

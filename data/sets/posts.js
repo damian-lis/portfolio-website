@@ -41,7 +41,7 @@ export default [
     ],
   },
   {
-    route: '/fluentBlog.html',
+    route: '/projects/fluentBlog.html',
     image: '/data/images/projects/FluentBlog/browseArticle.gif',
     alt: 'FluentBlog',
     title: 'FluentBlog',
