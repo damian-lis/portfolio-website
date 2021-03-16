@@ -1,24 +1,16 @@
-import themes from '../data/themes.js'
-import Particles from './Particles.js'
-import Sound from './Sound.js'
-import Post from './Post.js'
-import posts from '../data/posts.js'
+import themes from '../data/global/themes.js'
+import Particles from './objects/Particles.js'
 import {
   setVariables,
   initialSetActive,
   setActive,
   removeAllActive,
-} from '../helpers/index.js'
+  addAnimationToEl,
+} from './helpers/index.js'
 
 let themeMode = localStorage.getItem('theme') || Object.keys(themes)[0]
 const themeDots = [...document.getElementsByClassName('theme-dot')]
-const postWrapper = document.querySelector('.post-wrapper')
-const themeSettings = document.querySelector('#theme-settings')
-const postSection = document.querySelector('#post-section')
 const particles = new Particles()
-if (document.title === 'Portfolio') {
-  new Sound()
-}
 
 setVariables(themes[themeMode])
 initialSetActive(themeDots, themeMode, setActive, removeAllActive)
@@ -50,26 +42,8 @@ for (let i = 0; themeDots.length > i; i++) {
   })
 }
 
-setTimeout(() => {
-  themeSettings.classList.add('shakeAnimation')
-}, 1700)
-
-//Post
-posts.map((post) => new Post(postWrapper, post))
-
-let postSectionHeight = postSection.clientHeight
-
-window.addEventListener('resize', () => {
-  postSectionHeight = postSection.clientHeight
+addAnimationToEl({
+  element: '#theme-settings',
+  animationClass: 'shakeAnimation',
+  after: 1700,
 })
-
-window.onscroll = function () {
-  if (
-    window.innerHeight + window.pageYOffset + postSectionHeight >=
-    document.body.offsetHeight
-  ) {
-    postSection.style.animation = 'slideInFromTop 1s forwards'
-    postSection.style.opacity = 1
-    window.onscroll = null
-  }
-}

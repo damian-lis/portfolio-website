@@ -38,7 +38,7 @@ export default class Sound {
 
   createAudio() {
     const audio = document.createElement('audio')
-    audio.src = '../music/ambient.mp3'
+    audio.src = '../data/musics/ambient.mp3'
     return audio
   }
 }
