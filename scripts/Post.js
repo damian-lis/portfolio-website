@@ -17,8 +17,7 @@ window.onscroll = function () {
     window.innerHeight + window.pageYOffset + postSectionHeight >=
     document.body.offsetHeight
   ) {
-    postSection.style.animation = 'slideInFromTop 1s forwards'
-    postSection.style.opacity = 1
+    postSection.classList.add('slideInFromTop')
     window.onscroll = null
   }
 }
