@@ -1,0 +1,60 @@
+/* Row */
+.row-xy {
+  display: flex;
+}
+
+.row-x {
+  display: flex;
+}
+
+.row-y {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Column */
+.col-10 {
+  flex-basis: 10%;
+}
+
+.col-20 {
+  flex-basis: 20%;
+}
+
+.col-30 {
+  flex-basis: 30%;
+}
+
+.col-40 {
+  flex-basis: 40%;
+}
+
+.col-50 {
+  flex-basis: 50%;
+}
+
+.col-60 {
+  flex-basis: 60%;
+}
+
+.col-70 {
+  flex-basis: 70%;
+}
+
+.col-80 {
+  flex-basis: 80%;
+}
+
+.col-90 {
+  flex-basis: 39%;
+}
+
+.col-100 {
+  flex-basis: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .row-xy {
+    flex-direction: column;
+  }
+}

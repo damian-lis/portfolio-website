@@ -1,0 +1,49 @@
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-lh-20 {
+  line-height: 20px;
+}
+
+.text-lh-25 {
+  line-height: 25px;
+}
+
+.text-lh-30 {
+  line-height: 30px;
+}
+
+@media screen and (max-width: 800px) {
+  .sm-text-center {
+    text-align: center;
+  }
+
+  .sm-text-left {
+    text-align: left;
+  }
+
+  .sm-text-justify {
+    text-align: justify;
+  }
+
+  .sm-text-lh-20 {
+    line-height: 20px;
+  }
+
+  .sm-text-lh-25 {
+    line-height: 25px;
+  }
+
+  .sm-text-lh-30 {
+    line-height: 30px;
+  }
+}

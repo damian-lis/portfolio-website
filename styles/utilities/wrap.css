@@ -1,0 +1,182 @@
+/* Vertical wrap */
+.wrap-y-100 {
+  max-height: 100px;
+}
+
+.wrap-y-200 {
+  max-height: 200px;
+}
+
+.wrap-y-300 {
+  max-height: 300px;
+}
+
+.wrap-y-400 {
+  max-height: 400px;
+}
+
+.wrap-y-500 {
+  max-height: 500px;
+}
+
+.wrap-y-600 {
+  max-height: 600px;
+}
+
+.wrap-y-700 {
+  max-height: 700px;
+}
+
+.wrap-y-800 {
+  max-height: 800px;
+}
+
+.wrap-y-900 {
+  max-height: 900px;
+}
+
+.wrap-y-1000 {
+  max-height: 1000px;
+}
+
+.wrap-y-1100 {
+  max-height: 1100px;
+}
+
+/* Horizontal wrap */
+.wrap-x-100 {
+  max-width: 100px;
+}
+
+.wrap-x-200 {
+  max-width: 200px;
+}
+
+.wrap-x-300 {
+  max-width: 300px;
+}
+
+.wrap-x-400 {
+  max-width: 400px;
+}
+
+.wrap-x-500 {
+  max-width: 500px;
+}
+
+.wrap-x-600 {
+  max-width: 600px;
+}
+
+.wrap-x-700 {
+  max-width: 700px;
+}
+
+.wrap-x-800 {
+  max-width: 800px;
+}
+
+.wrap-x-900 {
+  max-width: 900px;
+}
+
+.wrap-x-1000 {
+  max-width: 1000px;
+}
+
+.wrap-x-1100 {
+  max-width: 1100px;
+}
+
+
+@media screen and (max-width: 800px) {
+  /* Vertical wrap */
+.sm-wrap-y-100 {
+  max-height: 100px;
+}
+
+.sm-wrap-y-200 {
+  max-height: 200px;
+}
+
+.sm-wrap-y-300 {
+  max-height: 300px;
+}
+
+.sm-wrap-y-400 {
+  max-height: 400px;
+}
+
+.sm-wrap-y-500 {
+  max-height: 500px;
+}
+
+.sm-wrap-y-600 {
+  max-height: 600px;
+}
+
+.sm-wrap-y-700 {
+  max-height: 700px;
+}
+
+.sm-wrap-y-800 {
+  max-height: 800px;
+}
+
+.sm-wrap-y-900 {
+  max-height: 900px;
+}
+
+.sm-wrap-y-1000 {
+  max-height: 1000px;
+}
+
+.sm-wrap-y-1100 {
+  max-height: 1100px;
+}
+
+/* Horizontal wrap */
+.sm-wrap-x-100 {
+  max-width: 100px;
+}
+
+.sm-wrap-x-200 {
+  max-width: 200px;
+}
+
+.sm-wrap-x-300 {
+  max-width: 300px;
+}
+
+.sm-wrap-x-400 {
+  max-width: 400px;
+}
+
+.sm-wrap-x-500 {
+  max-width: 500px;
+}
+
+.sm-wrap-x-600 {
+  max-width: 600px;
+}
+
+.sm-wrap-x-700 {
+  max-width: 700px;
+}
+
+.sm-wrap-x-800 {
+  max-width: 800px;
+}
+
+.sm-wrap-x-900 {
+  max-width: 900px;
+}
+
+.sm-wrap-x-1000 {
+  max-width: 1000px;
+}
+
+.sm-wrap-x-1100 {
+  max-width: 1100px;
+}
+
