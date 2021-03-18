@@ -1,11 +1,26 @@
+import { addPropsAfterDelay } from '../helpers/index.js'
+
 export default class Sound {
   constructor() {
     this.audio = this.createAudio()
-    this.soundContainer = this.createContainer()
-    this.soundButton = this.createSoundButton()
-    this.attachToContainer(this.soundButton, this.soundContainer)
-    this.attachToContainer(this.soundContainer, document.body)
+    this.btnContainer = this.createContainer()
+    this.button = this.createButton()
+    this.attachToContainer(this.button, this.btnContainer)
+    this.attachToContainer(this.btnContainer, document.body)
+    this.runAnimation()
     this.play = false
+  }
+
+  runAnimation() {
+    addPropsAfterDelay({
+      node: this.button,
+      properties: {
+        animation: 'shake 3s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite',
+        transform: 'translate3d(0, 0, 0)',
+        opacity: '1',
+      },
+      delay: 1700,
+    })
   }
 
   attachToContainer(element, container) {
@@ -14,27 +29,27 @@ export default class Sound {
 
   createContainer() {
     const soundContainer = document.createElement('div')
-    soundContainer.classList.add('sound-container')
+    soundContainer.classList.add('btn-container')
     return soundContainer
   }
 
-  createSoundButton() {
-    const soundButton = document.createElement('button')
-    soundButton.classList.add('pointer')
-    soundButton.id = 'sound'
-    soundButton.textContent = 'Play sound'
-    soundButton.addEventListener('click', () => {
+  createButton() {
+    const button = document.createElement('button')
+    button.id = 'sound-play'
+    button.textContent = 'Play sound'
+    button.classList.add('slideInFromTop')
+    button.addEventListener('click', () => {
       if (this.play) {
-        soundButton.textContent = 'Play sound!'
+        button.textContent = 'Play sound!'
         this.audio.pause()
         this.play = false
       } else {
         this.audio.play()
-        soundButton.textContent = 'Stop sound!'
+        button.textContent = 'Stop sound!'
         this.play = true
       }
     })
-    return soundButton
+    return button
   }
 
   createAudio() {

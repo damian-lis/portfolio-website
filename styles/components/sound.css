@@ -1,11 +1,11 @@
-.sound-container {
+.btn-container {
   position: absolute;
   top: 0;
   display: flex;
   width: 100%;
 }
 
-#sound {
+#sound-play {
   font-size: 18px;
   padding: 5px 15px 10px 15px;
   margin: auto;
@@ -16,6 +16,7 @@
   color: #fff;
   border: var(--borderColor) 1px solid;
   border-top: none;
-  animation: shake 3s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+  opacity: 0;
   outline: none;
+  cursor: pointer;
 }
