@@ -1,4 +1,5 @@
-@import './layer.css';
+@import './curtain.css';
+@import './card.css';
 @import './personalizeTheme.css';
 @import './post.css';
 @import './preview.css';
