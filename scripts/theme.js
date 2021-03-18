@@ -5,7 +5,6 @@ import {
   initialSetActive,
   setActive,
   removeAllActive,
-  addPropsAfterDelay,
 } from './helpers/index.js'
 
 let themeMode = localStorage.getItem('theme') || Object.keys(themes)[0]
@@ -41,13 +40,3 @@ for (let i = 0; themeDots.length > i; i++) {
     localStorage.setItem('theme', mode)
   })
 }
-
-addPropsAfterDelay({
-  node: '#theme-settings',
-  properties: {
-    animation: 'shake 3s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite',
-    transform: 'translate3d(0, 0, 0)',
-    opacity: '1',
-  },
-  delay: 2500,
-})

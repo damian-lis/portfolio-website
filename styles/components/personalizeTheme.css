@@ -11,7 +11,7 @@
   border-bottom: none;
   border-radius: 5px 5px 0 0;
   transform: translateY(-200%);
-  animation: slideInFromTop 0.5s 1s ease-in forwards;
+  animation: slideInFromTop 0.5s 1s ease-in forwards, shake 3s 2s infinite;
 }
 
 #theme-options-wrapper {

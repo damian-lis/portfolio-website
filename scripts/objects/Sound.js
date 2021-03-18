@@ -7,20 +7,7 @@ export default class Sound {
     this.button = this.createButton()
     this.attachToContainer(this.button, this.btnContainer)
     this.attachToContainer(this.btnContainer, document.body)
-    this.runAnimation()
     this.play = false
-  }
-
-  runAnimation() {
-    addPropsAfterDelay({
-      node: this.button,
-      properties: {
-        animation: 'shake 3s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite',
-        transform: 'translate3d(0, 0, 0)',
-        opacity: '1',
-      },
-      delay: 1700,
-    })
   }
 
   attachToContainer(element, container) {
@@ -37,7 +24,6 @@ export default class Sound {
     const button = document.createElement('button')
     button.id = 'sound-play'
     button.textContent = 'Play sound'
-    button.classList.add('slideInFromTop')
     button.addEventListener('click', () => {
       if (this.play) {
         button.textContent = 'Play sound!'
