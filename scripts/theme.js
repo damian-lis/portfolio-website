@@ -1,11 +1,11 @@
 import themes from '../data/global/themes.js'
-import Particles from './objects/Particles.js'
+import { Particles } from './objects/index.js'
 import {
   setVariables,
   initialSetActive,
   setActive,
   removeAllActive,
-  addAnimationToEl,
+  addPropsAfterDelay,
 } from './helpers/index.js'
 
 let themeMode = localStorage.getItem('theme') || Object.keys(themes)[0]
@@ -42,8 +42,12 @@ for (let i = 0; themeDots.length > i; i++) {
   })
 }
 
-addAnimationToEl({
-  element: '#theme-settings',
-  animationClass: 'shakeAnimation',
-  after: 1700,
+addPropsAfterDelay({
+  node: '#theme-settings',
+  properties: {
+    animation: 'shake 3s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite',
+    transform: 'translate3d(0, 0, 0)',
+    opacity: '1',
+  },
+  delay: 2500,
 })
