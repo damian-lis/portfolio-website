@@ -1,9 +1,4 @@
 @keyframes slideInFromLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-
   30% {
     opacity: 1;
   }
@@ -15,11 +10,6 @@
 }
 
 @keyframes slideInFromRight {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-
   30% {
     opacity: 1;
   }
@@ -31,11 +21,6 @@
 }
 
 @keyframes slideInFromTop {
-  0% {
-    opacity: 0;
-    transform: translateY(-200%);
-  }
-
   50% {
     opacity: 0;
   }
@@ -47,16 +32,18 @@
 }
 
 @keyframes showObject {
-  0% {
-    opacity: 0;
-  }
-
   80% {
     opacity: 0;
   }
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes showBtnFromRight {
+  100% {
+    transform: translateY(-50%) translateX(40%) rotate(90deg);
   }
 }
 
@@ -88,20 +75,30 @@
   }
 }
 
-.shakeAnimation {
-  animation: shake 3s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
-  transform: translate3d(0, 0, 0);
-  opacity: 1;
-}
-
 .slideInFromLeft {
+  opacity: 0;
+  transform: translateX(-200%);
   animation: slideInFromLeft 0.5s 0.5s ease-in forwards;
 }
 
 .slideInFromRight {
+  opacity: 0;
+  transform: translateX(200%);
   animation: slideInFromRight 0.5s 0.5s ease-in forwards;
 }
 
+.slideInFromTop {
+  opacity: 0;
+  transform: translateY(-100%);
+  animation: slideInFromTop 1s forwards;
+}
+
+.showBtnFromRight {
+  transform: translateY(-50%) translateX(80%) rotate(90deg);
+  animation: showBtnFromRight 1s 2s ease-in forwards;
+}
+
 .showObject {
-  animation: showObject 2s ease-in;
+  opacity: 0;
+  animation: showObject 2s ease-in forwards;
 }
