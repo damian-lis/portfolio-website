@@ -5,35 +5,42 @@ export default class DataArrange {
 
   createTitle() {
     const title = document.createElement('h3')
-    title.classList.add('mt-40', 'mb-20')
     return title
+  }
+
+  createTitleContainer() {
+    const titleContainer = document.createElement('div')
+    titleContainer.classList.add('col', 'mt-40', 'mb-10')
+    return titleContainer
   }
 
   createTextContainer() {
     const textContainer = document.createElement('div')
-    textContainer.classList.add('text-justify', 'my-30')
+    textContainer.classList.add('col', 'text-justify', 'text-lh-25')
     return textContainer
   }
 
   createText() {
     const text = document.createElement('p')
+    text.classList.add('my-10')
     return text
   }
 
   createImageContainer() {
     const imageContainer = document.createElement('div')
+    imageContainer.classList.add('col', 'my-20')
     return imageContainer
   }
 
   createImage() {
     const image = document.createElement('img')
-    image.classList.add('rounded')
+    image.classList.add('rounded', 'w-full')
     return image
   }
 
   createLinksContainer() {
     const linksContainer = document.createElement('div')
-    linksContainer.classList.add('text-justify', 'sm-text-left')
+    linksContainer.classList.add('col', 'text-justify', 'sm-text-left')
     return linksContainer
   }
 
@@ -48,7 +55,9 @@ export default class DataArrange {
       if (element.title) {
         const title = this.createTitle()
         title.textContent = element.title
-        this.mainContainer.appendChild(title)
+        const titleContainer = this.createTitleContainer()
+        titleContainer.appendChild(title)
+        this.mainContainer.appendChild(titleContainer)
       } else if (element.image) {
         const image = this.createImage()
         image.src = element.image
