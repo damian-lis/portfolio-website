@@ -1,11 +1,17 @@
 .curtain {
   position: fixed;
-  visibility: hidden;
   top: 0;
-  opacity: 0;
   height: 100%;
   width: 100%;
+  padding: 10px;
   background-color: rgba(0, 0, 0, 0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  visibility: hidden;
+  opacity: 0;
   z-index: 10;
   transition: 0.3s;
 }
