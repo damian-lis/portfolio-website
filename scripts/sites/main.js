@@ -1,7 +1,7 @@
 import '../post.js'
 import '../theme.js'
 import Sound from '../objects/Sound.js'
+import Form from '../objects/Form.js'
 
-if (document.title === 'Portfolio') {
-  new Sound()
-}
+new Sound()
+new Form()
