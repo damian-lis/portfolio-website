@@ -1,46 +1,50 @@
-import { addPropsAfterDelay } from '../helpers/index.js'
+import { createElementFn } from '../helpers/index.js'
 
 export default class Sound {
   constructor() {
-    this.audio = this.createAudio()
-    this.btnContainer = this.createContainer()
-    this.button = this.createButton()
-    this.attachToContainer(this.button, this.btnContainer)
-    this.attachToContainer(this.btnContainer, document.body)
+    this.audio = createElementFn({
+      element: 'audio',
+      src: '../data/musics/ambient.mp3',
+    })
+    const audioElements = this.createAudioElements()
+    this.attachToContainer(audioElements)
     this.play = false
   }
 
-  attachToContainer(element, container) {
-    container.appendChild(element)
+  handleAudio(element) {
+    if (this.play) {
+      element.textContent = 'Play sound!'
+      this.audio.pause()
+      this.play = false
+    } else {
+      this.audio.play()
+      element.textContent = 'Stop sound!'
+      this.play = true
+    }
   }
 
-  createContainer() {
-    const soundContainer = document.createElement('div')
-    soundContainer.classList.add('btn-container')
-    return soundContainer
-  }
-
-  createButton() {
-    const button = document.createElement('button')
-    button.id = 'sound-play'
-    button.textContent = 'Play sound'
-    button.addEventListener('click', () => {
-      if (this.play) {
-        button.textContent = 'Play sound!'
-        this.audio.pause()
-        this.play = false
-      } else {
-        this.audio.play()
-        button.textContent = 'Stop sound!'
-        this.play = true
-      }
+  createAudioElements() {
+    const btnContainer = createElementFn({
+      element: 'div',
+      classes: ['btn-container'],
     })
-    return button
+    const button = createElementFn({
+      element: 'button',
+      id: 'sound-play',
+      text: 'Play sound',
+      event: 'click',
+      cb: (e) => this.handleAudio(e.target),
+    })
+    return {
+      btnContainer,
+      button,
+    }
   }
 
-  createAudio() {
-    const audio = document.createElement('audio')
-    audio.src = '../data/musics/ambient.mp3'
-    return audio
+  attachToContainer(elements) {
+    const { btnContainer, button } = elements
+
+    btnContainer.appendChild(button)
+    document.body.appendChild(btnContainer)
   }
 }
