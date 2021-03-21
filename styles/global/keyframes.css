@@ -69,8 +69,8 @@
   }
 }
 
-@keyframes showFormBtnFromRight {
+@keyframes showFormBtnFromLeft {
   100% {
-    transform: translateY(-50%) translateX(-17px) rotate(90deg);
+    transform: translateY(-50%) translateX(14px) rotate(90deg);
   }
 }
