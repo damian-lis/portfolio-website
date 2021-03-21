@@ -1,92 +1,87 @@
+import { createElementFn } from '../helpers/index.js'
+
 export default class DataArrange {
-  constructor(container) {
-    this.mainContainer = container
+  constructor(container, data) {
+    this.container = document.querySelector(container)
+    const elementsToAttach = this.createElementsToAttach(data)
+    this.attachElementsToContainer(elementsToAttach)
   }
 
-  createTitle() {
-    const title = document.createElement('h3')
-    return title
+  attachElementsToContainer(elements) {
+    elements.map((element) => {
+      this.container.appendChild(element)
+    })
   }
 
-  createTitleContainer() {
-    const titleContainer = document.createElement('div')
-    titleContainer.classList.add('col', 'mt-40', 'mb-10')
-    return titleContainer
-  }
+  createElementsToAttach(elements) {
+    const elementsToAttach = []
 
-  createTextContainer() {
-    const textContainer = document.createElement('div')
-    textContainer.classList.add('col', 'text-justify', 'text-lh-25')
-    return textContainer
-  }
-
-  createText() {
-    const text = document.createElement('p')
-    text.classList.add('my-10')
-    return text
-  }
-
-  createImageContainer() {
-    const imageContainer = document.createElement('div')
-    imageContainer.classList.add('col', 'my-20')
-    return imageContainer
-  }
-
-  createImage() {
-    const image = document.createElement('img')
-    image.classList.add('rounded', 'w-full')
-    return image
-  }
-
-  createLinksContainer() {
-    const linksContainer = document.createElement('div')
-    linksContainer.classList.add('col', 'text-justify', 'sm-text-left')
-    return linksContainer
-  }
-
-  createLink() {
-    const link = document.createElement('a')
-    link.target = '_blank'
-    return link
-  }
-
-  attachToMainContainer(elements) {
     elements.map((element) => {
       if (element.title) {
-        const title = this.createTitle()
-        title.textContent = element.title
-        const titleContainer = this.createTitleContainer()
+        const titleContainer = createElementFn({
+          element: 'div',
+          classes: ['col', 'mt-40', 'mb-10'],
+        })
+
+        const title = createElementFn({
+          element: 'h3',
+          text: element.title,
+        })
+
         titleContainer.appendChild(title)
-        this.mainContainer.appendChild(titleContainer)
+        elementsToAttach.push(titleContainer)
       } else if (element.image) {
-        const image = this.createImage()
-        image.src = element.image
-        const imageContainer = this.createImageContainer()
+        const imageContainer = createElementFn({
+          element: 'div',
+          classes: ['col', 'my-20'],
+        })
+        const image = createElementFn({
+          element: 'img',
+          classes: ['rounded', 'w-full'],
+          src: element.image,
+        })
+
         imageContainer.appendChild(image)
-        this.mainContainer.appendChild(imageContainer)
+        elementsToAttach.push(imageContainer)
       } else if (element.text) {
         element.text.map((el) => {
-          const text = this.createText()
-          text.textContent = el
-          const textContainer = this.createTextContainer()
+          const textContainer = createElementFn({
+            element: 'div',
+            classes: ['col', 'text-justify', 'text-lh-25'],
+          })
+          const text = createElementFn({
+            element: 'p',
+            classes: ['my-10'],
+            text: el,
+          })
+
           textContainer.appendChild(text)
-          this.mainContainer.appendChild(textContainer)
+          elementsToAttach.push(textContainer)
         })
       } else if (element.links) {
         element.links.map((linkEl) => {
-          const link = this.createLink()
-          link.href = linkEl.path
-          link.textContent = linkEl.linkText
-
-          const text = this.createText()
-          text.textContent = linkEl.label
+          const linkContainer = createElementFn({
+            element: 'div',
+            classes: ['col', 'text-justify', 'sm-text-left'],
+          })
+          const link = createElementFn({
+            element: 'a',
+            target: '_blank',
+            href: linkEl.path,
+            text: linkEl.text,
+          })
+          const text = createElementFn({
+            element: 'p',
+            classes: ['my-10'],
+            text: linkEl.label,
+          })
 
           text.appendChild(link)
-          const linkContainer = this.createLinksContainer()
           linkContainer.appendChild(text)
-          this.mainContainer.appendChild(linkContainer)
+          elementsToAttach.push(linkContainer)
         })
       }
     })
+    return elementsToAttach
   }
 }
