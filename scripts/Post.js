@@ -1,10 +1,9 @@
 import Post from './objects/Post.js'
 import posts from '../data/sets/posts.js'
 
-const postWrapper = document.querySelector('.post-wrapper')
-const postSection = document.querySelector('#post-section')
+posts.map((post) => new Post('.post-wrapper', post))
 
-posts.map((post) => new Post(postWrapper, post))
+const postSection = document.querySelector('#post-section')
 
 let postSectionHeight = postSection.clientHeight
 
