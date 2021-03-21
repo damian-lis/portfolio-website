@@ -8,7 +8,8 @@ import {
 } from './helpers/index.js'
 
 let themeMode = localStorage.getItem('theme') || Object.keys(themes)[0]
-const themeDots = [...document.getElementsByClassName('theme-dot')]
+const themeDots = [...document.getElementsByClassName('theme-options-dot')]
+
 const particles = new Particles()
 
 setVariables(themes[themeMode])
@@ -34,6 +35,7 @@ updateParticles()
 for (let i = 0; themeDots.length > i; i++) {
   themeDots[i].addEventListener('click', function (e) {
     const mode = this.dataset.mode
+    console.log(mode)
     setVariables(themes[mode])
     setActive(this, themeDots, removeAllActive)
     particles.setColors(themes[mode])
