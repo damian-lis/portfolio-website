@@ -1,0 +1,100 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: var(--mainColor);
+}
+
+.form-field {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-message {
+  flex-grow: 1;
+}
+
+.form-field label {
+  padding-bottom: 8px;
+}
+
+.form-field input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--secondaryColor);
+  border-radius: 5px;
+  border: 1px solid var(--borderColor);
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.form-field textarea[id='message'] {
+  height: 100%;
+  line-height: 180%;
+  padding: 10px;
+  resize: none;
+}
+
+.form-field input[type='submit'] {
+  margin-top: 15px;
+  height: 41px;
+  cursor: pointer;
+}
+
+.form-field input[type='submit']:hover {
+  background-color: var(--mainColor);
+}
+
+.form-btn-create-container {
+  position: fixed;
+  display: flex;
+  top: 50%;
+  right: 50%;
+  width: 100%;
+  transform: translateY(-50%) translateX(-20px) rotate(90deg);
+  animation: showFormBtnFromLeft 0.3s 2s ease-in forwards;
+  z-index: 1;
+  transition: 1s;
+}
+
+.form-btn-create {
+  font-size: 18px;
+  padding: 5px 15px 10px 15px;
+  margin: 0 auto;
+  background-color: var(--mainColor);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  color: #fff;
+  border: var(--borderColor) 1px solid;
+  border-bottom: none;
+  outline: none;
+  z-index: 1;
+  transition: 1s;
+}
+
+.form-btn-delete-container {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-btn-delete {
+  font-size: 18px;
+  height: 35px;
+  width: 35px;
+  background-color: var(--mainColor);
+  border-radius: 5px;
+  border: var(--borderColor) 1px solid;
+}
+
+.form-btn-delete:hover {
+  background-color: var(--secondaryColor);
+}
