@@ -5,5 +5,5 @@ import Form from '../objects/Form.js'
 
 themeHandler()
 postHandler(posts)
-new Sound()
-new Form()
+new Sound('#container-global')
+new Form('#container-global')

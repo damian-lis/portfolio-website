@@ -1,13 +1,13 @@
 import { createElementFn } from '../helpers/index.js'
 
 export default class Sound {
-  constructor() {
+  constructor(container) {
     this.audio = createElementFn({
       element: 'audio',
       src: '../data/musics/ambient.mp3',
     })
     const audioElements = this.createAudioElements()
-    this.attachToContainer(audioElements)
+    this.attachToContainer(container, audioElements)
     this.play = false
   }
 
@@ -26,7 +26,7 @@ export default class Sound {
   createAudioElements() {
     const btnContainer = createElementFn({
       element: 'div',
-      classes: ['btn-container'],
+      classes: ['sound-btn-container'],
     })
     const button = createElementFn({
       element: 'button',
@@ -41,10 +41,10 @@ export default class Sound {
     }
   }
 
-  attachToContainer(elements) {
+  attachToContainer(container, elements) {
     const { btnContainer, button } = elements
 
     btnContainer.appendChild(button)
-    document.body.appendChild(btnContainer)
+    document.querySelector(container).appendChild(btnContainer)
   }
 }

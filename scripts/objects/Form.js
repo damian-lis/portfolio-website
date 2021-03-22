@@ -1,8 +1,8 @@
 import curtain from './Curtain.js'
-
 import { createElementFn, addPropsAfterDelay } from '../helpers/index.js'
+
 export default class Form {
-  constructor() {
+  constructor(container) {
     this.formFieldsContent = [
       { label: 'Name', type: 'text', name: 'name' },
       { label: 'Subject', type: 'text', name: 'subject' },
@@ -37,7 +37,7 @@ export default class Form {
       classes: ['form-btn-create-container', 'showBtnFromRight'],
     })
     this.createFormBtnContainer.appendChild(this.createFormBtn)
-    document.body.appendChild(this.createFormBtnContainer)
+    document.querySelector(container).appendChild(this.createFormBtnContainer)
   }
 
   handleFormCreate() {

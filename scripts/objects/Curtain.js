@@ -1,7 +1,7 @@
 import { createElementFn } from '../helpers/index.js'
 
 class Curtain {
-  constructor() {
+  constructor(container) {
     this.curtain = createElementFn({
       element: 'div',
       classes: ['curtain'],
@@ -10,7 +10,7 @@ class Curtain {
         this.hidden()
       },
     })
-    document.body.appendChild(this.curtain)
+    document.querySelector(container).appendChild(this.curtain)
 
     this.cbsToCallOnHidden = []
     this.childrenState = []
@@ -71,5 +71,5 @@ class Curtain {
   }
 }
 
-const curtain = new Curtain()
+const curtain = new Curtain('#container-global')
 export default curtain
