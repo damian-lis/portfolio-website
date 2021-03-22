@@ -1,11 +1,11 @@
-.btn-container {
+.sound-btn-container {
   position: absolute;
   top: 0;
   display: flex;
   width: 100%;
   opacity: 0;
   transform: translateY(-100%);
-  animation: slideInFromTop 1s forwards, shake 3s 2s infinite;
+  animation: slideInFromTop 0.3s 2s ease-in forwards;
 }
 
 #sound-play {
