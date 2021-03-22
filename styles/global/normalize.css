@@ -12,6 +12,10 @@ body {
   margin: 0;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
