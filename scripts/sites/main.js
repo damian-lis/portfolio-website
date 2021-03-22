@@ -1,9 +1,8 @@
 import posts from '../../data/sets/posts.js'
-import { postHandler, themeHandler } from '../handlers/index.js'
-import Sound from '../objects/Sound.js'
-import Form from '../objects/Form.js'
+import { Sound, Form, Posts } from '../objects/index.js'
+import { themeHandler } from '../handlers/index.js'
 
 themeHandler()
-postHandler(posts)
 new Sound('#container-global')
 new Form('#container-global')
+new Posts('.post-wrapper', '#post-section', posts)
