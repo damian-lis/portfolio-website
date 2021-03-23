@@ -7,16 +7,26 @@ export default class Particles {
     this.ctx.canvas.width = window.innerWidth
     this.ctx.canvas.height = window.innerHeight
     this.particleArray = []
+    this.theme = {}
     this.mouse = {
       x: null,
       y: null,
       radius: (this.canvas.height / 80) * (this.canvas.width / 80),
     }
+    this.addResizeListener()
   }
 
-  setColors(themeMode) {
-    this.strokeColor = themeMode.strokeColor
-    this.ctx.fillStyle = themeMode.ctxFillStyle
+  setTheme(theme) {
+    this.theme = theme
+    this.strokeColor = theme.strokeColor
+    this.ctx.fillStyle = theme.ctxFillStyle
+  }
+
+  start(theme) {
+    this.setTheme(theme)
+    this.init()
+    this.animate()
+    this.update()
   }
 
   connect() {
@@ -42,6 +52,8 @@ export default class Particles {
   }
 
   init() {
+    this.strokeColor = this.theme.strokeColor
+    this.ctx.fillStyle = this.theme.ctxFillStyle
     let numberOfParticles = (this.canvas.height * this.canvas.width) / 9000
     for (let i = 0; i < numberOfParticles; i++) {
       let size = Math.random() * 5 + 1
@@ -63,6 +75,20 @@ export default class Particles {
       this.particleArray[i].update()
     }
     this.connect()
+  }
+
+  update() {
+    const updateFn = () => {
+      requestAnimationFrame(updateFn)
+      this.animate()
+    }
+    updateFn()
+  }
+
+  addResizeListener() {
+    window.addEventListener('resize', () => {
+      this.resize()
+    })
   }
 
   resize() {

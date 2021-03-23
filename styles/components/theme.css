@@ -34,15 +34,15 @@
   transition: 0.1s ease-in;
 }
 
-.theme-options-dot[data-mode='blue'] {
+.theme-options-dot#blue {
   background-color: #192734;
 }
 
-.theme-options-dot[data-mode='green'] {
+.theme-options-dot#green {
   background-color: #78866b;
 }
 
-.theme-options-dot[data-mode='purple'] {
+.theme-options-dot#purple {
   background-color: #7e4c74;
 }
 
@@ -53,6 +53,6 @@
   margin: 8px;
 }
 
-.active {
+.theme-options-dot-active {
   border-width: 5px;
 }

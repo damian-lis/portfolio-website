@@ -1,14 +1,12 @@
-import initialSetActive from './initialSetActive.js'
-import removeAllActive from './removeAllActive.js'
-import setActive from './setActive.js'
+import removeClasses from './removeClasses.js'
+import setClasses from './setClasses.js'
 import setVariables from './setVariables.js'
 import addPropsAfterDelay from './addPropsAfterDelay.js'
 import createElementFn from './createElementFn.js'
 
 export {
-  initialSetActive,
-  removeAllActive,
-  setActive,
+  removeClasses,
+  setClasses,
   setVariables,
   addPropsAfterDelay,
   createElementFn,

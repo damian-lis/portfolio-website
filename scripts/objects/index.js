@@ -4,5 +4,6 @@ import Particles from './Particles.js'
 import Form from './Form.js'
 import Posts from './Posts.js'
 import Sound from './Sound.js'
+import Theme from './Theme.js'
 
-export { DataArrange, Particle, Particles, Form, Posts, Sound }
+export { DataArrange, Particle, Particles, Form, Posts, Sound, Theme }
