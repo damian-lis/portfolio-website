@@ -49,18 +49,6 @@ textarea {
   background-color: var(--mainColor);
 }
 
-.form-btn-create-container {
-  position: fixed;
-  display: flex;
-  top: 50%;
-  right: 50%;
-  width: 100%;
-  transform: translateY(-50%) translateX(-20px) rotate(90deg);
-  animation: showFormBtnFromLeft 0.3s 2s ease-in forwards;
-  z-index: 1;
-  transition: 1s;
-}
-
 .form-btn-create {
   font-size: 18px;
   padding: 5px 15px 10px 15px;
@@ -68,6 +56,7 @@ textarea {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom: none;
+  transform: rotate(90deg) translateY(100%);
   opacity: 0.9;
   z-index: 1;
 }

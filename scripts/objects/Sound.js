@@ -6,8 +6,16 @@ export default class Sound {
       element: 'audio',
       src: '../data/musics/ambient.mp3',
     })
-    const audioElements = this.createAudioElements()
-    this.attachToContainer(container, audioElements)
+
+    const buttonSoundPlay = createElementFn({
+      element: 'button',
+      id: 'sound-play',
+      text: 'Play sound',
+      event: 'click',
+      cb: (e) => this.handleAudio(e.target),
+    })
+
+    this.attachToContainer(container, buttonSoundPlay)
     this.play = false
   }
 
@@ -23,28 +31,7 @@ export default class Sound {
     }
   }
 
-  createAudioElements() {
-    const btnContainer = createElementFn({
-      element: 'div',
-      classes: ['sound-btn-container'],
-    })
-    const button = createElementFn({
-      element: 'button',
-      id: 'sound-play',
-      text: 'Play sound',
-      event: 'click',
-      cb: (e) => this.handleAudio(e.target),
-    })
-    return {
-      btnContainer,
-      button,
-    }
-  }
-
-  attachToContainer(container, elements) {
-    const { btnContainer, button } = elements
-
-    btnContainer.appendChild(button)
-    document.querySelector(container).appendChild(btnContainer)
+  attachToContainer(container, element) {
+    document.querySelector(container).appendChild(element)
   }
 }

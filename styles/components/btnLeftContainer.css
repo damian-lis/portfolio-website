@@ -1,0 +1,13 @@
+#btn-left-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  left: 0%;
+  height: 100%;
+  width: 0px;
+  transform: translateX(-40px);
+  z-index: 2;
+  animation: slideInFromLeft 0.3s 2s ease-in forwards;
+}

@@ -26,12 +26,7 @@ export default class Form {
       event: 'click',
       cb: () => this.handleFormCreate(),
     })
-    this.createFormBtnContainer = createElementFn({
-      element: 'div',
-      classes: ['form-btn-create-container', 'showBtnFromRight'],
-    })
-    this.createFormBtnContainer.appendChild(this.createFormBtn)
-    document.querySelector(container).appendChild(this.createFormBtnContainer)
+    document.querySelector(container).appendChild(this.createFormBtn)
   }
 
   handleFormCreate() {
@@ -143,11 +138,13 @@ export default class Form {
   }
 
   showButton() {
-    this.createFormBtn.style.transform = 'translateY(0%)'
+    this.createFormBtn.style.transform = 'rotate(90deg)'
+    this.createFormBtn.style.transform += 'translateY(100%)'
   }
 
   hideButton() {
-    this.createFormBtn.style.transform = 'translateY(100%)'
+    this.createFormBtn.style.transform = 'rotate(90deg)'
+    this.createFormBtn.style.transform += 'translateY(100px)'
   }
 
   createComponents() {

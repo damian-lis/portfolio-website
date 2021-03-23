@@ -20,11 +20,13 @@
   }
 }
 
-@keyframes slideInFromTop {
-  50% {
-    opacity: 0;
+@keyframes verticalSlideInFromLeft {
+  100% {
+    transform: translateY(-50%) translateX(14px) rotate(90deg);
   }
+}
 
+@keyframes slideInFromTop {
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -66,11 +68,5 @@
   49%,
   51% {
     transform: translate3d(4px, 0, 0);
-  }
-}
-
-@keyframes showFormBtnFromLeft {
-  100% {
-    transform: translateY(-50%) translateX(14px) rotate(90deg);
   }
 }
