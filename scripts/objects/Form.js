@@ -22,10 +22,16 @@ export default class Form {
     this.createFormBtn = createElementFn({
       element: 'button',
       classes: ['form-btn-create'],
-      text: 'Contact',
       event: 'click',
       cb: () => this.handleFormCreate(),
     })
+
+    this.icon = createElementFn({
+      element: 'img',
+      src: '../../data/images/icons/email.svg',
+    })
+
+    this.createFormBtn.appendChild(this.icon)
     document.querySelector(container).appendChild(this.createFormBtn)
   }
 
@@ -138,13 +144,11 @@ export default class Form {
   }
 
   showButton() {
-    this.createFormBtn.style.transform = 'rotate(90deg)'
-    this.createFormBtn.style.transform += 'translateY(100%)'
+    this.createFormBtn.style.transform = 'translateX(0)'
   }
 
   hideButton() {
-    this.createFormBtn.style.transform = 'rotate(90deg)'
-    this.createFormBtn.style.transform += 'translateY(100px)'
+    this.createFormBtn.style.transform = 'translateX(-100%)'
   }
 
   createComponents() {

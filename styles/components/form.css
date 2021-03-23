@@ -50,15 +50,23 @@ textarea {
 }
 
 .form-btn-create {
-  font-size: 18px;
-  padding: 5px 15px 10px 15px;
+  position: relative;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 7px 2px 0;
   margin: 0 auto;
-  border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  border-bottom: none;
-  transform: rotate(90deg) translateY(100%);
+  border-bottom-right-radius: 20px;
+  border-left: none;
   opacity: 0.9;
   z-index: 1;
+}
+
+.form-btn-create img {
+  margin-top: 10px;
+  width: 40px;
 }
 
 .form-btn-delete-container {
