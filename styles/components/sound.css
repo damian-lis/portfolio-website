@@ -12,13 +12,8 @@
   font-size: 18px;
   padding: 5px 15px 10px 15px;
   margin: auto;
-  background-color: var(--mainColor);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   opacity: 0.9;
-  color: #fff;
-  border: var(--borderColor) 1px solid;
   border-top: none;
-  outline: none;
-  cursor: pointer;
 }

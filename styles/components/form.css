@@ -26,9 +26,7 @@
 textarea {
   width: 100%;
   padding: 10px;
-  background-color: var(--secondaryColor);
   border-radius: 5px;
-  border: 1px solid var(--borderColor);
   font-size: 14px;
   margin-bottom: 7px;
 }
@@ -41,6 +39,7 @@ textarea {
 }
 
 .form-field input[type='submit'] {
+  background-color: rgb(78 48 78);
   margin-top: 15px;
   height: 41px;
   cursor: pointer;
@@ -66,15 +65,11 @@ textarea {
   font-size: 18px;
   padding: 5px 15px 10px 15px;
   margin: 0 auto;
-  background-color: var(--mainColor);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  color: #fff;
-  border: var(--borderColor) 1px solid;
   border-bottom: none;
-  outline: none;
+  opacity: 0.9;
   z-index: 1;
-  transition: 1s;
 }
 
 .form-btn-delete-container {
@@ -90,11 +85,9 @@ textarea {
   font-size: 18px;
   height: 35px;
   width: 35px;
-  background-color: var(--mainColor);
   border-radius: 5px;
-  border: var(--borderColor) 1px solid;
 }
 
 .form-btn-delete:hover {
-  background-color: var(--secondaryColor);
+  background-color: var(--mainColor);
 }
