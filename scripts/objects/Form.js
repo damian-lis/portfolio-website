@@ -16,15 +16,9 @@ export default class Form {
       email: '',
       message: '',
     }
-    this.mainComponent = null
-    this.formContainer = null
-    this.titleCol = null
-    this.title = null
-    this.formCol = null
-    this.form = null
+
     this.formFieldsInputs = []
-    this.deleteFormBtnContainer = null
-    this.deleteFormBtn = null
+
     this.createFormBtn = createElementFn({
       element: 'button',
       classes: ['form-btn-create'],
@@ -230,7 +224,6 @@ export default class Form {
     if (type === 'submit') {
       input = createElementFn({
         element: 'input',
-        // classes: ['form-field-input'],
         text,
         type,
         name,
