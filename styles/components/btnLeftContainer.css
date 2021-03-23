@@ -7,7 +7,7 @@
   left: 0%;
   height: 100%;
   width: 0px;
-  transform: translateX(-40px);
   z-index: 2;
+  transform: translateX(-50px);
   animation: slideInFromLeft 0.3s 2s ease-in forwards;
 }
