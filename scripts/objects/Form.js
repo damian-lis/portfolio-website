@@ -21,13 +21,14 @@ export default class Form {
 
     this.createFormBtn = createElementFn({
       element: 'button',
-      classes: ['form-btn-create'],
+      classes: ['global-left-btn'],
       event: 'click',
       cb: () => this.handleFormCreate(),
     })
 
     this.icon = createElementFn({
       element: 'img',
+      classes: ['mt-10'],
       src: '../../data/images/icons/email.svg',
     })
 
