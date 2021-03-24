@@ -33,3 +33,16 @@
   width: 40px;
   margin-left: 3px;
 }
+
+@media screen and (max-width: 1050px) {
+  .global-left-btn {
+    height: 50px;
+    padding: 0;
+    padding-right: 5px;
+  }
+
+  .global-left-btn img {
+    width: 27px;
+    margin-left: 3px;
+  }
+}
