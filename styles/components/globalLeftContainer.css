@@ -1,0 +1,35 @@
+.global-left-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  left: 0%;
+  height: 100%;
+  width: 0px;
+  z-index: 2;
+  transform: translateX(-50px);
+  animation: slideInFromLeft 0.3s 2s ease-in forwards;
+}
+
+.global-left-btn {
+  position: relative;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 7px 2px 0;
+  height: 60px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-left: none;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.global-left-btn img {
+  width: 40px;
+  margin-left: 3px;
+}

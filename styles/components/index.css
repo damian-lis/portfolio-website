@@ -1,11 +1,9 @@
 @import './curtain.css';
-@import './btnLeftContainer.css';
-@import './btnTopContainer.css';
+@import './globalLeftContainer.css';
 @import './card.css';
 @import './theme.css';
 @import './post.css';
 @import './preview.css';
 @import './skills.css';
 @import './particles.css';
-@import './sound.css';
 @import './form.css';
