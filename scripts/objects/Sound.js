@@ -12,17 +12,19 @@ export default class Sound {
       src: '../../data/images/icons/playMusic.svg',
     })
 
-    const button = createElementFn({
+    this.button = createElementFn({
       element: 'button',
       classes: ['global-left-btn'],
       event: 'click',
       cb: (e) => this.handleAudio(e.target),
     })
 
-    button.appendChild(this.image)
+    this.button.appendChild(this.image)
 
-    document.querySelector(container).appendChild(button)
+    document.querySelector(container).appendChild(this.button)
     this.play = false
+
+    this.addWindowScrollListener()
   }
 
   handleAudio() {
@@ -35,5 +37,34 @@ export default class Sound {
       this.image.src = '../../data/images/icons/stopMusic.svg'
       this.play = true
     }
+  }
+
+  showButton() {
+    this.button.style.transform = 'translateX(0)'
+  }
+
+  hideButton() {
+    this.button.style.transform = 'translateX(-100%)'
+  }
+
+  handleButtonDuringScroll(sectionWhereHide) {
+    if (
+      (window.innerHeight +
+        window.pageYOffset +
+        sectionWhereHide.clientHeight) *
+        0.95 >=
+      document.body.offsetHeight
+    ) {
+      this.hideButton()
+    } else {
+      this.showButton()
+    }
+  }
+
+  addWindowScrollListener() {
+    const sectionWhereHide = document.querySelector('#post-section')
+    window.addEventListener('scroll', () =>
+      this.handleButtonDuringScroll(sectionWhereHide)
+    )
   }
 }
