@@ -16,7 +16,7 @@ export default {
     previewBg: 'rgb(25, 39, 52, 0.8)',
     previewShadow: '#111921',
 
-    buttonColor: '#17a2b8',
+    buttonColor: '#214569',
   },
   green: {
     mainColor: '#606b56',
@@ -35,7 +35,7 @@ export default {
     previewBg: 'rgb(81, 90, 72, 0.8)',
     previewShadow: '#2a2f25',
 
-    buttonColor: '#669966',
+    buttonColor: '#6b8059',
   },
   purple: {
     mainColor: '#46344e',
@@ -54,6 +54,6 @@ export default {
     previewBg: 'rgb(29, 21, 32, 0.8)',
     previewShadow: '#2b202f',
 
-    buttonColor: '#8534a3',
+    buttonColor: '#5c3669',
   },
 }

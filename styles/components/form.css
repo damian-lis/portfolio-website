@@ -39,14 +39,14 @@ textarea {
 }
 
 .form-field input[type='submit'] {
-  background-color: rgb(78 48 78);
+  background-color: var(--buttonColor);
   margin-top: 15px;
   height: 41px;
   cursor: pointer;
 }
 
 .form-field input[type='submit']:hover {
-  background-color: var(--mainColor);
+  background-color: var(--borderColor);
 }
 
 .form-btn-delete-container {
