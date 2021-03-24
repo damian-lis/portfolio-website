@@ -68,7 +68,7 @@ export default class DataArrange {
             element: 'a',
             target: '_blank',
             href: linkEl.path,
-            text: linkEl.text,
+            text: linkEl.linkText,
           })
           const text = createElementFn({
             element: 'p',
