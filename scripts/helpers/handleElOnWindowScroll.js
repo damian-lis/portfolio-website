@@ -4,6 +4,7 @@ export default ({
   cbWhenFalse = () => {},
   modifier = 1,
 }) => {
+  if (!onWhatElement) return
   const element = document.querySelector(onWhatElement)
 
   window.addEventListener('scroll', () => {
