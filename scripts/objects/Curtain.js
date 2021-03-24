@@ -55,7 +55,6 @@ class Curtain {
   clearChildren() {
     setTimeout(() => {
       this.childrenState.map((child) => {
-        console.log(child)
         child.remove()
       })
       this.clearChildrenState()
