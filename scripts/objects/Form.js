@@ -1,5 +1,9 @@
 import curtain from './Curtain.js'
-import { createElementFn, addPropsAfterDelay } from '../helpers/index.js'
+import {
+  createElementFn,
+  addPropsAfterDelay,
+  handleElOnWindowScroll,
+} from '../helpers/index.js'
 
 export default class Form {
   constructor(container) {
@@ -35,7 +39,7 @@ export default class Form {
     this.createFormBtn.appendChild(this.icon)
     document.querySelector(container).appendChild(this.createFormBtn)
 
-    this.addWindowScrollListener()
+    this.handleButtonDuringWindowScroll()
   }
 
   handleFormCreate() {
@@ -302,21 +306,11 @@ export default class Form {
     return formFields
   }
 
-  handleButtonDuringScroll(sectionWhereHide) {
-    if (
-      window.innerHeight + window.pageYOffset + sectionWhereHide.clientHeight >=
-      document.body.offsetHeight
-    ) {
-      this.hideButton()
-    } else {
-      this.showButton()
-    }
-  }
-
-  addWindowScrollListener() {
-    const sectionWhereHide = document.querySelector('#post-section')
-    window.addEventListener('scroll', () =>
-      this.handleButtonDuringScroll(sectionWhereHide)
-    )
+  handleButtonDuringWindowScroll() {
+    handleElOnWindowScroll({
+      onWhatElement: '#post-section',
+      cbWhenTrue: () => this.hideButton(),
+      cbWhenFalse: () => this.showButton(),
+    })
   }
 }

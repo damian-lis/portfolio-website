@@ -1,4 +1,4 @@
-import { createElementFn } from '../helpers/index.js'
+import { createElementFn, handleElOnWindowScroll } from '../helpers/index.js'
 
 export default class Sound {
   constructor(container) {
@@ -24,7 +24,7 @@ export default class Sound {
     document.querySelector(container).appendChild(this.button)
     this.play = false
 
-    this.addWindowScrollListener()
+    this.handleButtonDuringWindowScroll()
   }
 
   handleAudio() {
@@ -47,24 +47,12 @@ export default class Sound {
     this.button.style.transform = 'translateX(-100%)'
   }
 
-  handleButtonDuringScroll(sectionWhereHide) {
-    if (
-      (window.innerHeight +
-        window.pageYOffset +
-        sectionWhereHide.clientHeight) *
-        0.95 >=
-      document.body.offsetHeight
-    ) {
-      this.hideButton()
-    } else {
-      this.showButton()
-    }
-  }
-
-  addWindowScrollListener() {
-    const sectionWhereHide = document.querySelector('#post-section')
-    window.addEventListener('scroll', () =>
-      this.handleButtonDuringScroll(sectionWhereHide)
-    )
+  handleButtonDuringWindowScroll() {
+    handleElOnWindowScroll({
+      onWhatElement: '#post-section',
+      cbWhenTrue: () => this.hideButton(),
+      cbWhenFalse: () => this.showButton(),
+      modifier: 0.95,
+    })
   }
 }

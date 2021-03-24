@@ -1,39 +1,28 @@
-import { createElementFn } from '../helpers/index.js'
+import { createElementFn, handleElOnWindowScroll } from '../helpers/index.js'
 
 export default class Posts {
   constructor(postsContainer, mainContainer, data) {
-    const elToAnimate = document.querySelector(mainContainer)
     const posts = this.createPosts(data)
 
     this.attachElementsToContainer(
       posts,
       document.querySelector(postsContainer)
     )
-    this.setAnimation(elToAnimate)
-    this.setAnimationAfterResize(elToAnimate)
+    this.handleButtonDuringWindowScroll(mainContainer)
+    this.setAnimationAfterResize(mainContainer)
   }
 
-  runAnimationOnScroll(elToAnimate, elToAnimateHeight) {
-    window.onscroll = function () {
-      if (
-        window.innerHeight + window.pageYOffset + elToAnimateHeight >=
-        document.body.offsetHeight
-      ) {
-        elToAnimate.classList.add('slideInFromTop')
-        window.onscroll = null
-      }
-    }
-  }
-
-  setAnimationAfterResize(elToAnimate) {
-    window.addEventListener('resize', () => {
-      this.setAnimation(elToAnimate)
+  handleButtonDuringWindowScroll(element) {
+    handleElOnWindowScroll({
+      onWhatElement: element,
+      cbWhenTrue: (el) => el.classList.add('slideInFromTop'),
     })
   }
 
-  setAnimation(elToAnimate) {
-    const elToAnimateHeight = this.checkElementHeight(elToAnimate)
-    this.runAnimationOnScroll(elToAnimate, elToAnimateHeight)
+  setAnimationAfterResize(element) {
+    window.addEventListener('resize', () => {
+      this.handleButtonDuringWindowScroll(element)
+    })
   }
 
   checkElementHeight(element) {
