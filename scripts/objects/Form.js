@@ -32,7 +32,7 @@ export default class Form {
 
     this.icon = createElementFn({
       element: 'img',
-      classes: ['mt-10', 'sm-mt-5'],
+      classes: ['mt-5'],
       src: '../../data/images/icons/email.svg',
     })
 
