@@ -6,7 +6,7 @@ import {
 } from '../helpers/index.js'
 
 export default class Form {
-  constructor(container) {
+  constructor(container, elementToBeHooked) {
     this.formFieldsContent = [
       { label: 'Name', type: 'text', name: 'name' },
       { label: 'Subject', type: 'text', name: 'subject' },
@@ -39,7 +39,7 @@ export default class Form {
     this.createFormBtn.appendChild(this.icon)
     document.querySelector(container).appendChild(this.createFormBtn)
 
-    this.handleButtonDuringWindowScroll()
+    this.handleButtonDuringWindowScroll(elementToBeHooked)
   }
 
   handleFormCreate() {
@@ -306,9 +306,9 @@ export default class Form {
     return formFields
   }
 
-  handleButtonDuringWindowScroll() {
+  handleButtonDuringWindowScroll(elementToBeHooked) {
     handleElOnWindowScroll({
-      onWhatElement: '#post-section',
+      onWhatElement: elementToBeHooked,
       cbWhenTrue: () => this.hideButton(),
       cbWhenFalse: () => this.showButton(),
     })

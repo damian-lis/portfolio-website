@@ -1,27 +1,27 @@
 import { createElementFn, handleElOnWindowScroll } from '../helpers/index.js'
 
 export default class Posts {
-  constructor(postsContainer, mainContainer, data) {
+  constructor(postsContainer, elementToBeHooked, data) {
     const posts = this.createPosts(data)
 
     this.attachElementsToContainer(
       posts,
       document.querySelector(postsContainer)
     )
-    this.handleButtonDuringWindowScroll(mainContainer)
-    this.setAnimationAfterResize(mainContainer)
+    this.handleButtonDuringWindowScroll(elementToBeHooked)
+    this.setAnimationAfterResize(elementToBeHooked)
   }
 
-  handleButtonDuringWindowScroll(element) {
+  handleButtonDuringWindowScroll(elementToBeHooked) {
     handleElOnWindowScroll({
-      onWhatElement: element,
+      onWhatElement: elementToBeHooked,
       cbWhenTrue: (el) => el.classList.add('slideInFromTop'),
     })
   }
 
-  setAnimationAfterResize(element) {
+  setAnimationAfterResize(elementToBeHooked) {
     window.addEventListener('resize', () => {
-      this.handleButtonDuringWindowScroll(element)
+      this.handleButtonDuringWindowScroll(elementToBeHooked)
     })
   }
 

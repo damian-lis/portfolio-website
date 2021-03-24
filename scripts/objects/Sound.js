@@ -1,7 +1,7 @@
 import { createElementFn, handleElOnWindowScroll } from '../helpers/index.js'
 
 export default class Sound {
-  constructor(container) {
+  constructor(container, elementToBeHooked) {
     this.audio = createElementFn({
       element: 'audio',
       src: '../data/musics/ambient.mp3',
@@ -24,7 +24,7 @@ export default class Sound {
     document.querySelector(container).appendChild(this.button)
     this.play = false
 
-    this.handleButtonDuringWindowScroll()
+    this.handleButtonDuringWindowScroll(elementToBeHooked)
   }
 
   handleAudio() {
@@ -47,9 +47,9 @@ export default class Sound {
     this.button.style.transform = 'translateX(-100%)'
   }
 
-  handleButtonDuringWindowScroll() {
+  handleButtonDuringWindowScroll(elementToBeHooked) {
     handleElOnWindowScroll({
-      onWhatElement: '#post-section',
+      onWhatElement: elementToBeHooked,
       cbWhenTrue: () => this.hideButton(),
       cbWhenFalse: () => this.showButton(),
       modifier: 0.95,
