@@ -144,6 +144,10 @@
   }
 
   /* Margin top */
+  .sm-mt-5 {
+    margin-top: 5px;
+  }
+
   .sm-mt-10 {
     margin-top: 10px;
   }
