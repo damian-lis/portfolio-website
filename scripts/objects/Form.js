@@ -135,11 +135,25 @@ export default class Form {
     return isEmptyInputValue
   }
 
-  handleSubmit(e) {
+  async handleEmailSent() {
+    const response = await fetch('http://localhost:5000/api/mail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      body: JSON.stringify(this.dataFromUser),
+    })
+
+    return response
+  }
+
+  async handleSubmit(e) {
     e.preventDefault()
     const isEmptyInputValue = this.checkIsEmptyInputsValue()
 
     if (isEmptyInputValue) return
+    await this.handleEmailSent()
     this.actionAfterSubmit()
 
     console.log('wyślij dalej')
