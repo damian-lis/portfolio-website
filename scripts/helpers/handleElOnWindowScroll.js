@@ -1,15 +1,19 @@
-export default ({ onWhatElement, cbWhenTrue, cbWhenFalse, modifier = 1 }) => {
+export default ({
+  onWhatElement,
+  cbWhenTrue = () => {},
+  cbWhenFalse = () => {},
+  modifier = 1,
+}) => {
   const element = document.querySelector(onWhatElement)
 
   window.addEventListener('scroll', () => {
     if (
-      (window.innerHeight + window.pageYOffset + element.clientHeight) *
-        modifier >=
-      document.body.offsetHeight
+      window.innerHeight + window.pageYOffset * modifier >
+      element.offsetTop
     ) {
-      cbWhenTrue()
+      cbWhenTrue(element)
     } else {
-      cbWhenFalse()
+      cbWhenFalse(element)
     }
   })
 }
