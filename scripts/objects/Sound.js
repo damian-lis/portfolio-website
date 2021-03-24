@@ -7,31 +7,33 @@ export default class Sound {
       src: '../data/musics/ambient.mp3',
     })
 
-    const buttonSoundPlay = createElementFn({
+    this.image = createElementFn({
+      element: 'img',
+      src: '../../data/images/icons/playMusic.svg',
+    })
+
+    const button = createElementFn({
       element: 'button',
-      id: 'sound-play',
-      text: 'Play sound',
+      classes: ['global-left-btn'],
       event: 'click',
       cb: (e) => this.handleAudio(e.target),
     })
 
-    this.attachToContainer(container, buttonSoundPlay)
+    button.appendChild(this.image)
+
+    document.querySelector(container).appendChild(button)
     this.play = false
   }
 
-  handleAudio(element) {
+  handleAudio() {
     if (this.play) {
-      element.textContent = 'Play sound!'
-      this.audio.pause()
+      ;(this.image.src = '../../data/images/icons/playMusic.svg'),
+        this.audio.pause()
       this.play = false
     } else {
       this.audio.play()
-      element.textContent = 'Stop sound!'
+      this.image.src = '../../data/images/icons/stopMusic.svg'
       this.play = true
     }
-  }
-
-  attachToContainer(container, element) {
-    document.querySelector(container).appendChild(element)
   }
 }
