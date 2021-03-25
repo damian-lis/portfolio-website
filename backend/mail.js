@@ -23,9 +23,12 @@ export const sendMail = (req, res) => {
 
   transporter.sendMail(mailOptions, (err) => {
     if (err) {
-      res.status(500).json({ message: 'Internal error' })
+      res.status(500).json({
+        success: false,
+        message: 'Something went wrong, try again! &#128128;',
+      })
     } else {
-      res.json({ message: 'Email has been sent!' })
+      res.json({ success: true, message: 'Message sent! &#129299;' })
     }
   })
 }
