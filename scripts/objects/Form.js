@@ -60,7 +60,9 @@ export default class Form {
 
   resetInputsValue() {
     this.formFieldsInputs.map((input) => {
-      input.value = ''
+      if (input.type !== 'submit') {
+        input.value = ''
+      }
     })
   }
 
@@ -96,7 +98,7 @@ export default class Form {
         {
           node: this.titleCol,
           styleElements: {
-            transition: '1s',
+            transition: '0.6s',
             position: 'relative',
             transform: 'translateY(-50%)',
             top: '50%',
@@ -111,7 +113,7 @@ export default class Form {
         {
           node: this.formCol,
           styleElements: {
-            transition: '1s',
+            transition: '0.3s',
             height: '0px',
             overflow: 'hidden',
             opacity: 0,
@@ -136,7 +138,8 @@ export default class Form {
   }
 
   async handleEmailSent() {
-    this.showLoading()
+    this.disableInputs()
+    this.showSpinner()
     return await fetch('http://localhost:5000/api/mail', {
       method: 'POST',
       headers: {
@@ -147,14 +150,18 @@ export default class Form {
     })
       .then((response) => response.json())
       .then((data) => {
-        this.hideLoading()
-        return data
+        this.hideSpinner()
+        if (data.success) {
+          this.actionAfterSubmit(data.message)
+        } else {
+          this.actionAfterSubmit(data.message)
+        }
       })
-  }
-
-  hideLoading() {
-    this.spinnerContainer.style.backgroundColor = 'var(--buttonColor)'
-    this.spinner.remove()
+      .catch(() => {
+        const message = 'Unable to connect to the server &#128128;'
+        this.hideSpinner()
+        this.actionAfterSubmit(message)
+      })
   }
 
   disableInputs() {
@@ -164,25 +171,32 @@ export default class Form {
     })
   }
 
-  showLoading() {
-    this.disableInputs()
+  replaceInputWithSpinner({ invert } = false) {
     const submitBtn = this.formFieldsInputs[this.formFieldsInputs.length - 1]
-    submitBtn.parentNode.replaceChild(this.spinnerContainer, submitBtn)
+    if (invert) {
+      this.spinnerContainer.parentNode.replaceChild(
+        submitBtn,
+        this.spinnerContainer
+      )
+    } else {
+      submitBtn.parentNode.replaceChild(this.spinnerContainer, submitBtn)
+    }
+  }
+
+  hideSpinner() {
+    this.replaceInputWithSpinner({ invert: true })
+  }
+
+  showSpinner() {
+    this.replaceInputWithSpinner()
   }
 
   async handleSubmit(e) {
     e.preventDefault()
+    const areEmptyInputsValue = this.checkIfEmptyInputsValue()
+    if (areEmptyInputsValue) return
 
-    // const areEmptyInputsValue = this.checkIfEmptyInputsValue()
-    // if (areEmptyInputsValue) return
-
-    const response = await this.handleEmailSent()
-
-    if (response.success) {
-      this.actionAfterSubmit(response.message)
-    } else {
-      this.actionAfterSubmit(response.message)
-    }
+    await this.handleEmailSent()
   }
 
   handleInput(e, name) {
