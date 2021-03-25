@@ -89,7 +89,7 @@ export default class Form {
     }
   }
 
-  actionAfterSubmit() {
+  actionAfterSubmit(message) {
     this.resetInputsValue()
     addPropsAfterDelay(
       [
@@ -105,7 +105,7 @@ export default class Form {
         {
           node: this.title,
           properties: {
-            innerHTML: '&#128526; Message sent! &#128526;',
+            innerHTML: message,
           },
         },
         {
@@ -123,7 +123,7 @@ export default class Form {
     )
   }
 
-  checkIsEmptyInputsValue() {
+  checkIfEmptyInputsValue() {
     let isEmptyInputValue = false
     this.formFieldsInputs.map((input) => {
       if (input.value === '') {
@@ -136,7 +136,8 @@ export default class Form {
   }
 
   async handleEmailSent() {
-    const response = await fetch('http://localhost:5000/api/mail', {
+    this.showLoading()
+    return await fetch('http://localhost:5000/api/mail', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -144,20 +145,44 @@ export default class Form {
 
       body: JSON.stringify(this.dataFromUser),
     })
+      .then((response) => response.json())
+      .then((data) => {
+        this.hideLoading()
+        return data
+      })
+  }
 
-    return response
+  hideLoading() {
+    this.spinnerContainer.style.backgroundColor = 'var(--buttonColor)'
+    this.spinner.remove()
+  }
+
+  disableInputs() {
+    this.formFieldsInputs.map((input) => {
+      input.disabled = true
+      input.style.opacity = 0.4
+    })
+  }
+
+  showLoading() {
+    this.disableInputs()
+    const submitBtn = this.formFieldsInputs[this.formFieldsInputs.length - 1]
+    submitBtn.parentNode.replaceChild(this.spinnerContainer, submitBtn)
   }
 
   async handleSubmit(e) {
     e.preventDefault()
-    const isEmptyInputValue = this.checkIsEmptyInputsValue()
 
-    if (isEmptyInputValue) return
-    await this.handleEmailSent()
-    this.actionAfterSubmit()
+    // const areEmptyInputsValue = this.checkIfEmptyInputsValue()
+    // if (areEmptyInputsValue) return
 
-    console.log('wyślij dalej')
-    console.log(this.dataFromUser)
+    const response = await this.handleEmailSent()
+
+    if (response.success) {
+      this.actionAfterSubmit(response.message)
+    } else {
+      this.actionAfterSubmit(response.message)
+    }
   }
 
   handleInput(e, name) {
@@ -224,6 +249,16 @@ export default class Form {
       cb: (e) => this.handleSubmit(e),
     })
     this.formFields = this.createFormFieldsWithElements()
+
+    this.spinnerContainer = createElementFn({
+      element: 'div',
+      classes: ['form-spinner-container'],
+    })
+
+    this.spinner = createElementFn({
+      element: 'div',
+      classes: ['form-spinner'],
+    })
   }
 
   joinComponentsTogether() {
@@ -232,7 +267,7 @@ export default class Form {
       this.form.appendChild(formField)
     })
     this.formCol.appendChild(this.form)
-
+    this.spinnerContainer.appendChild(this.spinner)
     this.formContainer.appendChild(this.titleCol)
     this.formContainer.appendChild(this.formCol)
     this.deleteFormBtnContainer.appendChild(this.deleteFormBtn)
@@ -252,6 +287,7 @@ export default class Form {
         id: name,
         value,
       })
+      this.formFieldsInputs.push(input)
     } else if (type === 'textarea') {
       lab = createElementFn({
         element: 'label',
