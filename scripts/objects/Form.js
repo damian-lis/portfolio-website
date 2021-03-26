@@ -21,7 +21,7 @@ export default class Form {
       message: '',
     }
 
-    this.formFieldsInputs = []
+    this.formFieldsInput = []
 
     this.createFormBtn = createElementFn({
       element: 'button',
@@ -59,7 +59,7 @@ export default class Form {
   }
 
   resetInputsValue() {
-    this.formFieldsInputs.map((input) => {
+    this.formFieldsInput.map((input) => {
       if (input.type !== 'submit') {
         input.value = ''
       }
@@ -77,9 +77,11 @@ export default class Form {
     this.title = null
     this.formCol = null
     this.form = null
-    this.formFieldsInputs = []
+    this.formFieldsInput = []
     this.deleteFormBtnContainer = null
     this.deleteFormBtn = null
+    this.spinnerContainer = null
+    this.spinner = null
   }
 
   resetDataFromUser() {
@@ -127,7 +129,7 @@ export default class Form {
 
   checkIfEmptyInputsValue() {
     let isEmptyInputValue = false
-    this.formFieldsInputs.map((input) => {
+    this.formFieldsInput.map((input) => {
       if (input.value === '') {
         this.addBorderDanger(input)
         isEmptyInputValue = true
@@ -139,7 +141,7 @@ export default class Form {
 
   async handleEmailSent() {
     this.disableInputs()
-    this.showSpinner()
+    this.toggleSpinner('on')
     return await fetch('http://localhost:5000/api/mail', {
       method: 'POST',
       headers: {
@@ -150,7 +152,7 @@ export default class Form {
     })
       .then((response) => response.json())
       .then((data) => {
-        this.hideSpinner()
+        this.toggleSpinner('off')
         if (data.success) {
           this.actionAfterSubmit(data.message)
         } else {
@@ -159,36 +161,33 @@ export default class Form {
       })
       .catch(() => {
         const message = 'Unable to connect to the server &#128128;'
-        this.hideSpinner()
+        this.toggleSpinner('off')
         this.actionAfterSubmit(message)
       })
   }
 
   disableInputs() {
-    this.formFieldsInputs.map((input) => {
+    this.formFieldsInput.map((input) => {
       input.disabled = true
       input.style.opacity = 0.4
     })
   }
 
-  replaceInputWithSpinner({ invert } = false) {
-    const submitBtn = this.formFieldsInputs[this.formFieldsInputs.length - 1]
-    if (invert) {
-      this.spinnerContainer.parentNode.replaceChild(
-        submitBtn,
-        this.spinnerContainer
-      )
-    } else {
-      submitBtn.parentNode.replaceChild(this.spinnerContainer, submitBtn)
+  toggleSpinner(toggle) {
+    const submitBtn = this.formFieldsInput[this.formFieldsInput.length - 1]
+
+    switch (toggle) {
+      case 'on':
+        submitBtn.style.display = 'none'
+        this.spinnerContainer.style.display = 'flex'
+        break
+      case 'off':
+        submitBtn.style.display = 'block'
+        this.spinnerContainer.style.display = 'none'
+        break
+      default:
+        break
     }
-  }
-
-  hideSpinner() {
-    this.replaceInputWithSpinner({ invert: true })
-  }
-
-  showSpinner() {
-    this.replaceInputWithSpinner()
   }
 
   async handleSubmit(e) {
@@ -280,8 +279,10 @@ export default class Form {
     this.formFields.map((formField) => {
       this.form.appendChild(formField)
     })
-    this.formCol.appendChild(this.form)
     this.spinnerContainer.appendChild(this.spinner)
+    this.form.appendChild(this.spinnerContainer)
+    this.formCol.appendChild(this.form)
+
     this.formContainer.appendChild(this.titleCol)
     this.formContainer.appendChild(this.formCol)
     this.deleteFormBtnContainer.appendChild(this.deleteFormBtn)
@@ -301,7 +302,7 @@ export default class Form {
         id: name,
         value,
       })
-      this.formFieldsInputs.push(input)
+      this.formFieldsInput.push(input)
     } else if (type === 'textarea') {
       lab = createElementFn({
         element: 'label',
@@ -318,7 +319,7 @@ export default class Form {
           this.checkAndRemoveBorderDanger(e)
         },
       })
-      this.formFieldsInputs.push(input)
+      this.formFieldsInput.push(input)
     } else {
       lab = createElementFn({
         element: 'label',
@@ -337,7 +338,7 @@ export default class Form {
           this.checkAndRemoveBorderDanger(e)
         },
       })
-      this.formFieldsInputs.push(input)
+      this.formFieldsInput.push(input)
     }
 
     return lab ? [lab, input] : [input]
