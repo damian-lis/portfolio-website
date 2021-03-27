@@ -4,7 +4,8 @@
   flex-direction: column;
   justify-content: center;
   border-radius: 5px;
-  padding: 10px;
+  padding: 20px;
+
   background-color: var(--previewShadow);
 }
 
