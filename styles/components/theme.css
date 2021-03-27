@@ -15,6 +15,7 @@
 }
 
 .theme-options-container {
+  padding-top: 5px;
   display: flex;
   justify-content: center;
 }
