@@ -14,6 +14,7 @@ export default [
       { image: '/data/images/icons/node.jpg' },
       { image: '/data/images/icons/mongo.jpg' },
     ],
+    duringDevelopment: true,
   },
   {
     route: '/',
@@ -28,6 +29,7 @@ export default [
       { image: '/data/images/icons/js.jpg' },
       { image: '/data/images/icons/react.jpg' },
     ],
+    duringDevelopment: true,
   },
   {
     route: '/',
@@ -39,6 +41,7 @@ export default [
       { image: '/data/images/icons/html.jpg' },
       { image: '/data/images/icons/css.jpg' },
     ],
+    duringDevelopment: true,
   },
   {
     route: '/projects/fluentBlog.html',
@@ -82,5 +85,6 @@ export default [
       { image: '/data/images/icons/node.jpg' },
       { image: '/data/images/icons/mongo.jpg' },
     ],
+    duringDevelopment: true,
   },
 ]

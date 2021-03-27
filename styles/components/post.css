@@ -28,6 +28,8 @@
   display: flex;
   flex-direction: column;
   transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
 .post:hover {
@@ -74,6 +76,22 @@
   width: 45px;
   height: 45px;
   margin: 3px 0;
+}
+
+.post-ribbon {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  width: 100%;
+  height: 40px;
+  background-color: var(--borderColor);
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+}
+
+.post-ribbon-text {
+  margin-left: 46%;
 }
 
 @media screen and (max-width: 800px) {

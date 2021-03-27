@@ -48,11 +48,15 @@ export default class Posts {
   }
 
   createPostElements(dataEl) {
-    const linkWrapper = createElementFn({
-      element: 'a',
-      target: '_blank',
-      href: dataEl.route,
-    })
+    const linkWrapper = dataEl.duringDevelopment
+      ? createElementFn({
+          element: 'a',
+        })
+      : createElementFn({
+          element: 'a',
+          target: '_blank',
+          href: dataEl.route,
+        })
 
     const postContainer = createElementFn({
       element: 'div',
@@ -96,6 +100,21 @@ export default class Posts {
       return icon
     })
 
+    const postRibbonContainer = dataEl.duringDevelopment
+      ? createElementFn({
+          element: 'div',
+          classes: ['post-ribbon'],
+        })
+      : null
+
+    const postRibbonText = dataEl.duringDevelopment
+      ? createElementFn({
+          element: 'p',
+          classes: ['post-ribbon-text'],
+          innerHTML: 'During dev...',
+        })
+      : null
+
     return {
       linkWrapper,
       postContainer,
@@ -105,6 +124,8 @@ export default class Posts {
       postIntro,
       iconsContainer,
       icons,
+      postRibbonContainer,
+      postRibbonText,
     }
   }
 
@@ -118,6 +139,8 @@ export default class Posts {
       postIntro,
       iconsContainer,
       icons,
+      postRibbonContainer,
+      postRibbonText,
     } = elements
 
     postPrevContainer.appendChild(postTitle)
@@ -125,9 +148,16 @@ export default class Posts {
 
     icons.map((icon) => iconsContainer.appendChild(icon))
 
-    postContainer.appendChild(thubnail)
-    postContainer.appendChild(postPrevContainer)
-    postContainer.appendChild(iconsContainer)
+    const elementsGroup = [thubnail, postPrevContainer, iconsContainer]
+
+    elementsGroup.map((el) => {
+      postContainer.appendChild(el)
+    })
+
+    if (postRibbonContainer) {
+      postRibbonContainer.appendChild(postRibbonText)
+      postContainer.appendChild(postRibbonContainer)
+    }
 
     linkWrapper.appendChild(postContainer)
 
