@@ -1,5 +1,31 @@
 export default [
   {
+    route: '/projects/fluentBlog.html',
+    image: '/data/images/projects/FluentBlog/browseArticle.gif',
+    alt: 'FluentBlog',
+    title: 'FluentBlog',
+    intro: 'A small blog that uses server side rendering in next.js',
+    icons: [
+      { image: '/data/images/icons/tailwindcss.jpg' },
+      { image: '/data/images/icons/next.jpg' },
+    ],
+  },
+  {
+    route: '/',
+    image: '/data/images/projects/TalkingWithGisapia/intro.gif',
+    alt: 'Talk to Gisapia and the Others',
+    title: 'Talk to Gisapia and the Others',
+    intro:
+      'This little game will let you chat with amazing characters who will remember and understand your answers!',
+    icons: [
+      { image: '/data/images/icons/html.jpg' },
+      { image: '/data/images/icons/css.jpg' },
+      { image: '/data/images/icons/js.jpg' },
+      { image: '/data/images/icons/nodejs.jpg' },
+      { image: '/data/images/icons/sendgrid.jpg' },
+    ],
+  },
+  {
     route: '/',
     image: '/data/images/projects/UniqueChoice/icon.jpg',
     alt: 'Unique Choice',
@@ -7,12 +33,10 @@ export default [
     intro:
       'It is an E-Commerce fullstack project with all the functionality that allows you to make purchases.',
     icons: [
-      { image: '/data/images/icons/html.jpg' },
-      { image: '/data/images/icons/css.jpg' },
-      { image: '/data/images/icons/js.jpg' },
+      { image: '/data/images/icons/bootstrap.jpg' },
       { image: '/data/images/icons/react.jpg' },
-      { image: '/data/images/icons/node.jpg' },
-      { image: '/data/images/icons/mongo.jpg' },
+      { image: '/data/images/icons/nodejs.jpg' },
+      { image: '/data/images/icons/mongodb.jpg' },
     ],
     duringDevelopment: true,
   },
@@ -24,10 +48,8 @@ export default [
     intro:
       'A project that reproduces some of the functionality of the famous Netflix portal',
     icons: [
-      { image: '/data/images/icons/html.jpg' },
-      { image: '/data/images/icons/css.jpg' },
-      { image: '/data/images/icons/js.jpg' },
       { image: '/data/images/icons/react.jpg' },
+      { image: '/data/images/icons/firebase.jpg' },
     ],
     duringDevelopment: true,
   },
@@ -43,33 +65,7 @@ export default [
     ],
     duringDevelopment: true,
   },
-  {
-    route: '/projects/fluentBlog.html',
-    image: '/data/images/projects/FluentBlog/browseArticle.gif',
-    alt: 'FluentBlog',
-    title: 'FluentBlog',
-    intro: 'A small blog that uses server side rendering in next.js',
-    icons: [
-      { image: '/data/images/icons/html.jpg' },
-      { image: '/data/images/icons/css.jpg' },
-      { image: '/data/images/icons/js.jpg' },
-      { image: '/data/images/icons/react.jpg' },
-      { image: '/data/images/icons/next.jpg' },
-    ],
-  },
-  {
-    route: '/',
-    image: '/data/images/projects/TalkingWithGisapia/intro.gif',
-    alt: 'Talk to Gisapia and the Others',
-    title: 'Talk to Gisapia and the Others',
-    intro:
-      'This little game will let you chat with amazing characters who will remember and understand your answers!',
-    icons: [
-      { image: '/data/images/icons/html.jpg' },
-      { image: '/data/images/icons/css.jpg' },
-      { image: '/data/images/icons/js.jpg' },
-    ],
-  },
+
   {
     route: '/',
     image: '/data/images/projects/Leaf/icon.jpg',
@@ -78,12 +74,10 @@ export default [
     intro:
       'It is a fullstack project that aims to recreate many functionalities, structures and styles from Apple.com',
     icons: [
-      { image: '/data/images/icons/html.jpg' },
-      { image: '/data/images/icons/css.jpg' },
-      { image: '/data/images/icons/js.jpg' },
+      { image: '/data/images/icons/bootstrap.jpg' },
       { image: '/data/images/icons/react.jpg' },
-      { image: '/data/images/icons/node.jpg' },
-      { image: '/data/images/icons/mongo.jpg' },
+      { image: '/data/images/icons/nodejs.jpg' },
+      { image: '/data/images/icons/mongodb.jpg' },
     ],
     duringDevelopment: true,
   },
