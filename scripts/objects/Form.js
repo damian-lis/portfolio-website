@@ -2,11 +2,17 @@ import curtain from './Curtain.js'
 import {
   createElementFn,
   addPropsAfterDelay,
-  handleElOnWindowScroll,
+  triggerActionOnWindowScroll,
+  appendElementsToContainer,
 } from '../helpers/index.js'
 
-export default class Form {
-  constructor(container, elementToBeHooked) {
+class Form {
+  constructor(container, trigger) {
+    const containerSent = document.querySelector(container)
+    const triggerElement = document.querySelector(trigger)
+    const formBtnElements = this.createFormBtnElements()
+    const formBtnComponent = this.joinFormBtnElements(formBtnElements)
+
     this.formFieldsContent = [
       { label: 'Name', type: 'text', name: 'name' },
       { label: 'Subject', type: 'text', name: 'subject' },
@@ -14,6 +20,7 @@ export default class Form {
       { label: 'Message', type: 'textarea', name: 'message' },
       { type: 'submit', value: 'Wyślij', name: 'submit' },
     ]
+    this.formFieldsInput = []
     this.dataFromUser = {
       name: '',
       subject: '',
@@ -21,44 +28,244 @@ export default class Form {
       message: '',
     }
 
-    this.formFieldsInput = []
+    appendElementsToContainer(formBtnComponent, containerSent)
+    this.handleFormBtnDuringWindowScroll(triggerElement)
+  }
 
-    this.createFormBtn = createElementFn({
+  createFormBtnElements() {
+    this.formBtn = createElementFn({
       element: 'button',
       classes: ['global-left-btn'],
       event: 'click',
       cb: () => this.handleFormCreate(),
     })
 
-    this.icon = createElementFn({
+    this.formBtnIcon = createElementFn({
       element: 'img',
       classes: ['mt-5'],
       src: '../../data/images/icons/email.svg',
     })
 
-    this.createFormBtn.appendChild(this.icon)
-    document.querySelector(container).appendChild(this.createFormBtn)
+    return [this.formBtn, this.formBtnIcon]
+  }
 
-    this.handleButtonDuringWindowScroll(elementToBeHooked)
+  joinFormBtnElements(elements) {
+    const [formBtn, btnIcon] = elements
+    formBtn.appendChild(btnIcon)
+
+    return formBtn
   }
 
   handleFormCreate() {
-    this.hideButton()
+    this.hideFormBtn()
+    const formElements = this.createFormElements()
+    const formComponent = this.joinFormElements(formElements)
     curtain.addCbsToCallOnHidden([
       () => {
-        this.showButton()
-        this.resetInputsValue()
+        this.showFormBtn()
+        this.resetFormInputsValue()
         this.resetDataFromUser()
-        this.resetComponents()
+        this.resetFormElements()
       },
     ])
-    this.createComponents()
-    this.joinComponentsTogether()
-    curtain.attachComponents([this.mainComponent])
+    curtain.attachComponents([formComponent])
     curtain.show()
   }
 
-  resetInputsValue() {
+  createFormElements() {
+    this.formMainContainer = createElementFn({
+      element: 'div',
+      classes: [
+        'card',
+        'w-full',
+        'wrap-x-500',
+        'h-full',
+        'wrap-y-600',
+        'slideInFromRight',
+      ],
+      event: 'click',
+      cb: (e) => e.stopPropagation(),
+    })
+
+    this.formDeleteBtnContainer = createElementFn({
+      element: 'div',
+      classes: ['form-btn-delete-container'],
+    })
+
+    this.formDeleteBtn = createElementFn({
+      element: 'button',
+      classes: ['form-btn-delete'],
+      textContent: 'X',
+      event: 'click',
+      cb: () => curtain.hidden(),
+    })
+
+    this.formTitleCol = createElementFn({
+      element: 'div',
+      classes: ['col-15', 'content-center-xy', 'top-0'],
+    })
+    this.formTitle = createElementFn({
+      element: 'h3',
+      classes: ['text-center'],
+      textContent: 'Write to me a message',
+    })
+    this.formCol = createElementFn({
+      element: 'div',
+      classes: ['col-85'],
+    })
+    this.formInnerContainer = createElementFn({
+      element: 'div',
+      classes: ['row-y', 'h-full'],
+    })
+    this.form = createElementFn({
+      element: 'form',
+      classes: ['form'],
+      event: 'submit',
+      cb: (e) => this.handleFormSubmit(e),
+    })
+    this.formFieldsElements = this.createFormFieldsElements()
+
+    this.formFields = this.formFieldsContent.map((field) =>
+      createElementFn({
+        element: 'div',
+        classes: ['form-field', `form-field-${field.name}`],
+      })
+    )
+
+    this.formSpinnerContainer = createElementFn({
+      element: 'div',
+      classes: ['form-spinner-container'],
+    })
+
+    this.formSpinner = createElementFn({
+      element: 'div',
+      classes: ['form-spinner'],
+    })
+
+    return [
+      this.formMainContainer,
+      this.formDeleteBtnContainer,
+      this.formDeleteBtn,
+      this.formTitleCol,
+      this.formTitle,
+      this.formCol,
+      this.formInnerContainer,
+      this.form,
+      this.formFieldsElements,
+      this.formFields,
+      this.formSpinnerContainer,
+      this.formSpinner,
+    ]
+  }
+
+  createFormFieldsElements() {
+    return this.formFieldsContent.map((fieldContent) =>
+      this.createFormFieldElements(fieldContent)
+    )
+  }
+  createFormFieldElements({ label, type, name, value, text }) {
+    let lab, input
+
+    if (type === 'submit') {
+      input = createElementFn({
+        element: 'input',
+        type,
+        name,
+        id: name,
+        value,
+      })
+      this.formFieldsInput.push(input)
+    } else if (type === 'textarea') {
+      lab = createElementFn({
+        element: 'label',
+        textContent: label,
+        htmlFor: name,
+      })
+      input = createElementFn({
+        element: 'textarea',
+        name,
+        id: name,
+        event: 'input',
+        cb: (e) => {
+          this.handleFormInput(e, name)
+          this.checkAndRemoveBorderDanger(e)
+        },
+      })
+      this.formFieldsInput.push(input)
+    } else {
+      lab = createElementFn({
+        element: 'label',
+        textContent: label,
+        htmlFor: name,
+      })
+      input = createElementFn({
+        element: 'input',
+        type,
+        name,
+        id: name,
+        event: 'input',
+        cb: (e) => {
+          this.handleFormInput(e, name)
+          this.checkAndRemoveBorderDanger(e)
+        },
+      })
+      this.formFieldsInput.push(input)
+    }
+
+    return lab ? [lab, input] : [input]
+  }
+
+  checkAndRemoveBorderDanger(e) {
+    if (e.target.classList.contains('border-danger')) {
+      e.target.classList.remove('border-danger')
+    }
+  }
+
+  handleFormBtnDuringWindowScroll(triggerElement) {
+    triggerActionOnWindowScroll({
+      onWhatElement: triggerElement,
+      cbWhenTrue: () => this.hideFormBtn(),
+      cbWhenFalse: () => this.showFormBtn(),
+    })
+  }
+
+  joinFormElements(elements) {
+    const [
+      formMainContainer,
+      formDeleteBtnContainer,
+      formDeleteBtn,
+      formTitleCol,
+      formTitle,
+      formCol,
+      formContainer,
+      form,
+      formFieldsElements,
+      formFields,
+      formSpinnerContainer,
+      formSpinner,
+    ] = elements
+
+    formTitleCol.appendChild(formTitle)
+    formFields.map((field, index) => {
+      formFieldsElements[index].map((fieldElements) =>
+        field.appendChild(fieldElements)
+      )
+      form.appendChild(field)
+    })
+    formSpinnerContainer.appendChild(formSpinner)
+    form.appendChild(formSpinnerContainer)
+    formCol.appendChild(form)
+
+    formContainer.appendChild(formTitleCol)
+    formContainer.appendChild(formCol)
+    formDeleteBtnContainer.appendChild(formDeleteBtn)
+    formMainContainer.appendChild(formDeleteBtnContainer)
+    formMainContainer.appendChild(formContainer)
+
+    return formMainContainer
+  }
+
+  resetFormInputsValue() {
     this.formFieldsInput.map((input) => {
       if (input.type !== 'submit') {
         input.value = ''
@@ -70,18 +277,20 @@ export default class Form {
     element.classList.add('border-danger')
   }
 
-  resetComponents() {
-    this.mainComponent = null
-    this.formContainer = null
-    this.titleCol = null
-    this.title = null
+  resetFormElements() {
+    this.formMainContainer = null
+    this.formInnerContainer = null
+    this.formTitleCol = null
+    this.formTitle = null
     this.formCol = null
     this.form = null
+    this.formFieldsElements = null
+    this.formFields = null
     this.formFieldsInput = []
-    this.deleteFormBtnContainer = null
-    this.deleteFormBtn = null
-    this.spinnerContainer = null
-    this.spinner = null
+    this.formDeleteBtnContainer = null
+    this.formDeleteBtn = null
+    this.formSpinnerContainer = null
+    this.formSpinner = null
   }
 
   resetDataFromUser() {
@@ -94,11 +303,11 @@ export default class Form {
   }
 
   actionAfterSubmit(message) {
-    this.resetInputsValue()
+    this.resetFormInputsValue()
     addPropsAfterDelay(
       [
         {
-          node: this.titleCol,
+          element: this.formTitleCol,
           styleElements: {
             transition: '0.6s',
             position: 'relative',
@@ -107,13 +316,13 @@ export default class Form {
           },
         },
         {
-          node: this.title,
+          element: this.formTitle,
           properties: {
             innerHTML: message,
           },
         },
         {
-          node: this.formCol,
+          element: this.formCol,
           styleElements: {
             transition: '0.3s',
             height: '0px',
@@ -127,7 +336,7 @@ export default class Form {
     )
   }
 
-  checkIfEmptyInputsValue() {
+  checkIfEmptyFormInputsValue() {
     let isEmptyInputValue = false
     this.formFieldsInput.map((input) => {
       if (input.value === '') {
@@ -140,7 +349,7 @@ export default class Form {
   }
 
   async handleEmailSent() {
-    this.disableInputs()
+    this.disableFormInputs()
     this.toggleSpinner('on')
     return await fetch('http://localhost:5000/api/mail', {
       method: 'POST',
@@ -166,7 +375,7 @@ export default class Form {
       })
   }
 
-  disableInputs() {
+  disableFormInputs() {
     this.formFieldsInput.map((input) => {
       input.disabled = true
       input.style.opacity = 0.4
@@ -179,203 +388,36 @@ export default class Form {
     switch (toggle) {
       case 'on':
         submitBtn.style.display = 'none'
-        this.spinnerContainer.style.display = 'flex'
+        this.formSpinnerContainer.style.display = 'flex'
         break
       case 'off':
         submitBtn.style.display = 'block'
-        this.spinnerContainer.style.display = 'none'
+        this.formSpinnerContainer.style.display = 'none'
         break
       default:
         break
     }
   }
 
-  async handleSubmit(e) {
+  async handleFormSubmit(e) {
     e.preventDefault()
-    const areEmptyInputsValue = this.checkIfEmptyInputsValue()
-    if (areEmptyInputsValue) return
+    const areEmptyFormInputsValue = this.checkIfEmptyFormInputsValue()
+    if (areEmptyFormInputsValue) return
 
     await this.handleEmailSent()
   }
 
-  handleInput(e, name) {
+  handleFormInput(e, name) {
     this.dataFromUser[name] = e.target.value
   }
 
-  showButton() {
-    this.createFormBtn.style.transform = 'translateX(0)'
+  showFormBtn() {
+    this.formBtn.style.transform = 'translateX(0)'
   }
 
-  hideButton() {
-    this.createFormBtn.style.transform = 'translateX(-100%)'
-  }
-
-  createComponents() {
-    this.mainComponent = createElementFn({
-      element: 'div',
-      classes: [
-        'card',
-        'w-full',
-        'wrap-x-500',
-        'h-full',
-        'wrap-y-600',
-        'slideInFromRight',
-      ],
-      event: 'click',
-      cb: (e) => e.stopPropagation(),
-    })
-
-    this.deleteFormBtnContainer = createElementFn({
-      element: 'div',
-      classes: ['form-btn-delete-container'],
-    })
-
-    this.deleteFormBtn = createElementFn({
-      element: 'button',
-      classes: ['form-btn-delete'],
-      text: 'X',
-      event: 'click',
-      cb: () => curtain.hidden(),
-    })
-
-    this.titleCol = createElementFn({
-      element: 'div',
-      classes: ['col-15', 'content-center-xy', 'top-0'],
-    })
-    this.title = createElementFn({
-      element: 'h3',
-      classes: ['text-center'],
-      text: 'Write to me a message',
-    })
-    this.formCol = createElementFn({
-      element: 'div',
-      classes: ['col-85'],
-    })
-    this.formContainer = createElementFn({
-      element: 'div',
-      classes: ['row-y', 'h-full'],
-    })
-    this.form = createElementFn({
-      element: 'form',
-      classes: ['form'],
-      event: 'submit',
-      cb: (e) => this.handleSubmit(e),
-    })
-    this.formFields = this.createFormFieldsWithElements()
-
-    this.spinnerContainer = createElementFn({
-      element: 'div',
-      classes: ['form-spinner-container'],
-    })
-
-    this.spinner = createElementFn({
-      element: 'div',
-      classes: ['form-spinner'],
-    })
-  }
-
-  joinComponentsTogether() {
-    this.titleCol.appendChild(this.title)
-    this.formFields.map((formField) => {
-      this.form.appendChild(formField)
-    })
-    this.spinnerContainer.appendChild(this.spinner)
-    this.form.appendChild(this.spinnerContainer)
-    this.formCol.appendChild(this.form)
-
-    this.formContainer.appendChild(this.titleCol)
-    this.formContainer.appendChild(this.formCol)
-    this.deleteFormBtnContainer.appendChild(this.deleteFormBtn)
-    this.mainComponent.appendChild(this.deleteFormBtnContainer)
-    this.mainComponent.appendChild(this.formContainer)
-  }
-
-  createFormFieldElements({ label, type, name, value, text }) {
-    let lab, input
-
-    if (type === 'submit') {
-      input = createElementFn({
-        element: 'input',
-        text,
-        type,
-        name,
-        id: name,
-        value,
-      })
-      this.formFieldsInput.push(input)
-    } else if (type === 'textarea') {
-      lab = createElementFn({
-        element: 'label',
-        text: label,
-        htmlFor: name,
-      })
-      input = createElementFn({
-        element: 'textarea',
-        name,
-        id: name,
-        event: 'input',
-        cb: (e) => {
-          this.handleInput(e, name)
-          this.checkAndRemoveBorderDanger(e)
-        },
-      })
-      this.formFieldsInput.push(input)
-    } else {
-      lab = createElementFn({
-        element: 'label',
-        text: label,
-        htmlFor: name,
-      })
-      input = createElementFn({
-        element: 'input',
-        text,
-        type,
-        name,
-        id: name,
-        event: 'input',
-        cb: (e) => {
-          this.handleInput(e, name)
-          this.checkAndRemoveBorderDanger(e)
-        },
-      })
-      this.formFieldsInput.push(input)
-    }
-
-    return lab ? [lab, input] : [input]
-  }
-
-  checkAndRemoveBorderDanger(e) {
-    if (e.target.classList.contains('border-danger')) {
-      e.target.classList.remove('border-danger')
-    }
-  }
-
-  createFormFieldWithElements(content) {
-    const formField = createElementFn({
-      element: 'div',
-      classes: ['form-field', `form-field-${content.name}`],
-    })
-
-    const formFieldElements = this.createFormFieldElements(content)
-    formFieldElements.map((formFieldElement) => {
-      formField.appendChild(formFieldElement)
-    })
-    return formField
-  }
-
-  createFormFieldsWithElements() {
-    const formFields = this.formFieldsContent.map((content) =>
-      this.createFormFieldWithElements(content)
-    )
-
-    return formFields
-  }
-
-  handleButtonDuringWindowScroll(elementToBeHooked) {
-    handleElOnWindowScroll({
-      onWhatElement: elementToBeHooked,
-      cbWhenTrue: () => this.hideButton(),
-      cbWhenFalse: () => this.showButton(),
-    })
+  hideFormBtn() {
+    this.formBtn.style.transform = 'translateX(-100%)'
   }
 }
+
+export default Form

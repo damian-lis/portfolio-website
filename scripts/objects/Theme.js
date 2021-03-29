@@ -1,18 +1,27 @@
-import { createElementFn, setClasses, removeClasses } from '../helpers/index.js'
+import {
+  createElementFn,
+  setClasses,
+  removeClasses,
+  appendElementsToContainer,
+} from '../helpers/index.js'
 
-export default class Theme {
+class Theme {
   constructor(container, themesObject, BackgroundObj) {
+    const containerSent = document.querySelector(container)
     const initialThemeName = this.getThemeNameFromLocalStorage(themesObject)
     const initialThemeObject = this.setThemeObject(
       themesObject,
       initialThemeName
     )
+    const themeElements = this.createThemeElements(
+      themesObject,
+      initialThemeName
+    )
+    const themeComponent = this.joinThemeElements(themeElements)
+
+    appendElementsToContainer(themeComponent, containerSent)
     this.setGlobalVariables(initialThemeObject)
     this.createBackgroundAnimation(BackgroundObj, initialThemeObject)
-
-    this.createThemePanelElements(themesObject, initialThemeName)
-    const themeComponent = this.joinThemePanelElements()
-    this.attachToContainer(document.querySelector(container), themeComponent)
   }
 
   setGlobalVariables(themeObject) {
@@ -41,14 +50,14 @@ export default class Theme {
     this.background.start(themeObject)
   }
 
-  createThemePanelElements(themesObject, themeName) {
+  createThemeElements(themesObject, themeName) {
     this.themeContainer = createElementFn({
       element: 'div',
       classes: ['theme-container'],
     })
-    this.title = createElementFn({
+    this.themeTitle = createElementFn({
       element: 'h5',
-      text: 'Personalize Theme',
+      textContent: 'Personalize Theme',
     })
     this.themeOptionsContainer = createElementFn({
       element: 'div',
@@ -75,26 +84,33 @@ export default class Theme {
     this.themeNote = createElementFn({
       element: 'p',
       classes: ['theme-note'],
-      text: '*Theme settings will be saved for your next visit',
+      textContent: '*Theme settings will be saved for your next visit',
     })
-  }
 
-  joinThemePanelElements() {
-    this.themeOptionsDots.map((dot) =>
-      this.themeOptionsContainer.appendChild(dot)
-    )
-
-    const elementsToAppend = [
-      this.title,
+    return [
+      this.themeContainer,
+      this.themeTitle,
       this.themeOptionsContainer,
+      this.themeOptionsDots,
       this.themeNote,
     ]
-    elementsToAppend.map((element) => this.themeContainer.appendChild(element))
+  }
+
+  joinThemeElements(elements) {
+    const [
+      themeContainer,
+      themeTitle,
+      themeOptionsContainer,
+      themeOptionsDots,
+      themeNote,
+    ] = elements
+
+    themeOptionsDots.map((dot) => themeOptionsContainer.appendChild(dot))
+    const elementsToAppend = [themeTitle, themeOptionsContainer, themeNote]
+    elementsToAppend.map((element) => themeContainer.appendChild(element))
 
     return this.themeContainer
   }
-
-  attachToContainer(container, element) {
-    container.appendChild(element)
-  }
 }
+
+export default Theme

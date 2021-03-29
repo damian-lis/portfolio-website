@@ -1,98 +1,84 @@
-import { createElementFn, handleElOnWindowScroll } from '../helpers/index.js'
+import {
+  createElementFn,
+  triggerActionOnWindowScroll,
+  appendElementsToContainer,
+} from '../helpers/index.js'
 
-export default class Posts {
-  constructor(postsContainer, elementToBeHooked, data) {
-    const posts = this.createPosts(data)
-
-    this.attachElementsToContainer(
-      posts,
-      document.querySelector(postsContainer)
+class Posts {
+  constructor(container, trigger, wrapper, data) {
+    const wrapperToRelease = document.querySelector(wrapper)
+    const triggerElement = document.querySelector(trigger)
+    const containerSent = document.querySelector(container)
+    const postsContainer = createElementFn({
+      element: 'div',
+      classes: ['posts-container'],
+    })
+    const postsElements = this.createPostsElements(data)
+    const postComponents = this.joinPostsElements(postsElements)
+    const mainComponent = appendElementsToContainer(
+      postComponents,
+      postsContainer
     )
-    this.handleButtonDuringWindowScroll(elementToBeHooked)
-    this.setAnimationAfterResize(elementToBeHooked)
+    appendElementsToContainer(mainComponent, containerSent)
+
+    this.handleWindowScroll(triggerElement, wrapperToRelease)
   }
 
-  handleButtonDuringWindowScroll(elementToBeHooked) {
-    handleElOnWindowScroll({
-      onWhatElement: elementToBeHooked,
-      cbWhenTrue: (el) => el.classList.add('slideInFromTop'),
-    })
+  createPostsElements(data) {
+    this.postsElements = data.map((dataPortion) =>
+      this.createPostElements(dataPortion)
+    )
+    return this.postsElements
   }
 
-  setAnimationAfterResize(elementToBeHooked) {
-    window.addEventListener('resize', () => {
-      this.handleButtonDuringWindowScroll(elementToBeHooked)
-    })
-  }
-
-  checkElementHeight(element) {
-    let elementHeight = element.clientHeight
-
-    return elementHeight
-  }
-
-  attachElementsToContainer(elements, container) {
-    elements.map((el) => {
-      container.appendChild(el)
-    })
-  }
-
-  createPosts(data) {
-    const posts = data.map((dataEl) => {
-      const postElements = this.createPostElements(dataEl)
-      const post = this.joinPostElements(postElements)
-      return post
-    })
-
-    return posts
-  }
-
-  createPostElements(dataEl) {
-    const linkWrapper = dataEl.duringDevelopment
+  createPostElements(dataPortion) {
+    this.linkWrapper = dataPortion.duringDevelopment
       ? createElementFn({
           element: 'a',
+          classes: ['post-link-wrapper'],
         })
       : createElementFn({
           element: 'a',
+          classes: ['post-link-wrapper'],
           target: '_blank',
-          href: dataEl.route,
+          href: dataPortion.route,
         })
 
-    const postContainer = createElementFn({
+    this.postContainer = createElementFn({
       element: 'div',
-      classes: ['post'],
+      classes: ['post-container'],
     })
 
-    const thubnail = createElementFn({
+    this.thubnail = createElementFn({
       element: 'img',
-      classes: ['thubnail'],
-      src: dataEl.image,
-      alt: dataEl.alt,
+      classes: ['post-thubnail'],
+      src: dataPortion.image,
+      alt: dataPortion.alt,
     })
 
-    const postPrevContainer = createElementFn({
+    this.postPrevContainer = createElementFn({
       element: 'div',
       classes: ['post-preview'],
     })
 
-    const postTitle = createElementFn({
+    this.postTitle = createElementFn({
       element: 'h6',
       classes: ['post-title'],
-      text: dataEl.title,
+      textContent: dataPortion.title,
     })
 
-    const postIntro = createElementFn({
+    this.postIntro = createElementFn({
       element: 'p',
       classes: ['post-intro'],
-      text: dataEl.intro,
+      textContent: dataPortion.intro,
     })
 
-    const iconsContainer = createElementFn({
+    this.iconsContainer = createElementFn({
       element: 'div',
-      classes: ['icons-container'],
+      classes: ['post-icons-container'],
     })
 
-    const icons = dataEl.icons.map((iconEl) => {
+    this.icons = dataPortion.icons.map((iconEl) => {
       const icon = createElementFn({
         element: 'img',
         src: iconEl.image,
@@ -100,14 +86,14 @@ export default class Posts {
       return icon
     })
 
-    const postRibbonContainer = dataEl.duringDevelopment
+    this.postRibbonContainer = dataPortion.duringDevelopment
       ? createElementFn({
           element: 'div',
           classes: ['post-ribbon'],
         })
       : null
 
-    const postRibbonText = dataEl.duringDevelopment
+    this.postRibbonText = dataPortion.duringDevelopment
       ? createElementFn({
           element: 'p',
           classes: ['post-ribbon-text'],
@@ -115,52 +101,67 @@ export default class Posts {
         })
       : null
 
-    return {
-      linkWrapper,
-      postContainer,
-      thubnail,
-      postPrevContainer,
-      postTitle,
-      postIntro,
-      iconsContainer,
-      icons,
-      postRibbonContainer,
-      postRibbonText,
-    }
+    return [
+      this.linkWrapper,
+      this.postContainer,
+      this.thubnail,
+      this.postPrevContainer,
+      this.postTitle,
+      this.postIntro,
+      this.iconsContainer,
+      this.icons,
+      this.postRibbonContainer,
+      this.postRibbonText,
+    ]
   }
 
-  joinPostElements(elements) {
-    const {
-      linkWrapper,
-      postContainer,
-      thubnail,
-      postPrevContainer,
-      postTitle,
-      postIntro,
-      iconsContainer,
-      icons,
-      postRibbonContainer,
-      postRibbonText,
-    } = elements
+  joinPostsElements(postsElements) {
+    const postComponents = postsElements.map((postElements) => {
+      const [
+        linkWrapper,
+        postContainer,
+        thubnail,
+        postPrevContainer,
+        postTitle,
+        postIntro,
+        iconsContainer,
+        icons,
+        postRibbonContainer,
+        postRibbonText,
+      ] = postElements
 
-    postPrevContainer.appendChild(postTitle)
-    postPrevContainer.appendChild(postIntro)
+      postPrevContainer.appendChild(postTitle)
+      postPrevContainer.appendChild(postIntro)
 
-    icons.map((icon) => iconsContainer.appendChild(icon))
+      icons.map((icon) => iconsContainer.appendChild(icon))
 
-    const elementsGroup = [thubnail, postPrevContainer, iconsContainer]
+      const elementsGroup = [thubnail, postPrevContainer, iconsContainer]
 
-    elementsGroup.map((el) => {
-      postContainer.appendChild(el)
+      elementsGroup.map((el) => {
+        postContainer.appendChild(el)
+      })
+
+      if (postRibbonContainer) {
+        postRibbonContainer.appendChild(postRibbonText)
+        postContainer.appendChild(postRibbonContainer)
+      }
+
+      linkWrapper.appendChild(postContainer)
+
+      return linkWrapper
     })
+    return postComponents
+  }
 
-    if (postRibbonContainer) {
-      postRibbonContainer.appendChild(postRibbonText)
-      postContainer.appendChild(postRibbonContainer)
-    }
-
-    linkWrapper.appendChild(postContainer)
-
-    return linkWrapper
+  handleWindowScroll(triggerElement, wrapperToRelease) {
+    triggerActionOnWindowScroll({
+      onWhatElement: triggerElement,
+      cbWhenTrue: () => {
+        triggerElement.classList.add('h-full')
+        wrapperToRelease.classList.add('slideInFromTop')
+      },
+    })
   }
 }
+
+export default Posts

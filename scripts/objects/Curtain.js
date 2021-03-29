@@ -1,19 +1,25 @@
-import { createElementFn } from '../helpers/index.js'
+import { createElementFn, appendElementsToContainer } from '../helpers/index.js'
 
 class Curtain {
   constructor(container) {
-    this.curtain = createElementFn({
-      element: 'div',
-      classes: ['curtain'],
-      event: 'click',
-      cb: () => {
-        this.hidden()
-      },
-    })
-    document.querySelector(container).appendChild(this.curtain)
+    if (Curtain.instance == null) {
+      const sentContainer = document.querySelector(container)
+      this.curtain = createElementFn({
+        element: 'div',
+        classes: ['curtain'],
+        event: 'click',
+        cb: () => {
+          this.hidden()
+        },
+      })
 
-    this.cbsToCallOnHidden = []
-    this.childrenState = []
+      this.cbsToCallOnHidden = []
+      this.childrenState = []
+
+      appendElementsToContainer(this.curtain, sentContainer)
+      Curtain.instance = this
+    }
+    return (Curtain.instance = this)
   }
 
   addChildToState(component) {
@@ -70,5 +76,5 @@ class Curtain {
   }
 }
 
-const curtain = new Curtain('#container-global')
+const curtain = new Curtain('#global-main-container')
 export default curtain

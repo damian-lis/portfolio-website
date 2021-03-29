@@ -1,11 +1,12 @@
 import Particle from './Particle.js'
+import { createElementFn, appendElementsToContainer } from '../helpers/index.js'
 
-export default class Particles {
+class Particles {
   constructor() {
-    this.canvas = document.getElementById('canvas1')
-    this.ctx = this.canvas.getContext('2d')
-    this.ctx.canvas.width = window.innerWidth
-    this.ctx.canvas.height = window.innerHeight
+    this.canvas = createElementFn({
+      element: 'canvas',
+      id: 'canvas',
+    })
     this.particleArray = []
     this.theme = {}
     this.mouse = {
@@ -13,7 +14,16 @@ export default class Particles {
       y: null,
       radius: (this.canvas.height / 80) * (this.canvas.width / 80),
     }
+
+    this.setContext()
+    appendElementsToContainer(this.canvas, document.body)
     this.addResizeListener()
+  }
+
+  setContext() {
+    this.ctx = this.canvas.getContext('2d')
+    this.ctx.canvas.width = window.innerWidth
+    this.ctx.canvas.height = window.innerHeight
   }
 
   setTheme(theme) {
@@ -98,3 +108,5 @@ export default class Particles {
     this.init()
   }
 }
+
+export default Particles

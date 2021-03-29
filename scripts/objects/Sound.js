@@ -1,58 +1,76 @@
-import { createElementFn, handleElOnWindowScroll } from '../helpers/index.js'
+import {
+  createElementFn,
+  triggerActionOnWindowScroll,
+  appendElementsToContainer,
+} from '../helpers/index.js'
 
-export default class Sound {
-  constructor(container, elementToBeHooked) {
+class Sound {
+  constructor(container, trigger) {
+    const containerSent = document.querySelector(container)
+    const triggerElement = document.querySelector(trigger)
+    const soundElements = this.createSoundElements()
+    const soundButtonComponent = this.joinSoundElements(soundElements)
+    this.play = false
+
+    appendElementsToContainer(soundButtonComponent, containerSent)
+    this.handleSoundButtonDuringWindowScroll(triggerElement)
+  }
+
+  createSoundElements() {
     this.audio = createElementFn({
       element: 'audio',
       src: '../data/musics/ambient.mp3',
     })
 
-    this.image = createElementFn({
-      element: 'img',
-      src: '../../data/images/icons/playMusic.svg',
-    })
-
-    this.button = createElementFn({
+    this.soundButton = createElementFn({
       element: 'button',
       classes: ['global-left-btn'],
       event: 'click',
       cb: (e) => this.handleAudio(e.target),
     })
 
-    this.button.appendChild(this.image)
+    this.soundBtnImage = createElementFn({
+      element: 'img',
+      src: '../../data/images/icons/playMusic.svg',
+    })
 
-    document.querySelector(container).appendChild(this.button)
-    this.play = false
+    return [this.soundButton, this.soundBtnImage]
+  }
 
-    this.handleButtonDuringWindowScroll(elementToBeHooked)
+  joinSoundElements(elements) {
+    const [soundButton, soundBtnImage] = elements
+    soundButton.appendChild(soundBtnImage)
+    return soundButton
   }
 
   handleAudio() {
     if (this.play) {
-      ;(this.image.src = '../../data/images/icons/playMusic.svg'),
+      ;(this.soundBtnImage.src = '../../data/images/icons/playMusic.svg'),
         this.audio.pause()
       this.play = false
     } else {
       this.audio.play()
-      this.image.src = '../../data/images/icons/stopMusic.svg'
+      this.soundBtnImage.src = '../../data/images/icons/stopMusic.svg'
       this.play = true
     }
   }
 
-  showButton() {
-    this.button.style.transform = 'translateX(0)'
+  showSoundButton() {
+    this.soundButton.style.transform = 'translateX(0)'
   }
 
-  hideButton() {
-    this.button.style.transform = 'translateX(-100%)'
+  hideSoundButton() {
+    this.soundButton.style.transform = 'translateX(-100%)'
   }
 
-  handleButtonDuringWindowScroll(elementToBeHooked) {
-    handleElOnWindowScroll({
-      onWhatElement: elementToBeHooked,
-      cbWhenTrue: () => this.hideButton(),
-      cbWhenFalse: () => this.showButton(),
+  handleSoundButtonDuringWindowScroll(triggerElement) {
+    triggerActionOnWindowScroll({
+      onWhatElement: triggerElement,
+      cbWhenTrue: () => this.hideSoundButton(),
+      cbWhenFalse: () => this.showSoundButton(),
       modifier: 0.95,
     })
   }
 }
+
+export default Sound

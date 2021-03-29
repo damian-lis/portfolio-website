@@ -1,4 +1,4 @@
-export default class Particle {
+class Particle {
   constructor(x, y, directionX, directionY, size, canvas, ctx) {
     this.canvas = canvas
     this.ctx = ctx
@@ -33,3 +33,5 @@ export default class Particle {
     this.draw()
   }
 }
+
+export default Particle

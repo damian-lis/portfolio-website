@@ -1,87 +1,71 @@
-import { createElementFn } from '../helpers/index.js'
+import { createElementFn, appendElementsToContainer } from '../helpers/index.js'
 
-export default class DataArrange {
+class DataArrange {
   constructor(container, data) {
-    this.container = document.querySelector(container)
-    const elementsToAttach = this.createElementsToAttach(data)
-    this.attachElementsToContainer(elementsToAttach)
+    const containerSent = document.querySelector(container)
+    const dataArrangeElements = this.createDataArrangeElements(data)
+    appendElementsToContainer(dataArrangeElements, containerSent)
   }
 
-  attachElementsToContainer(elements) {
-    elements.map((element) => {
-      this.container.appendChild(element)
-    })
-  }
-
-  createElementsToAttach(elements) {
-    const elementsToAttach = []
+  createDataArrangeElements(elements) {
+    const dataArrangeElements = []
 
     elements.map((element) => {
-      if (element.title) {
-        const titleContainer = createElementFn({
-          element: 'div',
-          classes: ['col', 'mt-40', 'mb-10'],
+      if (element.headline) {
+        const headline = createElementFn({
+          element: 'h2',
+          classes: ['text-center', 'mt-10'],
+          textContent: element.headline,
         })
-
+        dataArrangeElements.push(headline)
+      } else if (element.title) {
         const title = createElementFn({
           element: 'h3',
-          text: element.title,
+          textContent: element.title,
+          classes: ['mt-40', 'mb-20'],
         })
 
-        titleContainer.appendChild(title)
-        elementsToAttach.push(titleContainer)
+        dataArrangeElements.push(title)
       } else if (element.image) {
-        const imageContainer = createElementFn({
-          element: 'div',
-          classes: ['col', 'my-20'],
-        })
         const image = createElementFn({
           element: 'img',
-          classes: ['rounded', 'w-full'],
+          classes: ['rounded', 'w-full', 'my-20'],
           src: element.image,
         })
 
-        imageContainer.appendChild(image)
-        elementsToAttach.push(imageContainer)
+        dataArrangeElements.push(image)
       } else if (element.text) {
         element.text.map((el) => {
-          const textContainer = createElementFn({
-            element: 'div',
-            classes: ['col', 'text-justify', 'text-lh-25'],
-          })
           const text = createElementFn({
             element: 'p',
-            classes: ['my-10'],
-            text: el,
+            classes: ['my-10', 'text-justify', 'text-lh-25'],
+            textContent: el,
           })
 
-          textContainer.appendChild(text)
-          elementsToAttach.push(textContainer)
+          dataArrangeElements.push(text)
         })
       } else if (element.links) {
         element.links.map((linkEl) => {
-          const linkContainer = createElementFn({
-            element: 'div',
-            classes: ['col', 'text-justify', 'sm-text-left'],
-          })
           const link = createElementFn({
             element: 'a',
             target: '_blank',
+            classes: ['text-justify', 'sm-text-left'],
             href: linkEl.path,
-            text: linkEl.linkText,
+            textContent: linkEl.linkText,
           })
           const text = createElementFn({
             element: 'p',
             classes: ['my-10'],
-            text: linkEl.label,
+            textContent: linkEl.label,
           })
 
           text.appendChild(link)
-          linkContainer.appendChild(text)
-          elementsToAttach.push(linkContainer)
+          dataArrangeElements.push(text)
         })
       }
     })
-    return elementsToAttach
+    return dataArrangeElements
   }
 }
+
+export default DataArrange
