@@ -1,4 +1,5 @@
 export default [
+  { headline: 'Short app description' },
   { title: '1. Introduction' },
   { image: '/data/images/projects/FluentBlog/viewSites.gif' },
   {
