@@ -1,3 +1,4 @@
+@import './extensive/index.css';
 @import './animations.css';
 @import './border.css';
 @import './height.css';
@@ -8,3 +9,4 @@
 @import './width.css';
 @import './wrap.css';
 @import './position.css';
+@import './opacity.css';
