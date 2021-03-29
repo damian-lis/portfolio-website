@@ -3,7 +3,8 @@ import setClasses from './setClasses.js'
 import setVariables from './setVariables.js'
 import addPropsAfterDelay from './addPropsAfterDelay.js'
 import createElementFn from './createElementFn.js'
-import handleElOnWindowScroll from './handleElOnWindowScroll.js'
+import triggerActionOnWindowScroll from './triggerActionOnWindowScroll.js'
+import appendElementsToContainer from './appendElementsToContainer.js'
 
 export {
   removeClasses,
@@ -11,5 +12,6 @@ export {
   setVariables,
   addPropsAfterDelay,
   createElementFn,
-  handleElOnWindowScroll,
+  triggerActionOnWindowScroll,
+  appendElementsToContainer,
 }
