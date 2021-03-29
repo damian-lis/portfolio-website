@@ -1,24 +1,38 @@
-#skills {
+.skills-content {
   margin: 0 auto;
+  border-radius: 5px;
+
+  background-color: var(--previewShadow);
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 5px;
-  padding: 20px;
-
-  background-color: var(--previewShadow);
 }
 
-#skills ul li {
+.skills-headline {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.skills-content-header {
+  margin-top: 30px;
+}
+
+.skills-content-header:first-of-type {
+  margin-top: 10px;
+}
+
+.skills-content-list-item {
   margin-bottom: 15px;
 }
 
-#skills ul li::before {
-  content: '-';
-  display: inline-block;
+.skills-content-list-item::before {
   margin-right: 7px;
+
+  display: inline-block;
+  content: '-';
 }
 
-#skills ul li:last-of-type {
+.skills-content-list-item:last-of-type {
   margin-bottom: 0px;
 }
