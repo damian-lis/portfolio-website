@@ -1,44 +1,50 @@
-#post-section {
-  transform: translateY(-100%);
+#posts-hook {
+  height: 1px;
+}
+
+#posts-wrapper {
   position: relative;
+  transform: translateY(-100%);
+
   opacity: 0;
 }
 
-#post-section a {
+.posts-container {
+  padding-bottom: 50px;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 320px);
+  gap: 20px;
+}
+
+.post-link-wrapper:hover {
   text-decoration: none;
 }
 
-.post-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 320px);
-  gap: 20px;
-  justify-content: center;
-  padding-bottom: 50px;
-}
-
-.post {
-  border: 1px solid var(--borderColor);
-  border-radius: 5px;
-  padding: 2px;
+.post-container {
+  position: relative;
+  height: 100%;
   -webkit-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
-  height: 100%;
+  border: 1px solid var(--borderColor);
+  border-radius: 5px;
+
   background-color: #fff;
+  padding: 2px;
   display: flex;
   flex-direction: column;
+
   transition: all 0.3s;
-  position: relative;
   overflow: hidden;
 }
 
-.post:hover {
+.post-container:hover {
   transform: scale(1.03);
 }
 
-.thubnail {
+.post-thubnail {
   display: block;
-  border-radius: 5px;
   width: 98%;
   height: 180px;
   margin: 3px auto;
@@ -46,18 +52,21 @@
   -webkit-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
 }
 
 .post-preview {
   flex-grow: 1;
+
   padding: 15px 15px 0px 15px;
   display: flex;
   flex-direction: column;
 }
 
 .post-title {
-  color: black;
   margin: 0;
+
+  color: black;
 }
 
 .post-intro {
@@ -65,14 +74,15 @@
   color: #222222;
 }
 
-.icons-container {
+.post-icons-container {
+  margin-bottom: 10px;
+
+  padding: 0 10px;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 10px;
-  padding: 0 10px;
 }
 
-.icons-container img {
+.post-icons-container img {
   width: 45px;
   height: 45px;
   margin: 3px 1px;
@@ -84,8 +94,9 @@
   right: 12%;
   width: 100%;
   height: 40px;
-  background-color: var(--borderColor);
   transform: translateX(50%) rotate(45deg);
+
+  background-color: var(--borderColor);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,13 +107,13 @@
 }
 
 @media screen and (max-width: 800px) {
-  .post-wrapper {
+  .posts-container {
     grid-template-columns: repeat(auto-fit, 300px);
   }
 }
 
 @media screen and (max-width: 400px) {
-  .post-wrapper {
+  .posts-container {
     grid-template-columns: repeat(auto-fit, 270px);
   }
 }
