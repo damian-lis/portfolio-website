@@ -9,37 +9,38 @@
     <title>Fluent Blog</title>
 </head>
 <body>
-    <div id="container-global">
-        <div class="global-left-container"></div>
+    <div id="global-main-container">
+        <div id="global-left-container"></div>
     <div class="wrap-x-800 element-center px-30">
         <section>
             <div class="row-xy mt-30">
-                <div class="col-60 content-center-xy">
-                    <div class="card slideInFromRight m-0 sm-mb-30 sm-p-10">
-                        <h1 class="m-10 sm-my-10 showObject text-center">Fluent Blog</h1>
+                <div id="project-name" class="col-60 content-center-xy">
+                    <div class="card m-0 sm-mb-30 sm-p-10 slideInFromRight">
+                        <h1 class="m-10 text-center sm-my-10 showObject ">Fluent Blog</h1>
                     </div>  
                 </div>
-                <div id="theme-settings" class="col-40 content-center-xy"></div>
+                <div id="theme" class="col-40 content-center-xy">
+                    <!-- JS -->
+                </div>
             </div>
         </section>
 
         <section>
-        <div class="card py-40 sm-px-20 slideInFromLeft">
-           <div  id="container" class="wrap-x-600 showObject  row-y element-center">  
-               <div class="col">
-                <h2 class="text-center">Short app description</h2> 
+        <div class="card py-30 px-40 sm-px-20 slideInFromLeft">
+           <div class="element-center row-y">  
+               <div id="project-description" class="col-100 showObject">
+                    <!-- JS -->
                 </div>
                </div>
-                       
            </div>
         </div>
     </section>
 
     <section>
-        <div class="row-xy m-30">
-            <div class="col element-center">
-                <div class="card slideInFromRight wrap-x-400 element-center">
-                    <h2 class="p-10 sm-p-0 showObject  text-center">Thank You for your attention! 😎</h2>
+        <div class="row-y m-30">
+            <div id="thanks" class="col-100">
+                <div class="card wrap-x-400 element-center slideInFromRight">
+                    <h2 class="p-10 sm-p-0 text-center showObject">Thank You for your attention! 😎</h2>
                 </div>  
             </div>
         </div>
@@ -47,6 +48,5 @@
 </div>
 </div>
          
-<canvas id="canvas1"></canvas>
 <script type="module" type="text/javascript" src="../scripts/sites/fluentBlog.js"></script>
 </body>

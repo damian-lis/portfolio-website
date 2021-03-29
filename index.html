@@ -9,36 +9,40 @@
     <title>Portfolio</title> 
 </head>
 <body>
-    <div id="container-global">
-        <div class="global-left-container"> </div>
+    <div id="global-main-container">
+        <div id="global-left-container"> </div>
     <div class=" wrap-x-1000 element-center px-30">
         <div class="relative z-1">
-        <section class="mb-40">
+        <section>
             <div class="row-xy mt-30">
-                <div class="col-60 content-center-xy">
-                    <div class="card px-20 slideInFromRight sm-mb-30 sm-p-10">
-                        <h1 class="text-center showObject sm-my-10">Hi, I am Damian Lis!</h1>
+                <div id="greetings" class="col-60 content-center-xy">
+                    <div class="card px-20 sm-mb-30 sm-p-10 slideInFromRight">
+                        <h1 class="text-center sm-my-10 showObject">Hi, I am Damian Lis!</h1>
                     </div>  
                 </div>
-                <div id="theme-settings" class="col-40 content-center-xy"></div>
+                <div id="theme" class="col-40 content-center-xy">
+                     <!-- JS -->
+                </div>
             </div>
-
-        <div class="card slideInFromLeft element-center sm-wrap-x-500 ">
+        </section>
+        
+        <section class="mb-40">
+        <div class="card element-center sm-wrap-x-500 slideInFromLeft">
            <div class="row-xy py-10">
-               <div class="col-50 content-center-xy p-10 showObject">
-                <img class="wrap-x-400 w-full rounded " id="profile_pic" src="./data/images/main/avatar.jpg" alt="">
+               <div id="avatar" class="col-50 content-center-xy p-10 showObject">
+                <img class="wrap-x-400 w-full rounded" src="./data/images/main/avatar.jpg" alt="">
                </div>
-               <div class="col-50 content-center-xy p-10 showObject sm-mt-20">
-                <div id="preview-shadow">
-                    <div id="preview">
-                        <div id="corner-tl" class="corner"></div>
-                        <div id="corner-tr" class="corner"></div>
+               <div id="preview" class="col-50 content-center-xy p-10 sm-mt-20  showObject">
+                <div class="preview-shadow">
+                    <div class="preview-container">
+                        <div id="preview-corner-tl" class="preview-corner"></div>
+                        <div id="preview-corner-tr" class="preview-corner"></div>
                         <h3>What I Do?</h3>
                         <p>I am a Frontend Developer</p>
                         <p>who creates web applications,</p>
                         <p>services and many other web solutions</p>
-                        <div id="corner-br" class="corner"></div>
-                        <div id="corner-bl" class="corner"></div>
+                        <div id="preview-corner-br" class="preview-corner"></div>
+                        <div id="preview-corner-bl" class="preview-corner"></div>
                     </div>
                 </div>
                </div>
@@ -47,85 +51,90 @@
     </section>
   
     <section class="mb-40">
-        <div class="card slideInFromRight px-20 element-center sm-wrap-x-500 sm-pb-20">
+        <div class="card px-20 element-center sm-wrap-x-500 sm-pb-20 slideInFromRight">
             <div class="row-xy mt-20">
-                <div class=" col-50 showObject text-justify p-20 sm-p-0">
+                <div id="about" class=" col-50 text-justify p-20 sm-p-0 showObject">
                     <h3 class="sm-text-center">About me</h3>
                     <p>Over a year and a half, I have been developing as a frontend developer with basic backend skills.</p>
                     <p>I fell in love with programming because of the logic it uses, the ability to create amazing projects and developing my problem-solving skills.</p>
                     <p>On a daily basis I love creating React technology applications, mainly e-commerce with lots of useful business options in the admin dashbord. Apart from that, for the artist's soul, I also like to play around creating various pseudo-intelligent games in JavaScript technology.</p>
-                
                 </div>
-                <div class="col-50 content-center-xy p-20 sm-p-0 sm-mt-20 showObject">
-                    <img class="wrap-x-400 w-full rounded" id="profile_pic" src="data/images/main/konferencja.jpg" alt="">
-                   </div>
+                <div id="about-image" class="col-50 content-center-xy p-20 sm-p-0 sm-mt-20 showObject">
+                    <img class="wrap-x-400 w-full rounded" src="data/images/main/konferencja.jpg" alt="">
             </div>
          </div>
     </section>
 
     <section class="mb-40">
-        <div class="card element-center wrap-x-700 px-30 pb-30 pt-20 sm-p-20 pslideInFromLeft sm-wrap-x-500">
-            <div class="row-xy ">  
-                <div class="col-100 showObject">
-                    <h3 class="my-20 text-center">My skills</h3>
-                    <div id="skills">
-                        <h5 class="mt-10">1. Level enough to write more advanced frontend</h5>
-                        <ul >
-                            <li>HTML (Semanthic writing)</li>
-                            <li>CSS (SASS, BEM, basic level of Bootstrap)</li>
-                            <li>JavaScript (OOP, Design Patterns, Functional Programming)</li>
-                            <li>React (Redux, Hooks, Styled Components, Compound Components etc.)</li>
-                            <li>Next (basic understanding the concept of server side rendering)</li>
+        <div class="card element-center wrap-x-700 px-30 pb-30 pt-20 sm-p-20 sm-wrap-x-500 slideInFromLeft">
+            <div class="row-y ">  
+                <!--  -->
+                <div id="skills" class="col-100 showObject">
+                    <div class="skills-container">
+                    <h3 class="skills-headline">My skills</h3>
+                    <div class="skills-content">
+                        <h5 class="skills-content-header">1. Level enough to write more advanced frontend</h5>
+                        <ul class="skills-content-list">
+                            <li class="skills-content-list-item">HTML (Semanthic writing)</li>
+                            <li class="skills-content-list-item">CSS (SASS, BEM, basic level of Bootstrap)</li>
+                            <li class="skills-content-list-item">JavaScript (OOP, Design Patterns, Functional Programming)</li>
+                            <li class="skills-content-list-item">React (Redux, Hooks, Styled Components, Compound Components etc.)</li>
+                            <li class="skills-content-list-item">Next (basic understanding the concept of server side rendering)</li>
                         </ul>
-                        <h5 class="mt-30 ">2. Level enough to write basic backend</h5>
+                        <h5 class="skills-content-header">2. Level enough to write basic backend</h5>
                         <ul>
-                            <li>Node/Express (simple E-COMMERCE backend with REST API)</li>
-                            <li>MongoDB (simple handle with Express)</li>
+                            <li class="skills-content-list-item">Node/Express (simple E-COMMERCE backend with REST API)</li>
+                            <li class="skills-content-list-item">MongoDB (simple handle with Express)</li>
                         </ul>
-                        <h5  class="mt-30 ">3. When i have a free time</h5>
+                        <h5  class="skills-content-header">3. When i have a free time</h5>
                         <ul>
-                            <li>PHP (basic level)</li>
+                            <li class="skills-content-list-item">PHP (basic level)</li>
                         </ul>
                     </div>
-                   </div>            
+                   </div> 
+                </div>     
+                 <!--  -->
             </div>
+           
          </div>
     </section>
     
     <section class="mb-40">
-        <div class="card element-center wrap-x-400 slideInFromRight">
+        <div class="card element-center wrap-x-400 text-center slideInFromRight">
             <div class="row-xy">
-                <div class="col-100 showObject text-center">
-                    <p >Description my person <a target="_blank"
-                        href="#">Download CV</a></p>          
+                <!--  -->
+                <div id="personal-info" class="col-100 showObject">
+                        <p >Description my person <a target="_blank" href="#">Download CV</a></p>   
                         <p class="text-lh-30">Find me on 
                             <a target="_blank" href="https://www.linkedin.com/in/damian-lis-741b11206/">LinkedIn</a>, <a target="_blank" href="https://www.instagram.com/_damian_lis_/">Instagram</a>, <a target="_blank" href="https://www.facebook.com/damian.lis.18">Facebook</a>,
                             <a target="_blank" href="https://github.com/damian-lis">GitHub</a>
                         </p>
-                </div>
+                    </div>
+                <!--  -->
             </div>
         </div>
     </section>
 </div>
 </div>
+
 <div class="wrap-x-1200 element-center">
-    <section  id="post-section">    
-        <div class="row-xy mb-20">
-            <div class="col-20 element-center">
-                <div class="card p-20 my-20 text-center">
+    <section id="posts-trigger">
+        <div id="posts-wrapper" class="row-y mb-20">
+            <!--  -->
+            <div id="posts-title" class="col-100 mt-20 mb-30">
+                <div class="card wrap-x-250 element-center text-center p-20 sm-wrap-x-200">
                     <h3>My projects</h3>
                 </div>  
             </div>
+            <!--  -->
+             <!--  -->
+             <div id="posts" class="col-100"> </div>
+             <!--  -->
         </div>
-        <div class="post-wrapper"></div>
     </section>
 </div>
-
-   
-
 </div>
 
-    <canvas id="canvas1"></canvas>
     <script type="module" type="text/javascript" src="./scripts/sites/main.js"></script>
 </body>
 </html>
