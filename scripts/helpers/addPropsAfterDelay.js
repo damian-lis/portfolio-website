@@ -1,9 +1,9 @@
 export default (data, delay) => {
   data.map((dataEl) => {
-    const { node, classes, styleElements, properties } = dataEl
-    let el = node
-    if (typeof node === 'string') {
-      el = document.querySelector(node)
+    const { element, classes, styleElements, properties } = dataEl
+    let el = element
+    if (typeof element === 'string') {
+      el = document.querySelector(element)
     }
     if (delay) {
       setTimeout(() => {
@@ -23,6 +23,8 @@ export default (data, delay) => {
       for (let property in properties) {
         el[property] = properties[property]
       }
+
+      classes && el.classList.add(...classes)
     }
   })
 }
