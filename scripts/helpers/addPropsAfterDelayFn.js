@@ -7,19 +7,28 @@ export default (data, delay) => {
     }
     if (delay) {
       setTimeout(() => {
-        for (let styleElement in styleElements) {
-          el.style[styleElement] = styleElements[styleElement]
+        if (styleElements) {
+          for (let styleElement in styleElements) {
+            el.style[styleElement] = styleElements[styleElement]
+          }
         }
-        for (let property in properties) {
-          el[property] = properties[property]
+
+        if (properties) {
+          for (let property in properties) {
+            el[property] = properties[property]
+          }
         }
       }, delay)
     } else {
-      for (let styleElement in styleElements) {
-        el.style[styleElement] = styleElements[styleElement]
+      if (styleElements) {
+        for (let styleElement in styleElements) {
+          el.style[styleElement] = styleElements[styleElement]
+        }
       }
-      for (let property in properties) {
-        el[property] = properties[property]
+      if (properties) {
+        for (let property in properties) {
+          el[property] = properties[property]
+        }
       }
     }
   })
