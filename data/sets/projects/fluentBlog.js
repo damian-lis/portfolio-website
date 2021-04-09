@@ -1,14 +1,14 @@
 export default [
   { headline: 'Short app description' },
   { title: '1. Introduction' },
-  { image: '/data/images/projects/FluentBlog/viewSites.gif' },
+  { image: '/images/projects/FluentBlog/viewSites.gif' },
   {
     text: [
       'The application was built using the Next.js technology due to the speed and ease of development, efficiency and the ability to render the code on the server side, which contributes to better SEO.',
       'Below is quickly view of app:',
     ],
   },
-  { image: '/data/images/projects/FluentBlog/styles.gif' },
+  { image: '/images/projects/FluentBlog/styles.gif' },
   { title: '2. Application content' },
   {
     text: [
@@ -16,29 +16,29 @@ export default [
       'You can see it in the example below',
     ],
   },
-  { image: '/data/images/projects/FluentBlog/browseArticle.gif' },
+  { image: '/images/projects/FluentBlog/browseArticle.gif' },
   {
     text: [
       'Below is a high abstraction of code that is responsible for dynamic article creation using the getStaticPaths and getStaticProps methods characteristic of Next.js',
       '(all logic under the visible layer is available on my repository, the link to which will be at the bottom of page)',
     ],
   },
-  { image: '/data/images/projects/FluentBlog/articleCode.gif' },
+  { image: '/images/projects/FluentBlog/articleCode.gif' },
   {
     text: ['Below is article example write in markdown extension'],
   },
-  { image: '/data/images/projects/FluentBlog/article.gif' },
+  { image: '/images/projects/FluentBlog/article.gif' },
   { title: '3. Loader component' },
   {
     text: [
       'Due to the fact that not everyone can access high-speed internet, the Loader component was created to inform the user that his article is loading. Thanks to this, the user will immediately receive feedback on what is happening on the website.',
     ],
   },
-  { image: '/data/images/projects/FluentBlog/loading.gif' },
+  { image: '/images/projects/FluentBlog/loading.gif' },
   { text: ['Below is a solution in the code.'] },
-  { image: '/data/images/projects/FluentBlog/loaderCode.gif' },
+  { image: '/images/projects/FluentBlog/loaderCode.gif' },
   { title: '4. Mobile version' },
-  { image: '/data/images/projects/FluentBlog/mobile.gif' },
+  { image: '/images/projects/FluentBlog/mobile.gif' },
   {
     text: [
       'The use of the application with intuitively arranged website components was made as pleasant as possible. The mobile version has a responsive layout and hamburger menu to fast navigate.',

@@ -143,12 +143,12 @@ export const idReferences = {
 
 export const src = {
   sound: {
-    playImg: '../../data/images/icons/stopMusic.svg',
-    pauseImg: '../../data/images/icons/playMusic.svg',
+    playImg: '/images/icons/stopMusic.svg',
+    pauseImg: '/images/icons/playMusic.svg',
     audioRecord: '/audio/ambient.mp3',
   },
   form: {
-    btnImg: '../../data/images/icons/email.svg',
+    btnImg: '/images/icons/email.svg',
   },
 }
 
