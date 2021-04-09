@@ -1,6 +1,6 @@
 export default (data, delay) => {
   data.map((dataEl) => {
-    const { element, classes, styleElements, properties } = dataEl
+    const { element, styleElements, properties } = dataEl
     let el = element
     if (typeof element === 'string') {
       el = document.querySelector(element)
@@ -13,8 +13,6 @@ export default (data, delay) => {
         for (let property in properties) {
           el[property] = properties[property]
         }
-
-        classes && el.classList.add(...classes)
       }, delay)
     } else {
       for (let styleElement in styleElements) {
@@ -23,8 +21,6 @@ export default (data, delay) => {
       for (let property in properties) {
         el[property] = properties[property]
       }
-
-      classes && el.classList.add(...classes)
     }
   })
 }
