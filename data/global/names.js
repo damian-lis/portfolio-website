@@ -145,7 +145,7 @@ export const src = {
   sound: {
     playImg: '../../data/images/icons/stopMusic.svg',
     pauseImg: '../../data/images/icons/playMusic.svg',
-    audioRecord: '../data/musics/ambient.mp3',
+    audioRecord: '/audio/ambient.mp3',
   },
   form: {
     btnImg: '../../data/images/icons/email.svg',
