@@ -10,7 +10,6 @@
 }
 
 .posts-container {
-  padding-bottom: 50px;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 320px);

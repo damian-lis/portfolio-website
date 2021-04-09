@@ -1,4 +1,4 @@
-.curtain {
+.curtain-container {
   position: fixed;
   top: 0;
   width: 100%;
@@ -16,7 +16,7 @@
   transition: 0.3s;
 }
 
-.active-curtain {
+.curtain-active {
   opacity: 1;
   visibility: visible;
 }
