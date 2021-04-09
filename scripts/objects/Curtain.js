@@ -21,9 +21,6 @@ class Curtain {
             },
           },
         ],
-        // cb: () => {
-        //   this.hidden()
-        // },
       })
 
       this.cbsToCallOnHidden = []

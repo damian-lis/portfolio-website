@@ -27,8 +27,7 @@ class Sound {
       element: 'button',
       classes: [classNames.global.leftBtn],
       event: 'click',
-      listeners: [{ event: 'click', cb: (e) => this.handleAudio(e.target) }],
-      // cb: (e) => this.handleAudio(e.target),
+      listeners: [{ event: 'click', cb: () => this.handleAudio() }],
     })
 
     this.soundBtnImage = createElementFn({

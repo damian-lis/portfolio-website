@@ -91,21 +91,6 @@ class Theme {
             },
           },
         ],
-        // event: 'click',
-        // cb: (e) => {
-        //   removeClassesFn(this.themeOptionsDots, [
-        //     classNames.theme.optionsDotActive,
-        //   ])
-        //   setClassesFn([
-        //     {
-        //       element: e.target,
-        //       classes: [classNames.theme.optionsDotActive],
-        //     },
-        //   ])
-        //   this.setGlobalVariables(themesObject[theme])
-        //   this.background.setTheme(themesObject[theme])
-        //   this.saveThemeNameInLocalStorage(theme)
-        // },
       })
     })
     this.themeNote = createElementFn({

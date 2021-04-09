@@ -34,13 +34,11 @@ class Form {
   }
 
   createFormBtnElements() {
-    console.log(classNames.global.leftBtn)
     this.formBtn = createElementFn({
       element: 'button',
       classes: [classNames.global.leftBtn],
       event: 'click',
       listeners: [{ event: 'click', cb: () => this.handleFormCreate() }],
-      // cb: () => this.handleFormCreate(),
     })
 
     this.formBtnIcon = createElementFn({
@@ -81,7 +79,6 @@ class Form {
       classes: [classNames.form.card],
       event: 'click',
       listeners: [{ event: 'click', cb: (e) => e.stopPropagation() }],
-      // cb: (e) => e.stopPropagation(),
     })
 
     this.formDeleteBtnContainer = createElementFn({
@@ -95,7 +92,6 @@ class Form {
       textContent: 'X',
       event: 'click',
       listeners: [{ event: 'click', cb: () => curtain.hidden() }],
-      // cb: () => curtain.hidden(),
     })
 
     this.formTitleContainer = createElementFn({
@@ -120,7 +116,6 @@ class Form {
       classes: [classNames.form.main],
       event: 'submit',
       listeners: [{ event: 'submit', cb: (e) => this.handleFormSubmit(e) }],
-      // cb: (e) => this.handleFormSubmit(e),
     })
     this.formFieldsElements = this.createFormFieldsElements()
 
@@ -197,10 +192,6 @@ class Form {
             },
           },
         ],
-        // cb: (e) => {
-        //   this.handleFormInput(e, name)
-        //   this.checkAndRemoveBorderDanger(e)
-        // },
       })
       this.formFieldsInput.push(input)
     } else {
@@ -224,10 +215,6 @@ class Form {
             },
           },
         ],
-        // cb: (e) => {
-        //   this.handleFormInput(e, name)
-        //   this.checkAndRemoveBorderDanger(e)
-        // },
       })
       this.formFieldsInput.push(input)
     }
