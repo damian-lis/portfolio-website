@@ -1,11 +1,15 @@
 import Particle from './Particle.js'
-import { createElementFn, appendElementsToContainer } from '../helpers/index.js'
+import {
+  createElementFn,
+  appendElementsToContainerFn,
+} from '../helpers/index.js'
+import { idNames } from '../../data/global/names.js'
 
 class Particles {
   constructor() {
     this.canvas = createElementFn({
       element: 'canvas',
-      id: 'canvas',
+      id: idNames.theme.canvas,
     })
     this.particleArray = []
     this.theme = {}
@@ -16,7 +20,7 @@ class Particles {
     }
 
     this.setContext()
-    appendElementsToContainer(this.canvas, document.body)
+    appendElementsToContainerFn(this.canvas, document.body)
     this.addResizeListener()
   }
 

@@ -1,10 +1,14 @@
-import { createElementFn, appendElementsToContainer } from '../helpers/index.js'
+import {
+  createElementFn,
+  appendElementsToContainerFn,
+} from '../helpers/index.js'
+import { classNames } from '../../data/global/names.js'
 
 class DataArrange {
   constructor(container, data) {
     const containerSent = document.querySelector(container)
     const dataArrangeElements = this.createDataArrangeElements(data)
-    appendElementsToContainer(dataArrangeElements, containerSent)
+    appendElementsToContainerFn(dataArrangeElements, containerSent)
   }
 
   createDataArrangeElements(elements) {
@@ -14,7 +18,10 @@ class DataArrange {
       if (element.headline) {
         const headline = createElementFn({
           element: 'h2',
-          classes: ['text-center', 'mt-10'],
+          classes: [
+            classNames.utilities.text.center,
+            classNames.utilities.margin.t10,
+          ],
           textContent: element.headline,
         })
         dataArrangeElements.push(headline)
@@ -22,14 +29,21 @@ class DataArrange {
         const title = createElementFn({
           element: 'h3',
           textContent: element.title,
-          classes: ['mt-40', 'mb-20'],
+          classes: [
+            classNames.utilities.margin.t40,
+            classNames.utilities.margin.b40,
+          ],
         })
 
         dataArrangeElements.push(title)
       } else if (element.image) {
         const image = createElementFn({
           element: 'img',
-          classes: ['rounded', 'w-full', 'my-20'],
+          classes: [
+            classNames.utilities.border.rounded,
+            classNames.utilities.width.full,
+            classNames.utilities.margin.y20,
+          ],
           src: element.image,
         })
 
@@ -38,7 +52,11 @@ class DataArrange {
         element.text.map((el) => {
           const text = createElementFn({
             element: 'p',
-            classes: ['my-10', 'text-justify', 'text-lh-25'],
+            classes: [
+              classNames.utilities.margin.y10,
+              classNames.utilities.text.justify,
+              classNames.utilities.text.lh25,
+            ],
             textContent: el,
           })
 
@@ -49,13 +67,16 @@ class DataArrange {
           const link = createElementFn({
             element: 'a',
             target: '_blank',
-            classes: ['text-justify', 'sm-text-left'],
+            classes: [
+              classNames.utilities.text.justify,
+              classNames.utilities.text.smLeft,
+            ],
             href: linkEl.path,
             textContent: linkEl.linkText,
           })
           const text = createElementFn({
             element: 'p',
-            classes: ['my-10'],
+            classes: [classNames.utilities.margin.y10],
             textContent: linkEl.label,
           })
 

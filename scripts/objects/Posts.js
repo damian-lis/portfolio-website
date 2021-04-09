@@ -1,8 +1,9 @@
 import {
   createElementFn,
-  triggerActionOnWindowScroll,
-  appendElementsToContainer,
+  triggerActionOnWindowScrollFn,
+  appendElementsToContainerFn,
 } from '../helpers/index.js'
+import { classNames } from '../../data/global/names.js'
 
 class Posts {
   constructor(container, trigger, wrapper, data) {
@@ -11,15 +12,15 @@ class Posts {
     const containerSent = document.querySelector(container)
     const postsContainer = createElementFn({
       element: 'div',
-      classes: ['posts-container'],
+      classes: [classNames.posts.container],
     })
     const postsElements = this.createPostsElements(data)
     const postComponents = this.joinPostsElements(postsElements)
-    const mainComponent = appendElementsToContainer(
+    const mainComponent = appendElementsToContainerFn(
       postComponents,
       postsContainer
     )
-    appendElementsToContainer(mainComponent, containerSent)
+    appendElementsToContainerFn(mainComponent, containerSent)
 
     this.handleWindowScroll(triggerElement, wrapperToRelease)
   }
@@ -35,47 +36,47 @@ class Posts {
     this.linkWrapper = dataPortion.duringDevelopment
       ? createElementFn({
           element: 'a',
-          classes: ['post-link-wrapper'],
+          classes: [classNames.post.linkWrapper],
         })
       : createElementFn({
           element: 'a',
-          classes: ['post-link-wrapper'],
+          classes: [classNames.post.linkWrapper],
           target: '_blank',
           href: dataPortion.route,
         })
 
     this.postContainer = createElementFn({
       element: 'div',
-      classes: ['post-container'],
+      classes: [classNames.post.container],
     })
 
     this.thubnail = createElementFn({
       element: 'img',
-      classes: ['post-thubnail'],
+      classes: [classNames.post.thubnail],
       src: dataPortion.image,
       alt: dataPortion.alt,
     })
 
     this.postPrevContainer = createElementFn({
       element: 'div',
-      classes: ['post-preview'],
+      classes: [classNames.post.preview],
     })
 
     this.postTitle = createElementFn({
       element: 'h6',
-      classes: ['post-title'],
+      classes: [classNames.post.title],
       textContent: dataPortion.title,
     })
 
     this.postIntro = createElementFn({
       element: 'p',
-      classes: ['post-intro'],
+      classes: [classNames.post.intro],
       textContent: dataPortion.intro,
     })
 
     this.iconsContainer = createElementFn({
       element: 'div',
-      classes: ['post-icons-container'],
+      classes: [classNames.post.iconsContainer],
     })
 
     this.icons = dataPortion.icons.map((iconEl) => {
@@ -89,14 +90,14 @@ class Posts {
     this.postRibbonContainer = dataPortion.duringDevelopment
       ? createElementFn({
           element: 'div',
-          classes: ['post-ribbon'],
+          classes: [classNames.post.ribbon],
         })
       : null
 
     this.postRibbonText = dataPortion.duringDevelopment
       ? createElementFn({
           element: 'p',
-          classes: ['post-ribbon-text'],
+          classes: [classNames.post.ribbonText],
           innerHTML: 'During dev...',
         })
       : null
@@ -154,11 +155,13 @@ class Posts {
   }
 
   handleWindowScroll(triggerElement, wrapperToRelease) {
-    triggerActionOnWindowScroll({
+    triggerActionOnWindowScrollFn({
       onWhatElement: triggerElement,
       cbWhenTrue: () => {
-        triggerElement.classList.add('h-full')
-        wrapperToRelease.classList.add('slideInFromTop')
+        triggerElement.classList.add(classNames.utilities.height.full)
+        wrapperToRelease.classList.add(
+          classNames.utilities.animations.slideInFromTop
+        )
       },
     })
   }

@@ -1,9 +1,10 @@
 import {
   createElementFn,
-  setClasses,
-  removeClasses,
-  appendElementsToContainer,
+  setClassesFn,
+  removeClassesFn,
+  appendElementsToContainerFn,
 } from '../helpers/index.js'
+import { classNames } from '../../data/global/names.js'
 
 class Theme {
   constructor(container, themesObject, BackgroundObj) {
@@ -19,7 +20,7 @@ class Theme {
     )
     const themeComponent = this.joinThemeElements(themeElements)
 
-    appendElementsToContainer(themeComponent, containerSent)
+    appendElementsToContainerFn(themeComponent, containerSent)
     this.setGlobalVariables(initialThemeObject)
     this.createBackgroundAnimation(BackgroundObj, initialThemeObject)
   }
@@ -53,7 +54,7 @@ class Theme {
   createThemeElements(themesObject, themeName) {
     this.themeContainer = createElementFn({
       element: 'div',
-      classes: ['theme-container'],
+      classes: [classNames.theme.container],
     })
     this.themeTitle = createElementFn({
       element: 'h5',
@@ -61,20 +62,22 @@ class Theme {
     })
     this.themeOptionsContainer = createElementFn({
       element: 'div',
-      classes: ['theme-options-container'],
+      classes: [classNames.theme.optionsContainer],
     })
     this.themeOptionsDots = Object.keys(themesObject).map((theme) => {
       return createElementFn({
         element: 'div',
         classes: [
-          'theme-options-dot',
-          `${theme === themeName && 'theme-options-dot-active'}`,
+          classNames.theme.optionsDot,
+          theme === themeName && classNames.theme.optionsDotActive,
         ],
         id: theme,
         event: 'click',
         cb: (e) => {
-          removeClasses(this.themeOptionsDots, ['theme-options-dot-active'])
-          setClasses(e.target, ['theme-options-dot-active'])
+          removeClassesFn(this.themeOptionsDots, [
+            classNames.theme.optionsDotActive,
+          ])
+          setClassesFn(e.target, [classNames.theme.optionsDotActive])
           this.setGlobalVariables(themesObject[theme])
           this.background.setTheme(themesObject[theme])
           this.saveThemeNameInLocalStorage(theme)
@@ -83,7 +86,7 @@ class Theme {
     })
     this.themeNote = createElementFn({
       element: 'p',
-      classes: ['theme-note'],
+      classes: [classNames.theme.note],
       textContent: '*Theme settings will be saved for your next visit',
     })
 

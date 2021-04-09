@@ -1,8 +1,9 @@
 import {
   createElementFn,
-  triggerActionOnWindowScroll,
-  appendElementsToContainer,
+  triggerActionOnWindowScrollFn,
+  appendElementsToContainerFn,
 } from '../helpers/index.js'
+import { classNames, src } from '../../data/global/names.js'
 
 class Sound {
   constructor(container, trigger) {
@@ -12,26 +13,26 @@ class Sound {
     const soundButtonComponent = this.joinSoundElements(soundElements)
     this.play = false
 
-    appendElementsToContainer(soundButtonComponent, containerSent)
+    appendElementsToContainerFn(soundButtonComponent, containerSent)
     this.handleSoundButtonDuringWindowScroll(triggerElement)
   }
 
   createSoundElements() {
     this.audio = createElementFn({
       element: 'audio',
-      src: '../data/musics/ambient.mp3',
+      src: src.sound.audioRecord,
     })
 
     this.soundButton = createElementFn({
       element: 'button',
-      classes: ['global-left-btn'],
+      classes: [classNames.global.leftBtn],
       event: 'click',
       cb: (e) => this.handleAudio(e.target),
     })
 
     this.soundBtnImage = createElementFn({
       element: 'img',
-      src: '../../data/images/icons/playMusic.svg',
+      src: src.sound.pauseImg,
     })
 
     return [this.soundButton, this.soundBtnImage]
@@ -45,12 +46,12 @@ class Sound {
 
   handleAudio() {
     if (this.play) {
-      ;(this.soundBtnImage.src = '../../data/images/icons/playMusic.svg'),
-        this.audio.pause()
+      this.soundBtnImage.src = src.sound.pauseImg
+      this.audio.pause()
       this.play = false
     } else {
       this.audio.play()
-      this.soundBtnImage.src = '../../data/images/icons/stopMusic.svg'
+      this.soundBtnImage.src = src.sound.playImg
       this.play = true
     }
   }
@@ -64,7 +65,7 @@ class Sound {
   }
 
   handleSoundButtonDuringWindowScroll(triggerElement) {
-    triggerActionOnWindowScroll({
+    triggerActionOnWindowScrollFn({
       onWhatElement: triggerElement,
       cbWhenTrue: () => this.hideSoundButton(),
       cbWhenFalse: () => this.showSoundButton(),

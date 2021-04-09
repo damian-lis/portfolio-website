@@ -1,4 +1,9 @@
-import { createElementFn, appendElementsToContainer } from '../helpers/index.js'
+import {
+  createElementFn,
+  appendElementsToContainerFn,
+} from '../helpers/index.js'
+
+import { classNames, idReferences } from '../../data/global/names.js'
 
 class Curtain {
   constructor(container) {
@@ -6,7 +11,7 @@ class Curtain {
       const sentContainer = document.querySelector(container)
       this.curtain = createElementFn({
         element: 'div',
-        classes: ['curtain'],
+        classes: [classNames.curtain.container],
         event: 'click',
         cb: () => {
           this.hidden()
@@ -16,7 +21,7 @@ class Curtain {
       this.cbsToCallOnHidden = []
       this.childrenState = []
 
-      appendElementsToContainer(this.curtain, sentContainer)
+      appendElementsToContainerFn(this.curtain, sentContainer)
       Curtain.instance = this
     }
     return (Curtain.instance = this)
@@ -40,7 +45,7 @@ class Curtain {
   }
 
   show() {
-    this.curtain.classList.add('active-curtain')
+    this.curtain.classList.add(classNames.curtain.active)
     document.body.style.overflow = 'hidden'
   }
 
@@ -72,9 +77,9 @@ class Curtain {
     this.clearCbsState()
     this.clearChildren()
     document.body.style.overflow = 'auto'
-    this.curtain.classList.remove('active-curtain')
+    this.curtain.classList.remove(classNames.curtain.active)
   }
 }
 
-const curtain = new Curtain('#global-main-container')
+const curtain = new Curtain(idReferences.global.mainContainer)
 export default curtain
