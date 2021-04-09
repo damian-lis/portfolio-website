@@ -39,7 +39,8 @@ class Form {
       element: 'button',
       classes: [classNames.global.leftBtn],
       event: 'click',
-      cb: () => this.handleFormCreate(),
+      listeners: [{ event: 'click', cb: () => this.handleFormCreate() }],
+      // cb: () => this.handleFormCreate(),
     })
 
     this.formBtnIcon = createElementFn({
@@ -79,7 +80,8 @@ class Form {
       element: 'div',
       classes: [classNames.form.card],
       event: 'click',
-      cb: (e) => e.stopPropagation(),
+      listeners: [{ event: 'click', cb: (e) => e.stopPropagation() }],
+      // cb: (e) => e.stopPropagation(),
     })
 
     this.formDeleteBtnContainer = createElementFn({
@@ -92,7 +94,8 @@ class Form {
       classes: [classNames.form.btnDelete],
       textContent: 'X',
       event: 'click',
-      cb: () => curtain.hidden(),
+      listeners: [{ event: 'click', cb: () => curtain.hidden() }],
+      // cb: () => curtain.hidden(),
     })
 
     this.formTitleContainer = createElementFn({
@@ -116,7 +119,8 @@ class Form {
       element: 'form',
       classes: [classNames.form.main],
       event: 'submit',
-      cb: (e) => this.handleFormSubmit(e),
+      listeners: [{ event: 'submit', cb: (e) => this.handleFormSubmit(e) }],
+      // cb: (e) => this.handleFormSubmit(e),
     })
     this.formFieldsElements = this.createFormFieldsElements()
 
@@ -184,10 +188,19 @@ class Form {
         name,
         id: name,
         event: 'input',
-        cb: (e) => {
-          this.handleFormInput(e, name)
-          this.checkAndRemoveBorderDanger(e)
-        },
+        listeners: [
+          {
+            event: 'input',
+            cb: (e) => {
+              this.handleFormInput(e, name)
+              this.checkAndRemoveBorderDanger(e)
+            },
+          },
+        ],
+        // cb: (e) => {
+        //   this.handleFormInput(e, name)
+        //   this.checkAndRemoveBorderDanger(e)
+        // },
       })
       this.formFieldsInput.push(input)
     } else {
@@ -202,10 +215,19 @@ class Form {
         name,
         id: name,
         event: 'input',
-        cb: (e) => {
-          this.handleFormInput(e, name)
-          this.checkAndRemoveBorderDanger(e)
-        },
+        listeners: [
+          {
+            event: 'input',
+            cb: (e) => {
+              this.handleFormInput(e, name)
+              this.checkAndRemoveBorderDanger(e)
+            },
+          },
+        ],
+        // cb: (e) => {
+        //   this.handleFormInput(e, name)
+        //   this.checkAndRemoveBorderDanger(e)
+        // },
       })
       this.formFieldsInput.push(input)
     }

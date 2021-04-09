@@ -13,9 +13,17 @@ class Curtain {
         element: 'div',
         classes: [classNames.curtain.container],
         event: 'click',
-        cb: () => {
-          this.hidden()
-        },
+        listeners: [
+          {
+            event: 'click',
+            cb: () => {
+              this.hidden()
+            },
+          },
+        ],
+        // cb: () => {
+        //   this.hidden()
+        // },
       })
 
       this.cbsToCallOnHidden = []

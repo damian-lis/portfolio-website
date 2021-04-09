@@ -1,22 +1,26 @@
-export default ({ element, cb, ...rest }) => {
+export default ({ element, ...rest }) => {
   const createdElement = document.createElement(element)
 
   if (Object.keys(rest).length) {
     for (const propEl in rest) {
-      if (propEl === 'event') {
-        createdElement.addEventListener(rest[propEl], (e) => {
-          cb ? cb(e) : () => {}
+      if (propEl === 'listeners') {
+        rest[propEl].map((events) => {
+          const { event, cb } = events
+          createdElement.addEventListener(event, (e, event) => {
+            cb(e, event)
+          })
         })
-      }
-      if (propEl === 'classes') {
+      } else if (propEl === 'attributes') {
+        rest[propEl].map((attribute) => {
+          createdElement.setAttribute(`${attribute.type}`, `${attribute.name}`)
+        })
+      } else if (propEl === 'classes') {
         createdElement.classList.add(...rest[propEl])
-      }
-      if (propEl === 'styles') {
+      } else if (propEl === 'styles') {
         rest[propEl].map((styleObj) => {
           createdElement.style[styleObj.name] = styleObj.value
         })
-      }
-      createdElement[propEl] = rest[propEl]
+      } else createdElement[propEl] = rest[propEl]
     }
   }
 

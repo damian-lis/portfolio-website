@@ -72,21 +72,40 @@ class Theme {
           theme === themeName && classNames.theme.optionsDotActive,
         ],
         id: theme,
-        event: 'click',
-        cb: (e) => {
-          removeClassesFn(this.themeOptionsDots, [
-            classNames.theme.optionsDotActive,
-          ])
-          setClassesFn([
-            {
-              element: e.target,
-              classes: [classNames.theme.optionsDotActive],
+        listeners: [
+          {
+            event: 'click',
+            cb: (e) => {
+              removeClassesFn(this.themeOptionsDots, [
+                classNames.theme.optionsDotActive,
+              ])
+              setClassesFn([
+                {
+                  element: e.target,
+                  classes: [classNames.theme.optionsDotActive],
+                },
+              ])
+              this.setGlobalVariables(themesObject[theme])
+              this.background.setTheme(themesObject[theme])
+              this.saveThemeNameInLocalStorage(theme)
             },
-          ])
-          this.setGlobalVariables(themesObject[theme])
-          this.background.setTheme(themesObject[theme])
-          this.saveThemeNameInLocalStorage(theme)
-        },
+          },
+        ],
+        // event: 'click',
+        // cb: (e) => {
+        //   removeClassesFn(this.themeOptionsDots, [
+        //     classNames.theme.optionsDotActive,
+        //   ])
+        //   setClassesFn([
+        //     {
+        //       element: e.target,
+        //       classes: [classNames.theme.optionsDotActive],
+        //     },
+        //   ])
+        //   this.setGlobalVariables(themesObject[theme])
+        //   this.background.setTheme(themesObject[theme])
+        //   this.saveThemeNameInLocalStorage(theme)
+        // },
       })
     })
     this.themeNote = createElementFn({
