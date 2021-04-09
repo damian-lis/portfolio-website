@@ -1,17 +1,17 @@
-import removeClasses from './removeClasses.js'
-import setClasses from './setClasses.js'
-import setVariables from './setVariables.js'
-import addPropsAfterDelay from './addPropsAfterDelay.js'
+import removeClassesFn from './removeClassesFn.js'
+import setClassesFn from './setClassesFn.js'
+import setVariablesFn from './setVariablesFn.js'
+import addPropsAfterDelayFn from './addPropsAfterDelayFn.js'
 import createElementFn from './createElementFn.js'
-import triggerActionOnWindowScroll from './triggerActionOnWindowScroll.js'
-import appendElementsToContainer from './appendElementsToContainer.js'
+import triggerActionOnWindowScrollFn from './triggerActionOnWindowScrollFn.js'
+import appendElementsToContainerFn from './appendElementsToContainerFn.js'
 
 export {
-  removeClasses,
-  setClasses,
-  setVariables,
-  addPropsAfterDelay,
+  removeClassesFn,
+  setClassesFn,
+  setVariablesFn,
+  addPropsAfterDelayFn,
   createElementFn,
-  triggerActionOnWindowScroll,
-  appendElementsToContainer,
+  triggerActionOnWindowScrollFn,
+  appendElementsToContainerFn,
 }
