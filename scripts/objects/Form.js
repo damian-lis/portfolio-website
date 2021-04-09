@@ -29,7 +29,7 @@ class Form {
       message: '',
     }
 
-    appendElementsToContainerFn(formBtnComponent, containerSent)
+    appendElementsToContainerFn([formBtnComponent], containerSent)
     this.handleFormBtnDuringWindowScroll(triggerElement)
   }
 

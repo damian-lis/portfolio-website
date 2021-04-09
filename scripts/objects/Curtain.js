@@ -21,7 +21,7 @@ class Curtain {
       this.cbsToCallOnHidden = []
       this.childrenState = []
 
-      appendElementsToContainerFn(this.curtain, sentContainer)
+      appendElementsToContainerFn([this.curtain], sentContainer)
       Curtain.instance = this
     }
     return (Curtain.instance = this)

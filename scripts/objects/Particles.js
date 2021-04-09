@@ -20,7 +20,7 @@ class Particles {
     }
 
     this.setContext()
-    appendElementsToContainerFn(this.canvas, document.body)
+    appendElementsToContainerFn([this.canvas], document.body)
     this.addResizeListener()
   }
 

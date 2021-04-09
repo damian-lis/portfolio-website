@@ -20,7 +20,7 @@ class Theme {
     )
     const themeComponent = this.joinThemeElements(themeElements)
 
-    appendElementsToContainerFn(themeComponent, containerSent)
+    appendElementsToContainerFn([themeComponent], containerSent)
     this.setGlobalVariables(initialThemeObject)
     this.createBackgroundAnimation(BackgroundObj, initialThemeObject)
   }
@@ -77,7 +77,12 @@ class Theme {
           removeClassesFn(this.themeOptionsDots, [
             classNames.theme.optionsDotActive,
           ])
-          setClassesFn(e.target, [classNames.theme.optionsDotActive])
+          setClassesFn([
+            {
+              element: e.target,
+              classes: [classNames.theme.optionsDotActive],
+            },
+          ])
           this.setGlobalVariables(themesObject[theme])
           this.background.setTheme(themesObject[theme])
           this.saveThemeNameInLocalStorage(theme)

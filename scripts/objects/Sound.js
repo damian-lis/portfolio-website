@@ -13,7 +13,7 @@ class Sound {
     const soundButtonComponent = this.joinSoundElements(soundElements)
     this.play = false
 
-    appendElementsToContainerFn(soundButtonComponent, containerSent)
+    appendElementsToContainerFn([soundButtonComponent], containerSent)
     this.handleSoundButtonDuringWindowScroll(triggerElement)
   }
 

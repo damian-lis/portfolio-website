@@ -20,7 +20,7 @@ class Posts {
       postComponents,
       postsContainer
     )
-    appendElementsToContainerFn(mainComponent, containerSent)
+    appendElementsToContainerFn([mainComponent], containerSent)
 
     this.handleWindowScroll(triggerElement, wrapperToRelease)
   }
