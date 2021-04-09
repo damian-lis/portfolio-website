@@ -25,10 +25,10 @@ export const sendMail = (req, res) => {
     if (err) {
       res.status(500).json({
         success: false,
-        message: 'Something went wrong, try again! &#128128;',
+        message: 'Something went wrong, try again! 😬',
       })
     } else {
-      res.json({ success: true, message: 'Message sent! &#129299;' })
+      res.json({ success: true, message: 'Message sent! 😎' })
     }
   })
 }
