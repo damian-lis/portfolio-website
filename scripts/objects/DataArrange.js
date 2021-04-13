@@ -55,6 +55,7 @@ class DataArrange {
             classes: [
               classNames.utilities.margin.y10,
               classNames.utilities.text.justify,
+              classNames.utilities.text.smLeft,
               classNames.utilities.text.lh25,
             ],
             textContent: el,
