@@ -25,7 +25,7 @@
 
 body {
   background-color: var(--mainColor);
-
+  word-wrap: break-word;
   overflow-x: hidden;
 }
 
