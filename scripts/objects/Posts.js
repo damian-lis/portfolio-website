@@ -41,7 +41,6 @@ class Posts {
       : createElementFn({
           element: 'a',
           classes: [classNames.post.linkWrapper],
-          target: '_blank',
           href: dataPortion.route,
         })
 

@@ -20,7 +20,7 @@ class Sound {
   createSoundElements() {
     this.audio = createElementFn({
       element: 'audio',
-      src: src.sound.audioRecord,
+      src: src.audioRecord,
     })
 
     this.soundButton = createElementFn({
@@ -32,7 +32,7 @@ class Sound {
 
     this.soundBtnImage = createElementFn({
       element: 'img',
-      src: src.sound.pauseImg,
+      src: src.pauseImg,
     })
 
     return [this.soundButton, this.soundBtnImage]
@@ -46,12 +46,12 @@ class Sound {
 
   handleAudio() {
     if (this.play) {
-      this.soundBtnImage.src = src.sound.pauseImg
+      this.soundBtnImage.src = src.pauseImg
       this.audio.pause()
       this.play = false
     } else {
       this.audio.play()
-      this.soundBtnImage.src = src.sound.playImg
+      this.soundBtnImage.src = src.playImg
       this.play = true
     }
   }

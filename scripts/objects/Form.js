@@ -59,7 +59,7 @@ class Form {
     this.formBtnIcon = createElementFn({
       element: 'img',
       classes: [classNames.utilities.margin.t5],
-      src: src.form.btnImg,
+      src: src.emailImg,
     })
 
     return [this.formBtn, this.formBtnIcon]
