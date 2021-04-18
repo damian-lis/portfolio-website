@@ -15,10 +15,25 @@ class Form {
     const formBtnComponent = this.joinFormBtnElements(formBtnElements)
 
     this.formFieldsContent = [
-      { label: 'Name', type: 'text', name: 'name' },
-      { label: 'Subject', type: 'text', name: 'subject' },
-      { label: 'Email', type: 'email', name: 'email' },
-      { label: 'Message', type: 'textarea', name: 'message' },
+      { label: 'Name', type: 'text', name: 'name', alert: 'name required' },
+      {
+        label: 'Subject',
+        type: 'text',
+        name: 'subject',
+        alert: 'subject required',
+      },
+      {
+        label: 'Email',
+        type: 'email',
+        name: 'email',
+        alert: 'email required',
+      },
+      {
+        label: 'Message',
+        type: 'textarea',
+        name: 'message',
+        alert: 'message required',
+      },
       { type: 'submit', value: 'Wyślij', name: 'submit' },
     ]
     this.formFieldsInput = []
@@ -119,6 +134,8 @@ class Form {
     })
     this.formFieldsElements = this.createFormFieldsElements()
 
+    this.formFieldsAlerts = this.createFormFieldsAlerts()
+
     this.formFields = this.formFieldsContent.map((field) =>
       createElementFn({
         element: 'div',
@@ -149,6 +166,7 @@ class Form {
       this.formInnerContainer,
       this.form,
       this.formFieldsElements,
+      this.formFieldsAlerts,
       this.formFields,
       this.formSpinnerContainer,
       this.formSpinner,
@@ -188,7 +206,13 @@ class Form {
             event: 'input',
             cb: (e) => {
               this.handleFormInput(e, name)
+            },
+          },
+          {
+            event: 'click',
+            cb: (e) => {
               this.checkAndRemoveBorderDanger(e)
+              this.removeAlert(e)
             },
           },
         ],
@@ -211,7 +235,13 @@ class Form {
             event: 'input',
             cb: (e) => {
               this.handleFormInput(e, name)
+            },
+          },
+          {
+            event: 'click',
+            cb: (e) => {
               this.checkAndRemoveBorderDanger(e)
+              this.removeAlert(e)
             },
           },
         ],
@@ -220,6 +250,30 @@ class Form {
     }
 
     return lab ? [lab, input] : [input]
+  }
+
+  createFormFieldsAlerts() {
+    const alerts = this.formFieldsContent.map((field) => {
+      if (field.label) {
+        return createElementFn({
+          element: 'span',
+          attributes: [{ type: 'fieldname', name: field.name }],
+          classes: ['form-field-alert'],
+          textContent: field.alert,
+        })
+      }
+    })
+    alerts.pop()
+    return alerts
+  }
+
+  removeAlert(e) {
+    this.formFieldsAlerts.map((alert) => {
+      if (e.target.attributes.name.value === alert.attributes.fieldname.value) {
+        alert.style.opacity = 0
+        alert.style.visibility = 'hidden'
+      }
+    })
   }
 
   checkAndRemoveBorderDanger(e) {
@@ -247,6 +301,7 @@ class Form {
       formInnerContainer,
       form,
       formFieldsElements,
+      formFieldsAlerts,
       formFields,
       formSpinnerContainer,
       formSpinner,
@@ -257,6 +312,10 @@ class Form {
       formFieldsElements[index].map((fieldElements) =>
         field.appendChild(fieldElements)
       )
+      if (index < formFields.length - 1) {
+        field.appendChild(formFieldsAlerts[index])
+      }
+
       form.appendChild(field)
     })
     formSpinnerContainer.appendChild(formSpinner)
@@ -280,8 +339,13 @@ class Form {
     })
   }
 
-  addBorderDanger(element) {
+  addDangerBorderToInput(element) {
     element.classList.add(classNames.utilities.border.danger)
+  }
+
+  showInputAlert(element) {
+    element.style.visibility = 'visible'
+    element.style.opacity = 1
   }
 
   resetFormElements() {
@@ -345,9 +409,13 @@ class Form {
 
   checkIfEmptyFormInputsValue() {
     let isEmptyInputValue = false
-    this.formFieldsInput.map((input) => {
+    this.formFieldsInput.map((input, index) => {
       if (input.value === '') {
-        this.addBorderDanger(input)
+        this.addDangerBorderToInput(input)
+        if (index < this.formFieldsInput.length - 1) {
+          this.showInputAlert(this.formFieldsAlerts[index])
+        }
+
         isEmptyInputValue = true
       }
     })
