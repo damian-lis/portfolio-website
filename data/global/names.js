@@ -142,14 +142,11 @@ export const idReferences = {
 }
 
 export const src = {
-  sound: {
-    playImg: '/images/icons/stopMusic.svg',
-    pauseImg: '/images/icons/playMusic.svg',
-    audioRecord: '/audio/ambient.mp3',
-  },
-  form: {
-    btnImg: '/images/icons/email.svg',
-  },
+  playImg: '/images/icons/stopMusic.svg',
+  pauseImg: '/images/icons/playMusic.svg',
+  audioRecord: '/audio/ambient.mp3',
+  emailImg: '/images/icons/email.svg',
+  arrowImg: '/images/icons/arrow.svg',
 }
 
 export const mailEndPoint = 'https://dirt-ten-risk.glitch.me/api/mail/portfolio'
