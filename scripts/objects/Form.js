@@ -269,8 +269,8 @@ class Form {
         attributes: [{ type: 'fieldname', name: field.name }],
         classes: [
           field.name === 'submit'
-            ? 'form-field-submit-notification'
-            : 'form-field-input-notification',
+            ? classNames.form.fieldSubmitNotification
+            : classNames.form.fieldInputNotification,
         ],
         innerHTML: field.notification,
       })

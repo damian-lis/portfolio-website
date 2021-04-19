@@ -39,6 +39,8 @@ export const classNames = {
     btnDelete: 'form-btn-delete',
     spinnerContainer: 'form-spinner-container',
     spinner: 'form-spinner',
+    fieldSubmitNotification: 'form-field-submit-notification',
+    fieldInputNotification: 'form-field-input-notification',
   },
   global: {
     leftBtn: 'global-left-btn',
