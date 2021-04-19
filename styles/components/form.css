@@ -100,7 +100,7 @@ textarea {
   margin-top: 7px;
 }
 
-.form-field-alert-message {
+.form-field-input-notification {
   position: absolute;
   bottom: -5px;
   width: fit-content;
@@ -116,7 +116,7 @@ textarea {
   transition: 0.3s;
 }
 
-.form-field-delay-message {
+.form-field-submit-notification {
   position: absolute;
   top: -8px;
   left: 50%;
