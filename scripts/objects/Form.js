@@ -15,30 +15,35 @@ class Form {
     const formBtnComponent = this.joinFormBtnElements(formBtnElements)
 
     this.formFieldsContent = [
-      { label: 'Name', type: 'text', name: 'name', alert: 'name required 😡' },
+      {
+        label: 'Name',
+        type: 'text',
+        name: 'name',
+        notification: 'name is required 😡',
+      },
       {
         label: 'Subject',
         type: 'text',
         name: 'subject',
-        alert: 'subject required 😡',
+        notification: 'subject is required 😡',
       },
       {
         label: 'Email',
         type: 'email',
         name: 'email',
-        alert: 'email required 😡',
+        notification: 'email is required 😡',
       },
       {
         label: 'Message',
         type: 'textarea',
         name: 'message',
-        alert: 'message required 😡',
+        notification: 'message is required 😡',
       },
       {
         type: 'submit',
         value: 'Wyślij',
         name: 'submit',
-        alert: 'Please wait a moment more! 🕐',
+        notification: 'Please wait a moment more! 🕐',
       },
     ]
     this.formFieldsInput = []
@@ -139,7 +144,7 @@ class Form {
     })
     this.formFieldsElements = this.createFormFieldsElements()
 
-    this.formFieldsMessages = this.createFormFieldsMessages()
+    this.formFieldsNotifications = this.createFormFieldsMessages()
 
     this.formFields = this.formFieldsContent.map((field) =>
       createElementFn({
@@ -171,7 +176,7 @@ class Form {
       this.formInnerContainer,
       this.form,
       this.formFieldsElements,
-      this.formFieldsMessages,
+      this.formFieldsNotifications,
       this.formFields,
       this.formSpinnerContainer,
       this.formSpinner,
@@ -216,8 +221,8 @@ class Form {
           {
             event: 'click',
             cb: (e) => {
-              this.toggleBorderDanger(e, 'off')
-              this.toggleAlertMessage(e, 'off')
+              this.toggleBorderDanger({ e, toggle: 'off' })
+              this.toggleAlertMessage({ e, toggle: 'off' })
             },
           },
         ],
@@ -245,8 +250,8 @@ class Form {
           {
             event: 'click',
             cb: (e) => {
-              this.toggleBorderDanger(e, 'off')
-              this.toggleAlertMessage(e, 'off')
+              this.toggleBorderDanger({ e, toggle: 'off' })
+              this.toggleAlertMessage({ e, toggle: 'off' })
             },
           },
         ],
@@ -258,33 +263,33 @@ class Form {
   }
 
   createFormFieldsMessages() {
-    const alerts = this.formFieldsContent.map((field) => {
+    const notifications = this.formFieldsContent.map((field) => {
       return createElementFn({
         element: 'span',
         attributes: [{ type: 'fieldname', name: field.name }],
         classes: [
           field.name === 'submit'
-            ? 'form-field-delay-message'
-            : 'form-field-alert-message',
+            ? 'form-field-submit-notification'
+            : 'form-field-input-notification',
         ],
-        innerHTML: field.alert,
+        innerHTML: field.notification,
       })
     })
-    return alerts
+    return notifications
   }
 
-  toggleAlertMessage(element, toggle) {
+  toggleAlertMessage({ element, e, toggle }) {
     if (toggle === 'on') {
       element.style.visibility = 'visible'
       element.style.opacity = 1
     } else {
-      this.formFieldsMessages.map((alert) => {
+      this.formFieldsNotifications.map((notification) => {
         if (
-          element.target.attributes.name.value ===
-          alert.attributes.fieldname.value
+          e.target.attributes.name.value ===
+          notification.attributes.fieldname.value
         ) {
-          alert.style.opacity = 0
-          alert.style.visibility = 'hidden'
+          notification.style.opacity = 0
+          notification.style.visibility = 'hidden'
         }
       })
     }
@@ -346,11 +351,11 @@ class Form {
     })
   }
 
-  toggleBorderDanger(element, toggle) {
+  toggleBorderDanger({ element, e, toggle }) {
     if (toggle === 'on') {
       element.classList.add(classNames.utilities.border.danger)
     } else {
-      element.target.classList.remove(classNames.utilities.border.danger)
+      e.target.classList.remove(classNames.utilities.border.danger)
     }
   }
 
@@ -417,9 +422,12 @@ class Form {
     let isEmptyInputValue = false
     this.formFieldsInput.map((input, index) => {
       if (input.value === '') {
-        this.toggleBorderDanger(input, 'on')
+        this.toggleBorderDanger({ element: input, toggle: 'on' })
         if (index < this.formFieldsInput.length - 1) {
-          this.toggleAlertMessage(this.formFieldsMessages[index], 'on')
+          this.toggleAlertMessage({
+            element: this.formFieldsNotifications[index],
+            toggle: 'on',
+          })
         }
 
         isEmptyInputValue = true
@@ -429,39 +437,41 @@ class Form {
     return isEmptyInputValue
   }
 
-  toggleDelayMessage(toggle) {
-    this.formFieldsMessages.map((message) => {
-      if (message.attributes.fieldname.value === 'submit') {
+  toggleShowSubmitlNotifications({
+    toggle,
+    showNotificationDelay,
+    changeNotificationDelay,
+  }) {
+    this.formFieldsNotifications.map((notification) => {
+      if (notification.attributes.fieldname.value === 'submit') {
         if (toggle === 'on') {
-          this.delayMessageTimeout = setTimeout(() => {
-            message.style.visibility = 'visible'
-            message.style.opacity = 1
-          }, 200)
+          this.showNotificationTimeout = setTimeout(() => {
+            notification.style.visibility = 'visible'
+            notification.style.opacity = 1
+          }, showNotificationDelay)
+          this.changeNotificationTimout = setTimeout(() => {
+            notification.innerHTML = 'literally wait a moment longer! ⚡'
+          }, changeNotificationDelay)
         } else {
-          clearInterval(this.delayMessageTimeout)
-          message.style.visibility = 'hidden'
-          message.style.opacity = 0
+          clearInterval(this.showNotificationTimeout)
+          clearInterval(this.changeNotificationTimout)
+          notification.style.visibility = 'hidden'
+          notification.style.opacity = 0
         }
       }
     })
   }
 
   async handleEmailSent() {
-    this.disableFormInputs()
-    this.toggleSpinner('on')
-    this.toggleDelayMessage('on')
     return await fetch(mailEndPoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-
       body: JSON.stringify(this.dataFromUser),
     })
       .then((response) => response.json())
       .then((data) => {
-        this.toggleSpinner('off')
-        this.toggleDelayMessage('off')
         if (data.success) {
           this.actionAfterSubmit(data.message)
         } else {
@@ -470,8 +480,6 @@ class Form {
       })
       .catch(() => {
         const message = 'Unable to connect to the server 😔'
-        this.toggleSpinner('off')
-        this.toggleDelayMessage('off')
         this.actionAfterSubmit(message)
       })
   }
@@ -499,7 +507,16 @@ class Form {
     e.preventDefault()
     const areEmptyFormInputsValue = this.checkIfEmptyFormInputsValue()
     if (areEmptyFormInputsValue) return
+    this.disableFormInputs()
+    this.toggleSpinner('on')
+    this.toggleShowSubmitlNotifications({
+      toggle: 'on',
+      showNotificationDelay: 1000,
+      changeNotificationDelay: 8000,
+    })
     await this.handleEmailSent()
+    this.toggleSpinner('off')
+    this.toggleShowSubmitlNotifications({ toggle: 'off' })
   }
 
   handleFormInput(e, name) {
