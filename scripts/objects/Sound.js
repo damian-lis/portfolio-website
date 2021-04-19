@@ -58,7 +58,7 @@ class Sound {
 
   toggleSoundButton(toggle) {
     this.soundButton.style.transform =
-      toggle === 'on' ? 'translateX(0)' : 'translateX(-100%)'
+      toggle === 'on' ? 'translateX(-100%)' : 'translateX(0)'
   }
 
   handleSoundButtonDuringWindowScroll(triggerElement) {
@@ -66,7 +66,7 @@ class Sound {
       onWhatElement: triggerElement,
       cbWhenTrue: () => this.toggleSoundButton('on'),
       cbWhenFalse: () => this.toggleSoundButton('off'),
-      modifier: 0.95,
+      modifier: 0.8,
     })
   }
 }
