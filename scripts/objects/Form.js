@@ -15,26 +15,31 @@ class Form {
     const formBtnComponent = this.joinFormBtnElements(formBtnElements)
 
     this.formFieldsContent = [
-      { label: 'Name', type: 'text', name: 'name', alert: 'name required' },
+      { label: 'Name', type: 'text', name: 'name', alert: 'name required 😡' },
       {
         label: 'Subject',
         type: 'text',
         name: 'subject',
-        alert: 'subject required',
+        alert: 'subject required 😡',
       },
       {
         label: 'Email',
         type: 'email',
         name: 'email',
-        alert: 'email required',
+        alert: 'email required 😡',
       },
       {
         label: 'Message',
         type: 'textarea',
         name: 'message',
-        alert: 'message required',
+        alert: 'message required 😡',
       },
-      { type: 'submit', value: 'Wyślij', name: 'submit' },
+      {
+        type: 'submit',
+        value: 'Wyślij',
+        name: 'submit',
+        alert: 'Please wait a moment more! 🕐',
+      },
     ]
     this.formFieldsInput = []
     this.dataFromUser = {
@@ -73,12 +78,12 @@ class Form {
   }
 
   handleFormCreate() {
-    this.hideFormBtn()
+    this.toggleFormBtn('off')
     const formElements = this.createFormElements()
     const formComponent = this.joinFormElements(formElements)
     curtain.addCbsToCallOnHidden([
       () => {
-        this.showFormBtn()
+        this.toggleFormBtn('on')
         this.resetFormInputsValue()
         this.resetDataFromUser()
         this.resetFormElements()
@@ -134,7 +139,7 @@ class Form {
     })
     this.formFieldsElements = this.createFormFieldsElements()
 
-    this.formFieldsAlerts = this.createFormFieldsAlerts()
+    this.formFieldsMessages = this.createFormFieldsMessages()
 
     this.formFields = this.formFieldsContent.map((field) =>
       createElementFn({
@@ -166,7 +171,7 @@ class Form {
       this.formInnerContainer,
       this.form,
       this.formFieldsElements,
-      this.formFieldsAlerts,
+      this.formFieldsMessages,
       this.formFields,
       this.formSpinnerContainer,
       this.formSpinner,
@@ -211,8 +216,8 @@ class Form {
           {
             event: 'click',
             cb: (e) => {
-              this.checkAndRemoveBorderDanger(e)
-              this.removeAlert(e)
+              this.toggleBorderDanger(e, 'off')
+              this.toggleAlertMessage(e, 'off')
             },
           },
         ],
@@ -240,8 +245,8 @@ class Form {
           {
             event: 'click',
             cb: (e) => {
-              this.checkAndRemoveBorderDanger(e)
-              this.removeAlert(e)
+              this.toggleBorderDanger(e, 'off')
+              this.toggleAlertMessage(e, 'off')
             },
           },
         ],
@@ -252,41 +257,44 @@ class Form {
     return lab ? [lab, input] : [input]
   }
 
-  createFormFieldsAlerts() {
+  createFormFieldsMessages() {
     const alerts = this.formFieldsContent.map((field) => {
-      if (field.label) {
-        return createElementFn({
-          element: 'span',
-          attributes: [{ type: 'fieldname', name: field.name }],
-          classes: ['form-field-alert'],
-          textContent: field.alert,
-        })
-      }
+      return createElementFn({
+        element: 'span',
+        attributes: [{ type: 'fieldname', name: field.name }],
+        classes: [
+          field.name === 'submit'
+            ? 'form-field-delay-message'
+            : 'form-field-alert-message',
+        ],
+        innerHTML: field.alert,
+      })
     })
-    alerts.pop()
     return alerts
   }
 
-  removeAlert(e) {
-    this.formFieldsAlerts.map((alert) => {
-      if (e.target.attributes.name.value === alert.attributes.fieldname.value) {
-        alert.style.opacity = 0
-        alert.style.visibility = 'hidden'
-      }
-    })
-  }
-
-  checkAndRemoveBorderDanger(e) {
-    if (e.target.classList.contains(classNames.utilities.border.danger)) {
-      e.target.classList.remove(classNames.utilities.border.danger)
+  toggleAlertMessage(element, toggle) {
+    if (toggle === 'on') {
+      element.style.visibility = 'visible'
+      element.style.opacity = 1
+    } else {
+      this.formFieldsMessages.map((alert) => {
+        if (
+          element.target.attributes.name.value ===
+          alert.attributes.fieldname.value
+        ) {
+          alert.style.opacity = 0
+          alert.style.visibility = 'hidden'
+        }
+      })
     }
   }
 
   handleFormBtnDuringWindowScroll(triggerElement) {
     triggerActionOnWindowScrollFn({
       onWhatElement: triggerElement,
-      cbWhenTrue: () => this.hideFormBtn(),
-      cbWhenFalse: () => this.showFormBtn(),
+      cbWhenTrue: () => this.toggleFormBtn('off'),
+      cbWhenFalse: () => this.toggleFormBtn('on'),
     })
   }
 
@@ -309,17 +317,17 @@ class Form {
 
     formTitleContainer.appendChild(formTitle)
     formFields.map((field, index) => {
+      if (index === formFields.length - 1) {
+        formSpinnerContainer.appendChild(formSpinner)
+        field.appendChild(formSpinnerContainer)
+      }
+
+      field.appendChild(formFieldsAlerts[index])
       formFieldsElements[index].map((fieldElements) =>
         field.appendChild(fieldElements)
       )
-      if (index < formFields.length - 1) {
-        field.appendChild(formFieldsAlerts[index])
-      }
-
       form.appendChild(field)
     })
-    formSpinnerContainer.appendChild(formSpinner)
-    form.appendChild(formSpinnerContainer)
     formOuterContainer.appendChild(form)
 
     formInnerContainer.appendChild(formTitleContainer)
@@ -327,7 +335,6 @@ class Form {
     formDeleteBtnContainer.appendChild(formDeleteBtn)
     formCard.appendChild(formDeleteBtnContainer)
     formCard.appendChild(formInnerContainer)
-
     return formCard
   }
 
@@ -339,13 +346,12 @@ class Form {
     })
   }
 
-  addDangerBorderToInput(element) {
-    element.classList.add(classNames.utilities.border.danger)
-  }
-
-  showInputAlert(element) {
-    element.style.visibility = 'visible'
-    element.style.opacity = 1
+  toggleBorderDanger(element, toggle) {
+    if (toggle === 'on') {
+      element.classList.add(classNames.utilities.border.danger)
+    } else {
+      element.target.classList.remove(classNames.utilities.border.danger)
+    }
   }
 
   resetFormElements() {
@@ -411,9 +417,9 @@ class Form {
     let isEmptyInputValue = false
     this.formFieldsInput.map((input, index) => {
       if (input.value === '') {
-        this.addDangerBorderToInput(input)
+        this.toggleBorderDanger(input, 'on')
         if (index < this.formFieldsInput.length - 1) {
-          this.showInputAlert(this.formFieldsAlerts[index])
+          this.toggleAlertMessage(this.formFieldsMessages[index], 'on')
         }
 
         isEmptyInputValue = true
@@ -423,9 +429,27 @@ class Form {
     return isEmptyInputValue
   }
 
+  toggleDelayMessage(toggle) {
+    this.formFieldsMessages.map((message) => {
+      if (message.attributes.fieldname.value === 'submit') {
+        if (toggle === 'on') {
+          this.delayMessageTimeout = setTimeout(() => {
+            message.style.visibility = 'visible'
+            message.style.opacity = 1
+          }, 200)
+        } else {
+          clearInterval(this.delayMessageTimeout)
+          message.style.visibility = 'hidden'
+          message.style.opacity = 0
+        }
+      }
+    })
+  }
+
   async handleEmailSent() {
     this.disableFormInputs()
     this.toggleSpinner('on')
+    this.toggleDelayMessage('on')
     return await fetch(mailEndPoint, {
       method: 'POST',
       headers: {
@@ -437,6 +461,7 @@ class Form {
       .then((response) => response.json())
       .then((data) => {
         this.toggleSpinner('off')
+        this.toggleDelayMessage('off')
         if (data.success) {
           this.actionAfterSubmit(data.message)
         } else {
@@ -446,6 +471,7 @@ class Form {
       .catch(() => {
         const message = 'Unable to connect to the server 😔'
         this.toggleSpinner('off')
+        this.toggleDelayMessage('off')
         this.actionAfterSubmit(message)
       })
   }
@@ -460,17 +486,12 @@ class Form {
   toggleSpinner(toggle) {
     const submitBtn = this.formFieldsInput[this.formFieldsInput.length - 1]
 
-    switch (toggle) {
-      case 'on':
-        submitBtn.style.display = 'none'
-        this.formSpinnerContainer.style.display = 'flex'
-        break
-      case 'off':
-        submitBtn.style.display = 'block'
-        this.formSpinnerContainer.style.display = 'none'
-        break
-      default:
-        break
+    if (toggle === 'on') {
+      submitBtn.style.display = 'none'
+      this.formSpinnerContainer.style.display = 'flex'
+    } else {
+      submitBtn.style.display = 'block'
+      this.formSpinnerContainer.style.display = 'none'
     }
   }
 
@@ -478,7 +499,6 @@ class Form {
     e.preventDefault()
     const areEmptyFormInputsValue = this.checkIfEmptyFormInputsValue()
     if (areEmptyFormInputsValue) return
-
     await this.handleEmailSent()
   }
 
@@ -486,12 +506,12 @@ class Form {
     this.dataFromUser[name] = e.target.value
   }
 
-  showFormBtn() {
-    this.formBtn.style.transform = 'translateX(0)'
-  }
-
-  hideFormBtn() {
-    this.formBtn.style.transform = 'translateX(-100%)'
+  toggleFormBtn(toggle) {
+    if (toggle === 'on') {
+      this.formBtn.style.transform = 'translateX(0)'
+    } else {
+      this.formBtn.style.transform = 'translateX(-100%)'
+    }
   }
 }
 
