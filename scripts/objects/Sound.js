@@ -56,19 +56,16 @@ class Sound {
     }
   }
 
-  showSoundButton() {
-    this.soundButton.style.transform = 'translateX(0)'
-  }
-
-  hideSoundButton() {
-    this.soundButton.style.transform = 'translateX(-100%)'
+  toggleSoundButton(toggle) {
+    this.soundButton.style.transform =
+      toggle === 'on' ? 'translateX(0)' : 'translateX(-100%)'
   }
 
   handleSoundButtonDuringWindowScroll(triggerElement) {
     triggerActionOnWindowScrollFn({
       onWhatElement: triggerElement,
-      cbWhenTrue: () => this.hideSoundButton(),
-      cbWhenFalse: () => this.showSoundButton(),
+      cbWhenTrue: () => this.toggleSoundButton('on'),
+      cbWhenFalse: () => this.toggleSoundButton('off'),
       modifier: 0.95,
     })
   }
