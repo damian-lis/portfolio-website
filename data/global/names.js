@@ -71,10 +71,10 @@ export const classNames = {
   },
 
   skills: {
-    content: 'skills-content',
+    container: 'skills-container',
     headline: 'skills-headline',
-    contentHeader: 'skills-content-header',
-    contentListItem: 'skills-content-list-item',
+    header: 'skills-header',
+    listItem: 'skills-list-item',
   },
 
   theme: {
