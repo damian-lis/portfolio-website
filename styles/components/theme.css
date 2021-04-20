@@ -48,16 +48,16 @@
   background-color: #7e4c74;
 }
 
+.theme-options-dot-active {
+  border-width: 5px;
+}
+
 .theme-note {
   margin: 8px;
 
   font-size: 12px;
   font-style: italic;
   text-align: center;
-}
-
-.theme-options-dot-active {
-  border-width: 5px;
 }
 
 #theme-canvas {
