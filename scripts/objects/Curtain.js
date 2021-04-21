@@ -53,6 +53,7 @@ class Curtain {
   show() {
     this.curtain.classList.add(classNames.curtain.active)
     document.body.style.overflow = 'hidden'
+    document.body.style.height = '100%'
   }
 
   runCbs() {
