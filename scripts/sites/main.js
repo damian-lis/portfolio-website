@@ -1,7 +1,7 @@
-import posts from '../../data/sets/posts.js'
-import themes from '../../data/global/themes.js'
+import posts from '/data/sets/posts.js'
+import themes from '/data/global/themes.js'
 import { Sound, Form, Posts, Theme, Particles } from '../objects/index.js'
-import { idReferences } from '../../data/global/names.js'
+import { idReferences } from '/data/global/names.js'
 
 new Sound(idReferences.global.leftContainer, idReferences.posts.trigger)
 new Form(idReferences.global.leftContainer, idReferences.posts.trigger)
