@@ -25,6 +25,7 @@ class Curtain {
 
       this.cbsToCallOnHidden = []
       this.childrenState = []
+      this.freeze = false
 
       appendElementsToContainerFn([this.curtain], sentContainer)
       Curtain.instance = this
@@ -78,11 +79,16 @@ class Curtain {
   }
 
   hidden() {
+    if (this.freeze) return
     this.runCbs()
     this.clearCbsState()
     this.clearChildren()
     document.body.style.overflow = 'auto'
     this.curtain.classList.remove(classNames.curtain.active)
+  }
+
+  toggleFreeze(toggle) {
+    this.freeze = toggle === 'on' ? true : false
   }
 }
 

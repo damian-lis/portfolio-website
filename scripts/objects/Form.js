@@ -183,6 +183,12 @@ class Form {
     ]
   }
 
+  toggleFormDeleteBtnContainer(toggle) {
+    this.formDeleteBtnContainer.style.visibility =
+      toggle === 'on' ? 'hidden' : 'visible'
+    this.formDeleteBtnContainer.style.opacity = toggle === 'on' ? 0 : 1
+  }
+
   createFormFieldsElements() {
     return this.formFieldsContent.map((fieldContent) =>
       this.createFormFieldElements(fieldContent)
@@ -508,15 +514,19 @@ class Form {
     const areEmptyFormInputsValue = this.checkIfEmptyFormInputsValue()
     if (areEmptyFormInputsValue) return
     this.disableFormInputs()
+    this.toggleFormDeleteBtnContainer('on')
     this.toggleSpinner('on')
     this.toggleShowSubmitlNotifications({
       toggle: 'on',
       showNotificationDelay: 1000,
       changeNotificationDelay: 8000,
     })
+    curtain.toggleFreeze('on')
     await this.handleEmailSent()
+    this.toggleFormDeleteBtnContainer('off')
     this.toggleSpinner('off')
     this.toggleShowSubmitlNotifications({ toggle: 'off' })
+    curtain.toggleFreeze('off')
   }
 
   handleFormInput(e, name) {
