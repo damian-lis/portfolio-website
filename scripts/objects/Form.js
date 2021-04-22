@@ -194,75 +194,82 @@ class Form {
       this.createFormFieldElements(fieldContent)
     )
   }
+
   createFormFieldElements({ label, type, name, value }) {
     let lab, input
 
-    if (type === 'submit') {
-      input = createElementFn({
-        element: 'input',
-        type,
-        name,
-        id: name,
-        value,
-      })
-      this.formFieldsInput.push(input)
-    } else if (type === 'textarea') {
-      lab = createElementFn({
-        element: 'label',
-        textContent: label,
-        htmlFor: name,
-      })
-      input = createElementFn({
-        element: 'textarea',
-        name,
-        id: name,
-        event: 'input',
-        listeners: [
-          {
-            event: 'input',
-            cb: (e) => {
-              this.handleFormInput(e, name)
+    switch (type) {
+      case 'submit':
+        input = createElementFn({
+          element: 'input',
+          type,
+          name,
+          id: name,
+          value,
+        })
+        this.formFieldsInput.push(input)
+        break
+
+      case 'textarea':
+        lab = createElementFn({
+          element: 'label',
+          textContent: label,
+          htmlFor: name,
+        })
+        input = createElementFn({
+          element: 'textarea',
+          name,
+          id: name,
+          event: 'input',
+          listeners: [
+            {
+              event: 'input',
+              cb: (e) => {
+                this.handleFormInput(e, name)
+              },
             },
-          },
-          {
-            event: 'click',
-            cb: (e) => {
-              this.toggleBorderDanger({ e, toggle: 'off' })
-              this.toggleAlertMessage({ e, toggle: 'off' })
+            {
+              event: 'click',
+              cb: (e) => {
+                this.toggleBorderDanger({ e, toggle: 'off' })
+                this.toggleAlertMessage({ e, toggle: 'off' })
+              },
             },
-          },
-        ],
-      })
-      this.formFieldsInput.push(input)
-    } else {
-      lab = createElementFn({
-        element: 'label',
-        textContent: label,
-        htmlFor: name,
-      })
-      input = createElementFn({
-        element: 'input',
-        type,
-        name,
-        id: name,
-        event: 'input',
-        listeners: [
-          {
-            event: 'input',
-            cb: (e) => {
-              this.handleFormInput(e, name)
+          ],
+        })
+        this.formFieldsInput.push(input)
+        break
+
+      default:
+        lab = createElementFn({
+          element: 'label',
+          textContent: label,
+          htmlFor: name,
+        })
+        input = createElementFn({
+          element: 'input',
+          type,
+          name,
+          id: name,
+          event: 'input',
+          listeners: [
+            {
+              event: 'input',
+              cb: (e) => {
+                this.handleFormInput(e, name)
+              },
             },
-          },
-          {
-            event: 'click',
-            cb: (e) => {
-              this.toggleBorderDanger({ e, toggle: 'off' })
-              this.toggleAlertMessage({ e, toggle: 'off' })
+            {
+              event: 'click',
+              cb: (e) => {
+                this.toggleBorderDanger({ e, toggle: 'off' })
+                this.toggleAlertMessage({ e, toggle: 'off' })
+              },
             },
-          },
-        ],
-      })
-      this.formFieldsInput.push(input)
+          ],
+        })
+        this.formFieldsInput.push(input)
+        break
     }
 
     return lab ? [lab, input] : [input]
