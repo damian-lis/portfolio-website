@@ -2,9 +2,10 @@
 
 ![](images/description/website.gif)
 
-The website presents information about me and shows created projects
+The website presents information about me, shows created projects and supports the contact form.
 
-<br/>
+Live version is available [here](https://damianlis.pl/).
+
 <br/>
 
 ## Table of Contents
@@ -13,14 +14,13 @@ The website presents information about me and shows created projects
 2. Technologies
 3. Setup
 4. Features
-5. Inspirations
-   <br/>
+
    <br/>
 
 ## 1. General info
 
-The aim of the project is to provide information about my person, my skills and to show the applications that I have created with a detailed description
-<br/>
+The aim of the project is to provide information about my person, my skills, to contact with me and to show the applications that I have created with a detailed description.
+
 <br/>
 
 ## 2. Technologies
@@ -28,9 +28,9 @@ The aim of the project is to provide information about my person, my skills and 
 The following technologies were used in the project:
 
 - HTML
-- CSS (small own framework)
+- CSS (own framework)
 - Javascript (OOP)
-  <br/>
+
   <br/>
 
 ## 3. Setup
@@ -73,36 +73,79 @@ export default ({ element, ...rest }) => {
 
   if (Object.keys(rest).length) {
     for (const propEl in rest) {
-      if (propEl === 'listeners') {
-        rest[propEl].map((listener) => {
-          const { event, cb } = listener
-          createdElement.addEventListener(event, (e) => {
-            cb(e)
+      switch (propEl) {
+        case 'listeners':
+          rest[propEl].map((listener) => {
+            const { event, cb } = listener
+            createdElement.addEventListener(event, (e) => {
+              cb(e)
+            })
           })
-        })
-      } else if (propEl === 'attributes') {
-        rest[propEl].map((attribute) => {
-          createdElement.setAttribute(`${attribute.type}`, `${attribute.name}`)
-        })
-      } else if (propEl === 'classes') {
-        createdElement.classList.add(...rest[propEl])
-      } else if (propEl === 'styles') {
-        rest[propEl].map((styleObj) => {
-          createdElement.style[styleObj.name] = styleObj.value
-        })
-      } else createdElement[propEl] = rest[propEl]
+          break
+
+        case 'attributes':
+          rest[propEl].map((attribute) => {
+            createdElement.setAttribute(
+              `${attribute.type}`,
+              `${attribute.name}`
+            )
+          })
+          break
+
+        case 'classes':
+          createdElement.classList.add(...rest[propEl])
+          break
+
+        case 'styles':
+          rest[propEl].map((styleObj) => {
+            createdElement.style[styleObj.name] = styleObj.value
+          })
+          break
+
+        default:
+          createdElement[propEl] = rest[propEl]
+          break
+      }
     }
   }
-
   return createdElement
 }
 ```
 
 <br/>
+
+The following is an example of using createElementFn when creating an input element with different properties:
+
+```
+const input = createElementFn({
+  element: 'input',
+  type,
+  name,
+  id: name,
+  event: 'input',
+  listeners: [
+    {
+      event: 'input',
+      cb: (e) => {
+        this.handleFormInput(e, name)
+      },
+    },
+    {
+      event: 'click',
+      cb: (e) => {
+        this.toggleBorderDanger({ e, toggle: 'off' })
+        this.toggleAlertMessage({ e, toggle: 'off' })
+      },
+    },
+  ],
+})
+```
+
+<br/>
+
 Another interesting helper is triggerActionOnWondowScrollFn, which is responsible for calling the function in the right place when scrolling the window.
 The main use for this feature is to support the appearance of posts section and global left buttons.
 
-<br/>
 <br/>
 
 Below is the code for this solution:
@@ -135,7 +178,24 @@ export default ({
 }
 ```
 
-  <br/>
+<br/>
+
+Below is an example of using triggerActionOnWondowScrollFn in the handleWindowScroll method of the Posts.js object:
+
+```
+handleWindowScroll(triggerElement, wrapperToRelease) {
+    triggerActionOnWindowScrollFn({
+      onWhatElement: triggerElement,
+      cbWhenTrue: () => {
+        triggerElement.classList.add(classNames.utilities.height.full)
+        wrapperToRelease.classList.add(
+          classNames.utilities.animations.slideInFromTop
+        )
+      },
+    })
+  }
+```
+
   <br/>
 
 ### 4.2. Clean way to add js objects
@@ -202,7 +262,6 @@ and below is the corresponding scripts to handle above js files:
 ```
 
 <br/>
-<br/>
 
 ### 4.3. Own way of creating project descriptions
 
@@ -230,75 +289,87 @@ class DataArrange {
     const dataArrangeElements = []
 
     elements.map((element) => {
-      if (element.headline) {
-        const headline = createElementFn({
-          element: 'h2',
-          classes: [
-            classNames.utilities.text.center,
-            classNames.utilities.margin.t10,
-          ],
-          textContent: element.headline,
-        })
-        dataArrangeElements.push(headline)
-      } else if (element.title) {
-        const title = createElementFn({
-          element: 'h3',
-          textContent: element.title,
-          classes: [
-            classNames.utilities.margin.t40,
-            classNames.utilities.margin.b40,
-          ],
-        })
-
-        dataArrangeElements.push(title)
-      } else if (element.image) {
-        const image = createElementFn({
-          element: 'img',
-          classes: [
-            classNames.utilities.border.rounded,
-            classNames.utilities.width.full,
-            classNames.utilities.margin.y20,
-          ],
-          src: element.image,
-        })
-
-        dataArrangeElements.push(image)
-      } else if (element.text) {
-        element.text.map((el) => {
-          const text = createElementFn({
-            element: 'p',
+      const elName = Object.keys(element)[0]
+      switch (elName) {
+        case 'headline':
+          const headline = createElementFn({
+            element: 'h2',
             classes: [
-              classNames.utilities.margin.y10,
-              classNames.utilities.text.justify,
-              classNames.utilities.text.smLeft,
-              classNames.utilities.text.lh25,
+              classNames.utilities.text.center,
+              classNames.utilities.margin.t10,
             ],
-            textContent: el,
+            textContent: element.headline,
           })
+          dataArrangeElements.push(headline)
+          break
 
-          dataArrangeElements.push(text)
-        })
-      } else if (element.links) {
-        element.links.map((linkEl) => {
-          const link = createElementFn({
-            element: 'a',
-            target: '_blank',
+        case 'title':
+          const title = createElementFn({
+            element: 'h3',
+            textContent: element.title,
             classes: [
-              classNames.utilities.text.justify,
-              classNames.utilities.text.smLeft,
+              classNames.utilities.margin.t40,
+              classNames.utilities.margin.b40,
             ],
-            href: linkEl.path,
-            textContent: linkEl.linkText,
           })
-          const text = createElementFn({
-            element: 'p',
-            classes: [classNames.utilities.margin.y10],
-            textContent: linkEl.label,
+          dataArrangeElements.push(title)
+          break
+
+        case 'image':
+          const image = createElementFn({
+            element: 'img',
+            classes: [
+              classNames.utilities.border.rounded,
+              classNames.utilities.width.full,
+              classNames.utilities.margin.y20,
+            ],
+            src: element.image,
           })
 
-          text.appendChild(link)
-          dataArrangeElements.push(text)
-        })
+          dataArrangeElements.push(image)
+          break
+
+        case 'text':
+          element.text.map((el) => {
+            const text = createElementFn({
+              element: 'p',
+              classes: [
+                classNames.utilities.margin.y10,
+                classNames.utilities.text.justify,
+                classNames.utilities.text.smLeft,
+                classNames.utilities.text.lh25,
+              ],
+              textContent: el,
+            })
+            dataArrangeElements.push(text)
+          })
+          break
+
+        case 'links':
+          element.links.map((linkEl) => {
+            const link = createElementFn({
+              element: 'a',
+              target: '_blank',
+              classes: [
+                classNames.utilities.text.justify,
+                classNames.utilities.text.smLeft,
+              ],
+              href: linkEl.path,
+              textContent: linkEl.linkText,
+            })
+            const text = createElementFn({
+              element: 'p',
+              classes: [classNames.utilities.margin.y10],
+              textContent: linkEl.label,
+            })
+
+            text.appendChild(link)
+            dataArrangeElements.push(text)
+          })
+          break
+
+        default:
+          break
       }
     })
     return dataArrangeElements
@@ -385,7 +456,8 @@ The final effect of how the user sees on the website is presented below:
 
 ![](images/description/fluentBlog.gif)
 
-<br/>
+You can find a live example [here](http://127.0.0.1:5500/projects/fluentBlog.html)
+
 <br/>
 
 ### 4.4. CSS classes and another properties in variables
@@ -420,19 +492,20 @@ export const classNames = {
 ```
 
 <br/>
-<br/>
 
 ### 4.5. Dynamic Form with validation, notifications and loader
 
 A form with appropriate validation was created in the project, which is dynamically generated by pressing the button on the left side of the page.
 
-Below is an example of the validation a user can see on the site
+Below is an example of the validation a user can see on the site:
 
 ![](images/description/formValidation.gif)
 
-<br/>
+The entire form is handled by a backend application called Emails handler.
 
-The entire form is handled by a backend application called Emails handler. Its description is on my github.
+You can find it [here](https://github.com/damian-lis/Emails-handler) on my github.
+
+<br/>
 
 Due to the waiting time for the response from the server regarding the sent e-mail, a loader has been created, which informs the user that something is being processed.
 If the whole waiting process is longer, the user will be shown various notifications related to the delay.
@@ -440,11 +513,8 @@ An examples of such a situation is presented below:
 
 ![](images/description/emailSend.gif)
 
-<br/>
+The entire implementation of the form's code is available [here](https://github.com/damian-lis/Portfolio-Website/blob/main/scripts/objects/Form.js).
 
-The entire implementation of the form's code is available in the Form.js file. It was not posted here due to too much code
-
-<br/>
 <br/>
 
 ### 4.6. Customize theme
@@ -459,7 +529,7 @@ Below is an visual example of theme customization:
 
 <br/>
 
-All theme settings are stored in the themes.js file, an example of which is given below
+All theme settings are stored in the themes.js file, an example of which is given below:
 
 ```
 export default {
@@ -525,11 +595,14 @@ export default {
 ```
 
 <br/>
-<br/>
 
 ### 4.7. Own small framework
 
-A small proprietary css framework was created that combines the world of React components, Bootstrap and TailwindCSS. This solution was created out of the desire to get to know CSS technology very well. Below are some examples of this solution:
+A small proprietary css framework was created that combines the world of React components, Bootstrap and TailwindCSS.
+
+This solution was created out of the desire to get to know CSS technology very well.
+
+Below are some examples of this solution:
 
 ![](images/description/listofcss.jpg)
 
@@ -566,7 +639,7 @@ An example of a margin.css file modeled on TailwindCSS:
 
 <br/>
 
-An example of use in html file:
+An example of this solution in html file:
 
 ```
 <div id="greetings" class="col-60 content-center-xy">
@@ -575,10 +648,3 @@ An example of use in html file:
   </div>
 </div>
 ```
-
-<br/>
-<br/>
-
-## 5. Inspirations
-
-The design was inspired by Dennis Ivy's project [here](https://github.com/divanov11/portfolio-website). Most of the elements in the project have been changed, the entire javascript has been rewritten in the oop convention and new solutions have been introduced, which have been partially described above.
