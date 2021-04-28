@@ -94,6 +94,21 @@ class DataArrange {
           })
           break
 
+        case 'code':
+          const pre = createElementFn({
+            element: 'pre',
+          })
+          const code = createElementFn({
+            element: 'code',
+            classes: ['language-js'],
+            textContent: element.code,
+          })
+
+          pre.appendChild(code)
+          dataArrangeElements.push(pre)
+
+          break
+
         default:
           break
       }
