@@ -1,6 +1,8 @@
 import {
   createElementFn,
   appendElementsToContainerFn,
+  setPropsFn,
+  toggleClassesFn,
 } from '../helpers/index.js'
 
 import { classNames, idReferences } from '../../data/global/names.js'
@@ -8,39 +10,62 @@ import { classNames, idReferences } from '../../data/global/names.js'
 class Curtain {
   constructor(container) {
     if (Curtain.instance == null) {
-      const sentContainer = document.querySelector(container)
-      this.curtain = createElementFn({
-        element: 'div',
-        classes: [classNames.curtain.container],
-        event: 'click',
-        listeners: [
-          {
-            event: 'click',
-            cb: () => {
-              this.hidden()
-            },
-          },
-        ],
-      })
-
-      this.cbsToCallOnHidden = []
-      this.childrenState = []
-      this.freeze = false
-
-      appendElementsToContainerFn([this.curtain], sentContainer)
       Curtain.instance = this
+      const sentContainer = document.querySelector(container)
+      this.cbsToCallOnHidden = []
+      this.children = []
+
+      this.createElements()
+      appendElementsToContainerFn([this.curtain], sentContainer)
     }
     return (Curtain.instance = this)
   }
 
-  addChildToState(component) {
-    this.childrenState.push(component)
+  createElements() {
+    this.curtain = createElementFn({
+      element: 'div',
+      classes: [classNames.curtain.container],
+      event: 'click',
+      listeners: [
+        {
+          event: 'click',
+          cb: () => {
+            this.toggleShow('off')
+          },
+        },
+      ],
+    })
   }
 
-  attachComponents(components) {
-    components.map((component) => {
-      this.curtain.appendChild(component)
-      this.addChildToState(component)
+  toggleShow(toggle, { appendElements, cbsToCallOnHidden } = {}) {
+    switch (toggle) {
+      case 'on':
+        this.appendElements(appendElements)
+        this.addCbsToCallOnHidden(cbsToCallOnHidden)
+        break
+
+      case 'off':
+        this.callCbsOnHidden()
+        this.clearCbsToCallOnHidden()
+        this.clearChildren(200)
+        break
+
+      default:
+        break
+    }
+
+    this.toggleBodyOverflow(toggle)
+    this.toggleActive(toggle)
+  }
+
+  addElToChildrenState(el) {
+    this.children.push(el)
+  }
+
+  appendElements(elements) {
+    elements.map((el) => {
+      this.curtain.appendChild(el)
+      this.addElToChildrenState(el)
     })
   }
 
@@ -50,48 +75,51 @@ class Curtain {
     })
   }
 
-  show() {
-    this.curtain.classList.add(classNames.curtain.active)
-    document.body.style.overflow = 'hidden'
-    document.body.style.height = '100%'
+  toggleBodyOverflow(toggle) {
+    setPropsFn([
+      {
+        elements: [document.body],
+        styleProps: [
+          {
+            name: 'overflow',
+            value: toggle === 'on' ? 'hidden' : 'auto',
+          },
+        ],
+      },
+    ])
   }
 
-  runCbs() {
+  toggleActive(toggle) {
+    toggleClassesFn(toggle, {
+      elements: [this.curtain],
+      classes: [classNames.curtain.active],
+    })
+  }
+
+  callCbsOnHidden() {
     this.cbsToCallOnHidden.map((cb) => {
       cb()
     })
   }
 
-  clearCbsState() {
+  clearCbsToCallOnHidden() {
     this.cbsToCallOnHidden = []
   }
 
-  clearChildrenState() {
-    this.childrenState = []
+  clearChildren() {
+    this.children = []
   }
 
-  clearChildren() {
+  clearChildren(time) {
     setTimeout(() => {
-      this.childrenState.map((child) => {
+      this.children.map((child) => {
         child.remove()
       })
-      this.clearChildrenState()
-    }, 200)
-  }
-
-  hidden() {
-    if (this.freeze) return
-    this.runCbs()
-    this.clearCbsState()
-    this.clearChildren()
-    document.body.style.overflow = 'auto'
-    this.curtain.classList.remove(classNames.curtain.active)
-  }
-
-  toggleFreeze(toggle) {
-    this.freeze = toggle === 'on' ? true : false
+      this.clearChildren()
+    }, time)
   }
 }
 
 const curtain = new Curtain(idReferences.global.mainContainer)
+
 export default curtain
