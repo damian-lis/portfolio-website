@@ -1,17 +1,16 @@
 .skills-container {
-  margin: 0 auto;
-  border-radius: 5px;
-
-  background-color: var(--previewShadow);
-  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: var(--previewShadow);
 }
 
 .skills-headline {
-  text-align: center;
   margin-top: 20px;
+  text-align: center;
 }
 
 .skills-header {
@@ -28,9 +27,8 @@
 }
 
 .skills-list-item::before {
-  margin-right: 7px;
-
   display: inline-block;
+  margin-right: 7px;
   content: '-';
 }
 

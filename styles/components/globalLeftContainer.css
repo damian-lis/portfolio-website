@@ -5,11 +5,9 @@
   width: 0px;
   height: 100%;
   transform: translateX(-50px);
-
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   animation: slideInFromLeft 0.3s 2s ease-in forwards;
   z-index: 2;
 }
@@ -18,18 +16,16 @@
   position: relative;
   left: 0px;
   height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
   margin-bottom: 20px;
+  padding: 2px 7px 2px 0;
   border: 1px solid var(--borderColor);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   border-left: none;
-
-  padding: 2px 7px 2px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   opacity: 0.9;
   z-index: 1;
 }
@@ -42,7 +38,6 @@
 @media screen and (max-width: 1050px) {
   .global-left-btn {
     height: 50px;
-
     padding: 0;
     padding-right: 5px;
   }
