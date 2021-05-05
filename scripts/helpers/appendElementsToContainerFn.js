@@ -1,6 +1,13 @@
 export default (elements = [], container) => {
   elements.map((el) => {
-    container.appendChild(el)
+    if (Array.isArray(el)) {
+      const innerEls = el
+      innerEls.map((innerEl) => {
+        container.appendChild(innerEl)
+      })
+    } else {
+      container.appendChild(el)
+    }
   })
 
   return container
