@@ -7,31 +7,29 @@ import { classNames, src } from '../../data/global/names.js'
 class BackBtn {
   constructor(container) {
     const containerSent = document.querySelector(container)
-    const backBtnElements = this.createBackBtnElements()
-    const backBtnComponent = this.joinBackBtnElements(backBtnElements)
-    appendElementsToContainerFn([backBtnComponent], containerSent)
+    this.createElements()
+    this.createComponents()
+
+    appendElementsToContainerFn([this.backBtnComponent], containerSent)
   }
 
-  joinBackBtnElements({ backBtnContainer, backBtnImage }) {
-    backBtnContainer.appendChild(backBtnImage)
-    return backBtnContainer
-  }
-
-  createBackBtnElements() {
-    const backBtnContainer = createElementFn({
+  createElements() {
+    this.backBtnContainer = createElementFn({
       element: 'a',
       href: '/',
       classes: [classNames.global.leftBtn],
     })
-    const backBtnImage = createElementFn({
+    this.backBtnImage = createElementFn({
       element: 'img',
       src: src.arrowImg,
     })
+  }
 
-    return {
-      backBtnContainer,
-      backBtnImage,
-    }
+  createComponents() {
+    this.backBtnComponent = appendElementsToContainerFn(
+      [this.backBtnImage],
+      this.backBtnContainer
+    )
   }
 }
 
