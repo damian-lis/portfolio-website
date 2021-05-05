@@ -5,6 +5,7 @@ import addPropsAfterDelayFn from './addPropsAfterDelayFn.js'
 import createElementFn from './createElementFn.js'
 import triggerActionOnWindowScrollFn from './triggerActionOnWindowScrollFn.js'
 import appendElementsToContainerFn from './appendElementsToContainerFn.js'
+import setPropsFn from './setPropsFn.js'
 
 export {
   removeClassesFn,
@@ -14,4 +15,5 @@ export {
   createElementFn,
   triggerActionOnWindowScrollFn,
   appendElementsToContainerFn,
+  setPropsFn,
 }
