@@ -21,24 +21,24 @@ class Form {
 
     this.createInitialElements()
     this.createInitialComponents()
-    appendElementsToContainerFn([this.btnIconComponent], containerSent)
+    appendElementsToContainerFn([this.btnComponent], containerSent)
 
     triggerActionOnWindowScrollFn({
       onWhatElement: triggerElement,
-      cbOnEnterTriggerEl: () => this.toggleFormBtn('off'),
-      cbOnExitTriggerEl: () => this.toggleFormBtn('on'),
+      cbOnEnterTriggerEl: () => this.toggleBtnComponent('off'),
+      cbOnExitTriggerEl: () => this.toggleBtnComponent('on'),
     })
   }
 
   createInitialElements() {
-    this.btnIconContainer = createElementFn({
+    this.btn = createElementFn({
       element: 'button',
       classes: [classNames.global.leftBtn],
       event: 'click',
       listeners: [{ event: 'click', cb: () => this.handleFormCreate() }],
     })
 
-    this.btnIcon = createElementFn({
+    this.emailImg = createElementFn({
       element: 'img',
       classes: [classNames.utilities.margin.t5],
       src: src.emailImg,
@@ -46,10 +46,7 @@ class Form {
   }
 
   createInitialComponents() {
-    this.btnIconComponent = appendElementsToContainerFn(
-      [this.btnIcon],
-      this.btnIconContainer
-    )
+    this.btnComponent = appendElementsToContainerFn([this.emailImg], this.btn)
   }
 
   createMainElements() {
@@ -256,14 +253,14 @@ class Form {
   }
 
   handleFormCreate() {
-    this.toggleFormBtn('off')
+    this.toggleBtnComponent('off')
     this.createMainElements()
     this.createMainComponents()
     curtain.toggleShow('on', {
       appendElements: [this.cardComponent],
       cbsToCallOnHidden: [
         () => {
-          this.toggleFormBtn('on')
+          this.toggleBtnComponent('on')
           this.resetFormInputsValue()
           this.resetDataFromUser()
         },
@@ -300,7 +297,7 @@ class Form {
 
     this.disableFormInputs()
     this.toggleDeleteBtnComponent('on')
-    this.toggleSpinner('on')
+    this.toggleSpinnerComponent('on')
     this.toggleSubmitlNotifications('on', {
       firstNotificationDelay: 1000,
       secondNotificationDelay: 8000,
@@ -308,7 +305,7 @@ class Form {
 
     await this.handleEmailSent()
     this.toggleDeleteBtnComponent('off')
-    this.toggleSpinner('off')
+    this.toggleSpinnerComponent('off')
     this.toggleSubmitlNotifications('off', {})
   }
 
@@ -427,10 +424,10 @@ class Form {
     })
   }
 
-  toggleFormBtn(toggle) {
+  toggleBtnComponent(toggle) {
     setPropsFn([
       {
-        elements: [this.btnIconComponent],
+        elements: [this.btnComponent],
         styleProps: [
           {
             name: 'transform',
@@ -441,7 +438,7 @@ class Form {
     ])
   }
 
-  toggleSpinner(toggle) {
+  toggleSpinnerComponent(toggle) {
     setPropsFn([
       {
         elements: [this.formSubmitInput],
