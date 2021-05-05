@@ -1,3 +1,36 @@
+export const formFieldsContent = [
+  {
+    label: 'Name',
+    type: 'text',
+    name: 'name',
+    notification: 'name is required 😡',
+  },
+  {
+    label: 'Subject',
+    type: 'text',
+    name: 'subject',
+    notification: 'subject is required 😡',
+  },
+  {
+    label: 'Email',
+    type: 'email',
+    name: 'email',
+    notification: 'email is required 😡',
+  },
+  {
+    label: 'Message',
+    name: 'message',
+    type: 'textarea',
+    notification: 'message is required 😡',
+  },
+  {
+    type: 'submit',
+    value: 'Wyślij',
+    name: 'submit',
+    notification: 'Please wait a moment more! 🕐',
+  },
+]
+
 export const idNames = {
   global: {
     mainContainer: 'global-main-container',
