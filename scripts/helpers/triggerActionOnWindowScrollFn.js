@@ -1,7 +1,7 @@
 export default ({
   onWhatElement: trigerElement,
-  cbOnEntertriggerEl = () => {},
-  cbOnExittriggerEl = () => {},
+  cbOnEnterTriggerEl = () => {},
+  cbOnExitTriggerEl = () => {},
   modifier = 1,
 }) => {
   if (!trigerElement) return
@@ -17,9 +17,9 @@ export default ({
       window.innerHeight + window.pageYOffset * modifier >
       element.offsetTop
     ) {
-      cbOnEntertriggerEl(element)
+      cbOnEnterTriggerEl(element)
     } else {
-      cbOnExittriggerEl(element)
+      cbOnExitTriggerEl(element)
     }
   })
 }
