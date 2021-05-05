@@ -33,7 +33,10 @@ export default ({ element, ...rest }) => {
           break
 
         default:
-          createdElement[propEl] = rest[propEl]
+          if (createdElement.tagName === 'TEXTAREA' && propEl === 'type') {
+            break
+          } else createdElement[propEl] = rest[propEl]
+
           break
       }
     }
