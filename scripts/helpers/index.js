@@ -1,4 +1,3 @@
-import setClassesFn from './setClassesFn.js'
 import setVariablesFn from './setVariablesFn.js'
 import createElementFn from './createElementFn.js'
 import triggerActionOnWindowScrollFn from './triggerActionOnWindowScrollFn.js'
@@ -8,7 +7,6 @@ import toggleClassesFn from './toggleClassesFn.js'
 import setActiveFn from './setActiveFn.js'
 
 export {
-  setClassesFn,
   setVariablesFn,
   createElementFn,
   triggerActionOnWindowScrollFn,
