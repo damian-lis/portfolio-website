@@ -6,6 +6,7 @@ import createElementFn from './createElementFn.js'
 import triggerActionOnWindowScrollFn from './triggerActionOnWindowScrollFn.js'
 import appendElementsToContainerFn from './appendElementsToContainerFn.js'
 import setPropsFn from './setPropsFn.js'
+import toggleClassesFn from './toggleClassesFn.js'
 
 export {
   removeClassesFn,
@@ -16,4 +17,5 @@ export {
   triggerActionOnWindowScrollFn,
   appendElementsToContainerFn,
   setPropsFn,
+  toggleClassesFn,
 }
