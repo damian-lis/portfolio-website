@@ -59,7 +59,7 @@ class Form {
 
     this.cardInnerContainer = createElementFn({
       element: 'div',
-      classes: [classNames.form.innerContainer],
+      classes: [classNames.form.cardInnerContainer],
     })
 
     this.btnDeleteContainer = createElementFn({
@@ -88,7 +88,7 @@ class Form {
 
     this.formContainer = createElementFn({
       element: 'div',
-      classes: [classNames.form.outerContainer],
+      classes: [classNames.form.container],
     })
 
     this.form = createElementFn({

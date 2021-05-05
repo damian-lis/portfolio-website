@@ -3,62 +3,63 @@
   max-width: 500px;
   height: 100%;
   max-height: 600px;
+  padding: 10px;
   border: var(--borderColor) 1px solid;
   border-radius: 5px;
-
   background-color: var(--secondaryColor);
-  padding: 10px;
-
   opacity: 0;
   transform: translateX(200%);
   animation: slideInFromRight 0.5s 0.5s ease-in forwards;
 }
 
-.form-title-container {
-  flex-basis: 15%;
-  min-height: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-}
-
-.form-title {
-  text-align: center;
-}
-
-.form-outer-container {
-  flex-basis: 85%;
-}
-
-.form-inner-container {
+.form-card-innerContainer {
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
 }
 
+.form-title-container {
+  top: 0;
+  min-height: 70px;
+  display: flex;
+  flex-basis: 15%;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-title {
+  text-align: center;
+}
+
+.form-container {
+  flex-basis: 85%;
+}
+
 .form {
   width: 100%;
   height: 100%;
-  border-radius: 5px;
-
-  padding: 15px;
-  background-color: var(--mainColor);
   display: flex;
   flex-direction: column;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: var(--mainColor);
 }
 
 .form-field {
+  position: relative;
   display: flex;
   flex-direction: column;
   text-align: left;
-  position: relative;
   margin-bottom: 10px;
 }
 
 .form-field-message {
   flex-grow: 1;
+}
+
+.form-field-submit {
+  margin-top: 7px;
 }
 
 .form-field label {
@@ -69,18 +70,15 @@
 textarea {
   width: 100%;
   margin-bottom: 7px;
-  border-radius: 5px;
-
   padding: 10px;
+  border-radius: 5px;
   font-size: 14px;
 }
 
 .form-field textarea {
   height: 100%;
-
   padding: 10px;
   line-height: 180%;
-
   resize: none;
 }
 
@@ -88,16 +86,11 @@ textarea {
   height: 41px;
   margin-top: 15px;
   background-color: var(--buttonColor);
-
   cursor: pointer;
 }
 
 .form-field input[type='submit']:hover {
   background-color: var(--borderColor);
-}
-
-.form-field-submit {
-  margin-top: 7px;
 }
 
 .form-field-input-notification {
@@ -106,9 +99,9 @@ textarea {
   width: fit-content;
   margin-left: 10px;
   padding: 5px 7px;
-  background-color: var(--mainColor);
   border: 1px solid red;
   border-radius: 5px;
+  background-color: var(--mainColor);
   font-size: 12px;
   color: red;
   opacity: 0;
@@ -132,7 +125,6 @@ textarea {
   position: absolute;
   top: -7px;
   right: -7px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,7 +135,6 @@ textarea {
   width: 35px;
   height: 35px;
   border-radius: 5px;
-
   font-size: 18px;
 }
 
@@ -160,9 +151,9 @@ textarea {
   margin-top: 15px;
   margin-bottom: 7px;
   padding: 10px;
-  background-color: var(--buttonColor);
   border: 1px solid var(--borderColor);
   border-radius: 5px;
+  background-color: var(--buttonColor);
   font-size: 14px;
   opacity: 0.6;
 }
@@ -205,7 +196,6 @@ textarea {
   width: 50%;
   height: 50%;
   border-radius: 100% 0 0 0;
-
   background: #ffffff;
   content: '';
 }
@@ -219,7 +209,6 @@ textarea {
   height: 75%;
   margin: auto;
   border-radius: 50%;
-
   background-color: var(--buttonColor);
   content: '';
 }

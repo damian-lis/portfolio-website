@@ -61,10 +61,10 @@ export const classNames = {
   },
   form: {
     card: 'form-card',
+    cardInnerContainer: 'form-cardInnerContainer',
     titleContainer: 'form-title-container',
     title: 'form-title',
-    outerContainer: 'form-outer-container',
-    innerContainer: 'form-inner-container',
+    container: 'form-container',
     main: 'form',
     field: 'form-field',
     fieldMessage: 'form-field-message',
