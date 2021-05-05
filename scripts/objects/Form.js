@@ -1,152 +1,107 @@
 import curtain from './Curtain.js'
 import {
   createElementFn,
-  addPropsAfterDelayFn,
   triggerActionOnWindowScrollFn,
   appendElementsToContainerFn,
+  setPropsFn,
+  toggleClassesFn,
 } from '../helpers/index.js'
-import { classNames, mailEndPoint, src } from '../../data/global/names.js'
+import {
+  classNames,
+  mailEndPoint,
+  src,
+  formFieldsContent,
+} from '../../data/global/names.js'
 
 class Form {
   constructor(container, trigger) {
     const containerSent = document.querySelector(container)
     const triggerElement = document.querySelector(trigger)
-    const formBtnElements = this.createFormBtnElements()
-    const formBtnComponent = this.joinFormBtnElements(formBtnElements)
+    this.dataFromUser = {}
 
-    this.formFieldsContent = [
-      {
-        label: 'Name',
-        type: 'text',
-        name: 'name',
-        notification: 'name is required 😡',
-      },
-      {
-        label: 'Subject',
-        type: 'text',
-        name: 'subject',
-        notification: 'subject is required 😡',
-      },
-      {
-        label: 'Email',
-        type: 'email',
-        name: 'email',
-        notification: 'email is required 😡',
-      },
-      {
-        label: 'Message',
-        type: 'textarea',
-        name: 'message',
-        notification: 'message is required 😡',
-      },
-      {
-        type: 'submit',
-        value: 'Wyślij',
-        name: 'submit',
-        notification: 'Please wait a moment more! 🕐',
-      },
-    ]
-    this.formFieldsInput = []
-    this.dataFromUser = {
-      name: '',
-      subject: '',
-      email: '',
-      message: '',
-    }
+    this.createInitialElements()
+    this.createInitialComponents()
+    appendElementsToContainerFn([this.btnIconComponent], containerSent)
 
-    appendElementsToContainerFn([formBtnComponent], containerSent)
-    this.handleFormBtnDuringWindowScroll(triggerElement)
+    triggerActionOnWindowScrollFn({
+      onWhatElement: triggerElement,
+      cbOnEnterTriggerEl: () => this.toggleFormBtn('off'),
+      cbOnExitTriggerEl: () => this.toggleFormBtn('on'),
+    })
   }
 
-  createFormBtnElements() {
-    this.formBtn = createElementFn({
+  createInitialElements() {
+    this.btnIconContainer = createElementFn({
       element: 'button',
       classes: [classNames.global.leftBtn],
       event: 'click',
       listeners: [{ event: 'click', cb: () => this.handleFormCreate() }],
     })
 
-    this.formBtnIcon = createElementFn({
+    this.btnIcon = createElementFn({
       element: 'img',
       classes: [classNames.utilities.margin.t5],
       src: src.emailImg,
     })
-
-    return [this.formBtn, this.formBtnIcon]
   }
 
-  joinFormBtnElements(elements) {
-    const [formBtn, btnIcon] = elements
-    formBtn.appendChild(btnIcon)
-
-    return formBtn
+  createInitialComponents() {
+    this.btnIconComponent = appendElementsToContainerFn(
+      [this.btnIcon],
+      this.btnIconContainer
+    )
   }
 
-  handleFormCreate() {
-    this.toggleFormBtn('off')
-    const formElements = this.createFormElements()
-    const formComponent = this.joinFormElements(formElements)
-    curtain.addCbsToCallOnHidden([
-      () => {
-        this.toggleFormBtn('on')
-        this.resetFormInputsValue()
-        this.resetDataFromUser()
-        this.resetFormElements()
-      },
-    ])
-    curtain.attachComponents([formComponent])
-    curtain.show()
-  }
-
-  createFormElements() {
-    this.formCard = createElementFn({
+  createMainElements() {
+    this.card = createElementFn({
       element: 'div',
       classes: [classNames.form.card],
       event: 'click',
       listeners: [{ event: 'click', cb: (e) => e.stopPropagation() }],
     })
 
-    this.formDeleteBtnContainer = createElementFn({
+    this.cardInnerContainer = createElementFn({
+      element: 'div',
+      classes: [classNames.form.innerContainer],
+    })
+
+    this.btnDeleteContainer = createElementFn({
       element: 'div',
       classes: [classNames.form.btnDeleteContainer],
     })
 
-    this.formDeleteBtn = createElementFn({
+    this.btnDelete = createElementFn({
       element: 'button',
       classes: [classNames.form.btnDelete],
       textContent: 'X',
       event: 'click',
-      listeners: [{ event: 'click', cb: () => curtain.hidden() }],
+      listeners: [{ event: 'click', cb: () => curtain.toggleShow('off') }],
     })
 
-    this.formTitleContainer = createElementFn({
+    this.titleContainer = createElementFn({
       element: 'div',
       classes: [classNames.form.titleContainer],
     })
-    this.formTitle = createElementFn({
+
+    this.title = createElementFn({
       element: 'h3',
       classes: [classNames.form.title],
       textContent: 'Write to me a message',
     })
-    this.formOuterContainer = createElementFn({
+
+    this.formContainer = createElementFn({
       element: 'div',
       classes: [classNames.form.outerContainer],
     })
-    this.formInnerContainer = createElementFn({
-      element: 'div',
-      classes: [classNames.form.innerContainer],
-    })
+
     this.form = createElementFn({
       element: 'form',
       classes: [classNames.form.main],
       event: 'submit',
       listeners: [{ event: 'submit', cb: (e) => this.handleFormSubmit(e) }],
     })
-    this.formFieldsElements = this.createFormFieldsElements()
 
-    this.formFieldsNotifications = this.createFormFieldsMessages()
-
-    this.formFields = this.formFieldsContent.map((field) =>
+    this.formFields = formFieldsContent.map((field) =>
       createElementFn({
         element: 'div',
         classes: [
@@ -155,6 +110,29 @@ class Form {
         ],
       })
     )
+
+    this.formFieldsElements = formFieldsContent.map((fieldContent) =>
+      this.createFormFieldElements(fieldContent)
+    )
+
+    this.formSubmitInput = (() => {
+      let submitInput
+      this.formFieldsElements.map((formFieldElements) => {
+        if (formFieldElements.input.type === 'submit')
+          submitInput = formFieldElements.input
+      })
+      return submitInput
+    })()
+
+    this.formTextInputs = (() => {
+      let textInputs = []
+      this.formFieldsElements.map((formFieldElements) => {
+        if (formFieldElements.input.type !== 'submit')
+          textInputs.push(formFieldElements.input)
+      })
+
+      return textInputs
+    })()
 
     this.formSpinnerContainer = createElementFn({
       element: 'div',
@@ -165,37 +143,9 @@ class Form {
       element: 'div',
       classes: [classNames.form.spinner],
     })
-
-    return [
-      this.formCard,
-      this.formDeleteBtnContainer,
-      this.formDeleteBtn,
-      this.formTitleContainer,
-      this.formTitle,
-      this.formOuterContainer,
-      this.formInnerContainer,
-      this.form,
-      this.formFieldsElements,
-      this.formFieldsNotifications,
-      this.formFields,
-      this.formSpinnerContainer,
-      this.formSpinner,
-    ]
   }
 
-  toggleFormDeleteBtnContainer(toggle) {
-    this.formDeleteBtnContainer.style.visibility =
-      toggle === 'on' ? 'hidden' : 'visible'
-    this.formDeleteBtnContainer.style.opacity = toggle === 'on' ? 0 : 1
-  }
-
-  createFormFieldsElements() {
-    return this.formFieldsContent.map((fieldContent) =>
-      this.createFormFieldElements(fieldContent)
-    )
-  }
-
-  createFormFieldElements({ label, type, name, value }) {
+  createFormFieldElements({ label, type, name, value, notification }) {
     let lab, input
 
     switch (type) {
@@ -207,37 +157,6 @@ class Form {
           id: name,
           value,
         })
-        this.formFieldsInput.push(input)
-        break
-
-      case 'textarea':
-        lab = createElementFn({
-          element: 'label',
-          textContent: label,
-          htmlFor: name,
-        })
-        input = createElementFn({
-          element: 'textarea',
-          name,
-          id: name,
-          event: 'input',
-          listeners: [
-            {
-              event: 'input',
-              cb: (e) => {
-                this.handleFormInput(e, name)
-              },
-            },
-            {
-              event: 'click',
-              cb: (e) => {
-                this.toggleBorderDanger({ e, toggle: 'off' })
-                this.toggleAlertMessage({ e, toggle: 'off' })
-              },
-            },
-          ],
-        })
-        this.formFieldsInput.push(input)
         break
 
       default:
@@ -247,11 +166,10 @@ class Form {
           htmlFor: name,
         })
         input = createElementFn({
-          element: 'input',
+          element: type === 'textarea' ? 'textarea' : 'input',
           type,
           name,
           id: name,
-          event: 'input',
           listeners: [
             {
               event: 'input',
@@ -260,218 +178,96 @@ class Form {
               },
             },
             {
-              event: 'click',
+              event: 'focus',
               cb: (e) => {
-                this.toggleBorderDanger({ e, toggle: 'off' })
-                this.toggleAlertMessage({ e, toggle: 'off' })
+                this.toggleBorderDanger('off', { element: e.target })
+                this.toggleAlertMessage('off', {
+                  element: e.target.parentElement.querySelector('span'),
+                })
               },
             },
           ],
         })
-        this.formFieldsInput.push(input)
         break
     }
-
-    return lab ? [lab, input] : [input]
-  }
-
-  createFormFieldsMessages() {
-    const notifications = this.formFieldsContent.map((field) => {
-      return createElementFn({
-        element: 'span',
-        attributes: [{ type: 'fieldname', name: field.name }],
-        classes: [
-          field.name === 'submit'
-            ? classNames.form.fieldSubmitNotification
-            : classNames.form.fieldInputNotification,
-        ],
-        innerHTML: field.notification,
-      })
-    })
-    return notifications
-  }
-
-  toggleAlertMessage({ element, e, toggle }) {
-    if (toggle === 'on') {
-      element.style.visibility = 'visible'
-      element.style.opacity = 1
-    } else {
-      this.formFieldsNotifications.map((notification) => {
-        if (
-          e.target.attributes.name.value ===
-          notification.attributes.fieldname.value
-        ) {
-          notification.style.opacity = 0
-          notification.style.visibility = 'hidden'
-        }
-      })
-    }
-  }
-
-  handleFormBtnDuringWindowScroll(triggerElement) {
-    triggerActionOnWindowScrollFn({
-      onWhatElement: triggerElement,
-      cbWhenTrue: () => this.toggleFormBtn('off'),
-      cbWhenFalse: () => this.toggleFormBtn('on'),
-    })
-  }
-
-  joinFormElements(elements) {
-    const [
-      formCard,
-      formDeleteBtnContainer,
-      formDeleteBtn,
-      formTitleContainer,
-      formTitle,
-      formOuterContainer,
-      formInnerContainer,
-      form,
-      formFieldsElements,
-      formFieldsAlerts,
-      formFields,
-      formSpinnerContainer,
-      formSpinner,
-    ] = elements
-
-    formTitleContainer.appendChild(formTitle)
-    formFields.map((field, index) => {
-      if (index === formFields.length - 1) {
-        formSpinnerContainer.appendChild(formSpinner)
-        field.appendChild(formSpinnerContainer)
-      }
-
-      field.appendChild(formFieldsAlerts[index])
-      formFieldsElements[index].map((fieldElements) =>
-        field.appendChild(fieldElements)
-      )
-      form.appendChild(field)
-    })
-    formOuterContainer.appendChild(form)
-
-    formInnerContainer.appendChild(formTitleContainer)
-    formInnerContainer.appendChild(formOuterContainer)
-    formDeleteBtnContainer.appendChild(formDeleteBtn)
-    formCard.appendChild(formDeleteBtnContainer)
-    formCard.appendChild(formInnerContainer)
-    return formCard
-  }
-
-  resetFormInputsValue() {
-    this.formFieldsInput.map((input) => {
-      if (input.type !== 'submit') {
-        input.value = ''
-      }
-    })
-  }
-
-  toggleBorderDanger({ element, e, toggle }) {
-    if (toggle === 'on') {
-      element.classList.add(classNames.utilities.border.danger)
-    } else {
-      e.target.classList.remove(classNames.utilities.border.danger)
-    }
-  }
-
-  resetFormElements() {
-    this.formCard = null
-    this.formInnerContainer = null
-    this.formTitleContainer = null
-    this.formTitle = null
-    this.formOuterContainer = null
-    this.form = null
-    this.formFieldsElements = null
-    this.formFields = null
-    this.formFieldsInput = []
-    this.formDeleteBtnContainer = null
-    this.formDeleteBtn = null
-    this.formSpinnerContainer = null
-    this.formSpinner = null
-  }
-
-  resetDataFromUser() {
-    this.dataFromUser = {
-      name: '',
-      subject: '',
-      email: '',
-      message: '',
-    }
-  }
-
-  actionAfterSubmit(message) {
-    this.resetFormInputsValue()
-    addPropsAfterDelayFn(
-      [
-        {
-          element: this.formTitleContainer,
-          styleElements: {
-            transition: '0.9s',
-            position: 'relative',
-            transform: 'translateY(-50%)',
-            top: '50%',
-          },
-        },
-        {
-          element: this.formTitle,
-          properties: {
-            innerHTML: message,
-          },
-        },
-        {
-          element: this.formOuterContainer,
-          styleElements: {
-            transition: '0.3s',
-            height: '0px',
-            overflow: 'hidden',
-            opacity: 0,
-            visibility: 'hidden',
-          },
-        },
+    const notificationEl = createElementFn({
+      element: 'span',
+      attributes: [{ type: 'fieldname', name }],
+      classes: [
+        type === 'submit'
+          ? classNames.form.fieldSubmitNotification
+          : classNames.form.fieldInputNotification,
       ],
-      300
+      innerHTML: notification,
+    })
+
+    return lab ? { lab, input, notificationEl } : { input, notificationEl }
+  }
+
+  createMainComponents() {
+    this.formSpinnerComponent = appendElementsToContainerFn(
+      [this.formSpinner],
+      this.formSpinnerContainer
+    )
+
+    this.formFieldComponents = this.formFields.map((field, index) => {
+      const { lab, input, notificationEl } = Object.entries(
+        this.formFieldsElements
+      )[index][1]
+
+      lab
+        ? appendElementsToContainerFn([lab, input, notificationEl], field)
+        : appendElementsToContainerFn(
+            [input, notificationEl, this.formSpinnerComponent],
+            field
+          )
+
+      return field
+    })
+
+    this.formComponent = (() => {
+      this.formFieldComponents.map((fieldComponent) =>
+        this.form.appendChild(fieldComponent)
+      )
+      this.formContainer.appendChild(this.form)
+
+      return this.formContainer
+    })()
+
+    this.titleComponent = appendElementsToContainerFn(
+      [this.title],
+      this.titleContainer
+    )
+
+    this.cardInnerComponent = appendElementsToContainerFn(
+      [this.titleComponent, this.formComponent],
+      this.cardInnerContainer
+    )
+
+    this.btnDeleteComponent = appendElementsToContainerFn(
+      [this.btnDelete],
+      this.btnDeleteContainer
+    )
+
+    this.cardComponent = appendElementsToContainerFn(
+      [this.btnDeleteComponent, this.cardInnerComponent],
+      this.card
     )
   }
 
-  checkIfEmptyFormInputsValue() {
-    let isEmptyInputValue = false
-    this.formFieldsInput.map((input, index) => {
-      if (input.value === '') {
-        this.toggleBorderDanger({ element: input, toggle: 'on' })
-        if (index < this.formFieldsInput.length - 1) {
-          this.toggleAlertMessage({
-            element: this.formFieldsNotifications[index],
-            toggle: 'on',
-          })
-        }
-
-        isEmptyInputValue = true
-      }
-    })
-
-    return isEmptyInputValue
-  }
-
-  toggleShowSubmitlNotifications({
-    toggle,
-    showNotificationDelay,
-    changeNotificationDelay,
-  }) {
-    this.formFieldsNotifications.map((notification) => {
-      if (notification.attributes.fieldname.value === 'submit') {
-        if (toggle === 'on') {
-          this.showNotificationTimeout = setTimeout(() => {
-            notification.style.visibility = 'visible'
-            notification.style.opacity = 1
-          }, showNotificationDelay)
-          this.changeNotificationTimout = setTimeout(() => {
-            notification.innerHTML = 'literally wait a moment longer! ⚡'
-          }, changeNotificationDelay)
-        } else {
-          clearInterval(this.showNotificationTimeout)
-          clearInterval(this.changeNotificationTimout)
-          notification.style.visibility = 'hidden'
-          notification.style.opacity = 0
-        }
-      }
+  handleFormCreate() {
+    this.toggleFormBtn('off')
+    this.createMainElements()
+    this.createMainComponents()
+    curtain.toggleShow('on', {
+      appendElements: [this.cardComponent],
+      cbsToCallOnHidden: [
+        () => {
+          this.toggleFormBtn('on')
+          this.resetFormInputsValue()
+          this.resetDataFromUser()
+        },
+      ],
     })
   }
 
@@ -486,66 +282,300 @@ class Form {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          this.actionAfterSubmit(data.message)
+          this.showMessageAfterSubmit(data.message)
         } else {
-          this.actionAfterSubmit(data.message)
+          this.showMessageAfterSubmit(data.message)
         }
       })
       .catch(() => {
         const message = 'Unable to connect to the server 😔'
-        this.actionAfterSubmit(message)
+        this.showMessageAfterSubmit(message)
       })
-  }
-
-  disableFormInputs() {
-    this.formFieldsInput.map((input) => {
-      input.disabled = true
-      input.style.opacity = 0.4
-    })
-  }
-
-  toggleSpinner(toggle) {
-    const submitBtn = this.formFieldsInput[this.formFieldsInput.length - 1]
-
-    if (toggle === 'on') {
-      submitBtn.style.display = 'none'
-      this.formSpinnerContainer.style.display = 'flex'
-    } else {
-      submitBtn.style.display = 'block'
-      this.formSpinnerContainer.style.display = 'none'
-    }
   }
 
   async handleFormSubmit(e) {
     e.preventDefault()
     const areEmptyFormInputsValue = this.checkIfEmptyFormInputsValue()
     if (areEmptyFormInputsValue) return
+
     this.disableFormInputs()
-    this.toggleFormDeleteBtnContainer('on')
+    this.toggleDeleteBtnComponent('on')
     this.toggleSpinner('on')
-    this.toggleShowSubmitlNotifications({
-      toggle: 'on',
-      showNotificationDelay: 1000,
-      changeNotificationDelay: 8000,
+    this.toggleSubmitlNotifications('on', {
+      firstNotificationDelay: 1000,
+      secondNotificationDelay: 8000,
     })
-    curtain.toggleFreeze('on')
+
     await this.handleEmailSent()
-    this.toggleFormDeleteBtnContainer('off')
+    this.toggleDeleteBtnComponent('off')
     this.toggleSpinner('off')
-    this.toggleShowSubmitlNotifications({ toggle: 'off' })
-    curtain.toggleFreeze('off')
+    this.toggleSubmitlNotifications('off', {})
   }
 
   handleFormInput(e, name) {
     this.dataFromUser[name] = e.target.value
   }
 
-  toggleFormBtn(toggle) {
-    if (toggle === 'on') {
-      this.formBtn.style.transform = 'translateX(0)'
-    } else {
-      this.formBtn.style.transform = 'translateX(-100%)'
+  toggleDeleteBtnComponent(toggle) {
+    setPropsFn([
+      {
+        elements: [this.btnDeleteComponent],
+        styleProps: [
+          {
+            name: 'visibility',
+            value: toggle === 'on' ? 'hidden' : 'visible',
+          },
+          {
+            name: 'opacity',
+            value: toggle === 'on' ? 0 : 1,
+          },
+        ],
+      },
+    ])
+  }
+
+  toggleSubmitlNotifications(
+    toggle,
+    { firstNotificationDelay, secondNotificationDelay }
+  ) {
+    const formSubmitnotification = this.formSubmitInput.parentElement.querySelector(
+      'span'
+    )
+
+    switch (toggle) {
+      case 'on':
+        this.showNotificationTimeout = setPropsFn(
+          [
+            {
+              elements: [formSubmitnotification],
+              styleProps: [
+                {
+                  name: 'visibility',
+                  value: 'visible',
+                },
+                {
+                  name: 'opacity',
+                  value: 1,
+                },
+              ],
+            },
+          ],
+          firstNotificationDelay
+        )
+        this.changeNotificationTimout = setPropsFn(
+          [
+            {
+              elements: [formSubmitnotification],
+              rops: [
+                {
+                  name: 'innerHTML',
+                  value: 'literally wait a moment longer! ⚡',
+                },
+              ],
+            },
+          ],
+          secondNotificationDelay
+        )
+        break
+
+      case 'off':
+        clearInterval(this.showNotificationTimeout)
+        clearInterval(this.changeNotificationTimout)
+        setPropsFn([
+          {
+            elements: [formSubmitnotification],
+            styleProps: [
+              {
+                name: 'visibility',
+                value: 'hidden',
+              },
+              {
+                name: 'opacity',
+                value: 0,
+              },
+            ],
+          },
+        ])
+
+      default:
+        break
     }
+  }
+
+  toggleAlertMessage(toggle, { element }) {
+    setPropsFn([
+      {
+        elements: [element],
+        styleProps: [
+          {
+            name: 'visibility',
+            value: toggle === 'on' ? 'visible' : 'hidden',
+          },
+          {
+            name: 'opacity',
+            value: toggle === 'on' ? 1 : 0,
+          },
+        ],
+      },
+    ])
+  }
+
+  toggleBorderDanger(toggle, { element }) {
+    toggleClassesFn(toggle, {
+      elements: [element],
+      classes: [classNames.utilities.border.danger],
+    })
+  }
+
+  toggleFormBtn(toggle) {
+    setPropsFn([
+      {
+        elements: [this.btnIconComponent],
+        styleProps: [
+          {
+            name: 'transform',
+            value: toggle === 'on' ? 'translateX(0)' : 'translateX(-100%)',
+          },
+        ],
+      },
+    ])
+  }
+
+  toggleSpinner(toggle) {
+    setPropsFn([
+      {
+        elements: [this.formSubmitInput],
+        styleProps: [
+          {
+            name: 'display',
+            value: toggle === 'on' ? 'none' : 'block',
+          },
+        ],
+      },
+      {
+        elements: [this.formSpinnerComponent],
+        styleProps: [
+          {
+            name: 'display',
+            value: toggle === 'on' ? 'flex' : 'none',
+          },
+        ],
+      },
+    ])
+  }
+
+  resetFormInputsValue() {
+    this.formTextInputs.map((input) => {
+      input.value = ''
+    })
+  }
+
+  resetDataFromUser() {
+    this.dataFromUser = {}
+  }
+
+  showMessageAfterSubmit(message) {
+    this.resetFormInputsValue()
+    setPropsFn(
+      [
+        {
+          elements: [this.titleComponent],
+          styleProps: [
+            {
+              name: 'transition',
+              value: '0.9s',
+            },
+            {
+              name: 'position',
+              value: 'relative',
+            },
+            {
+              name: 'transform',
+              value: 'translateY(-50%)',
+            },
+            {
+              name: 'top',
+              value: '50%',
+            },
+          ],
+        },
+
+        {
+          elements: [this.formContainerComponent],
+          styleProps: [
+            {
+              name: 'transition',
+              value: '0.3s',
+            },
+            {
+              name: 'height',
+              value: '0px',
+            },
+            {
+              name: 'overflow',
+              value: 'hidden',
+            },
+            {
+              name: 'opacity',
+              value: 0,
+            },
+            {
+              name: 'visibility',
+              value: 'hidden',
+            },
+          ],
+        },
+        {
+          elements: [this.title],
+          props: [
+            {
+              name: 'innerHTML',
+              value: message,
+            },
+          ],
+        },
+      ],
+      300
+    )
+  }
+
+  checkIfEmptyFormInputsValue() {
+    let isEmptyInputValue = false
+    this.formTextInputs.map((input) => {
+      if (input.value === '') {
+        this.toggleBorderDanger('on', { element: input })
+        this.toggleAlertMessage('on', {
+          element: input.parentElement.querySelector('span'),
+        })
+        isEmptyInputValue = true
+      }
+    })
+
+    return isEmptyInputValue
+  }
+
+  disableFormInputs() {
+    const formInputs = [this.formSubmitInput, ...this.formTextInputs]
+
+    formInputs.map((input) => {
+      setPropsFn([
+        {
+          elements: [input],
+          props: [
+            {
+              name: 'disabled',
+              value: true,
+            },
+          ],
+          styleProps: [
+            {
+              name: 'opacity',
+              value: 0.4,
+            },
+          ],
+        },
+      ])
+    })
   }
 }
 
