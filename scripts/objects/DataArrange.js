@@ -7,14 +7,14 @@ import { classNames } from '../../data/global/names.js'
 class DataArrange {
   constructor(container, data) {
     const containerSent = document.querySelector(container)
-    const dataArrangeElements = this.createDataArrangeElements(data)
-    appendElementsToContainerFn(dataArrangeElements, containerSent)
+    this.data = data
+
+    this.createElements()
+    appendElementsToContainerFn(this.elements, containerSent)
   }
 
-  createDataArrangeElements(elements) {
-    const dataArrangeElements = []
-
-    elements.map((element) => {
+  createElements() {
+    this.elements = this.data.map((element) => {
       const elName = Object.keys(element)[0]
       switch (elName) {
         case 'headline':
@@ -26,8 +26,8 @@ class DataArrange {
             ],
             textContent: element.headline,
           })
-          dataArrangeElements.push(headline)
-          break
+
+          return headline
 
         case 'title':
           const title = createElementFn({
@@ -38,8 +38,8 @@ class DataArrange {
               classNames.utilities.margin.b40,
             ],
           })
-          dataArrangeElements.push(title)
-          break
+
+          return title
 
         case 'image':
           const image = createElementFn({
@@ -52,11 +52,10 @@ class DataArrange {
             src: element.image,
           })
 
-          dataArrangeElements.push(image)
-          break
+          return image
 
         case 'text':
-          element.text.map((el) => {
+          return element.text.map((el) => {
             const text = createElementFn({
               element: 'p',
               classes: [
@@ -67,12 +66,12 @@ class DataArrange {
               ],
               textContent: el,
             })
-            dataArrangeElements.push(text)
+
+            return text
           })
-          break
 
         case 'links':
-          element.links.map((linkEl) => {
+          return element.links.map((linkEl) => {
             const link = createElementFn({
               element: 'a',
               target: '_blank',
@@ -88,11 +87,10 @@ class DataArrange {
               classes: [classNames.utilities.margin.y10],
               textContent: linkEl.label,
             })
-
             text.appendChild(link)
-            dataArrangeElements.push(text)
+
+            return text
           })
-          break
 
         case 'code':
           const pre = createElementFn({
@@ -103,17 +101,14 @@ class DataArrange {
             classes: ['language-js'],
             textContent: element.code,
           })
-
           pre.appendChild(code)
-          dataArrangeElements.push(pre)
 
-          break
+          return pre
 
         default:
           break
       }
     })
-    return dataArrangeElements
   }
 }
 
