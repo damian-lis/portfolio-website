@@ -2,6 +2,7 @@ import {
   createElementFn,
   triggerActionOnWindowScrollFn,
   appendElementsToContainerFn,
+  setPropsFn,
 } from '../helpers/index.js'
 import { classNames, src } from '../../data/global/names.js'
 
@@ -9,65 +10,74 @@ class Sound {
   constructor(container, trigger) {
     const containerSent = document.querySelector(container)
     const triggerElement = document.querySelector(trigger)
-    const soundElements = this.createSoundElements()
-    const soundButtonComponent = this.joinSoundElements(soundElements)
     this.play = false
 
-    appendElementsToContainerFn([soundButtonComponent], containerSent)
-    this.handleSoundButtonDuringWindowScroll(triggerElement)
+    this.createElements()
+    this.createComponents()
+    appendElementsToContainerFn([this.btnComponent], containerSent)
+
+    triggerActionOnWindowScrollFn({
+      onWhatElement: triggerElement,
+      cbOnEnterTriggerEl: () => this.toggleBtnComponent('on'),
+      cbOnExitTriggerEl: () => this.toggleBtnComponent('off'),
+      modifier: 0.8,
+    })
   }
 
-  createSoundElements() {
+  createElements() {
     this.audio = createElementFn({
       element: 'audio',
       src: src.audioRecord,
     })
 
-    this.soundButton = createElementFn({
+    this.btn = createElementFn({
       element: 'button',
       classes: [classNames.global.leftBtn],
       event: 'click',
       listeners: [{ event: 'click', cb: () => this.handleAudio() }],
     })
 
-    this.soundBtnImage = createElementFn({
+    this.soundImg = createElementFn({
       element: 'img',
       src: src.pauseImg,
     })
-
-    return [this.soundButton, this.soundBtnImage]
   }
 
-  joinSoundElements(elements) {
-    const [soundButton, soundBtnImage] = elements
-    soundButton.appendChild(soundBtnImage)
-    return soundButton
+  createComponents() {
+    this.btnComponent = appendElementsToContainerFn([this.soundImg], this.btn)
   }
 
   handleAudio() {
-    if (this.play) {
-      this.soundBtnImage.src = src.pauseImg
-      this.audio.pause()
-      this.play = false
-    } else {
-      this.audio.play()
-      this.soundBtnImage.src = src.playImg
-      this.play = true
+    switch (this.play) {
+      case true:
+        this.soundImg.src = src.pauseImg
+        this.audio.pause()
+        this.play = false
+        break
+
+      case false:
+        this.audio.play()
+        this.soundImg.src = src.playImg
+        this.play = true
+        break
+
+      default:
+        break
     }
   }
 
-  toggleSoundButton(toggle) {
-    this.soundButton.style.transform =
-      toggle === 'on' ? 'translateX(-100%)' : 'translateX(0)'
-  }
-
-  handleSoundButtonDuringWindowScroll(triggerElement) {
-    triggerActionOnWindowScrollFn({
-      onWhatElement: triggerElement,
-      cbWhenTrue: () => this.toggleSoundButton('on'),
-      cbWhenFalse: () => this.toggleSoundButton('off'),
-      modifier: 0.8,
-    })
+  toggleBtnComponent(toggle) {
+    setPropsFn([
+      {
+        elements: [this.btnComponent],
+        styleProps: [
+          {
+            name: 'transform',
+            value: toggle === 'on' ? 'translateX(-100%)' : 'translateX(0)',
+          },
+        ],
+      },
+    ])
   }
 }
 
