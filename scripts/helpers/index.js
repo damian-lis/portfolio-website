@@ -5,6 +5,7 @@ import appendElementsToContainerFn from './appendElementsToContainerFn.js'
 import setPropsFn from './setPropsFn.js'
 import toggleClassesFn from './toggleClassesFn.js'
 import setActiveFn from './setActiveFn.js'
+import setClassesFn from './setClassesFn.js'
 
 export {
   setVariablesFn,
@@ -14,4 +15,5 @@ export {
   setPropsFn,
   toggleClassesFn,
   setActiveFn,
+  setClassesFn,
 }
