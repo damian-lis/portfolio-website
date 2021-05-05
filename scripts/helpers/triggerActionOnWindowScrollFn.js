@@ -1,15 +1,15 @@
 export default ({
-  onWhatElement,
-  cbWhenTrue = () => {},
-  cbWhenFalse = () => {},
+  onWhatElement: trigerElement,
+  cbOnEntertriggerEl = () => {},
+  cbOnExittriggerEl = () => {},
   modifier = 1,
 }) => {
-  if (!onWhatElement) return
+  if (!trigerElement) return
 
-  let element = onWhatElement
+  let element = trigerElement
 
-  if (typeof onWhatElement === 'string') {
-    element = document.querySelector(onWhatElement)
+  if (typeof trigerElement === 'string') {
+    element = document.querySelector(trigerElement)
   }
 
   window.addEventListener('scroll', () => {
@@ -17,9 +17,9 @@ export default ({
       window.innerHeight + window.pageYOffset * modifier >
       element.offsetTop
     ) {
-      cbWhenTrue(element)
+      cbOnEntertriggerEl(element)
     } else {
-      cbWhenFalse(element)
+      cbOnExittriggerEl(element)
     }
   })
 }
