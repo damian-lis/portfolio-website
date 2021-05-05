@@ -20,8 +20,8 @@ class Particles {
     }
 
     this.setContext()
+    this.listenForResize()
     appendElementsToContainerFn([this.canvas], document.body)
-    this.addResizeListener()
   }
 
   setContext() {
@@ -99,10 +99,8 @@ class Particles {
     updateFn()
   }
 
-  addResizeListener() {
-    window.addEventListener('resize', () => {
-      this.resize()
-    })
+  listenForResize() {
+    window.addEventListener('resize', () => this.resize())
   }
 
   resize() {
