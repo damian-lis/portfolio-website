@@ -2,8 +2,8 @@ export const common = {
   headline: 'headline',
   title: 'title',
   image: 'image',
-  text: 'text',
-  links: 'links',
+  paragraph: 'paragraph',
+  link: 'link',
   code: 'code',
   theme: 'theme',
   submit: 'submit',
@@ -17,6 +17,9 @@ export const common = {
   type: 'type',
   string: 'string',
   object: 'object',
+  header: 'header',
+  list: 'list',
+  image: 'image',
 
   events: {
     click: 'click',
@@ -81,10 +84,6 @@ export const common = {
     img: 'img',
     audio: 'audio',
     h: (value) => `h${value}`,
-    h1: 'h1',
-    h2: 'h2',
-    h3: 'h3',
-    h5: 'h5',
     a: 'a',
     p: 'p',
     pre: 'pre',
@@ -93,6 +92,8 @@ export const common = {
     label: 'label',
     textarea: 'textarea',
     span: 'span',
+    ul: 'ul',
+    li: 'li',
   },
 
   fetch: {
@@ -271,6 +272,8 @@ export const classNames = {
     height: {
       full: 'h-full',
     },
+
+    dash: 'dash',
   },
 
   prism: {
@@ -293,6 +296,12 @@ export const idReferences = {
   },
   project: {
     description: '#project-description',
+  },
+  about: {
+    description: '#about-description',
+  },
+  skills: {
+    description: '#skills-description',
   },
 }
 
