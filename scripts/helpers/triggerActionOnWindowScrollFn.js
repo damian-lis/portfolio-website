@@ -1,3 +1,5 @@
+import { common } from '/data/global/names.js'
+
 export default ({
   onWhatElement: trigerElement,
   cbOnEnterTriggerEl = () => {},
@@ -8,11 +10,11 @@ export default ({
 
   let element = trigerElement
 
-  if (typeof trigerElement === 'string') {
+  if (typeof trigerElement === common.string) {
     element = document.querySelector(trigerElement)
   }
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener(common.events.scroll, () => {
     if (
       window.innerHeight + window.pageYOffset * modifier >
       element.offsetTop

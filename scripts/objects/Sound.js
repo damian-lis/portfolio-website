@@ -4,7 +4,7 @@ import {
   appendElementsToContainerFn,
   setPropsFn,
 } from '../helpers/index.js'
-import { classNames, src } from '../../data/global/names.js'
+import { classNames, src, common } from '../../data/global/names.js'
 
 class Sound {
   constructor(container, trigger) {
@@ -18,27 +18,26 @@ class Sound {
 
     triggerActionOnWindowScrollFn({
       onWhatElement: triggerElement,
-      cbOnEnterTriggerEl: () => this.toggleBtnComponent('on'),
-      cbOnExitTriggerEl: () => this.toggleBtnComponent('off'),
+      cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.toggle.on),
+      cbOnExitTriggerEl: () => this.toggleBtnComponent(common.toggle.off),
       modifier: 0.8,
     })
   }
 
   createElements() {
     this.audio = createElementFn({
-      element: 'audio',
+      element: common.elements.audio,
       src: src.audioRecord,
     })
 
     this.btn = createElementFn({
-      element: 'button',
+      element: common.elements.button,
       classes: [classNames.global.leftBtn],
-      event: 'click',
-      listeners: [{ event: 'click', cb: () => this.handleAudio() }],
+      listeners: [{ event: common.events.click, cb: () => this.handleAudio() }],
     })
 
     this.soundImg = createElementFn({
-      element: 'img',
+      element: common.elements.img,
       src: src.pauseImg,
     })
   }
@@ -72,8 +71,11 @@ class Sound {
         elements: [this.btnComponent],
         styleProps: [
           {
-            name: 'transform',
-            value: toggle === 'on' ? 'translateX(-100%)' : 'translateX(0)',
+            name: common.styleProps.names.transform,
+            value:
+              toggle === common.toggle.on
+                ? common.styleProps.values.translateX(-100)
+                : common.styleProps.values.translateX(0),
           },
         ],
       },

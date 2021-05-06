@@ -4,7 +4,7 @@ import {
   appendElementsToContainerFn,
   setClassesFn,
 } from '../helpers/index.js'
-import { classNames } from '../../data/global/names.js'
+import { classNames, common, info } from '../../data/global/names.js'
 
 class Posts {
   constructor(container, trigger, wrapper, data) {
@@ -25,59 +25,59 @@ class Posts {
 
   createElements() {
     this.postsContainer = createElementFn({
-      element: 'div',
+      element: common.elements.div,
       classes: [classNames.posts.container],
     })
 
     this.postsElements = this.data.map((dataPortion) => {
       const linkWrapper = dataPortion.duringDevelopment
         ? createElementFn({
-            element: 'a',
+            element: common.elements.a,
             classes: [classNames.post.linkWrapper],
           })
         : createElementFn({
-            element: 'a',
+            element: common.elements.a,
             classes: [classNames.post.linkWrapper],
             href: dataPortion.route,
           })
 
       const postContainer = createElementFn({
-        element: 'div',
+        element: common.elements.div,
         classes: [classNames.post.container],
       })
 
       const thubnail = createElementFn({
-        element: 'img',
+        element: common.elements.img,
         classes: [classNames.post.thubnail],
         src: dataPortion.image,
         alt: dataPortion.alt,
       })
 
       const postPrevContainer = createElementFn({
-        element: 'div',
+        element: common.elements.div,
         classes: [classNames.post.preview],
       })
 
       const postTitle = createElementFn({
-        element: 'h6',
+        element: common.elements.h(6),
         classes: [classNames.post.title],
         textContent: dataPortion.title,
       })
 
       const postIntro = createElementFn({
-        element: 'p',
+        element: common.elements.p,
         classes: [classNames.post.intro],
         textContent: dataPortion.intro,
       })
 
       const iconsContainer = createElementFn({
-        element: 'div',
+        element: common.elements.div,
         classes: [classNames.post.iconsContainer],
       })
 
       const icons = dataPortion.icons.map((iconEl) => {
         const icon = createElementFn({
-          element: 'img',
+          element: common.elements.img,
           src: iconEl.image,
         })
         return icon
@@ -85,16 +85,16 @@ class Posts {
 
       const postRibbonContainer = dataPortion.duringDevelopment
         ? createElementFn({
-            element: 'div',
+            element: common.elements.div,
             classes: [classNames.post.ribbon],
           })
         : null
 
       const postRibbonText = dataPortion.duringDevelopment
         ? createElementFn({
-            element: 'p',
+            element: common.elements.p,
             classes: [classNames.post.ribbonText],
-            innerHTML: 'During dev...',
+            innerHTML: info.duringDevelopment,
           })
         : null
 

@@ -2,7 +2,7 @@ import {
   createElementFn,
   appendElementsToContainerFn,
 } from '../helpers/index.js'
-import { classNames } from '../../data/global/names.js'
+import { classNames, common } from '../../data/global/names.js'
 
 class DataArrange {
   constructor(container, data) {
@@ -17,52 +17,52 @@ class DataArrange {
     this.elements = this.data.map((element) => {
       const elName = Object.keys(element)[0]
       switch (elName) {
-        case 'headline':
+        case common.headline:
           const headline = createElementFn({
-            element: 'h2',
+            element: common.elements.h(2),
             classes: [
               classNames.utilities.text.center,
-              classNames.utilities.margin.t10,
+              classNames.utilities.margin('t', 10),
             ],
             textContent: element.headline,
           })
 
           return headline
 
-        case 'title':
+        case common.title:
           const title = createElementFn({
-            element: 'h3',
+            element: common.elements.h(3),
             textContent: element.title,
             classes: [
-              classNames.utilities.margin.t40,
-              classNames.utilities.margin.b40,
+              classNames.utilities.margin('t', 40),
+              classNames.utilities.margin('b', 20),
             ],
           })
 
           return title
 
-        case 'image':
+        case common.image:
           const image = createElementFn({
-            element: 'img',
+            element: common.elements.img,
             classes: [
               classNames.utilities.border.rounded,
               classNames.utilities.width.full,
-              classNames.utilities.margin.y20,
+              classNames.utilities.margin('y', 20),
             ],
             src: element.image,
           })
 
           return image
 
-        case 'text':
+        case common.text:
           return element.text.map((el) => {
             const text = createElementFn({
-              element: 'p',
+              element: common.elements.p,
               classes: [
-                classNames.utilities.margin.y10,
+                classNames.utilities.margin('y', 10),
                 classNames.utilities.text.justify,
                 classNames.utilities.text.smLeft,
-                classNames.utilities.text.lh25,
+                classNames.utilities.text.lh(25),
               ],
               textContent: el,
             })
@@ -70,11 +70,11 @@ class DataArrange {
             return text
           })
 
-        case 'links':
+        case common.links:
           return element.links.map((linkEl) => {
             const link = createElementFn({
-              element: 'a',
-              target: '_blank',
+              element: common.elements.a,
+              target: common.props.values.blank,
               classes: [
                 classNames.utilities.text.justify,
                 classNames.utilities.text.smLeft,
@@ -83,8 +83,8 @@ class DataArrange {
               textContent: linkEl.linkText,
             })
             const text = createElementFn({
-              element: 'p',
-              classes: [classNames.utilities.margin.y10],
+              element: common.elements.p,
+              classes: [classNames.utilities.margin('y', 10)],
               textContent: linkEl.label,
             })
             text.appendChild(link)
@@ -92,13 +92,13 @@ class DataArrange {
             return text
           })
 
-        case 'code':
+        case common.code:
           const pre = createElementFn({
-            element: 'pre',
+            element: common.elements.pre,
           })
           const code = createElementFn({
-            element: 'code',
-            classes: ['language-js'],
+            element: common.elements.code,
+            classes: [common.classNames.prism.languageJS],
             textContent: element.code,
           })
           pre.appendChild(code)

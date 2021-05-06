@@ -3,12 +3,12 @@ import {
   createElementFn,
   appendElementsToContainerFn,
 } from '../helpers/index.js'
-import { idNames } from '../../data/global/names.js'
+import { idNames, common } from '../../data/global/names.js'
 
 class Particles {
   constructor() {
     this.canvas = createElementFn({
-      element: 'canvas',
+      element: common.elements.canvas,
       id: idNames.theme.canvas,
     })
     this.particleArray = []
@@ -100,7 +100,7 @@ class Particles {
   }
 
   listenForResize() {
-    window.addEventListener('resize', () => this.resize())
+    window.addEventListener(common.events.resize, () => this.resize())
   }
 
   resize() {

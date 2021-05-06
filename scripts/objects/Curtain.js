@@ -5,7 +5,7 @@ import {
   toggleClassesFn,
 } from '../helpers/index.js'
 
-import { classNames, idReferences } from '../../data/global/names.js'
+import { classNames, idReferences, common } from '../../data/global/names.js'
 
 class Curtain {
   constructor(container) {
@@ -23,15 +23,12 @@ class Curtain {
 
   createElements() {
     this.curtain = createElementFn({
-      element: 'div',
+      element: common.elements.div,
       classes: [classNames.curtain.container],
-      event: 'click',
       listeners: [
         {
-          event: 'click',
-          cb: () => {
-            this.toggleShow('off')
-          },
+          event: common.events.click,
+          cb: () => this.toggleShow(common.toggle.off),
         },
       ],
     })
@@ -39,15 +36,14 @@ class Curtain {
 
   toggleShow(toggle, { appendElements, cbsToCallOnHidden } = {}) {
     switch (toggle) {
-      case 'on':
-        this.appendElements(appendElements)
+      case common.toggle.on:
         this.addCbsToCallOnHidden(cbsToCallOnHidden)
+        this.appendElements(appendElements)
         break
 
-      case 'off':
+      case common.toggle.off:
         this.callCbsOnHidden()
-        this.clearCbsToCallOnHidden()
-        this.clearChildren(200)
+        this.clear({ after: 200 })
         break
 
       default:
@@ -58,14 +54,14 @@ class Curtain {
     this.toggleActive(toggle)
   }
 
-  addElToChildrenState(el) {
+  addElToChildren(el) {
     this.children.push(el)
   }
 
   appendElements(elements) {
     elements.map((el) => {
       this.curtain.appendChild(el)
-      this.addElToChildrenState(el)
+      this.addElToChildren(el)
     })
   }
 
@@ -81,8 +77,11 @@ class Curtain {
         elements: [document.body],
         styleProps: [
           {
-            name: 'overflow',
-            value: toggle === 'on' ? 'hidden' : 'auto',
+            name: common.styleProps.names.overflow,
+            value:
+              toggle === common.toggle.on
+                ? common.styleProps.values.hidden
+                : common.styleProps.values.auto,
           },
         ],
       },
@@ -97,9 +96,7 @@ class Curtain {
   }
 
   callCbsOnHidden() {
-    this.cbsToCallOnHidden.map((cb) => {
-      cb()
-    })
+    this.cbsToCallOnHidden.map((cb) => cb())
   }
 
   clearCbsToCallOnHidden() {
@@ -110,13 +107,14 @@ class Curtain {
     this.children = []
   }
 
-  clearChildren(time) {
+  clear({ after }) {
+    this.clearCbsToCallOnHidden()
     setTimeout(() => {
       this.children.map((child) => {
         child.remove()
       })
       this.clearChildren()
-    }, time)
+    }, after)
   }
 }
 

@@ -1,3 +1,124 @@
+export const common = {
+  headline: 'headline',
+  title: 'title',
+  image: 'image',
+  text: 'text',
+  links: 'links',
+  code: 'code',
+  theme: 'theme',
+  submit: 'submit',
+  fieldname: 'fieldname',
+  message: 'message',
+  listeners: 'listeners',
+  attributes: 'attributes',
+  classes: 'classes',
+  styles: 'styles',
+  TEXTAREA: 'TEXTAREA',
+  type: 'type',
+  string: 'string',
+  object: 'object',
+
+  events: {
+    click: 'click',
+    keypress: 'keypress',
+    resize: 'resize',
+    DOMContentLoaded: 'DOMContentLoaded',
+    submit: 'submit',
+    focus: 'focus',
+    input: 'input',
+    scroll: 'scroll',
+  },
+
+  props: {
+    names: {
+      textContent: 'textContent',
+      disabled: 'disabled',
+      innerHTML: 'innerHTML',
+    },
+    values: {
+      blank: '_blank',
+    },
+  },
+
+  styleProps: {
+    names: {
+      display: 'display',
+      pointerEvents: 'pointerEvents',
+      visibility: 'visibility',
+      opacity: 'opacity',
+      overflow: 'overflow',
+      transform: 'transform',
+      transition: 'transition',
+      position: 'position',
+      top: 'top',
+      height: 'height',
+    },
+    values: {
+      none: 'none',
+      block: 'block',
+      visible: 'visible',
+      hidden: 'hidden',
+      auto: 'auto',
+      flex: 'flex',
+      visible: 'visible',
+      hidden: 'hidden',
+      relative: 'relative',
+      translateX: (value) => `translateX(${value}%)`,
+      translateY: (value) => `translateY(${value}%)`,
+    },
+  },
+
+  toggle: {
+    on: 'on',
+    off: 'off',
+  },
+
+  elements: {
+    canvas: 'canvas',
+    div: 'div',
+    button: 'button',
+    input: 'input',
+    img: 'img',
+    audio: 'audio',
+    h: (value) => `h${value}`,
+    h1: 'h1',
+    h2: 'h2',
+    h3: 'h3',
+    h5: 'h5',
+    a: 'a',
+    p: 'p',
+    pre: 'pre',
+    code: 'code',
+    form: 'form',
+    label: 'label',
+    textarea: 'textarea',
+    span: 'span',
+  },
+
+  fetch: {
+    methods: {
+      POST: 'POST',
+    },
+    headers: {
+      props: {
+        ContentType: 'Content-Type',
+      },
+      values: {
+        applicationJson: 'application/json',
+      },
+    },
+  },
+}
+
+export const info = {
+  themeNote: '*Theme settings will be saved for your next visit',
+  personalizeTheme: 'Personalize Theme',
+  duringDevelopment: 'During dev...',
+  momentLonger: 'literally wait a moment longer! ⚡',
+  sendingNow: "I'm sending now! 🚀",
+  writeMessage: 'Write to me a message',
+}
+
 export const formFieldsContent = [
   {
     label: 'Name',
@@ -61,7 +182,7 @@ export const classNames = {
   },
   form: {
     card: 'form-card',
-    cardInnerContainer: 'form-cardInnerContainer',
+    cardInnerContainer: 'form-card-innerContainer',
     titleContainer: 'form-title-container',
     title: 'form-title',
     container: 'form-container',
@@ -132,17 +253,12 @@ export const classNames = {
     text: {
       center: 'text-center',
       justify: 'text-justify',
-      lh25: 'text-lh-25',
+      lh: (value) => `text-lh-${value}`,
       smLeft: 'sm-text-left',
     },
-    margin: {
-      t5: 'mt-5',
-      t10: 'mt-10',
-      t40: 'mt-40',
-      b20: 'mb-20',
-      y20: 'my-20',
-      y10: 'my-10',
-    },
+
+    margin: (type, value) => `m${type}-${value}`,
+
     border: {
       rounded: 'rounded',
       danger: 'border-danger',
@@ -155,6 +271,10 @@ export const classNames = {
     height: {
       full: 'h-full',
     },
+  },
+
+  prism: {
+    languageJS: 'language-js',
   },
 }
 

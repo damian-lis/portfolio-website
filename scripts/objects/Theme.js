@@ -3,7 +3,7 @@ import {
   appendElementsToContainerFn,
   setActiveFn,
 } from '../helpers/index.js'
-import { classNames } from '../../data/global/names.js'
+import { classNames, common, info } from '../../data/global/names.js'
 
 class Theme {
   constructor(container, themesObject, BackgroundObj) {
@@ -25,23 +25,23 @@ class Theme {
     this.background = new this.BackgroundObj()
 
     this.themeContainer = createElementFn({
-      element: 'div',
+      element: common.elements.div,
       classes: [classNames.theme.container],
     })
 
     this.themeTitle = createElementFn({
-      element: 'h5',
-      textContent: 'Personalize Theme',
+      element: common.elements.h(5),
+      textContent: info.personalizeTheme,
     })
 
     this.themeOptionsContainer = createElementFn({
-      element: 'div',
+      element: common.elements.div,
       classes: [classNames.theme.optionsContainer],
     })
 
     this.themeOptionsDots = Object.keys(this.themesObject).map((themeName) => {
       return createElementFn({
-        element: 'div',
+        element: common.elements.div,
         classes: [
           classNames.theme.optionsDot,
           themeName === this.initialThemeName &&
@@ -50,7 +50,7 @@ class Theme {
         id: themeName,
         listeners: [
           {
-            event: 'click',
+            event: common.events.click,
             cb: (e) => this.handleDotClick({ element: e.target, themeName }),
           },
         ],
@@ -58,9 +58,9 @@ class Theme {
     })
 
     this.themeNote = createElementFn({
-      element: 'p',
+      element: common.elements.p,
       classes: [classNames.theme.note],
-      textContent: '*Theme settings will be saved for your next visit',
+      textContent: info.themeNote,
     })
   }
 
@@ -101,7 +101,9 @@ class Theme {
   }
 
   setInitialThemeName() {
-    return localStorage.getItem('theme') || Object.keys(this.themesObject)[0]
+    return (
+      localStorage.getItem(common.theme) || Object.keys(this.themesObject)[0]
+    )
   }
 
   setInitialThemeObject() {
@@ -109,7 +111,7 @@ class Theme {
   }
 
   saveThemeNameInLocalStorage(theme) {
-    localStorage.setItem('theme', theme)
+    localStorage.setItem(common.theme, theme)
   }
 
   createBackgroundAnimation() {

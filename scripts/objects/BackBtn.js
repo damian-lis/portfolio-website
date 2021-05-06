@@ -2,7 +2,7 @@ import {
   createElementFn,
   appendElementsToContainerFn,
 } from '../helpers/index.js'
-import { classNames, src } from '../../data/global/names.js'
+import { classNames, src, common } from '../../data/global/names.js'
 
 class BackBtn {
   constructor(container) {
@@ -15,12 +15,12 @@ class BackBtn {
 
   createElements() {
     this.backBtnContainer = createElementFn({
-      element: 'a',
+      element: common.elements.a,
       href: '/',
       classes: [classNames.global.leftBtn],
     })
     this.backBtnImage = createElementFn({
-      element: 'img',
+      element: common.elements.img,
       src: src.arrowImg,
     })
   }

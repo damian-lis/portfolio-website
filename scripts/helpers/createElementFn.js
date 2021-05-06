@@ -1,10 +1,12 @@
+import { common } from '/data/global/names.js'
+
 export default ({ element, ...rest }) => {
   const createdElement = document.createElement(element)
 
   if (Object.keys(rest).length) {
     for (const propEl in rest) {
       switch (propEl) {
-        case 'listeners':
+        case common.listeners:
           rest[propEl].map((listener) => {
             const { event, cb } = listener
             createdElement.addEventListener(event, (e) => {
@@ -13,27 +15,30 @@ export default ({ element, ...rest }) => {
           })
           break
 
-        case 'attributes':
-          rest[propEl].map((attribute) => {
+        case common.attributes:
+          rest[propEl].map((attribute) =>
             createdElement.setAttribute(
-              `${attribute.type}`,
-              `${attribute.name}`
+              `${attribute.name}`,
+              `${attribute.value}`
             )
-          })
+          )
           break
 
-        case 'classes':
+        case common.classes:
           createdElement.classList.add(...rest[propEl])
           break
 
-        case 'styles':
+        case common.styles:
           rest[propEl].map((styleObj) => {
             createdElement.style[styleObj.name] = styleObj.value
           })
           break
 
         default:
-          if (createdElement.tagName === 'TEXTAREA' && propEl === 'type') {
+          if (
+            createdElement.tagName === common.TEXTAREA &&
+            propEl === common.type
+          ) {
             break
           } else createdElement[propEl] = rest[propEl]
 
