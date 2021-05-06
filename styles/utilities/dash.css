@@ -1,0 +1,5 @@
+.dash::before {
+  display: inline-block;
+  margin-right: 7px;
+  content: '-';
+}
