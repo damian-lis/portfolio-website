@@ -1,0 +1,11 @@
+.card {
+  padding: 10px;
+  border: var(--borderColor) 1px solid;
+  border-radius: 5px;
+  background-color: var(--secondaryColor);
+}
+
+.card-inner {
+  border-radius: 5px;
+  background-color: var(--previewShadow);
+}
