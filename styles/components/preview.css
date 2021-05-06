@@ -6,13 +6,6 @@
   text-align: center;
 }
 
-.preview-shadow {
-  padding-left: 30px;
-  padding-top: 30px;
-  border-radius: 5px;
-  background-color: var(--previewShadow);
-}
-
 .preview-corner {
   position: absolute;
   width: 7px;
