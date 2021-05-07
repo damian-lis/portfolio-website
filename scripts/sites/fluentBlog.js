@@ -13,5 +13,5 @@ import {
 new Theme(idReferences.theme.main, themes, Particles)
 new DescriptionArrange(idReferences.project.description, fluentBlogDescription)
 new BackBtn(idReferences.global.leftContainer)
-new Sound(idReferences.global.leftContainer, idReferences.posts.trigger)
+new Sound(idReferences.global.leftContainer)
 new Form(idReferences.global.leftContainer)
