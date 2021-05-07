@@ -9,18 +9,20 @@ import { classNames, info, elements } from '/data/global/names.js'
 class SneakPeeks {
   constructor(container, trigger, wrapper, data) {
     const containerSent = document.querySelector(container)
-    this.triggerElement = document.querySelector(trigger)
-    this.wrapperToRelease = document.querySelector(wrapper)
     this.data = data
 
     this.createElements()
     this.createComponents()
     appendElementsToContainerFn([this.sneakPeeksComponent], containerSent)
 
-    triggerActionOnWindowScrollFn({
-      onWhatElement: this.triggerElement,
-      cbOnEnterTriggerEl: () => this.handleOnEnterTriggerEl(),
-    })
+    if (trigger) {
+      this.triggerElement = document.querySelector(trigger)
+      this.wrapperToRelease = document.querySelector(wrapper)
+      triggerActionOnWindowScrollFn({
+        onWhatElement: this.triggerElement,
+        cbOnEnterTriggerEl: () => this.handleOnEnterTriggerEl(),
+      })
+    }
   }
 
   createElements() {

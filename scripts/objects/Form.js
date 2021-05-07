@@ -23,18 +23,20 @@ import {
 class Form {
   constructor(container, trigger) {
     const containerSent = document.querySelector(container)
-    const triggerElement = document.querySelector(trigger)
     this.dataFromUser = {}
 
     this.createInitialElements()
     this.createInitialComponents()
     appendElementsToContainerFn([this.btnComponent], containerSent)
 
-    triggerActionOnWindowScrollFn({
-      onWhatElement: triggerElement,
-      cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.off),
-      cbOnExitTriggerEl: () => this.toggleBtnComponent(common.on),
-    })
+    if (trigger) {
+      const triggerElement = document.querySelector(trigger)
+      triggerActionOnWindowScrollFn({
+        onWhatElement: triggerElement,
+        cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.off),
+        cbOnExitTriggerEl: () => this.toggleBtnComponent(common.on),
+      })
+    }
   }
 
   createInitialElements() {

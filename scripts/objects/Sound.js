@@ -16,19 +16,21 @@ import {
 class Sound {
   constructor(container, trigger) {
     const containerSent = document.querySelector(container)
-    const triggerElement = document.querySelector(trigger)
     this.play = false
 
     this.createElements()
     this.createComponents()
     appendElementsToContainerFn([this.btnComponent], containerSent)
 
-    triggerActionOnWindowScrollFn({
-      onWhatElement: triggerElement,
-      cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.on),
-      cbOnExitTriggerEl: () => this.toggleBtnComponent(common.off),
-      modifier: 0.8,
-    })
+    if (trigger) {
+      const triggerElement = document.querySelector(trigger)
+      triggerActionOnWindowScrollFn({
+        onWhatElement: triggerElement,
+        cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.on),
+        cbOnExitTriggerEl: () => this.toggleBtnComponent(common.off),
+        modifier: 0.8,
+      })
+    }
   }
 
   createElements() {
