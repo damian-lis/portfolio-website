@@ -1,6 +1,6 @@
 export default [
   {
-    route: '/projects/fluentBlog.html',
+    route: '/fluentBlog.html',
     image: '/images/projects/FluentBlog/browseArticle.gif',
     alt: 'FluentBlog',
     title: 'FluentBlog',
