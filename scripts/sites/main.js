@@ -11,11 +11,11 @@ import {
   Posts,
   Theme,
   Particles,
-  DataArrange,
+  DescriptionArrange,
 } from '/scripts/objects/index.js'
 
-new DataArrange(idReferences.about.description, aboutDescription)
-new DataArrange(idReferences.skills.description, skillsDescription)
+new DescriptionArrange(idReferences.about.description, aboutDescription)
+new DescriptionArrange(idReferences.skills.description, skillsDescription)
 new Sound(idReferences.global.leftContainer, idReferences.posts.trigger)
 new Form(idReferences.global.leftContainer, idReferences.posts.trigger)
 new Theme(idReferences.theme.main, themes, Particles)

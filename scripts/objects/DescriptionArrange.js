@@ -5,16 +5,16 @@ import {
 import { common } from '/data/global/names.js'
 
 class DataArrange {
-  constructor(container, data) {
+  constructor(container, description) {
     this.containerSent = document.querySelector(container)
-    this.data = data
+    this.description = description
 
     this.createElements()
     appendElementsToContainerFn(this.elements, this.containerSent)
   }
 
   createElements() {
-    this.elements = this.data.map((object) => {
+    this.elements = this.description.map((object) => {
       switch (object.type) {
         case common.headline:
           const headline = createElementFn({

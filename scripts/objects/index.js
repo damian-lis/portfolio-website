@@ -1,4 +1,4 @@
-import DataArrange from './DataArrange.js'
+import DescriptionArrange from './DescriptionArrange.js'
 import Particle from './Particle.js'
 import Particles from './Particles.js'
 import Form from './Form.js'
@@ -7,4 +7,13 @@ import Sound from './Sound.js'
 import Theme from './Theme.js'
 import BackBtn from './BackBtn.js'
 
-export { DataArrange, Particle, Particles, Form, Posts, Sound, Theme, BackBtn }
+export {
+  DescriptionArrange,
+  Particle,
+  Particles,
+  Form,
+  Posts,
+  Sound,
+  Theme,
+  BackBtn,
+}
