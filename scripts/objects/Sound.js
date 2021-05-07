@@ -20,7 +20,7 @@ class Sound {
 
     this.createElements()
     this.createComponents()
-    appendElementsToContainerFn([this.btnComponent], containerSent)
+    appendElementsToContainerFn([this.mainComponent], containerSent)
 
     if (trigger) {
       const triggerElement = document.querySelector(trigger)
@@ -45,27 +45,27 @@ class Sound {
       listeners: [{ event: events.click, cb: () => this.handleAudio() }],
     })
 
-    this.soundImg = createElementFn({
+    this.audioImg = createElementFn({
       element: elements.img,
       src: paths.pauseImg,
     })
   }
 
   createComponents() {
-    this.btnComponent = appendElementsToContainerFn([this.soundImg], this.btn)
+    this.mainComponent = appendElementsToContainerFn([this.audioImg], this.btn)
   }
 
   handleAudio() {
     switch (this.play) {
       case true:
-        this.soundImg.src = paths.pauseImg
+        this.img.src = paths.pauseImg
         this.audio.pause()
         this.play = false
         break
 
       case false:
         this.audio.play()
-        this.soundImg.src = paths.playImg
+        this.img.src = paths.playImg
         this.play = true
         break
 
@@ -77,7 +77,7 @@ class Sound {
   toggleBtnComponent(toggle) {
     setPropsFn([
       {
-        elements: [this.btnComponent],
+        elements: [this.mainComponent],
         styleProps: [
           {
             name: styleProps.names.transform,

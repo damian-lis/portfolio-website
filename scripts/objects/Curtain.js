@@ -23,13 +23,13 @@ class Curtain {
       this.children = []
 
       this.createElements()
-      appendElementsToContainerFn([this.curtain], sentContainer)
+      appendElementsToContainerFn([this.mainContainer], sentContainer)
     }
     return (Curtain.instance = this)
   }
 
   createElements() {
-    this.curtain = createElementFn({
+    this.mainContainer = createElementFn({
       element: elements.div,
       classes: [classNames.curtain.container],
       listeners: [
@@ -67,7 +67,7 @@ class Curtain {
 
   appendElements(elements) {
     elements.map((el) => {
-      this.curtain.appendChild(el)
+      this.mainContainer.appendChild(el)
       this.addElToChildren(el)
     })
   }
@@ -97,7 +97,7 @@ class Curtain {
 
   toggleActive(toggle) {
     toggleClassesFn(toggle, {
-      elements: [this.curtain],
+      elements: [this.mainContainer],
       classes: [classNames.curtain.active],
     })
   }

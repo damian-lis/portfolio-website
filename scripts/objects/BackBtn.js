@@ -10,25 +10,25 @@ class BackBtn {
     this.createElements()
     this.createComponents()
 
-    appendElementsToContainerFn([this.backBtnComponent], containerSent)
+    appendElementsToContainerFn([this.mainComponent], containerSent)
   }
 
   createElements() {
-    this.backBtnContainer = createElementFn({
+    this.mainContainer = createElementFn({
       element: elements.a,
       href: '/',
       classes: [classNames.global.leftBtn],
     })
-    this.backBtnImage = createElementFn({
+    this.arrowImg = createElementFn({
       element: elements.img,
       src: paths.arrowImg,
     })
   }
 
   createComponents() {
-    this.backBtnComponent = appendElementsToContainerFn(
-      [this.backBtnImage],
-      this.backBtnContainer
+    this.mainComponent = appendElementsToContainerFn(
+      [this.arrowImg],
+      this.mainContainer
     )
   }
 }

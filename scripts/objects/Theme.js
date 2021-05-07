@@ -24,28 +24,28 @@ class Theme {
     this.setGlobalVariables()
     this.createBackgroundAnimation()
 
-    appendElementsToContainerFn([this.themeComponent], containerSent)
+    appendElementsToContainerFn([this.mainComponent], containerSent)
   }
 
   createElements() {
     this.background = new this.BackgroundObj()
 
-    this.themeContainer = createElementFn({
+    this.mainContainer = createElementFn({
       element: elements.div,
       classes: [classNames.theme.container],
     })
 
-    this.themeTitle = createElementFn({
+    this.title = createElementFn({
       element: elements.h(5),
       textContent: info.personalizeTheme,
     })
 
-    this.themeOptionsContainer = createElementFn({
+    this.optionsContainer = createElementFn({
       element: elements.div,
       classes: [classNames.theme.optionsContainer],
     })
 
-    this.themeOptionsDots = Object.keys(this.themesObject).map((themeName) => {
+    this.optionsDots = Object.keys(this.themesObject).map((themeName) => {
       return createElementFn({
         element: elements.div,
         classes: [
@@ -63,7 +63,7 @@ class Theme {
       })
     })
 
-    this.themeNote = createElementFn({
+    this.note = createElementFn({
       element: elements.p,
       classes: [classNames.theme.note],
       textContent: info.themeNote,
@@ -71,14 +71,14 @@ class Theme {
   }
 
   createComponents() {
-    this.themeOptionsComponent = appendElementsToContainerFn(
-      this.themeOptionsDots,
-      this.themeOptionsContainer
+    this.optionsComponent = appendElementsToContainerFn(
+      this.optionsDots,
+      this.optionsContainer
     )
 
-    this.themeComponent = appendElementsToContainerFn(
-      [this.themeTitle, this.themeOptionsComponent, this.themeNote],
-      this.themeContainer
+    this.mainComponent = appendElementsToContainerFn(
+      [this.title, this.optionsComponent, this.note],
+      this.mainContainer
     )
   }
 
@@ -87,7 +87,7 @@ class Theme {
 
     setActiveFn({
       setOn: element,
-      removeFrom: this.themeOptionsDots,
+      removeFrom: this.optionsDots,
       classes: [classNames.theme.optionsDotActive],
     })
     this.setGlobalVariables(themeObject)

@@ -13,7 +13,7 @@ class SneakPeeks {
 
     this.createElements()
     this.createComponents()
-    appendElementsToContainerFn([this.sneakPeeksComponent], containerSent)
+    appendElementsToContainerFn([this.mainComponent], containerSent)
 
     if (trigger) {
       this.triggerElement = document.querySelector(trigger)
@@ -165,7 +165,7 @@ class SneakPeeks {
       }
     )
 
-    this.sneakPeeksComponent = appendElementsToContainerFn(
+    this.mainComponent = appendElementsToContainerFn(
       this.sneakPeekComponents,
       this.mainContainer
     )
