@@ -11,10 +11,10 @@ import {
 } from '/scripts/objects/index.js'
 
 new Theme(idReferences.theme.main, themes, Particles)
+new BackBtn(idReferences.global.leftContainer)
+new Sound(idReferences.global.leftContainer)
+new Form(idReferences.global.leftContainer)
 new DescriptionArrange(
   idReferences.project.description,
   privatePolicyDescription
 )
-new BackBtn(idReferences.global.leftContainer)
-new Sound(idReferences.global.leftContainer, idReferences.posts.trigger)
-new Form(idReferences.global.leftContainer)
