@@ -1,4 +1,4 @@
-.form-card {
+.form-main-container {
   width: 100%;
   max-width: 500px;
   height: 100%;
@@ -12,7 +12,7 @@
   animation: slideInFromRight 0.5s 0.5s ease-in forwards;
 }
 
-.form-card-innerContainer {
+.form-main-container-inner {
   display: flex;
   flex-direction: column;
   height: 100%;

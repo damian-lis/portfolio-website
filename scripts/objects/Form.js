@@ -53,7 +53,7 @@ class Form {
 
     this.emailImg = createElementFn({
       element: elements.img,
-      classes: [classNames.utilities.margin.t5],
+      classes: [classNames.utilities.margin('t', 5)],
       src: paths.emailImg,
     })
   }
@@ -63,15 +63,15 @@ class Form {
   }
 
   createMainElements() {
-    this.card = createElementFn({
+    this.mainContainer = createElementFn({
       element: elements.div,
-      classes: [classNames.form.card],
+      classes: [classNames.form.mainContainer],
       listeners: [{ event: events.click, cb: (e) => e.stopPropagation() }],
     })
 
-    this.cardInnerContainer = createElementFn({
+    this.mainContainerInner = createElementFn({
       element: elements.div,
-      classes: [classNames.form.cardInnerContainer],
+      classes: [classNames.form.mainContainerInner],
     })
 
     this.btnDeleteContainer = createElementFn({
@@ -255,7 +255,7 @@ class Form {
 
     this.cardInnerComponent = appendElementsToContainerFn(
       [this.titleComponent, this.formComponent],
-      this.cardInnerContainer
+      this.mainContainerInner
     )
 
     this.btnDeleteComponent = appendElementsToContainerFn(
@@ -263,12 +263,12 @@ class Form {
       this.btnDeleteContainer
     )
 
-    this.cardComponent = appendElementsToContainerFn(
+    this.mainComponent = appendElementsToContainerFn(
       [this.btnDeleteComponent, this.cardInnerComponent],
-      this.card
+      this.mainContainer
     )
 
-    return this.cardComponent
+    return this.mainComponent
   }
 
   handleFormInputTyping(e, name) {
@@ -299,7 +299,7 @@ class Form {
     this.createMainElements()
     this.createMainComponents()
     curtain.toggleShow(common.on, {
-      appendElements: [this.cardComponent],
+      appendElements: [this.mainComponent],
       cbsToCallOnHidden: [
         () => {
           this.toggleBtnComponent(common.on)

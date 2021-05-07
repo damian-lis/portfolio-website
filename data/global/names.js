@@ -179,8 +179,8 @@ export const classNames = {
     active: 'curtain-active',
   },
   form: {
-    card: 'form-card',
-    cardInnerContainer: 'form-card-innerContainer',
+    mainContainer: 'form-main-container',
+    mainContainerInner: 'form-main-container-inner',
     titleContainer: 'form-title-container',
     title: 'form-title',
     container: 'form-container',
