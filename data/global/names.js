@@ -20,93 +20,90 @@ export const common = {
   header: 'header',
   list: 'list',
   image: 'image',
+  on: 'on',
+  off: 'off',
+}
 
-  events: {
-    click: 'click',
-    keypress: 'keypress',
-    resize: 'resize',
-    DOMContentLoaded: 'DOMContentLoaded',
-    submit: 'submit',
-    focus: 'focus',
-    input: 'input',
-    scroll: 'scroll',
+export const elements = {
+  canvas: 'canvas',
+  div: 'div',
+  button: 'button',
+  input: 'input',
+  img: 'img',
+  audio: 'audio',
+  h: (value) => `h${value}`,
+  a: 'a',
+  p: 'p',
+  pre: 'pre',
+  code: 'code',
+  form: 'form',
+  label: 'label',
+  textarea: 'textarea',
+  span: 'span',
+  ul: 'ul',
+  li: 'li',
+}
+
+export const elementProps = {
+  names: {
+    textContent: 'textContent',
+    disabled: 'disabled',
+    innerHTML: 'innerHTML',
   },
+  values: {
+    blank: '_blank',
+  },
+}
 
-  props: {
-    names: {
-      textContent: 'textContent',
-      disabled: 'disabled',
-      innerHTML: 'innerHTML',
+export const styleProps = {
+  names: {
+    display: 'display',
+    pointerEvents: 'pointerEvents',
+    visibility: 'visibility',
+    opacity: 'opacity',
+    overflow: 'overflow',
+    transform: 'transform',
+    transition: 'transition',
+    position: 'position',
+    top: 'top',
+    height: 'height',
+  },
+  values: {
+    none: 'none',
+    block: 'block',
+    visible: 'visible',
+    hidden: 'hidden',
+    auto: 'auto',
+    flex: 'flex',
+    visible: 'visible',
+    hidden: 'hidden',
+    relative: 'relative',
+    translateX: (value) => `translateX(${value}%)`,
+    translateY: (value) => `translateY(${value}%)`,
+  },
+}
+
+export const events = {
+  click: 'click',
+  keypress: 'keypress',
+  resize: 'resize',
+  DOMContentLoaded: 'DOMContentLoaded',
+  submit: 'submit',
+  focus: 'focus',
+  input: 'input',
+  scroll: 'scroll',
+}
+
+export const fetchProps = {
+  methods: {
+    POST: 'POST',
+  },
+  headers: {
+    props: {
+      ContentType: 'Content-Type',
     },
     values: {
-      blank: '_blank',
-    },
-  },
-
-  styleProps: {
-    names: {
-      display: 'display',
-      pointerEvents: 'pointerEvents',
-      visibility: 'visibility',
-      opacity: 'opacity',
-      overflow: 'overflow',
-      transform: 'transform',
-      transition: 'transition',
-      position: 'position',
-      top: 'top',
-      height: 'height',
-    },
-    values: {
-      none: 'none',
-      block: 'block',
-      visible: 'visible',
-      hidden: 'hidden',
-      auto: 'auto',
-      flex: 'flex',
-      visible: 'visible',
-      hidden: 'hidden',
-      relative: 'relative',
-      translateX: (value) => `translateX(${value}%)`,
-      translateY: (value) => `translateY(${value}%)`,
-    },
-  },
-
-  toggle: {
-    on: 'on',
-    off: 'off',
-  },
-
-  elements: {
-    canvas: 'canvas',
-    div: 'div',
-    button: 'button',
-    input: 'input',
-    img: 'img',
-    audio: 'audio',
-    h: (value) => `h${value}`,
-    a: 'a',
-    p: 'p',
-    pre: 'pre',
-    code: 'code',
-    form: 'form',
-    label: 'label',
-    textarea: 'textarea',
-    span: 'span',
-    ul: 'ul',
-    li: 'li',
-  },
-
-  fetch: {
-    methods: {
-      POST: 'POST',
-    },
-    headers: {
-      props: {
-        ContentType: 'Content-Type',
-      },
-      values: {
-        applicationJson: 'application/json',
-      },
+      applicationJson: 'application/json',
     },
   },
 }
@@ -305,7 +302,7 @@ export const idReferences = {
   },
 }
 
-export const src = {
+export const paths = {
   playImg: '/images/icons/stopMusic.svg',
   pauseImg: '/images/icons/playMusic.svg',
   audioRecord: '/audio/ambient.mp3',

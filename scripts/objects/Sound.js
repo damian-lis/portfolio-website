@@ -4,7 +4,14 @@ import {
   appendElementsToContainerFn,
   setPropsFn,
 } from '/scripts/helpers/index.js'
-import { classNames, src, common } from '/data/global/names.js'
+import {
+  classNames,
+  paths,
+  common,
+  elements,
+  styleProps,
+  events,
+} from '/data/global/names.js'
 
 class Sound {
   constructor(container, trigger) {
@@ -18,27 +25,27 @@ class Sound {
 
     triggerActionOnWindowScrollFn({
       onWhatElement: triggerElement,
-      cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.toggle.on),
-      cbOnExitTriggerEl: () => this.toggleBtnComponent(common.toggle.off),
+      cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.on),
+      cbOnExitTriggerEl: () => this.toggleBtnComponent(common.off),
       modifier: 0.8,
     })
   }
 
   createElements() {
     this.audio = createElementFn({
-      element: common.elements.audio,
-      src: src.audioRecord,
+      element: elements.audio,
+      src: paths.audioRecord,
     })
 
     this.btn = createElementFn({
-      element: common.elements.button,
+      element: elements.button,
       classes: [classNames.global.leftBtn],
-      listeners: [{ event: common.events.click, cb: () => this.handleAudio() }],
+      listeners: [{ event: events.click, cb: () => this.handleAudio() }],
     })
 
     this.soundImg = createElementFn({
-      element: common.elements.img,
-      src: src.pauseImg,
+      element: elements.img,
+      src: paths.pauseImg,
     })
   }
 
@@ -49,14 +56,14 @@ class Sound {
   handleAudio() {
     switch (this.play) {
       case true:
-        this.soundImg.src = src.pauseImg
+        this.soundImg.src = paths.pauseImg
         this.audio.pause()
         this.play = false
         break
 
       case false:
         this.audio.play()
-        this.soundImg.src = src.playImg
+        this.soundImg.src = paths.playImg
         this.play = true
         break
 
@@ -71,11 +78,11 @@ class Sound {
         elements: [this.btnComponent],
         styleProps: [
           {
-            name: common.styleProps.names.transform,
+            name: styleProps.names.transform,
             value:
-              toggle === common.toggle.on
-                ? common.styleProps.values.translateX(-100)
-                : common.styleProps.values.translateX(0),
+              toggle === common.on
+                ? styleProps.values.translateX(-100)
+                : styleProps.values.translateX(0),
           },
         ],
       },

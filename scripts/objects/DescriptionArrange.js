@@ -2,7 +2,7 @@ import {
   createElementFn,
   appendElementsToContainerFn,
 } from '/scripts/helpers/index.js'
-import { common } from '/data/global/names.js'
+import { common, elementProps } from '/data/global/names.js'
 
 class DataArrange {
   constructor(container, description) {
@@ -57,7 +57,7 @@ class DataArrange {
         case common.link:
           const link = createElementFn({
             element: object.elements.link,
-            target: common.props.values.sblank,
+            target: elementProps.values.sblank,
             classes: object.classes.link,
             href: object.path,
             textContent: object.content.link,

@@ -1,9 +1,9 @@
-import { common, classNames } from '/data/global/names.js'
+import { common, classNames, elements } from '/data/global/names.js'
 
 export default [
   {
     type: common.headline,
-    element: common.elements.h(3),
+    element: elements.h(3),
     content: 'My skills',
     classes: [
       classNames.utilities.margin('t', 10),
@@ -13,15 +13,15 @@ export default [
 
   {
     type: common.header,
-    element: common.elements.h(5),
+    element: elements.h(5),
     content: '1. Level enough to write more advanced frontend',
     classes: [classNames.utilities.margin('t', 30), ,],
   },
   {
     type: common.list,
     elements: {
-      list: common.elements.ul,
-      listItem: common.elements.li,
+      list: elements.ul,
+      listItem: elements.li,
     },
     content: [
       'HTML (Semanthic writing),',
@@ -38,15 +38,15 @@ export default [
   },
   {
     type: common.header,
-    element: common.elements.h(5),
+    element: elements.h(5),
     content: '2. Level enough to write basic backend',
     classes: [classNames.utilities.margin('t', 30), ,],
   },
   {
     type: common.list,
     elements: {
-      list: common.elements.ul,
-      listItem: common.elements.li,
+      list: elements.ul,
+      listItem: elements.li,
     },
     content: [
       'Node/Express (simple E-COMMERCE backend with REST API),',
@@ -60,15 +60,15 @@ export default [
   },
   {
     type: common.header,
-    element: common.elements.h(5),
+    element: elements.h(5),
     content: '3. When i have a free time',
     classes: [classNames.utilities.margin('t', 30), ,],
   },
   {
     type: common.list,
     elements: {
-      list: common.elements.ul,
-      listItem: common.elements.li,
+      list: elements.ul,
+      listItem: elements.li,
     },
     content: ['PHP (basic level)'],
     classes: {

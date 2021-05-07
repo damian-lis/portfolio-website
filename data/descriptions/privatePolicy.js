@@ -1,8 +1,8 @@
-import { classNames, common } from '/data/global/names.js'
+import { classNames, common, elements } from '/data/global/names.js'
 export default [
   {
     type: common.paragraph,
-    element: common.elements.p,
+    element: elements.p,
     content: [
       'Niniejsza polityka prywatności opisuje zasady postępowania z danymi osobowymi oraz ich wykorzystywania w ramach strony internetowej damianlis.tech. Administratorem strony jest Damian Lis (osoba prywatna) zameldowana we Wrocławiu przy ulicy Estońska 42/24.Kontakt z administratorem możliwy jest pod adresem e-mail damian.lis1293@gmail.com.',
     ],
@@ -16,7 +16,7 @@ export default [
 
   {
     type: common.header,
-    element: common.elements.h(3),
+    element: elements.h(3),
     content: '§1 Dane osobowe',
     classes: [
       classNames.utilities.margin('t', 40),
@@ -26,7 +26,7 @@ export default [
 
   {
     type: common.paragraph,
-    element: common.elements.p,
+    element: elements.p,
     content: [
       '1. Użytkownik (każdy podmiot, który korzysta ze strony) może przekazywać swoje dane osobowe za pomocą formularzy dostępnych na stronie, takich jak formularz kontaktowy.',
       '2. Dane przekazane przez formularz (np. email użytkownika) służą Administratorowi jedynie w celach kontaktowych z użytkownikiem, który wyraził chęć kontaktu za pomocą formularza.',

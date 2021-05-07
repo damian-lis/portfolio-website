@@ -3,7 +3,13 @@ import {
   appendElementsToContainerFn,
   setActiveFn,
 } from '/scripts/helpers/index.js'
-import { classNames, common, info } from '/data/global/names.js'
+import {
+  classNames,
+  common,
+  info,
+  elements,
+  events,
+} from '/data/global/names.js'
 
 class Theme {
   constructor(container, themesObject, BackgroundObj) {
@@ -25,23 +31,23 @@ class Theme {
     this.background = new this.BackgroundObj()
 
     this.themeContainer = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.theme.container],
     })
 
     this.themeTitle = createElementFn({
-      element: common.elements.h(5),
+      element: elements.h(5),
       textContent: info.personalizeTheme,
     })
 
     this.themeOptionsContainer = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.theme.optionsContainer],
     })
 
     this.themeOptionsDots = Object.keys(this.themesObject).map((themeName) => {
       return createElementFn({
-        element: common.elements.div,
+        element: elements.div,
         classes: [
           classNames.theme.optionsDot,
           themeName === this.initialThemeName &&
@@ -50,7 +56,7 @@ class Theme {
         id: themeName,
         listeners: [
           {
-            event: common.events.click,
+            event: events.click,
             cb: (e) => this.handleDotClick({ element: e.target, themeName }),
           },
         ],
@@ -58,7 +64,7 @@ class Theme {
     })
 
     this.themeNote = createElementFn({
-      element: common.elements.p,
+      element: elements.p,
       classes: [classNames.theme.note],
       textContent: info.themeNote,
     })

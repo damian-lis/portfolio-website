@@ -5,7 +5,14 @@ import {
   toggleClassesFn,
 } from '/scripts/helpers/index.js'
 
-import { classNames, idReferences, common } from '/data/global/names.js'
+import {
+  classNames,
+  idReferences,
+  common,
+  elements,
+  events,
+  styleProps,
+} from '/data/global/names.js'
 
 class Curtain {
   constructor(container) {
@@ -23,12 +30,12 @@ class Curtain {
 
   createElements() {
     this.curtain = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.curtain.container],
       listeners: [
         {
-          event: common.events.click,
-          cb: () => this.toggleShow(common.toggle.off),
+          event: events.click,
+          cb: () => this.toggleShow(common.off),
         },
       ],
     })
@@ -36,12 +43,12 @@ class Curtain {
 
   toggleShow(toggle, { appendElements, cbsToCallOnHidden } = {}) {
     switch (toggle) {
-      case common.toggle.on:
+      case common.on:
         this.addCbsToCallOnHidden(cbsToCallOnHidden)
         this.appendElements(appendElements)
         break
 
-      case common.toggle.off:
+      case common.off:
         this.callCbsOnHidden()
         this.clear({ after: 200 })
         break
@@ -77,11 +84,11 @@ class Curtain {
         elements: [document.body],
         styleProps: [
           {
-            name: common.styleProps.names.overflow,
+            name: styleProps.names.overflow,
             value:
-              toggle === common.toggle.on
-                ? common.styleProps.values.hidden
-                : common.styleProps.values.auto,
+              toggle === common.on
+                ? styleProps.values.hidden
+                : styleProps.values.auto,
           },
         ],
       },

@@ -7,9 +7,14 @@ import {
   toggleClassesFn,
 } from '/scripts/helpers/index.js'
 import {
+  styleProps,
+  elementProps,
+  fetchProps,
+  elements,
+  events,
   classNames,
   mailEndPoint,
-  src,
+  paths,
   formFieldsContent,
   common,
   info,
@@ -27,27 +32,27 @@ class Form {
 
     triggerActionOnWindowScrollFn({
       onWhatElement: triggerElement,
-      cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.toggle.off),
-      cbOnExitTriggerEl: () => this.toggleBtnComponent(common.toggle.on),
+      cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.off),
+      cbOnExitTriggerEl: () => this.toggleBtnComponent(common.on),
     })
   }
 
   createInitialElements() {
     this.btn = createElementFn({
-      element: common.elements.button,
+      element: elements.button,
       classes: [classNames.global.leftBtn],
       listeners: [
         {
-          event: common.events.click,
+          event: events.click,
           cb: () => this.handleCardComponentCreate(),
         },
       ],
     })
 
     this.emailImg = createElementFn({
-      element: common.elements.img,
+      element: elements.img,
       classes: [classNames.utilities.margin.t5],
-      src: src.emailImg,
+      src: paths.emailImg,
     })
   }
 
@@ -57,62 +62,60 @@ class Form {
 
   createMainElements() {
     this.card = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.form.card],
-      listeners: [
-        { event: common.events.click, cb: (e) => e.stopPropagation() },
-      ],
+      listeners: [{ event: events.click, cb: (e) => e.stopPropagation() }],
     })
 
     this.cardInnerContainer = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.form.cardInnerContainer],
     })
 
     this.btnDeleteContainer = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.form.btnDeleteContainer],
     })
 
     this.btnDelete = createElementFn({
-      element: common.elements.button,
+      element: elements.button,
       classes: [classNames.form.btnDelete],
       textContent: 'X',
       listeners: [
         {
-          event: common.events.click,
-          cb: () => curtain.toggleShow(common.toggle.off),
+          event: events.click,
+          cb: () => curtain.toggleShow(common.off),
         },
       ],
     })
 
     this.titleContainer = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.form.titleContainer],
     })
 
     this.title = createElementFn({
-      element: common.elements.h(3),
+      element: elements.h(3),
       classes: [classNames.form.title],
       textContent: info.writeMessage,
     })
 
     this.formContainer = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.form.container],
     })
 
     this.form = createElementFn({
-      element: common.elements.form,
+      element: elements.form,
       classes: [classNames.form.main],
       listeners: [
-        { event: common.events.submit, cb: (e) => this.handleFormSubmit(e) },
+        { event: events.submit, cb: (e) => this.handleFormSubmit(e) },
       ],
     })
 
     this.formFields = formFieldsContent.map((field) =>
       createElementFn({
-        element: common.elements.div,
+        element: elements.div,
         classes: [
           classNames.form.field,
           `${classNames.form.field}-${field.name}`,
@@ -144,12 +147,12 @@ class Form {
     })()
 
     this.formSpinnerContainer = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.form.spinnerContainer],
     })
 
     this.formSpinner = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.form.spinner],
     })
   }
@@ -160,7 +163,7 @@ class Form {
     switch (type) {
       case common.submit:
         input = createElementFn({
-          element: common.elements.input,
+          element: elements.input,
           type,
           name,
           id: name,
@@ -170,25 +173,23 @@ class Form {
 
       default:
         lab = createElementFn({
-          element: common.elements.label,
+          element: elements.label,
           textContent: label,
           htmlFor: name,
         })
         input = createElementFn({
           element:
-            type === common.elements.textarea
-              ? common.elements.textarea
-              : common.elements.input,
+            type === elements.textarea ? elements.textarea : elements.input,
           type,
           name,
           id: name,
           listeners: [
             {
-              event: common.events.input,
+              event: events.input,
               cb: (e) => this.handleFormInputTyping(e, name),
             },
             {
-              event: common.events.focus,
+              event: events.focus,
               cb: (e) => this.handleFormInputFocus(e),
             },
           ],
@@ -196,7 +197,7 @@ class Form {
         break
     }
     const notificationEl = createElementFn({
-      element: common.elements.span,
+      element: elements.span,
       attributes: [{ name: common.fieldname, value: name }],
       classes: [
         type === common.submit
@@ -206,7 +207,7 @@ class Form {
       innerHTML: notification,
       listeners: [
         {
-          event: common.events.click,
+          event: events.click,
           cb: (e) => this.handleFormNotificationClick(e),
         },
       ],
@@ -273,11 +274,11 @@ class Form {
   }
 
   handleFormInputFocus(e) {
-    this.toggleBorderDanger(common.toggle.off, {
+    this.toggleBorderDanger(common.off, {
       element: e.target,
     })
-    this.toggleAlertMessage(common.toggle.off, {
-      element: e.target.parentElement.querySelector(common.elements.span),
+    this.toggleAlertMessage(common.off, {
+      element: e.target.parentElement.querySelector(elements.span),
     })
   }
 
@@ -285,21 +286,21 @@ class Form {
     e.target.parentElement
       .querySelector(
         e.target.attributes.fieldname.value === common.message
-          ? common.elements.textarea
-          : common.elements.input
+          ? elements.textarea
+          : elements.input
       )
       .focus()
   }
 
   handleCardComponentCreate() {
-    this.toggleBtnComponent(common.toggle.off)
+    this.toggleBtnComponent(common.off)
     this.createMainElements()
     this.createMainComponents()
-    curtain.toggleShow(common.toggle.on, {
+    curtain.toggleShow(common.on, {
       appendElements: [this.cardComponent],
       cbsToCallOnHidden: [
         () => {
-          this.toggleBtnComponent(common.toggle.on)
+          this.toggleBtnComponent(common.on)
           this.resetFormInputsValue()
           this.resetDataFromUser()
         },
@@ -309,10 +310,10 @@ class Form {
 
   async handleEmailSent() {
     return await fetch(mailEndPoint, {
-      method: common.fetch.methods.POST,
+      method: fetchProps.methods.POST,
       headers: {
-        [common.fetch.headers.props.ContentType]:
-          common.fetch.headers.values.applicationJson,
+        [fetchProps.headers.props.ContentType]:
+          fetchProps.headers.values.applicationJson,
       },
       body: JSON.stringify(this.dataFromUser),
     })
@@ -336,18 +337,18 @@ class Form {
     if (areEmptyFormInputsValue) return
 
     this.disableFormInputs()
-    this.toggleDeleteBtnComponent(common.toggle.on)
-    this.toggleSpinnerComponent(common.toggle.on)
-    this.toggleSubmitlNotifications(common.toggle.on, {
+    this.toggleDeleteBtnComponent(common.on)
+    this.toggleSpinnerComponent(common.on)
+    this.toggleSubmitlNotifications(common.on, {
       firstNotificationDelay: 2000,
       secondNotificationDelay: 8000,
       thirdNotificationDelay: 15000,
     })
 
     await this.handleEmailSent()
-    this.toggleDeleteBtnComponent(common.toggle.off)
-    this.toggleSpinnerComponent(common.toggle.off)
-    this.toggleSubmitlNotifications(common.toggle.off, {})
+    this.toggleDeleteBtnComponent(common.off)
+    this.toggleSpinnerComponent(common.off)
+    this.toggleSubmitlNotifications(common.off, {})
   }
 
   toggleDeleteBtnComponent(toggle) {
@@ -356,15 +357,15 @@ class Form {
         elements: [this.btnDeleteComponent],
         styleProps: [
           {
-            name: common.styleProps.names.visibility,
+            name: styleProps.names.visibility,
             value:
-              toggle === common.toggle.on
-                ? common.styleProps.values.hidden
-                : common.styleProps.values.visible,
+              toggle === common.on
+                ? styleProps.values.hidden
+                : styleProps.values.visible,
           },
           {
-            name: common.styleProps.names.opacity,
-            value: toggle === common.toggle.on ? 0 : 1,
+            name: styleProps.names.opacity,
+            value: toggle === common.on ? 0 : 1,
           },
         ],
       },
@@ -376,22 +377,22 @@ class Form {
     { firstNotificationDelay, secondNotificationDelay, thirdNotificationDelay }
   ) {
     const formSubmitnotification = this.formSubmitInput.parentElement.querySelector(
-      common.elements.span
+      elements.span
     )
 
     switch (toggle) {
-      case common.toggle.on:
+      case common.on:
         this.showNotificationTimeout = setPropsFn(
           [
             {
               elements: [formSubmitnotification],
               styleProps: [
                 {
-                  name: common.styleProps.names.visibility,
-                  value: common.styleProps.values.visible,
+                  name: styleProps.names.visibility,
+                  value: styleProps.values.visible,
                 },
                 {
-                  name: common.styleProps.names.opacity,
+                  name: styleProps.names.opacity,
                   value: 1,
                 },
               ],
@@ -405,7 +406,7 @@ class Form {
               elements: [formSubmitnotification],
               props: [
                 {
-                  name: common.props.names.innerHTML,
+                  name: elementProps.names.innerHTML,
                   value: info.momentLonger,
                 },
               ],
@@ -419,7 +420,7 @@ class Form {
               elements: [formSubmitnotification],
               props: [
                 {
-                  name: common.props.names.innerHTML,
+                  name: elementProps.names.innerHTML,
                   value: info.sendingNow,
                 },
               ],
@@ -429,7 +430,7 @@ class Form {
         )
         break
 
-      case common.toggle.off:
+      case common.off:
         clearInterval(this.showNotificationTimeout)
         clearInterval(this.changeFirstNotificationTimout)
         clearInterval(this.changeSecondNotificationTimout)
@@ -438,11 +439,11 @@ class Form {
             elements: [formSubmitnotification],
             styleProps: [
               {
-                name: common.styleProps.names.visibility,
-                value: common.styleProps.values.hidden,
+                name: styleProps.names.visibility,
+                value: styleProps.values.hidden,
               },
               {
-                name: common.styleProps.names.opacity,
+                name: styleProps.names.opacity,
                 value: 0,
               },
             ],
@@ -460,15 +461,15 @@ class Form {
         elements: [element],
         styleProps: [
           {
-            name: common.styleProps.names.visibility,
+            name: styleProps.names.visibility,
             value:
-              toggle === common.toggle.on
-                ? common.styleProps.values.visible
-                : common.styleProps.values.hidden,
+              toggle === common.on
+                ? styleProps.values.visible
+                : styleProps.values.hidden,
           },
           {
-            name: common.styleProps.names.opacity,
-            value: toggle === common.toggle.on ? 1 : 0,
+            name: styleProps.names.opacity,
+            value: toggle === common.on ? 1 : 0,
           },
         ],
       },
@@ -488,11 +489,11 @@ class Form {
         elements: [this.btnComponent],
         styleProps: [
           {
-            name: common.styleProps.names.transform,
+            name: styleProps.names.transform,
             value:
-              toggle === common.toggle.on
-                ? common.styleProps.values.translateX(0)
-                : common.styleProps.values.translateX(-100),
+              toggle === common.on
+                ? styleProps.values.translateX(0)
+                : styleProps.values.translateX(-100),
           },
         ],
       },
@@ -505,11 +506,11 @@ class Form {
         elements: [this.formSubmitInput],
         styleProps: [
           {
-            name: common.styleProps.names.display,
+            name: styleProps.names.display,
             value:
-              toggle === common.toggle.on
-                ? common.styleProps.values.none
-                : common.styleProps.values.block,
+              toggle === common.on
+                ? styleProps.values.none
+                : styleProps.values.block,
           },
         ],
       },
@@ -517,11 +518,11 @@ class Form {
         elements: [this.formSpinnerComponent],
         styleProps: [
           {
-            name: common.styleProps.names.display,
+            name: styleProps.names.display,
             value:
-              toggle === common.toggle.on
-                ? common.styleProps.values.flex
-                : common.styleProps.values.none,
+              toggle === common.on
+                ? styleProps.values.flex
+                : styleProps.values.none,
           },
         ],
       },
@@ -546,20 +547,20 @@ class Form {
           elements: [this.titleComponent],
           styleProps: [
             {
-              name: common.styleProps.names.top,
+              name: styleProps.names.top,
               value: '50%',
             },
             {
-              name: common.styleProps.names.transition,
+              name: styleProps.names.transition,
               value: '0.9s',
             },
             {
-              name: common.styleProps.names.position,
-              value: common.styleProps.values.relative,
+              name: styleProps.names.position,
+              value: styleProps.values.relative,
             },
             {
-              name: common.styleProps.names.transform,
-              value: common.styleProps.values.translateY(-50),
+              name: styleProps.names.transform,
+              value: styleProps.values.translateY(-50),
             },
           ],
         },
@@ -568,24 +569,24 @@ class Form {
           elements: [this.formComponent],
           styleProps: [
             {
-              name: common.styleProps.names.transition,
+              name: styleProps.names.transition,
               value: '0.3s',
             },
             {
-              name: common.styleProps.names.height,
+              name: styleProps.names.height,
               value: '0px',
             },
             {
-              name: common.styleProps.names.overflow,
-              value: common.styleProps.values.hidden,
+              name: styleProps.names.overflow,
+              value: styleProps.values.hidden,
             },
             {
-              name: common.styleProps.names.opacity,
+              name: styleProps.names.opacity,
               value: 0,
             },
             {
-              name: common.styleProps.names.visibility,
-              value: common.styleProps.values.hidden,
+              name: styleProps.names.visibility,
+              value: styleProps.values.hidden,
             },
           ],
         },
@@ -593,7 +594,7 @@ class Form {
           elements: [this.title],
           props: [
             {
-              name: common.props.names.innerHTML,
+              name: elementProps.names.innerHTML,
               value: message,
             },
           ],
@@ -607,9 +608,9 @@ class Form {
     let isEmptyInputValue = false
     this.formTextInputs.map((input) => {
       if (input.value === '') {
-        this.toggleBorderDanger(common.toggle.on, { element: input })
-        this.toggleAlertMessage(common.toggle.on, {
-          element: input.parentElement.querySelector(common.elements.span),
+        this.toggleBorderDanger(common.on, { element: input })
+        this.toggleAlertMessage(common.on, {
+          element: input.parentElement.querySelector(elements.span),
         })
         isEmptyInputValue = true
       }
@@ -627,13 +628,13 @@ class Form {
           elements: [input],
           props: [
             {
-              name: common.props.names.disabled,
+              name: elementProps.names.disabled,
               value: true,
             },
           ],
           styleProps: [
             {
-              name: common.styleProps.names.opacity,
+              name: styleProps.names.opacity,
               value: 0.4,
             },
           ],

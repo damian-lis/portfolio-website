@@ -4,7 +4,7 @@ import {
   appendElementsToContainerFn,
   setClassesFn,
 } from '/scripts/helpers/index.js'
-import { classNames, common, info } from '/data/global/names.js'
+import { classNames, info, elements } from '/data/global/names.js'
 
 class SneakPeeks {
   constructor(container, trigger, wrapper, data) {
@@ -25,59 +25,59 @@ class SneakPeeks {
 
   createElements() {
     this.mainContainer = createElementFn({
-      element: common.elements.div,
+      element: elements.div,
       classes: [classNames.sneakPeeks.container],
     })
 
     this.elements = this.data.map((dataPortion) => {
       const linkWrapper = dataPortion.duringDevelopment
         ? createElementFn({
-            element: common.elements.a,
+            element: elements.a,
             classes: [classNames.sneakPeek.linkWrapper],
           })
         : createElementFn({
-            element: common.elements.a,
-            classes: [classNames.sneakPeek.linkWrapper],
+            element: elements.a,
+            classes: [classNames.sneakPeekapper],
             href: dataPortion.route,
           })
 
       const container = createElementFn({
-        element: common.elements.div,
+        element: elements.div,
         classes: [classNames.sneakPeek.container],
       })
 
       const thubnail = createElementFn({
-        element: common.elements.img,
+        element: elements.img,
         classes: [classNames.sneakPeek.thubnail],
         src: dataPortion.image,
         alt: dataPortion.alt,
       })
 
       const prevContainer = createElementFn({
-        element: common.elements.div,
+        element: elements.div,
         classes: [classNames.sneakPeek.preview],
       })
 
       const title = createElementFn({
-        element: common.elements.h(6),
+        element: elements.h(6),
         classes: [classNames.sneakPeek.title],
         textContent: dataPortion.title,
       })
 
       const intro = createElementFn({
-        element: common.elements.p,
+        element: elements.p,
         classes: [classNames.sneakPeek.intro],
         textContent: dataPortion.intro,
       })
 
       const iconsContainer = createElementFn({
-        element: common.elements.div,
+        element: elements.div,
         classes: [classNames.sneakPeek.iconsContainer],
       })
 
       const icons = dataPortion.icons.map((iconEl) => {
         const icon = createElementFn({
-          element: common.elements.img,
+          element: elements.img,
           src: iconEl.image,
         })
         return icon
@@ -85,14 +85,14 @@ class SneakPeeks {
 
       const ribbonContainer = dataPortion.duringDevelopment
         ? createElementFn({
-            element: common.elements.div,
+            element: elements.div,
             classes: [classNames.sneakPeek.ribbon],
           })
         : null
 
       const ribbonText = dataPortion.duringDevelopment
         ? createElementFn({
-            element: common.elements.p,
+            element: elements.p,
             classes: [classNames.sneakPeek.ribbonText],
             innerHTML: info.duringDevelopment,
           })

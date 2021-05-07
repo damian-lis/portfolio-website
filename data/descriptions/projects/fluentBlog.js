@@ -1,9 +1,9 @@
-import { classNames, common } from '/data/global/names.js'
+import { classNames, common, elements } from '/data/global/names.js'
 
 export default [
   {
     type: common.headline,
-    element: common.elements.h(2),
+    element: elements.h(2),
     content: 'Short app description',
     classes: [
       classNames.utilities.text.center,
@@ -12,7 +12,7 @@ export default [
   },
   {
     type: common.header,
-    element: common.elements.h(3),
+    element: elements.h(3),
     content: '1. Introduction',
     classes: [
       classNames.utilities.margin('t', 40),
@@ -21,7 +21,7 @@ export default [
   },
   {
     type: common.image,
-    element: common.elements.img,
+    element: elements.img,
     content: '/images/projects/FluentBlog/viewSites.gif',
     classes: [
       classNames.utilities.border.rounded,
@@ -31,7 +31,7 @@ export default [
   },
   {
     type: common.paragraph,
-    element: common.elements.p,
+    element: elements.p,
     content: [
       'The application was built using the Next.js technology due to the speed and ease of development, efficiency and the ability to render the code on the server side, which contributes to better SEO.',
       'Below is quickly view of app:',
@@ -47,8 +47,8 @@ export default [
   {
     type: common.link,
     elements: {
-      link: common.elements.a,
-      paragraph: common.elements.p,
+      link: elements.a,
+      paragraph: elements.p,
     },
     content: {
       paragraph: 'Check entire website ',
@@ -67,8 +67,8 @@ export default [
   {
     type: common.link,
     elements: {
-      link: common.elements.a,
-      paragraph: common.elements.p,
+      link: elements.a,
+      paragraph: elements.p,
     },
     content: {
       paragraph: 'Check github repository ',
