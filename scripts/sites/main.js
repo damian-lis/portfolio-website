@@ -8,7 +8,7 @@ import {
 import {
   Sound,
   Form,
-  Posts,
+  SneakPeeks,
   Theme,
   Particles,
   DescriptionArrange,
@@ -16,12 +16,12 @@ import {
 
 new DescriptionArrange(idReferences.about.description, aboutDescription)
 new DescriptionArrange(idReferences.skills.description, skillsDescription)
-new Sound(idReferences.global.leftContainer, idReferences.posts.trigger)
-new Form(idReferences.global.leftContainer, idReferences.posts.trigger)
+new Sound(idReferences.global.leftContainer, idReferences.sneakPeeks.trigger)
+new Form(idReferences.global.leftContainer, idReferences.sneakPeeks.trigger)
 new Theme(idReferences.theme.main, themes, Particles)
-new Posts(
-  idReferences.posts.main,
-  idReferences.posts.trigger,
-  idReferences.posts.wrapper,
+new SneakPeeks(
+  idReferences.sneakPeeks.main,
+  idReferences.sneakPeeks.trigger,
+  idReferences.sneakPeeks.wrapper,
   sneakPeeks
 )

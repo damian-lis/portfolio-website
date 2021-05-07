@@ -6,7 +6,7 @@ import {
 } from '/scripts/helpers/index.js'
 import { classNames, common, info } from '/data/global/names.js'
 
-class Posts {
+class SneakPeeks {
   constructor(container, trigger, wrapper, data) {
     const containerSent = document.querySelector(container)
     this.triggerElement = document.querySelector(trigger)
@@ -15,7 +15,7 @@ class Posts {
 
     this.createElements()
     this.createComponents()
-    appendElementsToContainerFn([this.postsComponent], containerSent)
+    appendElementsToContainerFn([this.sneakPeeksComponent], containerSent)
 
     triggerActionOnWindowScrollFn({
       onWhatElement: this.triggerElement,
@@ -24,55 +24,55 @@ class Posts {
   }
 
   createElements() {
-    this.postsContainer = createElementFn({
+    this.mainContainer = createElementFn({
       element: common.elements.div,
-      classes: [classNames.posts.container],
+      classes: [classNames.sneakPeeks.container],
     })
 
-    this.postsElements = this.data.map((dataPortion) => {
+    this.elements = this.data.map((dataPortion) => {
       const linkWrapper = dataPortion.duringDevelopment
         ? createElementFn({
             element: common.elements.a,
-            classes: [classNames.post.linkWrapper],
+            classes: [classNames.sneakPeek.linkWrapper],
           })
         : createElementFn({
             element: common.elements.a,
-            classes: [classNames.post.linkWrapper],
+            classes: [classNames.sneakPeek.linkWrapper],
             href: dataPortion.route,
           })
 
-      const postContainer = createElementFn({
+      const container = createElementFn({
         element: common.elements.div,
-        classes: [classNames.post.container],
+        classes: [classNames.sneakPeek.container],
       })
 
       const thubnail = createElementFn({
         element: common.elements.img,
-        classes: [classNames.post.thubnail],
+        classes: [classNames.sneakPeek.thubnail],
         src: dataPortion.image,
         alt: dataPortion.alt,
       })
 
-      const postPrevContainer = createElementFn({
+      const prevContainer = createElementFn({
         element: common.elements.div,
-        classes: [classNames.post.preview],
+        classes: [classNames.sneakPeek.preview],
       })
 
-      const postTitle = createElementFn({
+      const title = createElementFn({
         element: common.elements.h(6),
-        classes: [classNames.post.title],
+        classes: [classNames.sneakPeek.title],
         textContent: dataPortion.title,
       })
 
-      const postIntro = createElementFn({
+      const intro = createElementFn({
         element: common.elements.p,
-        classes: [classNames.post.intro],
+        classes: [classNames.sneakPeek.intro],
         textContent: dataPortion.intro,
       })
 
       const iconsContainer = createElementFn({
         element: common.elements.div,
-        classes: [classNames.post.iconsContainer],
+        classes: [classNames.sneakPeek.iconsContainer],
       })
 
       const icons = dataPortion.icons.map((iconEl) => {
@@ -83,53 +83,53 @@ class Posts {
         return icon
       })
 
-      const postRibbonContainer = dataPortion.duringDevelopment
+      const ribbonContainer = dataPortion.duringDevelopment
         ? createElementFn({
             element: common.elements.div,
-            classes: [classNames.post.ribbon],
+            classes: [classNames.sneakPeek.ribbon],
           })
         : null
 
-      const postRibbonText = dataPortion.duringDevelopment
+      const ribbonText = dataPortion.duringDevelopment
         ? createElementFn({
             element: common.elements.p,
-            classes: [classNames.post.ribbonText],
+            classes: [classNames.sneakPeek.ribbonText],
             innerHTML: info.duringDevelopment,
           })
         : null
 
       return {
         linkWrapper,
-        postContainer,
+        container,
         thubnail,
-        postPrevContainer,
-        postTitle,
-        postIntro,
+        prevContainer,
+        title,
+        intro,
         iconsContainer,
         icons,
-        postRibbonContainer,
-        postRibbonText,
+        ribbonContainer,
+        ribbonText,
       }
     })
   }
 
   createComponents() {
-    this.postComponents = this.postsElements.map(
+    this.sneakPeekComponents = this.elements.map(
       ({
         linkWrapper,
-        postContainer,
+        container,
         thubnail,
-        postPrevContainer,
-        postTitle,
-        postIntro,
+        prevContainer,
+        title,
+        intro,
         iconsContainer,
         icons,
-        postRibbonContainer,
-        postRibbonText,
+        ribbonContainer,
+        ribbonText,
       }) => {
-        const postPrevComponent = appendElementsToContainerFn(
-          [postTitle, postIntro],
-          postPrevContainer
+        const prevComponent = appendElementsToContainerFn(
+          [title, intro],
+          prevContainer
         )
 
         const iconComponents = appendElementsToContainerFn(
@@ -137,25 +137,25 @@ class Posts {
           iconsContainer
         )
 
-        let postComponent = appendElementsToContainerFn(
-          [thubnail, postPrevComponent, iconComponents],
-          postContainer
+        let sneakPeekComponent = appendElementsToContainerFn(
+          [thubnail, prevComponent, iconComponents],
+          container
         )
 
-        if (postRibbonContainer && postRibbonText) {
-          const postRibbonComponent = appendElementsToContainerFn(
-            [postRibbonText],
-            postRibbonContainer
+        if (ribbonContainer && ribbonText) {
+          const ribbonComponent = appendElementsToContainerFn(
+            [ribbonText],
+            ribbonContainer
           )
 
-          postComponent = appendElementsToContainerFn(
-            [thubnail, postPrevComponent, iconComponents, postRibbonComponent],
-            postContainer
+          sneakPeekComponent = appendElementsToContainerFn(
+            [thubnail, prevComponent, iconComponents, ribbonComponent],
+            container
           )
         }
 
         const linkWrapperComponent = appendElementsToContainerFn(
-          [postComponent],
+          [sneakPeekComponent],
           linkWrapper
         )
 
@@ -163,9 +163,9 @@ class Posts {
       }
     )
 
-    this.postsComponent = appendElementsToContainerFn(
-      this.postComponents,
-      this.postsContainer
+    this.sneakPeeksComponent = appendElementsToContainerFn(
+      this.sneakPeekComponents,
+      this.mainContainer
     )
   }
 
@@ -183,4 +183,4 @@ class Posts {
   }
 }
 
-export default Posts
+export default SneakPeeks

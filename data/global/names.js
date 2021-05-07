@@ -159,7 +159,7 @@ export const idNames = {
     leftContainer: 'global-left-container',
   },
 
-  posts: {
+  sneakPeeks: {
     hook: 'posts-hook',
     wrapper: 'posts-wrapper',
   },
@@ -201,22 +201,22 @@ export const classNames = {
     leftBtn: 'global-left-btn',
   },
 
-  posts: {
-    hook: 'posts-hook',
-    wrapper: 'posts-wrapper',
-    container: 'posts-container',
+  sneakPeeks: {
+    hook: 'sneakPeeks-hook',
+    wrapper: 'sneakPeeks-wrapper',
+    container: 'sneakPeeks-container',
   },
 
-  post: {
-    linkWrapper: 'post-link-wrapper',
-    container: 'post-container',
-    thubnail: 'post-thubnail',
-    preview: 'post-preview',
-    title: 'post-title',
-    intro: 'post-intro',
-    iconsContainer: 'post-icons-container',
-    ribbon: 'post-ribbon',
-    ribbonText: 'post-ribbon-text',
+  sneakPeek: {
+    linkWrapper: 'sneakPeek-link-wrapper',
+    container: 'sneakPeek-container',
+    thubnail: 'sneakPeek-thubnail',
+    preview: 'sneakPeek-preview',
+    title: 'sneakPeek-title',
+    intro: 'sneakPeek-intro',
+    iconsContainer: 'sneakPeek-icons-container',
+    ribbon: 'sneakPeek-ribbon',
+    ribbonText: 'sneakPeek-ribbon-text',
   },
 
   preview: {
@@ -286,10 +286,10 @@ export const idReferences = {
     mainContainer: '#global-main-container',
     leftContainer: '#global-left-container',
   },
-  posts: {
-    main: '#posts',
-    trigger: '#posts-trigger',
-    wrapper: '#posts-wrapper',
+  sneakPeeks: {
+    main: '#sneakPeeks',
+    trigger: '#sneakPeeks-trigger',
+    wrapper: '#sneakPeeks-wrapper',
   },
   theme: {
     main: '#theme',

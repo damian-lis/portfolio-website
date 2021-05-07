@@ -1,25 +1,25 @@
-#posts-hook {
+#sneakPeeks-hook {
   height: 1px;
 }
 
-#posts-wrapper {
+#sneakPeeks-wrapper {
   position: relative;
   transform: translateY(-100%);
   opacity: 0;
 }
 
-.posts-container {
+.sneakPeeks-container {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 320px);
   gap: 20px;
 }
 
-.post-link-wrapper:hover {
+.sneakPeek-link-wrapper:hover {
   text-decoration: none;
 }
 
-.post-container {
+.sneakPeek-container {
   position: relative;
   height: 100%;
   display: flex;
@@ -35,11 +35,11 @@
   overflow: hidden;
 }
 
-.post-container:hover {
+.sneakPeek-container:hover {
   transform: scale(1.03);
 }
 
-.post-thubnail {
+.sneakPeek-thubnail {
   display: block;
   width: 98%;
   height: 180px;
@@ -51,38 +51,38 @@
   box-shadow: -1px 1px 3px -1px rgba(0, 0, 0, 0.75);
 }
 
-.post-preview {
+.sneakPeek-preview {
   display: flex;
   flex-direction: column;
   padding: 15px 15px 0px 15px;
   flex-grow: 1;
 }
 
-.post-title {
+.sneakPeek-title {
   margin: 0;
 
   color: black;
 }
 
-.post-intro {
+.sneakPeek-intro {
   font-size: 14px;
   color: #222222;
 }
 
-.post-icons-container {
+.sneakPeek-icons-container {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
   padding: 0 10px;
 }
 
-.post-icons-container img {
+.sneakPeek-icons-container img {
   width: 45px;
   height: 45px;
   margin: 3px 1px;
 }
 
-.post-ribbon {
+.sneakPeek-ribbon {
   position: absolute;
   top: 12%;
   right: 12%;
@@ -95,18 +95,18 @@
   background-color: var(--borderColor);
 }
 
-.post-ribbon-text {
+.sneakPeek-ribbon-text {
   margin-left: -10%;
 }
 
 @media screen and (max-width: 800px) {
-  .posts-container {
+  .sneakPeeks-container {
     grid-template-columns: repeat(auto-fit, 300px);
   }
 }
 
 @media screen and (max-width: 400px) {
-  .posts-container {
+  .sneakPeeks-container {
     grid-template-columns: repeat(auto-fit, 270px);
   }
 }
