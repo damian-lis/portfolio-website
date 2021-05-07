@@ -24,11 +24,11 @@ export default [
       listItem: elements.li,
     },
     content: [
-      'HTML (Semanthic writing),',
-      'CSS (SASS, BEM, TailwindCSS and basic level of Bootstrap),',
-      'JavaScript (OOP, Design Patterns, Functional Programming),',
-      'React (Redux, Hooks, Styled Components, Compound Components etc.),',
-      'Next (basic understanding the concept of server side rendering),',
+      '- HTML (Semanthic writing),',
+      '- CSS (SASS, BEM, TailwindCSS and basic level of Bootstrap),',
+      '- JavaScript (OOP, Design Patterns, Functional Programming),',
+      '- React (Redux, Hooks, Styled Components, Compound Components etc.),',
+      '- Next (basic understanding the concept of server side rendering),',
     ],
     classes: {
       listItem: [
@@ -49,8 +49,8 @@ export default [
       listItem: elements.li,
     },
     content: [
-      'Node/Express (simple E-COMMERCE backend with REST API),',
-      'MongoDB (simple handle with Express)',
+      '- Node/Express (simple E-COMMERCE backend with REST API),',
+      '- MongoDB (simple handle with Express)',
     ],
     classes: {
       listItem: [
@@ -70,7 +70,7 @@ export default [
       list: elements.ul,
       listItem: elements.li,
     },
-    content: ['PHP (basic level)'],
+    content: ['- PHP (basic level)'],
     classes: {
       listItem: [
         classNames.utilities.margin('b', 0, classNames.utilities.dash),
