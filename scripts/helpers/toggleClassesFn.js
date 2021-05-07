@@ -1,6 +1,6 @@
 import { common } from '/data/global/names.js'
 
-export default (toggle, { elements, classes }) => {
+export default (toggle, { elements = [], classes = [] }) => {
   classes.map((classEl) => {
     elements.map((el) => {
       switch (toggle) {

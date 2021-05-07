@@ -9,9 +9,7 @@ export default ({ element, ...rest }) => {
         case common.listeners:
           rest[propEl].map((listener) => {
             const { event, cb } = listener
-            createdElement.addEventListener(event, (e) => {
-              cb(e)
-            })
+            createdElement.addEventListener(event, (e) => cb(e))
           })
           break
 
@@ -29,9 +27,9 @@ export default ({ element, ...rest }) => {
           break
 
         case common.styles:
-          rest[propEl].map((styleObj) => {
-            createdElement.style[styleObj.name] = styleObj.value
-          })
+          rest[propEl].map(
+            (styleObj) => (createdElement.style[styleObj.name] = styleObj.value)
+          )
           break
 
         default:

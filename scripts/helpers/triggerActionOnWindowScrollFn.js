@@ -15,13 +15,8 @@ export default ({
   }
 
   window.addEventListener(events.scroll, () => {
-    if (
-      window.innerHeight + window.pageYOffset * modifier >
-      element.offsetTop
-    ) {
-      cbOnEnterTriggerEl(element)
-    } else {
-      cbOnExitTriggerEl(element)
-    }
+    window.innerHeight + window.pageYOffset * modifier > element.offsetTop
+      ? cbOnEnterTriggerEl(element)
+      : cbOnExitTriggerEl(element)
   })
 }

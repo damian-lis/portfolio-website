@@ -1,4 +1,4 @@
-export default (objs, delay) => {
+export default (objs = [], delay) => {
   if (delay) {
     return setTimeout(
       () =>
