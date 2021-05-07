@@ -3,9 +3,9 @@ import {
   appendElementsToContainerFn,
   setPropsFn,
   toggleClassesFn,
-} from '../helpers/index.js'
+} from '/scripts/helpers/index.js'
 
-import { classNames, idReferences, common } from '../../data/global/names.js'
+import { classNames, idReferences, common } from '/data/global/names.js'
 
 class Curtain {
   constructor(container) {

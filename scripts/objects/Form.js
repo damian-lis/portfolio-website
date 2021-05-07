@@ -5,7 +5,7 @@ import {
   appendElementsToContainerFn,
   setPropsFn,
   toggleClassesFn,
-} from '../helpers/index.js'
+} from '/scripts/helpers/index.js'
 import {
   classNames,
   mailEndPoint,
@@ -13,7 +13,7 @@ import {
   formFieldsContent,
   common,
   info,
-} from '../../data/global/names.js'
+} from '/data/global/names.js'
 
 class Form {
   constructor(container, trigger) {

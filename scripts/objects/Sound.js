@@ -3,8 +3,8 @@ import {
   triggerActionOnWindowScrollFn,
   appendElementsToContainerFn,
   setPropsFn,
-} from '../helpers/index.js'
-import { classNames, src, common } from '../../data/global/names.js'
+} from '/scripts/helpers/index.js'
+import { classNames, src, common } from '/data/global/names.js'
 
 class Sound {
   constructor(container, trigger) {

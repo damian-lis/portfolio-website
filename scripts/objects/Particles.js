@@ -2,8 +2,8 @@ import Particle from './Particle.js'
 import {
   createElementFn,
   appendElementsToContainerFn,
-} from '../helpers/index.js'
-import { idNames, common } from '../../data/global/names.js'
+} from '/scripts/helpers/index.js'
+import { idNames, common } from '/data/global/names.js'
 
 class Particles {
   constructor() {

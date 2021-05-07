@@ -12,7 +12,7 @@ import {
   Theme,
   Particles,
   DataArrange,
-} from '../objects/index.js'
+} from '/scripts/objects/index.js'
 
 new DataArrange(idReferences.about.description, aboutDescription)
 new DataArrange(idReferences.skills.description, skillsDescription)

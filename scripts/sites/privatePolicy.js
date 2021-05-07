@@ -1,6 +1,6 @@
 import themes from '/data/global/themes.js'
-import { idReferences } from '../../data/global/names.js'
-import { privatePolicyDescription } from '/data/projects/index.js'
+import { idReferences } from '/data/global/names.js'
+import { privatePolicyDescription } from '/data/descriptions/index.js'
 import {
   DataArrange,
   Theme,
@@ -8,7 +8,7 @@ import {
   Form,
   BackBtn,
   Sound,
-} from '../objects/index.js'
+} from '/scripts/objects/index.js'
 
 new Theme(idReferences.theme.main, themes, Particles)
 new DataArrange(idReferences.project.description, privatePolicyDescription)

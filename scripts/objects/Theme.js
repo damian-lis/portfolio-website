@@ -2,8 +2,8 @@ import {
   createElementFn,
   appendElementsToContainerFn,
   setActiveFn,
-} from '../helpers/index.js'
-import { classNames, common, info } from '../../data/global/names.js'
+} from '/scripts/helpers/index.js'
+import { classNames, common, info } from '/data/global/names.js'
 
 class Theme {
   constructor(container, themesObject, BackgroundObj) {

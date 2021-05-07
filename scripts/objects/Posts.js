@@ -3,8 +3,8 @@ import {
   triggerActionOnWindowScrollFn,
   appendElementsToContainerFn,
   setClassesFn,
-} from '../helpers/index.js'
-import { classNames, common, info } from '../../data/global/names.js'
+} from '/scripts/helpers/index.js'
+import { classNames, common, info } from '/data/global/names.js'
 
 class Posts {
   constructor(container, trigger, wrapper, data) {

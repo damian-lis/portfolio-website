@@ -8,7 +8,7 @@ import {
   Form,
   BackBtn,
   Sound,
-} from '../objects/index.js'
+} from '/scripts/objects/index.js'
 
 new Theme(idReferences.theme.main, themes, Particles)
 new DataArrange(idReferences.project.description, fluentBlogDescription)
