@@ -115,6 +115,9 @@ export const info = {
   momentLonger: 'literally wait a moment longer! ⚡',
   sendingNow: "I'm sending now! 🚀",
   writeMessage: 'Write to me a message',
+  messageSent: 'Message sent! 😎',
+  somethingWentWrong: 'Something went wrong, try again! 😬',
+  unableToConnect: 'Unable to connect to the server 😔',
 }
 
 export const formFieldsContent = [

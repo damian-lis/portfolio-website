@@ -320,17 +320,12 @@ class Form {
       body: JSON.stringify(this.dataFromUser),
     })
       .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          this.showMessageAfterSubmit(data.message)
-        } else {
-          this.showMessageAfterSubmit(data.message)
-        }
-      })
-      .catch(() => {
-        const message = 'Unable to connect to the server 😔'
-        this.showMessageAfterSubmit(message)
-      })
+      .then((data) =>
+        data.success
+          ? this.showMessageAfterSubmit(info.messageSent)
+          : this.showMessageAfterSubmit(info.somethingWentWrong)
+      )
+      .catch(() => this.showMessageAfterSubmit(info.unableToConnecte))
   }
 
   async handleFormSubmit(e) {
