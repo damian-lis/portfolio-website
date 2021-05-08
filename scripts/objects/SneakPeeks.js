@@ -39,7 +39,7 @@ class SneakPeeks {
           })
         : createElementFn({
             element: elements.a,
-            classes: [classNames.sneakPeekapper],
+            classes: [classNames.sneakPeek.linkWrapper],
             href: dataPortion.route,
           })
 
