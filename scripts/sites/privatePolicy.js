@@ -15,6 +15,6 @@ new BackBtn(idReferences.global.leftContainer)
 new Sound(idReferences.global.leftContainer)
 new Form(idReferences.global.leftContainer)
 new DescriptionArrange(
-  idReferences.project.description,
+  idReferences.privatePolicy.description,
   privatePolicyDescription
 )

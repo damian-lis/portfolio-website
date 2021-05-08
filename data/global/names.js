@@ -303,6 +303,9 @@ export const idReferences = {
   skills: {
     description: '#skills-description',
   },
+  privatePolicy: {
+    description: '#pricatePolicy-description',
+  },
 }
 
 export const paths = {
