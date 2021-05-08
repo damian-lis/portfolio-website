@@ -304,7 +304,7 @@ export const idReferences = {
     description: '#skills-description',
   },
   privatePolicy: {
-    description: '#pricatePolicy-description',
+    description: '#privatePolicy-description',
   },
 }
 
