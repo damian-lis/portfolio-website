@@ -19,6 +19,7 @@ class Curtain {
     if (Curtain.instance == null) {
       Curtain.instance = this
       const sentContainer = document.querySelector(container)
+      this.preventHidden = false
       this.cbsToCallOnHidden = []
       this.children = []
 
@@ -49,8 +50,10 @@ class Curtain {
         break
 
       case common.off:
+        if (this.preventHidden) return
         this.callCbsOnHidden()
         this.clear({ after: 200 })
+
         break
 
       default:
@@ -100,6 +103,10 @@ class Curtain {
       elements: [this.mainContainer],
       classes: [classNames.curtain.active],
     })
+  }
+
+  togglePreventHidden(toggle) {
+    this.preventHidden = toggle === common.on ? true : false
   }
 
   callCbsOnHidden() {

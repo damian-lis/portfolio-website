@@ -341,11 +341,12 @@ class Form {
       secondNotificationDelay: 8000,
       thirdNotificationDelay: 15000,
     })
-
+    curtain.togglePreventHidden(common.on)
     await this.handleEmailSent()
     this.toggleDeleteBtnComponent(common.off)
     this.toggleSpinnerComponent(common.off)
     this.toggleSubmitlNotifications(common.off, {})
+    curtain.togglePreventHidden(common.off)
   }
 
   toggleDeleteBtnComponent(toggle) {
