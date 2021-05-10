@@ -46,7 +46,7 @@ class Form {
       listeners: [
         {
           event: events.click,
-          cb: () => this.handleCardComponentCreate(),
+          cb: () => this.handleMainComponentCreate(),
         },
       ],
     })
@@ -294,7 +294,7 @@ class Form {
       .focus()
   }
 
-  handleCardComponentCreate() {
+  handleMainComponentCreate() {
     this.toggleBtnComponent(common.off)
     this.createMainElements()
     this.createMainComponents()
