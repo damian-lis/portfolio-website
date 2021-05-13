@@ -210,7 +210,8 @@ class Form {
       listeners: [
         {
           event: events.click,
-          cb: (e) => this.handleFormNotificationClick(e),
+          cb: (e) =>
+            type !== common.submit && this.handleFormNotificationClick(e),
         },
       ],
     })
@@ -357,13 +358,13 @@ class Form {
           {
             name: styleProps.names.visibility,
             value:
-              toggle === common.on
+              toggle === common.off
                 ? styleProps.values.hidden
                 : styleProps.values.visible,
           },
           {
             name: styleProps.names.opacity,
-            value: toggle === common.on ? 0 : 1,
+            value: toggle === common.off ? 0 : 1,
           },
         ],
       },
