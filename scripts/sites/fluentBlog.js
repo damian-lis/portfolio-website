@@ -7,11 +7,11 @@ import {
   Particles,
   Form,
   BackBtn,
-  Sound,
+  Audio,
 } from '/scripts/objects/index.js'
 
 new Theme(idReferences.theme.main, themes, Particles)
 new DescriptionArrange(idReferences.project.description, fluentBlogDescription)
 new BackBtn(idReferences.global.leftContainer)
-new Sound(idReferences.global.leftContainer)
+new Audio(idReferences.global.leftContainer, paths.fluentBlogPageInfo)
 new Form(idReferences.global.leftContainer)

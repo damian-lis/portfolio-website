@@ -3,7 +3,7 @@ import Particle from './Particle.js'
 import Particles from './Particles.js'
 import Form from './Form.js'
 import SneakPeeks from './SneakPeeks.js'
-import Sound from './Sound.js'
+import Audio from './Audio.js'
 import Theme from './Theme.js'
 import BackBtn from './BackBtn.js'
 
@@ -13,7 +13,7 @@ export {
   Particles,
   Form,
   SneakPeeks,
-  Sound,
+  Audio,
   Theme,
   BackBtn,
 }

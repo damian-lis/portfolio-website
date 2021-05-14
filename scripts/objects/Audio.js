@@ -13,10 +13,11 @@ import {
   events,
 } from '/data/global/names.js'
 
-class Sound {
-  constructor(container, trigger) {
+class Audio {
+  constructor(container, path, trigger) {
     const containerSent = document.querySelector(container)
     this.play = false
+    this.path = path
 
     this.createElements()
     this.createComponents()
@@ -36,7 +37,7 @@ class Sound {
   createElements() {
     this.audio = createElementFn({
       element: elements.audio,
-      src: paths.audioRecord,
+      src: this.path,
     })
 
     this.btn = createElementFn({
@@ -56,22 +57,9 @@ class Sound {
   }
 
   handleAudio() {
-    switch (this.play) {
-      case true:
-        this.img.src = paths.pauseImg
-        this.audio.pause()
-        this.play = false
-        break
-
-      case false:
-        this.audio.play()
-        this.img.src = paths.playImg
-        this.play = true
-        break
-
-      default:
-        break
-    }
+    this.play = !this.play
+    this.play ? this.audio.play() : this.audio.pause()
+    this.audioImg.src = this.play ? paths.playImg : paths.pauseImg
   }
 
   toggleBtnComponent(toggle) {
@@ -92,4 +80,4 @@ class Sound {
   }
 }
 
-export default Sound
+export default Audio
