@@ -57,12 +57,13 @@ The list of the most interesting solutions is presented below:
 
 &nbsp; &nbsp; &nbsp; &nbsp; 3.2.1. Logic of background animation by Particles object<br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 3.2.2. Option to set the site theme by Theme object<br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.2.3. Audio support on the site by Sound object<br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.2.4. A Curtain object that allows to attach components dynamically<br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.2.5. Dynamic form creation by Form object<br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.2.6. Possibility to go back to the home page by BackBtn object<br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.2.7. Create project sneak peeks by SneakPeeks object<br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.2.8. Create descriptions by DescriptionArrange object<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.2.3. Functionalities on the website called through the buttons on the left side of the page
+&nbsp; &nbsp; &nbsp; &nbsp; 3.2.4. Audio support on the site by Audio object<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.2.5. A Curtain object that allows to attach components dynamically<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.2.6. Dynamic form creation by Form object<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.2.7. Possibility to go back to the home page by BackBtn object<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.2.8. Create project sneak peeks by SneakPeeks object<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.2.9. Create descriptions by DescriptionArrange object<br/>
 
 <br/>
 <br/>
@@ -131,6 +132,8 @@ export const elements = {
   ul: 'ul',
   li: 'li',
 }
+
+more code here...
 ```
 
 Below is an example of the content of the themes.js file (data/global/themes.js):
@@ -205,7 +208,7 @@ Below are examples of description files:
 
 <!-- Zdjęcie descriptions -->
 
-In order to illustrate the content of the files regarding the description below, there is an example file with information about my skills (data/descriptions/skills.js):
+In order to illustrate the content of the files regarding the description, below there is an example file with information about my skills (data/descriptions/skills.js):
 
 ```
 import { common, classNames, elements } from '/data/global/names.js'
@@ -387,7 +390,7 @@ createMainElements() {
 }
 ```
 
-In the above example, we can see that thanks to this helper, we can very easily create interesting elements with different properties.
+In the above example, we can see that thanks to this helper, we can very easily create interesting elements (in this case this.mainContainer and this.mainContainerInner as div element) with different properties.
 
 <br/>
 
@@ -399,7 +402,7 @@ The objects folder contains various objects (classes) files with appropriate met
 
 These class objects were introduced to help manage the logic of certain components on the pages and to practice deeply object oriented programming.
 
-Below is an example of a combination of two objects (SneakPeeks.js and Sound.js) to show the similarities of properties and methods (scripts/objects/SneakPeeks.js):
+Below is an example of a combination of two objects (SneakPeeks.js and Audio.js) to show the similarities of properties and methods (scripts/objects/SneakPeeks.js):
 
 ```
 import {
@@ -452,7 +455,9 @@ class SneakPeeks {
 
 ```
 
-(scripts/objects/Sound.js):
+<br/>
+
+(scripts/objects/Audio.js):
 
 ```
 import {
@@ -470,10 +475,11 @@ import {
   events,
 } from '/data/global/names.js'
 
-class Sound {
-  constructor(container, trigger) {
+class Audio {
+  constructor(container, path, trigger) {
     const containerSent = document.querySelector(container)
     this.play = false
+    this.path = path
 
     this.createElements()
     this.createComponents()
@@ -493,7 +499,7 @@ class Sound {
   createElements() {
     this.audio = createElementFn({
       element: elements.audio,
-      src: paths.audioRecord,
+      src: this.path,
     })
 
     this.btn = createElementFn({
@@ -516,12 +522,15 @@ class Sound {
 }
 ```
 
-We can see in the above examples that methods such as createElements, createComponents and used helpers such as createElementsFn, appendElementsToContainerFn and triggerActionOnWindowScrollFn in both objects are the same (the rest of the objects are very similar).
+We can see in the above examples that methods such as createElements, createComponents and used helpers such as createElementsFn (implementation is here scripts/helpers/createElementFn.js), appendElementsToContainerFn (implementation is here scripts/helpers/appendElementsToContainerFn.js) and triggerActionOnWindowScrollFn (implementation is here scripts/helpers/triggerActionOnWindowScrollFn.js) in both objects are the same (the rest of the objects are very similar).
+
+The createElements method is responsible for creating elements with properties through the createElementFn helper, and the createComponents method by appendElementsToContainerFn helper for creating components from previously created elements.
+
+The appendElementsToContainerFn helper is also used to attach the given component or a components to the container object sent to it.
+
+The triggerActionOnWindowScrollFn helper is used to trigger the appropriate action when scrolling on the appropriate trigger element (in the following parts of the description, there will be a detailed explanation of how this helper works).
 
 Such a structure was designed to ensure ease of development and increase the developer experience.
-
-The createElements method is responsible for creating elements with properties through the createElementFn helper, and the createComponents method for creating components from previously created elements.
-The appendElementsToContainerFn helper is used to attach the given component or a components to the container object sent to it. The triggerActionOnWindowScrollFn helper is used to trigger the appropriate action when scrolling on the appropriate trigger element (in the following parts of the description, there will be a detailed explanation of how this helper works).
 
 <br/>
 
@@ -533,21 +542,25 @@ The structure of this folder is shown below:
 
 As we can see above, in the plugins folder there is only the prism.js file, which is responsible for the appropriate arrangement of the code presented on the page. The second file of this package is in the styles/plugins/prism.css folder, which is responsible for the appropriate styles in the presented code. (examples will be later in the description).
 
+Below is an visual example of using PrismJS plugin:
+
+<!-- PrismJS kod -->
+
 <br/>
 
 The last folder in this scripts folder structure is the sites folder, the contents of which are shown below:
 
 <!-- Zdjęcie struktury sites folder -->
 
-In the example above, we can see that the sites folder contains various files that act as files that directly relate to a given html file.
+In the example above, we can see that the sites folder contains various js files with the names of individual pages that act as main scripts used on the html files of a specific page.
 
-Below is an overview of the html files with the files from the sites folder:
+To better illustrate the relationship in the name between the mentioned js files and html files, below is a comparison of these files with each other:
 
 <!-- Przykład zestawienia html i js -->
 
-Each of the files in sites folder presented above is responsible for generating appropriate instances of classes that play a specific role on the site.
+Each of the js files in sites folder is responsible for generating appropriate instances of classes that play a specific role on the site (handling a specific functionality on the website).
 
-To illustrate the content of these files, index.js was used, which corresponds to the index.html file (scripts/sites/index.js):
+To illustrate the content of these files, sites/index.js file was used, which is the main script of index.html (scripts/sites/index.js):
 
 ```
 import themes from '/data/global/themes.js'
@@ -558,7 +571,7 @@ import {
   aboutDescription,
 } from '/data/descriptions/index.js'
 import {
-  Sound,
+  Audio,
   Form,
   SneakPeeks,
   Theme,
@@ -568,7 +581,7 @@ import {
 
 new DescriptionArrange(idReferences.about.description, aboutDescription)
 new DescriptionArrange(idReferences.skills.description, skillsDescription)
-new Sound(idReferences.global.leftContainer, idReferences.sneakPeeks.trigger)
+new Audio(idReferences.global.leftContainer, idReferences.sneakPeeks.trigger)
 new Form(idReferences.global.leftContainer, idReferences.sneakPeeks.trigger)
 new Theme(idReferences.theme.main, themes, Particles)
 new SneakPeeks(
@@ -579,17 +592,17 @@ new SneakPeeks(
 )
 ```
 
-In the example above, we can see that various class objects are imported into the file, which are used to create instances of these classes. Each of the created instances is responsible for some part of the logic on the page, e.g. on the main page we have to create a description of my person and my skills (new DescriptionArrange), sound (new Sound), form (new Form), theme (new Form) and sneak peeks (new SneakPeeks).
+In the example above, we can see that various class objects are imported into the file, which are used to create instances of these classes. Each of the created instances is responsible for some part of the logic on the page, e.g. on the main page we have to create a description of my person and my skills (new DescriptionArrange), audio (new Audio), form (new Form), theme (new Form) and sneak peeks of completed projects (new SneakPeeks).
 
-Each of the created instances accepts various elements such as a container (to which the elements created by createElementFn helper are to be attached), a trigger element (e.g. triggering an animation through the triggerActionOnWindowScrollFn helper) and various data on the basis of which the description structure is created.
+Each of the created instances accepts various references (on the basis of which the appropriate elements in the DOM structure are found in a specific object) such as a to container element (to which the elements created by createElementFn helper are to be attached), to a trigger element (based on which the animation is triggered through the triggerActionOnWindowScrollFn helper) and various data on the basis of which the description structure is created.
 
-To attach such a js file to the html file, we use a simple script tag, thanks to which we can import the entire solution to a given page (in this case to the index.html homepage):
+To attach such a js file to the html file, we use a simple script tag, thanks to which we can import various functionalities to a given page (in this case to the index.html homepage):
 
 ```
 <script type="module" type="text/javascript" src="/scripts/sites/main.js"></script>
 ```
 
-Thanks to this solution, it is very easy to add new functionalities to our website while keeping the code clean (the logic of each of the presented objects will be described later).
+Thanks to the solution presented in the whole point, it is very easy to add new functionalities to our website while keeping the code clean (the logic of each of the presented objects will be described later).
 
 <br/>
 <br/>
@@ -648,6 +661,10 @@ In order to illustrate the content of the files, the fragment of form.css file w
 more code here...
 ```
 
+Below is a visual representation of the molds component:
+
+<!-- Zdjęcie komponentu form -->
+
 <br/>
 
 In the case of the next folder named global, we deal with global styles.
@@ -656,17 +673,21 @@ The structure of this folder is shown below:
 
 <!-- Zdjęcie struktury folderu global -->
 
-As we can see in the above example, we deal with files such as keyframes.css, in which the logic of individual animations is created, normalize.css with css style normalization, and variables.css, in which the theme structure is initialized, which is then dynamically overwritten using the methods of the Theme.js object (then this process will be described).
+As we can see in the above example, we deal with files such as keyframes.css, in which the logic of individual animations is created, normalize.css with css style normalization, and variables.css, in which the theme structure is initialized, which is then dynamically overwritten using the methods of the Theme.js object (this process will be described later).
 
 <br/>
 
-The next folder in the sequence is the plugins folder with styles, which contains external files styling the given elements on the page.
+The next folder in the sequence of styles folder is the plugins folder which contains external (downloaded from the internet) files of style.
 
 The structure of this folder is shown below:
 
 <!-- Zdjęcie struktury plugins style -->
 
 As we can see above, in this folder there is only one file called prism.css, thanks to which we have the appropriate coloring placed on the code page (part of the Prism.js package, the rest of which is in scripts/plugins/prism.js).
+
+Below is a visual example of this solution (in conjunction with scripts/plugins/prism.js):
+
+<!-- Przykład prism js -->
 
 <br/>
 
@@ -827,11 +848,13 @@ To understand well how to use the styles presented above, I will use a fragment 
 </section>
 ```
 
-As we can see in the example above, we have a section element with only one class (mb-40) that contains a div element that takes the appearance of a card with additional styles (slideInFromLeft is an animation class).
+As we can see in the example above, we have a section element with only one utility class named mb-40 (margin-bottom: 40px) that contains a div element with classes named: card (properties that give us the appearance of the card), element-center (element centering - margin:0 auto), sm-wrap-x-500 (max-width: 500px under the screen width of 800px - mobile version is indicated by the prefix sm), slideInFromLeft (an animation).
 
-In the element inside we have a structure well known from Bootstrap, in which a row has been defined and two columns of 50% width (ShowObject is an animation class).
+In the middle of the aforementioned div element there is an another div element with the classes named: row-xy (which refers to Bootstrap and in this case arranges elements horizontally x and vertically y by flex property) and py-10 (setting the padding vertically by 10).
 
-Due to the fact that the second column contains more complex styles, a component inside a card-inner element, has been separated here, the styles of which have been moved to the (styles/components/preview.css) folder in order not to make a mess in the code (such a solution was introduced in the entire project).
+Going further into the discussed html structure, we have two elements that have the same col-50 class (modeled on bootstrap framework and refers to the flex-basis property: 50% - i.e. the element covers 50% of the parent space). The next elements with different classes work in the same way as described above.
+
+It should be mentioned that due to the fact that the second so-called column of element with row-xy class contains more complex styles, a component preview has been separated here, the styles of which have been moved to the (styles/components/preview.css) folder in order not to make a mess in the code (such a solution was introduced in the entire project).
 
 So the general principle of creating styles in the project is that if the elements contain a large number of styles, the component is extracted and a css file for a given component is created.
 If there are fewer styles for a given element, classes from the utilities folder are used.
@@ -843,11 +866,15 @@ If there are fewer styles for a given element, classes from the utilities folder
 
 In the case of html files, in addition to what was presented in the previous subsection, there is a global element that acts as a container, in which each part of the page is represented by a separate section.
 
-In the project, we are dealing with the main page, the privacy policy page and pages with descriptions of individual projects created by me.
+In the project, we are dealing with the main page (index.html), the privacy policy page (privatePolicy.html) and pages with descriptions of individual projects created by me (e.g fluentBlog.html).
 
-In some section elements, the html structure includes element marked with the id property that contain a <--JS--> comment to indicate that this is where some elements are being injected via javascript (exactly through the appropriate js object).
+In some section elements, the html structure includes element marked with the id property that contain a comment referring to the code created by the specific object, e.g. <-- Theme object -->, which refers to the scripts/objects/Theme.js object.
 
-Below is an example of such a solution (index.html):
+The mentioned element with the id property acts as a container for the elements produced by the specific js object.
+
+<br/>
+
+Below is an example of such a solution of the index.html file(index.html):
 
 ```
 <section class="mb-30">
@@ -855,7 +882,7 @@ Below is an example of such a solution (index.html):
         <div class="row-y ">
             <div class="col-100 showObject">
                 <div id="skills-description"  class="card-inner row-y element-center p-20">
-                     <!-- JS -->
+                     <!-- DescriptionArrange -->
                </div>
             </div>
         </div>
@@ -1336,17 +1363,15 @@ As we can see above, it is a simple method that sets the chosen theme name in th
 <br/>
 <br/>
 
-### 3.2.3. Audio support on the site
+### 3.2.3. Functionalities on the website called through the buttons on the left side of the page
 
-Before the audio support will be described on the website, it should be mentioned that each additional functionality is triggered by buttons located on the left side of the screen (eg turn background music on and off, which will be described in a moment, the form create handling and back to the main page option, which will be explained in the following sections).
+Each additional functionality on the page is triggered by buttons located on the left side of each page (eg turn background music on and off, which will be described in the next subsection, the form create handling and back to the main page option, which will be described later).
 
-Below is a visual example of discussed buttons on the private policy page:
+Below is a visual example of discussed buttons on the private policy page (this example because we have a list of all buttons together):
 
 <!-- Przykład zestawu buttonów po lewej x 3 -->
 
-<br/>
-
-It is also worth adding that the buttons container has appropriate styles, thanks to which the buttons inside take the right place next to each other. In turn, each button in the discussed container has the same styles, which facilitates the development process.
+The element of the container to which the buttons shown above are attached has appropriate styles, thanks to which the buttons inside take the right place next to each other. In turn, each button in the discussed container has the same styles, which facilitates the development process.
 
 The styles for the discussed solution are presented below (styles/components/globalLeftContainer.css):
 
@@ -1402,13 +1427,33 @@ The styles for the discussed solution are presented below (styles/components/glo
 }
 ```
 
-It is also worth adding that the buttons container (with global-left-container id) is included in every html file , but the buttons with all logic are dynamically created with javascript for better logic maintenance (this will be explained with specific examples).
+It also worth adding that the buttons container (with global-left-container id) is included in every html file , but the buttons with all logic are dynamically created with javascript for better logic maintenance (this will be explained with specific examples).
 
-<br/>
+### 3.2.4. Audio support on the site (ok)
 
-Moving on to the correct thread, the Sound object is responsible for the sound handling logic on the website (background sound on or off).
+The first of the additional functionalities on the website which I would like to describe is related to audio support on the website (on or off).
 
-The code of the Sound object is shown below (scripts/objects/Sound.js):
+Before I go on to the implementation of the Audio object, which is responsible for handling the audio on the page, I would like to focus on how to create an instance of this object (only two cases related to the home page and the page related to the description of the FluentBlog project were presented).
+
+The following is an example of creating an instance of the Audio object in sites/index.js file which is the main script for the index.html file (main page) (scripts/sites/index.js):
+
+```
+new Audio(
+  idReferences.global.leftContainer,
+  paths.mainPageInfo,
+  idReferences.sneakPeeks.trigger
+)
+```
+
+And below is an example of creating an instance of the aforementioned object in sites/fluentBlog.js file (contains description of the FluentBlog project that was created ) which is the main script for the fluentBlog.html file (scripts/sites/index.js):
+
+```
+new Audio(idReferences.global.leftContainer, paths.fluentBlogPageInfo)
+```
+
+As we can see in the two examples above, to the instance, first is passed the reference of the container (on the basis of which the appropriate DOM element is searched for, which acts as a container for the elements created in Audio object), the path with the audio file (the audio file containing the audio small description of a given page with background music) and a reference to the trigger element (it is only sent in the case of the home page and on the basis of this reference the appropriate DOM element is searched for, which acts as an action trigger element, which will be described when discussing the Audio object in depth).
+
+After explaining how the instances of the Audio object are created for different pages, now I would like to present the implementation of this object below (scripts/objects/Audio.js):
 
 ```
 import {
@@ -1426,10 +1471,11 @@ import {
   events,
 } from '/data/global/names.js'
 
-class Sound {
-  constructor(container, trigger) {
+class Audio {
+  constructor(container, path, trigger) {
     const containerSent = document.querySelector(container)
     this.play = false
+    this.path = path
 
     this.createElements()
     this.createComponents()
@@ -1449,7 +1495,7 @@ class Sound {
   createElements() {
     this.audio = createElementFn({
       element: elements.audio,
-      src: paths.audioRecord,
+      src: this.path,
     })
 
     this.btn = createElementFn({
@@ -1505,22 +1551,46 @@ class Sound {
   }
 }
 
-export default Sound
+export default Audio
 ```
 
-As we can see in the above example, the createElements method are used to create individual elements and the createComponents method are used to combine them into components. In the case of the createComponents method, when creating components from previously created elements, the appendElementsToContainerFn helper is used, which is also responsible for attaching the main component to the transferred container. Thanks to this process, a button appears on the page that allows us to handle the background sound.
+As we can see above, in the constructor of the object, the container element is searched first in the DOM structure and assigned to the sentContainer variable.
 
-Before going any further it should be mentioned that the website uses such a solution that which allows to trigger an action on a specific element of the DOM structure.
+Then we have to assign the false value to the this.play variable (a flag thanks to which it will be possible to turn the audio on and off) and assign the sent path to the this.path variable.
 
-On the main page, the trigger effect is about hiding the buttons on the left side of the page when you scroll to the section element related to the sneak peeks of comlpeted projects (the reverse process when we leave this section element).
+After assigning values to variables, the createElements method is called, which uses the createElementFn helper (the implementation here is scripts/helpers/createElementFn.js) to create three very simple elements: this.audio, this.btn and this.audioImg.
 
-Below is a visual example of this effect on the main page:
+In the case of the created this.btn element, we have an event listener that is set to event click, which calls the handleAudio method, the implementation of which is below (scripts/objects/Audio.js):
+
+```
+  handleAudio() {
+    this.play = !this.play
+    this.play ? this.audio.play() : this.audio.pause()
+    this.audioImg.src = this.play ? paths.playImg : paths.pauseImg
+  }
+```
+
+As we can see above, it is a simple method that first sets the opposite value in the this.play variable (thanks to it we have the option to turn on and stop the audio) and depending on whether the mentioned value is true or false, the appropriate icon set in this.audioImg element and on this.audio element the appropriate play (turn on audio) or pause (stop audio) method is called.
+
+Next, in the constructor of discussed object, we call the createComponents method, which, based on previously created elements (this.audioImg and this.btn), combines them into the so-called main component (this.mainComponent) via helper appendElementsToContainer (implementation is here).
+
+This component corresponds to the button we see on the left side of the page screen. Below is a visual example of this component:
+
+<!-- Przykład komponentu przycisku Audio po lewej stronie -->
+
+After the above-mentioned methods, the created this.mainComponent component is connected to the container whose reference has been sent to the object (this connection is also made using the appendElementsToContainer helper).
+
+<br/>
+
+At the very end, in the constructor logic there is a conditional call (depending on whether the trigger element reference has been sent) to the triggerActionOnWindowScrollFn helper, which at the point of trigger element during the page scroll, triggers the action related to showing and hiding the button on the left by toggleBtnComponent method (the same process for the other buttons, the functionality of which will be explained in the following sections).
+
+To better understand the logic of this helper, a visual example of this solution on the main page is presented below:
 
 <!-- Przykład chowania się i pokazywania buttonów -->
 
-The above solution can be achieved through a helper called triggerActionOnWindowScrollFn which can be seen at the end of the constructor structure in the discussed Sound object (this function is only called when such trigger is sent to the object).
+As we can see above, this process applies to both the button that triggers the audio functionality on the page, but also the button that is associated with creating the form component (this process will be described later)
 
-The logic of this helper is shown below (scripts/helpers/triggerActionOnWindowScrollFn.js):
+As we already know what the visual example of this helper looks like, now I would like to focus on its logic, which is presented below (scripts/helpers/triggerActionOnWindowScrollFn.js):
 
 ```
 import { common, events } from '/data/global/names.js'
@@ -1541,60 +1611,32 @@ export default ({
 
   window.addEventListener(events.scroll, () => {
     window.innerHeight + window.pageYOffset * modifier > element.offsetTop
-      ? cbOnEnterTriggerEl(element)
-      : cbOnExitTriggerEl(element)
+      ? cbOnEnterTriggerEl()
+      : cbOnExitTriggerEl()
   })
 }
 ```
 
-As we can see in the above example, the function takes an object in which we define an triggerElement on which a some action is to be triggered when the browser screen scrolls (triggerElement), a function that is to be called when a triggerElement is exceeded by the bottom edge of the browser screen (cbOnEnterTriggerEl), what function is to be triggered when the bottom edge of the browser screen leaves the triggerElement (cbOnExitTriggerEl) and the so-called modifier, which allows you to influence the earlier or later triggering of an action in relation to the basic settings (modification of calculations).
+As we can see above, the function accepts an object with: the so-called trigger element (in the case of the discussed object it is a reference to the element with id sneakPeeks-trigger in the index.html file), the function that is to be called when the trigger element is exceeded during the scroll, the function to be called when the trigger is leaved during the scroll and the so-called modifier, thanks to which we can slightly modify the operation of the entire helper (when there is no value given, the value of 1 is taken by default, which does not affect the operation of the function).
 
-Overall the logic of this helper's operation is to determine the position of the upper edge of a given triggerElement (offsetTop property) and to call appropriate functions when this edge is crossed(cbOnEnterTriggerEl) or lowered during the scrolling of the screen (cbOnExitTriggerEl).
+In the function body, first of all, we check whether a given element trigger has been sent (if not, the whole function is returned to avoid an error). Then, if a trigger element reference was sent to the function (as in the discussed case), then on its basis the given element is searched in the DOM structure and assigned to the variable element.
 
-<br/>
+At the very end of the function body we have an event listener whose event is set to scroll and calls a function in which when the screen scroll aligns with the top edge of the tigger element, the cbOnEnterTriggerEl function is triggered, otherwise the cbOnExitTriggerEl function.
 
-In the case of the Sound class, we pass the triggerElement with the id sneakPeeks-trigger to the mentioned helper (below is an example from the index.html file):
+Now that we know how the triggerActionOnWindowScrollFn helper works, I would like to explain the toggleBtnComponent method, which is assigned to the cbOnEnterTriggerEl variables, cbOnExitTriggerEl, but with a different toggle value (responsible for hiding and showing the button).
 
-```
-<section id="sneakPeeks-trigger">
-    <div id="sneakPeeks-wrapper" class="row-y mb-30">
-        <div class="col-100 mt-20 mb-40">
-            <div class="card wrap-x-250 element-center text-center p-20 sm-wrap-x-200">
-                <h3>My projects</h3>
-            </div>
-        </div>
-         <div id="sneakPeeks" class="col-100">
-              <!-- JS -->
-         </div>
-    </div>
-</section>
-```
-
-<br/>
-
-Below is an example of passing this trigger element next to the container to the created instance of Sound object through the main script of index.html page (scripts/sites/index.js)
+As a reminder, below is an example of calling the triggerActionOnWindowScrollFn helper with the toggleBtnComponent method called with two toggle variables with the values "on" and "off" (this method was called in a function because it must refer to a Audio object thanks to this keyword.) (scripts/objects/Audio.js):
 
 ```
-new Sound(idReferences.global.leftContainer, idReferences.sneakPeeks.trigger)
-```
-
-To understand the next description, I will provide a fragment of the Sound object constructor with a triggerActionOnWindowScrollFn helper:
-
-```
-    if (trigger) {
-      const triggerElement = document.querySelector(trigger)
       triggerActionOnWindowScrollFn({
         onWhatElement: triggerElement,
         cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.on),
         cbOnExitTriggerEl: () => this.toggleBtnComponent(common.off),
         modifier: 0.8,
       })
-    }
 ```
 
-So when we already have a triggerElement assigned to the onWhatElement property of the transferred object, we define the functions that are to be called when we scroll to the trigger element or exit it.
-
-Such a function in this case is the toggleBtnComponent method, the implementation of which is presented below (scripts/objects/Sound.js):
+Below is an implementation of mentioned toggleBtnComponent method (scripts/objects/Audio.js):
 
 ```
   toggleBtnComponent(toggle) {
@@ -1615,43 +1657,16 @@ Such a function in this case is the toggleBtnComponent method, the implementatio
   }
 ```
 
-As we can see in the above example, this method uses the setPropsFn helper to set the appropriate style properties on the this.mainComponent component (depending on the value of toggle, the component either hides or shows)
+As we can see in the above example, this method uses the setPropsFn helper (implementation is here scripts/helper/setPropsFn.js) to set the appropriate style properties on the this.mainComponent component (depending on the value of toggle, the component either hides or shows)
 
-Summarizing, thanks to this solution, when the trigger element is crossed, discussed the toggleBtnComponent method will be called with the "on" argument during the scroll, and the toggleBtnComponent method with the "off" argument will be called when the trigger element is exited.
-
-<br/>
-
-It is also worth mentioning that the handleAudio method, which is called when the button is clicked, is responsible for turning the sound on and off.
-
-This solution is presented below (scripts/objects/Sound.js):
-
-```
-  handleAudio() {
-    switch (this.play) {
-      case true:
-        this.img.src = paths.pauseImg
-        this.audio.pause()
-        this.play = false
-        break
-
-      case false:
-        this.audio.play()
-        this.img.src = paths.playImg
-        this.play = true
-        break
-
-      default:
-        break
-    }
-  }
-```
+Summarizing, thanks to this solution, when the trigger element is crossed during the page scroll, above discussed method will be called with the toggle value of "on" (styles are added thanks to which the button is hidden) and when the trigger element is leaved by scrolling, the same method is called but with toggle set to "off" (styles are added thanks to which the button is show).
 
 <br/>
 <br/>
 
-### 3.2.4. A Curtain object that allows to attach components dynamically (ok)
+### 3.2.5. A Curtain object that allows to attach components dynamically (ok)
 
-Before I go on to the description of the next functionality related to the creation of a form component(which is called via the next button of the left side of page), the Curtain object, which plays a key role in the process of creating a form, must be described.
+Before I go on to the description of the next functionality related to the creation of a form component (which is called via the next button of the left side of page), the Curtain object, which plays a key role in the process of creating a form, must be described.
 
 The discussed object is responsible for creating the container element (curtain), to which various components can be dynamically added and removed using appropriate methods of Curtain object.
 
@@ -2015,7 +2030,7 @@ Below is a visual example of removing the form by clicking on the curtain and by
 <br/>
 <br/>
 
-### 3.2.5. Dynamic form creation by Form object (ok)
+### 3.2.6. Dynamic form creation by Form object (ok)
 
 In this section, I would like to focus on explaining the creation of the form component along with its entire logic of operation along with sending data to the server (my backend application [Emails Handler](https://github.com/damian-lis/Emails-handler)).
 
@@ -2037,7 +2052,7 @@ Below is an example of creating an instance of a Form object (among many other i
 new Form(idReferences.global.leftContainer, idReferences.sneakPeeks.trigger)
 ```
 
-As we can see in the example above, a reference to the container element (regarding the button) and a reference to the trigger element that triggers the action (similar to Sound object) are passed to the newly created instance.
+As we can see in the example above, a reference to the container element (regarding the button) and a reference to the trigger element that triggers the action (similar to Audio object) are passed to the newly created instance.
 
 Moving on to the very logic of the discussed object, first I would like to focus on the constructor of the object, which is very simple and is presented below (scripts/objects/Form.js):
 
@@ -2102,7 +2117,7 @@ It should also be mentioned that when creating this.btn element in the createIni
 
 After creating the this.btnComponent component through the appendElementsToContainer helper (the same helper used with createInitialComponents), it is connected to the container element (sentContainer).
 
-Finally, in the constructor, we are dealing with a triggerActionOnWindowScrollFn helper (implementation is here scripts/helpers/triggerActionOnWindowScrollFn.js - a full explanation of this helper can be found in the previous subsection) thanks to which we have the ability to manipulate the button when scrolling the screen into section related to the project sneak peeks (the same process as for the Sound object).
+Finally, in the constructor, we are dealing with a triggerActionOnWindowScrollFn helper (implementation is here scripts/helpers/triggerActionOnWindowScrollFn.js - a full explanation of this helper can be found in the previous subsection) thanks to which we have the ability to manipulate the button when scrolling the screen into section related to the project sneak peeks (the same process as for the Audio object).
 
 <br/>
 
@@ -3133,7 +3148,7 @@ Below is an implementation of the createMainComponents method (scripts/objects/F
 
 As we can see above, it is a simple method that properly combines previously created elements into components using the appendElementsToContainer helper. It is simply process of attaching elements to a container elements, in which each container with attached elements is assigned to the component variable to highlight the element with children. At the very end of this method, after the various components are properly combined, the this.mainComponent is created, which is returned from the createMainComponents method.
 
-Next the mentioned component (this.mainComponent) is sent through the toggleShow method of Curtain object (last fragment of the handleMainComponentCreate method) to attach this component to curtain element (the entire logic of the toggleShow method of Curtain object is explained when discussing the Curtain object in section 3.2.4.).
+Next the mentioned component (this.mainComponent) is sent through the toggleShow method of Curtain object (last fragment of the handleMainComponentCreate method) to attach this component to curtain element (the entire logic of the toggleShow method of Curtain object is explained when discussing the Curtain object in section 3.2.5.).
 
 An example of calling this method is shown below (scripts/objects/Form.js):
 
@@ -3160,11 +3175,11 @@ Finally, below is a visual example of the process of creating a form component a
 <br/>
 <br/>
 
-### 3.2.6. Possibility to go back to the home page by BackBtn object (ok)
+### 3.2.7. Possibility to go back to the home page by BackBtn object (ok)
 
 The functionality that I would like to describe here concerns the possibility of going back to the home page from each subpage.
 
-As in the case of sound handling and creating a form, this functionality is called by the button on the left side of the screen (for obvious reasons, this button is only available on subpages).
+As in the case of audio handling and creating a form, this functionality is called by the button on the left side of the screen (for obvious reasons, this button is only available on subpages).
 
 Below is a visual example of this solution on the privacy policy page (the same solution applies to subpages related to the descriptions of projects I have created):
 
@@ -3175,9 +3190,7 @@ In order to implement the logic we see above, an instance of the BackBtn object 
 The solution looks as follows (scripts/sites/privatePolicy.js):
 
 ```
-
 new BackBtn(idReferences.global.leftContainer)
-
 ```
 
 As we can see in the example presented above, only the reference of the container element is passed to the created instance (on the basis of which the appropriate element of the DOM structure is searched for and the component responsible for the return button to the home page is attached to it).
@@ -3187,55 +3200,52 @@ As we can see in the example presented above, only the reference of the containe
 The logic of the discussed BackBtn object is implemented as follows: (scripts/objects/BackBtn.js):
 
 ```
-
 import {
-createElementFn,
-appendElementsToContainerFn,
+  createElementFn,
+  appendElementsToContainerFn,
 } from '/scripts/helpers/index.js'
 import { classNames, paths, elements } from '/data/global/names.js'
 
 class BackBtn {
-constructor(container) {
-const containerSent = document.querySelector(container)
-this.createElements()
-this.createComponents()
+  constructor(container) {
+    const containerSent = document.querySelector(container)
+    this.createElements()
+    this.createComponents()
 
     appendElementsToContainerFn([this.mainComponent], containerSent)
+  }
 
-}
+  createElements() {
+    this.mainContainer = createElementFn({
+      element: elements.a,
+      href: '/',
+      classes: [classNames.global.leftBtn],
+    })
+    this.arrowImg = createElementFn({
+      element: elements.img,
+      src: paths.arrowImg,
+    })
+  }
 
-createElements() {
-this.mainContainer = createElementFn({
-element: elements.a,
-href: '/',
-classes: [classNames.global.leftBtn],
-})
-this.arrowImg = createElementFn({
-element: elements.img,
-src: paths.arrowImg,
-})
-}
-
-createComponents() {
-this.mainComponent = appendElementsToContainerFn(
-[this.arrowImg],
-this.mainContainer
-)
-}
+  createComponents() {
+    this.mainComponent = appendElementsToContainerFn(
+      [this.arrowImg],
+      this.mainContainer
+    )
+  }
 }
 
 export default BackBtn
-
 ```
 
-As we can see above, it is a very simple object that closely resembles a Sound object. In this BackBtn object by createElements method (which uses the createElement helper - the implementation is here scripts/helpers/createElementFn.js) are created two individual elements: this.mainContainer and this.arrowImg element is responsible for the link to the home page and container.
+As we can see above, it is a very simple object that closely resembles a Audio object. In this BackBtn object by createElements method (which uses the createElement helper - the implementation is here scripts/helpers/createElementFn.js) are created two individual elements: this.mainContainer and this.arrowImg element is responsible for the link to the home page and container.
 
 Thanks to createComponents method (which uses the appendElementsToContainerFn helper - the implementation is here scripts/helpers/appendElementsToContainer.js)) a component named this.mainComponent was created by combining the previously mentioned elements which is attached to the containerSent (element found with the sent reference to the object) by appendElementsToContainerFn helper at the end of constructor (the same logic of creating and connecting elements as in the case of the previously discussed objects).
 
 <br/>
 <br/>
 
-### 3.2.7. Create project sneak peeks by SneakPeeks object (ok)
+### 3.2.8. Create project sneak peeks by SneakPeeks object (ok)
 
 Sneak peeks of the projects that I have created appear at the bottom of the main page. It looks like this:
 
@@ -3248,14 +3258,12 @@ Before I go to the description of the logic of this object, which is responsible
 The following is the index.js file, which is the main script for the index.html page that instantiates a SneakPeeks object alongside other object instances (scripts/sites/index.js):
 
 ```
-
 new SneakPeeks(
 idReferences.sneakPeeks.main,
 idReferences.sneakPeeks.trigger,
 idReferences.sneakPeeks.wrapper,
 sneakPeeks
 )
-
 ```
 
 As we can see in the example above, the following parameters are passed to the SneakPeeks object: idReferences.sneakPeeks.main (reference to the container to which the object with created snippets will be attached), idReferences.sneakPeeks.trigger (reference to the action trigger element, which we know from the description earlier objects), idReferences.sneakPeeks.wrapper (reference to the element that is closely related to the trigger), and sneakPeeks (data on the basis of which sneak peeks elements are created).
@@ -3265,19 +3273,18 @@ After the presentation of creating an instance of a SneakPeeks object, I can now
 Below is the implementation of the discussed object (due to the quite extensive methods createElements and createComponents of this object, this methods have been shortened) (scripts/objects/SneakPeeks.js):
 
 ```
-
 import {
-createElementFn,
-triggerActionOnWindowScrollFn,
-appendElementsToContainerFn,
-setClassesFn,
+  createElementFn,
+  triggerActionOnWindowScrollFn,
+  appendElementsToContainerFn,
+  setClassesFn,
 } from '/scripts/helpers/index.js'
 import { classNames, info, elements } from '/data/global/names.js'
 
 class SneakPeeks {
-constructor(container, trigger, wrapper, data) {
-const containerSent = document.querySelector(container)
-this.data = data
+  constructor(container, trigger, wrapper, data) {
+    const containerSent = document.querySelector(container)
+    this.data = data
 
     this.createElements()
     this.createComponents()
@@ -3291,57 +3298,53 @@ this.data = data
         cbOnEnterTriggerEl: () => this.handleOnEnterTriggerEl(),
       })
     }
+  }
 
-}
-
-createElements() {
-this.mainContainer = createElementFn({
-element: elements.div,
-classes: [classNames.sneakPeeks.container],
-})
-
-    this.elements = this.data.map((dataPortion) => {
-      const linkWrapper = dataPortion.duringDevelopment
-        ? createElementFn({
-            element: elements.a,
-            classes: [classNames.sneakPeek.linkWrapper],
-          })
-        : createElementFn({
-            element: elements.a,
-            classes: [classNames.sneakPeek.linkWrapper],
-            href: dataPortion.route,
-          })
-
-      const container = createElementFn({
-        element: elements.div,
-        classes: [classNames.sneakPeek.container],
-      })
-
-      more code here...
+  createElements() {
+    this.mainContainer = createElementFn({
+      element: elements.div,
+      classes: [classNames.sneakPeeks.container],
     })
 
-}
+   more code here...
 
-createComponents() {
-this.sneakPeekComponents = this.elements.map(
-({
-linkWrapper,
-container,
-thubnail,
-prevContainer,
-title,
-intro,
-iconsContainer,
-icons,
-ribbonContainer,
-ribbonText,
-}) => {
-const prevComponent = appendElementsToContainerFn(
-[title, intro],
-prevContainer
-)
+      return {
+        linkWrapper,
+        container,
+        thubnail,
+        prevContainer,
+        title,
+        intro,
+        iconsContainer,
+        icons,
+        ribbonContainer,
+        ribbonText,
+      }
+    })
+  }
+
+  createComponents() {
+    this.sneakPeekComponents = this.elements.map(
+      ({
+        linkWrapper,
+        container,
+        thubnail,
+        prevContainer,
+        title,
+        intro,
+        iconsContainer,
+        icons,
+        ribbonContainer,
+        ribbonText,
+      }) => {
+        const prevComponent = appendElementsToContainerFn(
+          [title, intro],
+          prevContainer
+        )
 
        more code here...
+
+        return linkWrapperComponent
       }
     )
 
@@ -3349,63 +3352,59 @@ prevContainer
       this.sneakPeekComponents,
       this.mainContainer
     )
+  }
 
-}
-
-handleOnEnterTriggerEl() {
-setClassesFn([
-{
-element: this.triggerElement,
-classes: [classNames.utilities.height.full],
-},
-{
-element: this.wrapperToRelease,
-classes: [classNames.utilities.animations.slideInFromTop],
-},
-])
-}
+  handleOnEnterTriggerEl() {
+    setClassesFn([
+      {
+        element: this.triggerElement,
+        classes: [classNames.utilities.height.full],
+      },
+      {
+        element: this.wrapperToRelease,
+        classes: [classNames.utilities.animations.slideInFromTop],
+      },
+    ])
+  }
 }
 
 export default SneakPeeks
-
 ```
 
-As we can see above, the course of the logic of this object is very similar to the objects discussed earlier. In the constructor, firstly, we search for elements based on the sent references and assign them to variables (conditionally in the case of a reference sent to the trigger element), assign the transferred data to a variable, call the createElements, createComponents methods, appendElementsToContainerFn (implementation is in scripts/helper/appendElementsToContainerFn.js) and triggerActionOnWindowScrollFn helper (implementation is in scripts/helper/triggerActionOnWindowScrollFn.js and is described in detail in section 3.2.3).
+As we can see above, the course of the logic of this object is very similar to the objects discussed earlier. In the constructor, firstly, we search for elements based on the sent references and assign them to variables (conditionally in the case of a reference sent to the trigger element), assign the transferred data to a variable, call the createElements, createComponents methods, appendElementsToContainerFn (implementation is in scripts/helper/appendElementsToContainerFn.js) and triggerActionOnWindowScrollFn helper (implementation is in scripts/helper/triggerActionOnWindowScrollFn.js and is described in detail in section 3.2.4).
 
 In the case of the createElements method, elements are created (as in the case of the previously discussed objects, based on the createElementFn helper - implementation is in scripts/helper/createElementFn.js) based on the transferred data, which an excerpt is shown below (scripts/objects/SneakPeeks.js):
 
 ```
-
 export default [
-{
-route: '/fluentBlog.html',
-image: '/images/projects/FluentBlog/browseArticle.gif',
-alt: 'FluentBlog',
-title: 'FluentBlog',
-intro: 'A small blog that uses server side rendering in next.js',
-icons: [
-{ image: '/images/icons/technologies/tailwindcss.jpg' },
-{ image: '/images/icons/technologies/next.jpg' },
-],
-},
-{
-route: '/',
-image: '',
-alt: 'Talk to Gisapia and the Others',
-title: 'Talk to Gisapia and the Others',
-intro:
-'This little game will let you chat with amazing characters who will remember and understand your answers!',
-icons: [
-{ image: '/images/icons/technologies/html.jpg' },
-{ image: '/images/icons/technologies/css.jpg' },
-{ image: '/images/icons/technologies/js.jpg' },
-{ image: '/images/icons/technologies/nodejs.jpg' },
-{ image: '/images/icons/technologies/sendgrid.jpg' },
-],
-},
+  {
+    route: '/fluentBlog.html',
+    image: '/images/projects/FluentBlog/browseArticle.gif',
+    alt: 'FluentBlog',
+    title: 'FluentBlog',
+    intro: 'A small blog that uses server side rendering in next.js',
+    icons: [
+      { image: '/images/icons/technologies/tailwindcss.jpg' },
+      { image: '/images/icons/technologies/next.jpg' },
+    ],
+  },
+  {
+    route: '/',
+    image: '',
+    alt: 'Talk to Gisapia and the Others',
+    title: 'Talk to Gisapia and the Others',
+    intro:
+      'This little game will let you chat with amazing characters who will remember and understand your answers!',
+    icons: [
+      { image: '/images/icons/technologies/html.jpg' },
+      { image: '/images/icons/technologies/css.jpg' },
+      { image: '/images/icons/technologies/js.jpg' },
+      { image: '/images/icons/technologies/nodejs.jpg' },
+      { image: '/images/icons/technologies/sendgrid.jpg' },
+    ],
+  },
 
 more code here...
-
 ```
 
 As we can see in the above example, data is an array of objects, each of which has an appropriate information structure, thanks to which the createElements method of the SneakPeeks object easily allows to create appropriate elements with appropriate properties (thanks to the array, the whole process takes place during iteration).
@@ -3425,7 +3424,6 @@ A visual example of this process is shown below:
 In order to describe in detail the operation of the above example, I will present below the logic of the triggerActionOnWindowScrollFn helper without other constructor elements of the discussed object (scripts/objects/SneakPeeks.js):
 
 ```
-
     if (trigger) {
       this.triggerElement = document.querySelector(trigger)
       this.wrapperToRelease = document.querySelector(wrapper)
@@ -3434,7 +3432,6 @@ In order to describe in detail the operation of the above example, I will presen
         cbOnEnterTriggerEl: () => this.handleOnEnterTriggerEl(),
       })
     }
-
 ```
 
 As we can see in the above example, the discussed helper can only be called when the reference to the trigger element is sent to the object (this was introduced because in some cases this element is not sent).
@@ -3446,20 +3443,18 @@ Then, after retrieving the appropriate elements from the DOM structure, the disc
 The following is an implementation of the handleOnEnterTriggerEl method which is responsible for the sneak peeks (scripts/objects/SneakPeeks.js):
 
 ```
-
-handleOnEnterTriggerEl() {
-setClassesFn([
-{
-element: this.triggerElement,
-classes: [classNames.utilities.height.full],
-},
-{
-element: this.wrapperToRelease,
-classes: [classNames.utilities.animations.slideInFromTop],
-},
-])
-}
-
+  handleOnEnterTriggerEl() {
+    setClassesFn([
+      {
+        element: this.triggerElement,
+        classes: [classNames.utilities.height.full],
+      },
+      {
+        element: this.wrapperToRelease,
+        classes: [classNames.utilities.animations.slideInFromTop],
+      },
+    ])
+  }
 ```
 
 As we can see above, it is a simple method which, using the setClassesFn helper (the entire implementation is in scripts/helper/setClassesFn.js), sets the class associated with the full height on the this.triggerElement element and on the this.wrapperToRelease element the class with the slideInFromTop animation responsible for the effect of sliding from the top.
@@ -3471,7 +3466,7 @@ Below, there is once again a visual example of the appearance of teasers about t
 <br/>
 <br/>
 
-### 3.2.8. Create descriptions by DescriptionArrange object (ok)
+### 3.2.9. Create descriptions by DescriptionArrange object (ok)
 
 Some of the larger descriptions on the page were created using the DescriptionArrange object. This solution was introduced because creating descriptions in the html file itself is not readable.
 
@@ -3488,10 +3483,8 @@ In order to create the descriptions shown above, two instances of the Descriptio
 Below is an example of this solution (scripts/sites/index.js):
 
 ```
-
 new DescriptionArrange(idReferences.about.description, aboutDescription)
 new DescriptionArrange(idReferences.skills.description, skillsDescription)
-
 ```
 
 Created instances of the DescriptionArrange object, as we can see above, take the reference to container element to which the element (container) found through this reference will be attached elements created on the basis of the data sent regarding the description (aboutDescription and skillsDescription).
@@ -3499,32 +3492,30 @@ Created instances of the DescriptionArrange object, as we can see above, take th
 The object itself, which is responsible for creating the description is presented below (scripts/objects/DescriptionArrange.js):
 
 ```
-
 import {
-createElementFn,
-appendElementsToContainerFn,
+  createElementFn,
+  appendElementsToContainerFn,
 } from '/scripts/helpers/index.js'
 import { common, elementProps } from '/data/global/names.js'
 
 class DataArrange {
-constructor(container, description) {
-this.containerSent = document.querySelector(container)
-this.description = description
+  constructor(container, description) {
+    this.containerSent = document.querySelector(container)
+    this.description = description
 
     this.createElements()
     appendElementsToContainerFn(this.elements, this.containerSent)
+  }
 
-}
-
-createElements() {
-this.elements = this.description.map((object) => {
-switch (object.type) {
-case common.headline:
-const headline = createElementFn({
-element: object.element,
-classes: object.classes,
-textContent: object.content,
-})
+  createElements() {
+    this.elements = this.description.map((object) => {
+      switch (object.type) {
+        case common.headline:
+          const headline = createElementFn({
+            element: object.element,
+            classes: object.classes,
+            textContent: object.content,
+          })
 
           return headline
 
@@ -3608,8 +3599,7 @@ textContent: object.content,
           break
       }
     })
-
-}
+  }
 }
 
 export default DataArrange
@@ -3621,88 +3611,86 @@ As we can see in the example above, the object is big but has a very simple logi
 In order to understand well how given description elements are created, below is a file (data) describing my skills on the basis of which these elements were created (data/descriptions/skills.js):
 
 ```
-
 import { common, classNames, elements } from '/data/global/names.js'
 
 export default [
-{
-type: common.headline,
-element: elements.h(3),
-content: 'My skills',
-classes: [
-classNames.utilities.margin('t', 10),
-classNames.utilities.text.center,
-],
-},
+  {
+    type: common.headline,
+    element: elements.h(3),
+    content: 'My skills',
+    classes: [
+      classNames.utilities.margin('t', 10),
+      classNames.utilities.text.center,
+    ],
+  },
 
-{
-type: common.header,
-element: elements.h(5),
-content: '1. Level enough to write more advanced frontend',
-classes: [classNames.utilities.margin('t', 30), ,],
-},
-{
-type: common.list,
-elements: {
-list: elements.ul,
-listItem: elements.li,
-},
-content: [
-'- HTML (Semanthic writing),',
-'- CSS (SASS, BEM, TailwindCSS and basic level of Bootstrap),',
-'- JavaScript (OOP, Design Patterns, Functional Programming),',
-'- React (Redux, Hooks, Styled Components, Compound Components etc.),',
-'- Next (basic understanding the concept of server side rendering),',
-],
-classes: {
-listItem: [
-classNames.utilities.margin('b', 15, classNames.utilities.dash),
-],
-},
-},
-{
-type: common.header,
-element: elements.h(5),
-content: '2. Level enough to write basic backend',
-classes: [classNames.utilities.margin('t', 30), ,],
-},
-{
-type: common.list,
-elements: {
-list: elements.ul,
-listItem: elements.li,
-},
-content: [
-'- Node/Express (simple E-COMMERCE backend with REST API),',
-'- MongoDB (simple handle with Express)',
-],
-classes: {
-listItem: [
-classNames.utilities.margin('b', 15, classNames.utilities.dash),
-],
-},
-},
-{
-type: common.header,
-element: elements.h(5),
-content: '3. When i have a free time',
-classes: [classNames.utilities.margin('t', 30), ,],
-},
-{
-type: common.list,
-elements: {
-list: elements.ul,
-listItem: elements.li,
-},
-content: ['- PHP (basic level)'],
-classes: {
-listItem: [
-classNames.utilities.margin('b', 0, classNames.utilities.dash),
-],
-},
-},
+  {
+    type: common.header,
+    element: elements.h(5),
+    content: '1. Level enough to write more advanced frontend',
+    classes: [classNames.utilities.margin('t', 30), ,],
+  },
+  {
+    type: common.list,
+    elements: {
+      list: elements.ul,
+      listItem: elements.li,
+    },
+    content: [
+      '- HTML (Semanthic writing),',
+      '- CSS (SASS, BEM, TailwindCSS and basic level of Bootstrap),',
+      '- JavaScript (OOP, Design Patterns, Functional Programming),',
+      '- React (Redux, Hooks, Styled Components, Compound Components etc.),',
+      '- Next (basic understanding the concept of server side rendering),',
+    ],
+    classes: {
+      listItem: [
+        classNames.utilities.margin('b', 15, classNames.utilities.dash),
+      ],
+    },
+  },
+  {
+    type: common.header,
+    element: elements.h(5),
+    content: '2. Level enough to write basic backend',
+    classes: [classNames.utilities.margin('t', 30), ,],
+  },
+  {
+    type: common.list,
+    elements: {
+      list: elements.ul,
+      listItem: elements.li,
+    },
+    content: [
+      '- Node/Express (simple E-COMMERCE backend with REST API),',
+      '- MongoDB (simple handle with Express)',
+    ],
+    classes: {
+      listItem: [
+        classNames.utilities.margin('b', 15, classNames.utilities.dash),
+      ],
+    },
+  },
+  {
+    type: common.header,
+    element: elements.h(5),
+    content: '3. When i have a free time',
+    classes: [classNames.utilities.margin('t', 30), ,],
+  },
+  {
+    type: common.list,
+    elements: {
+      list: elements.ul,
+      listItem: elements.li,
+    },
+    content: ['- PHP (basic level)'],
+    classes: {
+      listItem: [
+        classNames.utilities.margin('b', 0, classNames.utilities.dash),
+      ],
+    },
+  },
 ]
-
 ```
 
 In the above example, we see an array that has several objects that contain the characteristics of individual parts of the description (e.g. type, element, content and classes). Thanks to this arrangement of data related to the skills description, it can dynamically create a description that will contain appropriate elements, styles and content (based on the switch statement in the createElements method of the object).
@@ -3713,7 +3701,3 @@ Data related to the description of the private policy page can be found here dat
 Below is just a visual example of the TalkToGisapiaAndTheOthers project description and the privacy policy description created dynamically through the DescriptionArrange object:
 
 <!-- Pokazanie opisu projektu oraz private policy-->
-
-```
-
-```
