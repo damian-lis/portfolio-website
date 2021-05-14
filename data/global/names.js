@@ -311,9 +311,10 @@ export const idReferences = {
 export const paths = {
   playImg: '/images/icons/stopMusic.svg',
   pauseImg: '/images/icons/playMusic.svg',
-  audioRecord: '/audio/ambient.mp3',
   emailImg: '/images/icons/email.svg',
   arrowImg: '/images/icons/arrow.svg',
+  mainPageIntroduction: '/audio/mainPageIntroduction.mp3',
+  privatePolicyIntroduction: '/audio/privatePolicyIntroduction.mp3',
 }
 
 export const mailEndPoint = 'https://dirt-ten-risk.glitch.me/api/mail/portfolio'
