@@ -17,10 +17,6 @@
   background: var(--borderColor);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
 body {
   background-color: var(--mainColor);
   word-wrap: break-word;
@@ -90,6 +86,10 @@ ul {
 p,
 ul {
   margin: 16px 0;
+}
+
+a {
+  font-family: 'Roboto Mono', monospace;
 }
 
 button {
