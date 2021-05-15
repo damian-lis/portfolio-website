@@ -4,7 +4,7 @@ export default ({
   onWhatElement: trigerElement,
   cbOnEnterTriggerEl = () => {},
   cbOnExitTriggerEl = () => {},
-  modifier = 1,
+  modifier = 0,
 }) => {
   if (!trigerElement) return
 
@@ -15,7 +15,7 @@ export default ({
   }
 
   window.addEventListener(events.scroll, () => {
-    window.innerHeight + window.pageYOffset * modifier > element.offsetTop
+    window.innerHeight + window.pageYOffset - modifier > element.offsetTop
       ? cbOnEnterTriggerEl(element)
       : cbOnExitTriggerEl(element)
   })

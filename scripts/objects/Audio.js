@@ -29,7 +29,7 @@ class Audio {
         onWhatElement: triggerElement,
         cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.on),
         cbOnExitTriggerEl: () => this.toggleBtnComponent(common.off),
-        modifier: 0.8,
+        modifier: 80,
       })
     }
   }
