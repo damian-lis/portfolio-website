@@ -335,7 +335,7 @@ class Form {
     if (areEmptyFormInputsValue) return
 
     this.disableFormInputs()
-    this.toggleDeleteBtnComponent(common.on)
+    this.toggleDeleteBtnComponent(common.off)
     this.toggleSpinnerComponent(common.on)
     this.toggleSubmitlNotifications(common.on, {
       firstNotificationDelay: 2000,
@@ -344,7 +344,7 @@ class Form {
     })
     curtain.togglePreventHidden(common.on)
     await this.handleEmailSent()
-    this.toggleDeleteBtnComponent(common.off)
+    this.toggleDeleteBtnComponent(common.on)
     this.toggleSpinnerComponent(common.off)
     this.toggleSubmitlNotifications(common.off, {})
     curtain.togglePreventHidden(common.off)
