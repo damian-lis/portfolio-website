@@ -1,6 +1,6 @@
 import themes from '/data/global/themes.js'
 import { idReferences, paths } from '/data/global/names.js'
-import { privatePolicyDescription } from '/data/descriptions/index.js'
+import { privacyPolicyDescription } from '/data/descriptions/index.js'
 import {
   DescriptionArrange,
   Theme,
@@ -12,9 +12,9 @@ import {
 
 new Theme(idReferences.theme.main, themes, Particles)
 new BackBtn(idReferences.global.leftContainer)
-new Audio(idReferences.global.leftContainer, paths.privatePolicyIntroduction)
+new Audio(idReferences.global.leftContainer, paths.privacyPolicyIntroduction)
 new Form(idReferences.global.leftContainer)
 new DescriptionArrange(
-  idReferences.privatePolicy.description,
-  privatePolicyDescription
+  idReferences.privacyPolicy.description,
+  privacyPolicyDescription
 )

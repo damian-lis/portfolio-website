@@ -303,8 +303,8 @@ export const idReferences = {
   skills: {
     description: '#skills-description',
   },
-  privatePolicy: {
-    description: '#privatePolicy-description',
+  privacyPolicy: {
+    description: '#privacyPolicy-description',
   },
 }
 
@@ -314,7 +314,7 @@ export const paths = {
   emailImg: '/images/icons/email.svg',
   arrowImg: '/images/icons/arrow.svg',
   mainPageIntroduction: '/audio/mainPageIntroduction.mp3',
-  privatePolicyIntroduction: '/audio/privatePolicyIntroduction.mp3',
+  privacyPolicyIntroduction: '/audio/privacyPolicyIntroduction.mp3',
 }
 
 export const mailEndPoint = 'https://dirt-ten-risk.glitch.me/api/mail/portfolio'
