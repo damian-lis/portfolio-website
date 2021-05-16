@@ -86,7 +86,7 @@ class Theme {
     const themeObject = this.themesObject[themeName]
 
     setActiveFn({
-      setOn: element,
+      setOn: [element],
       removeFrom: this.optionsDots,
       classes: [classNames.theme.optionsDotActive],
     })
