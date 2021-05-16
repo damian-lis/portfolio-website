@@ -18,10 +18,15 @@ class Particles {
       y: null,
       radius: (this.canvas.height / 80) * (this.canvas.width / 80),
     }
+    this.isMobile = this.setIsMobile()
 
     this.setContext()
     this.listenForResize()
     appendElementsToContainerFn([this.canvas], document.body)
+  }
+
+  setIsMobile() {
+    return window.innerWidth < 500
   }
 
   setContext() {
@@ -53,7 +58,7 @@ class Particles {
           (this.particleArray[a].y - this.particleArray[b].y) *
             (this.particleArray[a].y - this.particleArray[b].y)
         if (distance < (this.canvas.width / 7) * (this.canvas.height / 7)) {
-          opacityValue = 1 - distance / 10000
+          opacityValue = 1 - distance / (this.isMobile ? 4000 : 10000)
           this.ctx.strokeStyle = `rgba(${this.strokeColor}, ${opacityValue} )`
           this.ctx.beginPath()
           this.ctx.lineWidth = 2
@@ -107,7 +112,9 @@ class Particles {
     this.particleArray = []
     this.canvas.width = innerWidth
     this.canvas.height = innerHeight
+    this.isMobile = this.setIsMobile()
     this.init()
+    this.connect()
   }
 }
 
