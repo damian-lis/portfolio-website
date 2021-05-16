@@ -1,14 +1,31 @@
-export default ({ setOn, removeFrom = [], classes = [] }) => {
-  removeFrom.map((el) =>
-    classes.map((classEl) => {
-      el.classList.remove(classEl)
-      el.disabled = false
-    })
-  )
+import { common } from '/data/global/names.js'
 
-  setOn &&
+export default ({ setOn, removeFrom = [], classes = [] }) => {
+  removeFrom.map((el) => {
+    let element = el
+
+    if (typeof el === common.string) {
+      element = document.querySelector(el)
+    }
+
     classes.map((classEl) => {
-      setOn.classList.add(classEl)
-      setOn.disabled = true
+      element.classList.remove(classEl)
+      element.disabled = false
     })
+  })
+
+  if (setOn) {
+    setOn.map((el) => {
+      let element = el
+
+      if (typeof el === common.string) {
+        element = document.querySelector(el)
+      }
+
+      classes.map((classEl) => {
+        el.classList.add(classEl)
+        el.disabled = true
+      })
+    })
+  }
 }
