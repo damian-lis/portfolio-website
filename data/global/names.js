@@ -109,7 +109,7 @@ export const fetchProps = {
 }
 
 export const info = {
-  themeNote: '*Theme settings will be saved for your next visit',
+  themeNote: '*Theme settings will be saved for Your next visit',
   personalizeTheme: 'Personalize Theme',
   duringDevelopment: 'During dev...',
   momentLonger: 'literally wait a moment longer! ⚡',
@@ -251,29 +251,51 @@ export const classNames = {
     animations: {
       slideInFromTop: 'slideInFromTop',
     },
-    text: {
-      center: 'text-center',
-      justify: 'text-justify',
-      lh: (value) => `text-lh-${value}`,
-      smLeft: 'sm-text-left',
-    },
 
-    margin: (type, value) => `m${type}-${value}`,
+    position: {
+      relative: 'relative',
+    },
 
     border: {
       rounded: 'rounded',
       danger: 'border-danger',
     },
 
-    width: {
-      full: 'w-full',
+    text: {
+      underline: 'text-underline',
+      left: 'text-left',
+      justify: 'text-justify',
+      dash: 'text-dash',
+      center: 'text-center',
+      lh: (value) => `text-lh-${value}`,
+
+      sm: {
+        left: 'sm-text-left',
+        center: 'sm-text-center',
+      },
     },
 
-    height: {
+    h: {
       full: 'h-full',
     },
 
-    dash: 'dash',
+    m: {
+      t: (value) => `mt-${value}`,
+      r: (value) => `mr-${value}`,
+      b: (value) => `mb-${value}`,
+      l: (value) => `ml-${value}`,
+      y: (value) => `my-${value}`,
+      x: (value) => `mx-${value}`,
+
+      sm: {
+        t: (value) => `sm-mt-${value}`,
+        r: (value) => `sm-mr-${value}`,
+        b: (value) => `sm-mb-${value}`,
+        l: (value) => `sm-ml-${value}`,
+        y: (value) => `sm-my-${value}`,
+        x: (value) => `sm-mx-${value}`,
+      },
+    },
   },
 
   prism: {
