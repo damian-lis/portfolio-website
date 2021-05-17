@@ -1,36 +1,56 @@
 import { common } from '/data/global/names.js'
 
-export default (objs = [], delay) => {
-  if (delay) {
-    return setTimeout(
-      () =>
-        objs.map((obj) =>
-          obj.elements.map((el) => {
+export default (objs = []) => {
+  return setTimeout(() =>
+    objs.map((obj) => {
+      obj.delay
+        ? obj.elements.map((el) => {
             let element = el
+
             if (typeof el === common.string) {
               element = document.querySelector(el)
             }
+
             obj.styleProps &&
-              obj.styleProps.map(
-                (prop) => (element.style[prop.name] = prop.value)
-              )
+              obj.styleProps.map((prop) => {
+                setTimeout(
+                  () => (element.style[prop.name] = prop.value),
+                  obj.delay
+                )
+              })
+
             obj.props &&
-              obj.props.map((prop) => (element[prop.name] = prop.value))
+              obj.props.map((prop) => {
+                setTimeout(() => (element[prop.name] = prop.value), obj.delay)
+              })
           })
-        ),
-      delay
-    )
-  } else {
-    objs.map((obj) =>
-      obj.elements.map((el) => {
-        let element = el
-        if (typeof el === common.string) {
-          element = document.querySelector(el)
-        }
-        obj.styleProps &&
-          obj.styleProps.map((prop) => (element.style[prop.name] = prop.value))
-        obj.props && obj.props.map((prop) => (element[prop.name] = prop.value))
-      })
-    )
-  }
+        : obj.elements.map((el) => {
+            let element = el
+
+            if (typeof el === common.string) {
+              element = document.querySelector(el)
+            }
+
+            obj.styleProps &&
+              obj.styleProps.map((prop) => {
+                prop.delay
+                  ? setTimeout(
+                      () => (element.style[prop.name] = prop.value),
+                      prop.delay
+                    )
+                  : (element.style[prop.name] = prop.value)
+              })
+
+            obj.props &&
+              obj.props.map((prop) => {
+                prop.delay
+                  ? setTimeout(
+                      () => (element[prop.name] = prop.value),
+                      prop.delay
+                    )
+                  : (element[prop.name] = prop.value)
+              })
+          })
+    })
+  )
 }
