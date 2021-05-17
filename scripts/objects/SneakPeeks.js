@@ -31,8 +31,8 @@ class SneakPeeks {
       classes: [classNames.sneakPeeks.container],
     })
 
-    this.elements = this.data.map((dataPortion) => {
-      const linkWrapper = dataPortion.duringDevelopment
+    this.elements = this.data.map((sneakPeek) => {
+      const linkWrapper = sneakPeek.duringDevelopment
         ? createElementFn({
             element: elements.a,
             classes: [classNames.sneakPeek.linkWrapper],
@@ -40,7 +40,7 @@ class SneakPeeks {
         : createElementFn({
             element: elements.a,
             classes: [classNames.sneakPeek.linkWrapper],
-            href: dataPortion.route,
+            href: sneakPeek.href,
           })
 
       const container = createElementFn({
@@ -51,8 +51,8 @@ class SneakPeeks {
       const thubnail = createElementFn({
         element: elements.img,
         classes: [classNames.sneakPeek.thubnail],
-        src: dataPortion.image,
-        alt: dataPortion.alt,
+        src: sneakPeek.image,
+        alt: sneakPeek.alt,
       })
 
       const prevContainer = createElementFn({
@@ -63,13 +63,13 @@ class SneakPeeks {
       const title = createElementFn({
         element: elements.h(6),
         classes: [classNames.sneakPeek.title],
-        textContent: dataPortion.title,
+        textContent: sneakPeek.title,
       })
 
       const intro = createElementFn({
         element: elements.p,
         classes: [classNames.sneakPeek.intro],
-        textContent: dataPortion.intro,
+        textContent: sneakPeek.intro,
       })
 
       const iconsContainer = createElementFn({
@@ -77,7 +77,7 @@ class SneakPeeks {
         classes: [classNames.sneakPeek.iconsContainer],
       })
 
-      const icons = dataPortion.icons.map((iconEl) => {
+      const icons = sneakPeek.icons.map((iconEl) => {
         const icon = createElementFn({
           element: elements.img,
           src: iconEl.image,
@@ -85,14 +85,14 @@ class SneakPeeks {
         return icon
       })
 
-      const ribbonContainer = dataPortion.duringDevelopment
+      const ribbonContainer = sneakPeek.duringDevelopment
         ? createElementFn({
             element: elements.div,
             classes: [classNames.sneakPeek.ribbon],
           })
         : null
 
-      const ribbonText = dataPortion.duringDevelopment
+      const ribbonText = sneakPeek.duringDevelopment
         ? createElementFn({
             element: elements.p,
             classes: [classNames.sneakPeek.ribbonText],
@@ -175,7 +175,7 @@ class SneakPeeks {
     setClassesFn([
       {
         element: this.triggerElement,
-        classes: [classNames.utilities.height.full],
+        classes: [classNames.utilities.h.full],
       },
       {
         element: this.wrapperToRelease,

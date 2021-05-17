@@ -1,6 +1,6 @@
 export default [
   {
-    route: '/',
+    href: '/',
     image: '/images/projects/PortfolioWebsite/introDesktop.gif',
     alt: 'Potfolio Website',
     title: 'Portfolio Website (OOP)',
@@ -14,7 +14,7 @@ export default [
   },
 
   {
-    route: '/',
+    href: '/',
     image: '/images/projects/TalkToGisapiaAndTheOthers/introDesktop.gif',
     alt: 'Talk to Gisapia and the Others',
     title: 'Talk to Gisapia and the Others (OOP)',
@@ -29,7 +29,7 @@ export default [
   },
 
   {
-    route: '/',
+    href: '/',
     image: '/images/projects/EmailsHandler/emailsHandlerIntro.gif',
     alt: 'Emails Handler',
     title: 'Emails Handler',
@@ -44,7 +44,7 @@ export default [
   },
 
   {
-    route: '/fluentBlog.html',
+    href: '/fluentBlog.html',
     image: '/images/projects/FluentBlog/browseArticle.gif',
     alt: 'FluentBlog',
     title: 'FluentBlog',
@@ -57,7 +57,7 @@ export default [
   },
 
   {
-    route: '/',
+    href: '/',
     image: '/images/icons/projects/uniqueChoice.jpg',
     alt: 'Unique Choice',
     title: 'Unique Choice',
@@ -73,7 +73,7 @@ export default [
   },
 
   {
-    route: '/',
+    href: '/',
     image: '/images/icons/projects/leaf.jpg',
     alt: 'Leaf',
     title: 'Leaf',
