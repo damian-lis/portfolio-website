@@ -112,12 +112,12 @@ export const info = {
   themeNote: '*Theme settings will be saved for Your next visit',
   personalizeTheme: 'Personalize Theme',
   duringDevelopment: 'During dev...',
-  momentLonger: 'literally wait a moment longer! ⚡',
-  sendingNow: "I'm sending now! 🚀",
-  writeMessage: 'Write to me a message',
-  messageSent: 'Message sent! 😎',
-  somethingWentWrong: 'Something went wrong, try again! 😬',
-  unableToConnect: 'Unable to connect to the server 😔',
+  momentLonger: 'literally a moment! 🛩',
+  sendingNow: 'almost, almost! 🚀',
+  writeMessage: 'Write a message',
+  messageSent: `Message sent! 😎`,
+  somethingWentWrong: 'Error, try again! 😬',
+  unableToConnect: 'No connection 😔',
 }
 
 export const formFieldsContent = [
@@ -149,7 +149,7 @@ export const formFieldsContent = [
     type: 'submit',
     value: 'Wyślij',
     name: 'submit',
-    notification: 'Please wait a moment more! 🕐',
+    notification: 'Please wait a moment! 🕐',
   },
 ]
 
