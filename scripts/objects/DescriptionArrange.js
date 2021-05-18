@@ -74,14 +74,21 @@ class DataArrange {
         case common.list:
           const list = createElementFn({
             element: object.elements.list,
+            classes: object.classes.list,
           })
 
-          const listItems = object.content.map((listItemContent) =>
-            createElementFn({
-              element: object.elements.listItem,
-              classes: object.classes.listItem,
-              textContent: listItemContent,
-            })
+          const listItems = object.content.map((listItemContent, index) =>
+            object.content.length - 1 === index
+              ? createElementFn({
+                  element: object.elements.listItem,
+                  classes: object.classes.lastListItem,
+                  textContent: listItemContent,
+                })
+              : createElementFn({
+                  element: object.elements.listItem,
+                  classes: object.classes.listItem,
+                  textContent: listItemContent,
+                })
           )
 
           listItems.map((listItem) => list.appendChild(listItem))
