@@ -95,18 +95,18 @@ class DataArrange {
 
           return list
 
-        // case common.code:
-        //   const pre = createElementFn({
-        //     element: common.elements.pre,
-        //   })
-        //   const code = createElementFn({
-        //     element: common.elements.code,
-        //     classes: [common.classNames.prism.languageJS],
-        //     textContent: object.value,
-        //   })
-        //   pre.appendChild(code)
+        case common.code:
+          const pre = createElementFn({
+            element: object.elements.pre,
+          })
+          const code = createElementFn({
+            element: object.elements.code,
+            classes: [object.classes.code],
+            textContent: object.content,
+          })
+          pre.appendChild(code)
 
-        //   return pre
+          return pre
 
         default:
           break
