@@ -80,7 +80,6 @@ export default [
     intro:
       'It is a fullstack project that aims to recreate many functionalities, structures and styles from apple.com.',
     icons: [
-      { image: '/images/icons/technologies/bootstrap.jpg' },
       { image: '/images/icons/technologies/react.jpg' },
       { image: '/images/icons/technologies/nodejs.jpg' },
       { image: '/images/icons/technologies/mongodb.jpg' },

@@ -4,7 +4,21 @@ export default [
     type: common.paragraph,
     element: elements.p,
     content: [
-      'Niniejsza polityka prywatności opisuje zasady postępowania z danymi osobowymi oraz ich wykorzystywania w ramach strony internetowej damianlis.tech. Administratorem strony jest Damian Lis (osoba prywatna) zameldowana we Wrocławiu przy ulicy Estońska 42/24.Kontakt z administratorem możliwy jest pod adresem e-mail damian.lis1293@gmail.com.',
+      `Niniejsza polityka prywatności opisuje zasady postępowania z danymi osobowymi oraz ich wykorzystywania w ramach strony internetowej damianlis.pl.`,
+    ],
+    classes: [
+      classNames.utilities.m.y(10),
+      classNames.utilities.text.lh(25),
+      classNames.utilities.text.justify,
+      classNames.utilities.text.sm.left,
+    ],
+  },
+
+  {
+    type: common.paragraph,
+    element: elements.p,
+    content: [
+      `Administratorem strony jest Damian Lis (osoba prywatna), z którym można się skontaktować pod adresem e-mail damian.lis1293@gmail.com.`,
     ],
     classes: [
       classNames.utilities.m.y(10),

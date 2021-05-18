@@ -62,7 +62,7 @@ export default [
       listItem: elements.li,
     },
     content: [
-      'Node/Express (e-commerce REST API),',
+      `Node/Express (e-commerce REST API's),`,
       'MongoDB (basic handling with Express),',
       'PHP (basic syntax and logic)',
     ],

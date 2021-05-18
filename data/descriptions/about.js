@@ -16,9 +16,9 @@ export default [
     type: common.paragraph,
     element: elements.p,
     content: [
-      'Over a year and a half, I have been developing as a frontend developer with a basic backend skills.',
+      'Over a year and a half of continuous self study, I have been developing as a frontend developer with a basic backend skills.',
       'I fell in love with programming because of the ability to create amazing projects and developing my problem-solving skills.',
-      `Generaly I love creating e-commerce sites (React/Express) and pseudo-intelligent apps like chatbot (OOP/design patterns).`,
+      `Generaly I love creating e-commerce sites (React/Express) and pseudo-intelligent apps like chatbot (JS/OOP/Design patterns).`,
     ],
     classes: [classNames.utilities.text.lh(25)],
   },
