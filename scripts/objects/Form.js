@@ -4,6 +4,8 @@ import {
   triggerActionOnWindowScrollFn,
   appendElementsToContainerFn,
   setPropsFn,
+  setListenersFn,
+  setDelayFn,
   toggleClassesFn,
 } from '/scripts/helpers/index.js'
 import {
@@ -328,12 +330,10 @@ class Form {
       body: JSON.stringify(this.dataFromUser),
     })
       .then((response) => response.json())
-      .then((data) =>
-        data.success
-          ? this.showMessageAfterSubmit(info.messageSent)
-          : this.showMessageAfterSubmit(info.somethingWentWrong)
+      .then(async (data) =>
+        data.success ? info.messageSent : info.somethingWentWrong
       )
-      .catch(() => this.showMessageAfterSubmit(info.unableToConnecte))
+      .catch(async () => await info.unableToConnecte)
   }
 
   async handleFormSubmit(e) {
@@ -350,10 +350,19 @@ class Form {
       thirdNotificationDelay: 15000,
     })
     curtain.togglePreventHidden(common.on)
-    await this.handleEmailSent()
-    this.toggleDeleteBtnComponent(common.on)
+
+    const feedback = await this.handleEmailSent()
+    this.resetFormInputsValue()
     this.toggleSpinnerComponent(common.off)
     this.toggleSubmitlNotifications(common.off, {})
+    this.hideFormComponent()
+    this.replaceTitleText(feedback)
+    this.ReduceMainComponentHeight()
+    this.moveTitleComponent()
+    this.revealTitleWhisper()
+
+    await setDelayFn(2000)
+    this.setSelfDestructEventToMainComponent()
     curtain.togglePreventHidden(common.off)
   }
 
@@ -388,52 +397,46 @@ class Form {
 
     switch (toggle) {
       case common.on:
-        this.showNotificationTimeout = setPropsFn(
-          [
-            {
-              elements: [formSubmitnotification],
-              styleProps: [
-                {
-                  name: styleProps.names.visibility,
-                  value: styleProps.values.visible,
-                },
-                {
-                  name: styleProps.names.opacity,
-                  value: 1,
-                },
-              ],
-            },
-          ],
-          firstNotificationDelay
-        )
-        this.changeFirstNotificationTimout = setPropsFn(
-          [
-            {
-              elements: [formSubmitnotification],
-              props: [
-                {
-                  name: elementProps.names.innerHTML,
-                  value: info.momentLonger,
-                },
-              ],
-            },
-          ],
-          secondNotificationDelay
-        )
-        this.changeSecondNotificationTimout = setPropsFn(
-          [
-            {
-              elements: [formSubmitnotification],
-              props: [
-                {
-                  name: elementProps.names.innerHTML,
-                  value: info.sendingNow,
-                },
-              ],
-            },
-          ],
-          thirdNotificationDelay
-        )
+        this.showNotificationTimeout = setPropsFn([
+          {
+            elements: [formSubmitnotification],
+            styleProps: [
+              {
+                name: styleProps.names.visibility,
+                value: styleProps.values.visible,
+              },
+              {
+                name: styleProps.names.opacity,
+                value: 1,
+              },
+            ],
+            delay: firstNotificationDelay,
+          },
+        ])
+        this.changeFirstNotificationTimout = setPropsFn([
+          {
+            elements: [formSubmitnotification],
+            props: [
+              {
+                name: elementProps.names.innerHTML,
+                value: info.momentLonger,
+              },
+            ],
+            delay: secondNotificationDelay,
+          },
+        ])
+        this.changeSecondNotificationTimout = setPropsFn([
+          {
+            elements: [formSubmitnotification],
+            props: [
+              {
+                name: elementProps.names.innerHTML,
+                value: info.sendingNow,
+              },
+            ],
+            delay: thirdNotificationDelay,
+          },
+        ])
         break
 
       case common.off:
@@ -536,78 +539,99 @@ class Form {
   }
 
   resetFormInputsValue() {
-    this.formTextInputs.map((input) => {
-      input.value = ''
-    })
+    this.formTextInputs.map((input) => (input.value = ''))
   }
 
   resetDataFromUser() {
     this.dataFromUser = {}
   }
 
-  showMessageAfterSubmit(message) {
-    this.resetFormInputsValue()
-    setPropsFn(
-      [
-        {
-          elements: [this.titleComponent],
-          styleProps: [
-            {
-              name: styleProps.names.top,
-              value: '50%',
-            },
-            {
-              name: styleProps.names.transition,
-              value: '0.9s',
-            },
-            {
-              name: styleProps.names.position,
-              value: styleProps.values.relative,
-            },
-            {
-              name: styleProps.names.transform,
-              value: styleProps.values.translateY(-50),
-            },
-          ],
-        },
+  hideFormComponent() {
+    setPropsFn([
+      {
+        elements: [this.formComponent],
+        styleProps: [
+          {
+            name: styleProps.names.overflow,
+            value: styleProps.values.hidden,
+          },
+          {
+            name: styleProps.names.opacity,
+            value: 0,
+          },
+          {
+            name: styleProps.names.visibility,
+            value: styleProps.values.hidden,
+          },
+        ],
+      },
+    ])
+  }
 
-        {
-          elements: [this.formComponent],
-          styleProps: [
-            {
-              name: styleProps.names.transition,
-              value: '0.3s',
-            },
-            {
-              name: styleProps.names.height,
-              value: '0px',
-            },
-            {
-              name: styleProps.names.overflow,
-              value: styleProps.values.hidden,
-            },
-            {
-              name: styleProps.names.opacity,
-              value: 0,
-            },
-            {
-              name: styleProps.names.visibility,
-              value: styleProps.values.hidden,
-            },
-          ],
-        },
-        {
-          elements: [this.title],
-          props: [
-            {
-              name: elementProps.names.innerHTML,
-              value: message,
-            },
-          ],
-        },
-      ],
-      300
-    )
+  moveTitleComponent() {
+    setPropsFn([
+      {
+        elements: [this.titleComponent],
+        styleProps: [
+          {
+            name: styleProps.names.top,
+            value: '50%',
+          },
+          {
+            name: styleProps.names.position,
+            value: styleProps.values.relative,
+          },
+          {
+            name: styleProps.names.transform,
+            value: styleProps.values.translateY(-70),
+          },
+        ],
+      },
+    ])
+  }
+
+  replaceTitleText(message) {
+    setPropsFn([
+      {
+        elements: [this.title],
+        props: [
+          {
+            name: elementProps.names.innerHTML,
+            value: message,
+          },
+        ],
+      },
+    ])
+  }
+
+  revealTitleWhisper() {
+    setPropsFn([
+      {
+        elements: [this.titleWhisper],
+        styleProps: [
+          {
+            name: styleProps.names.opacity,
+            value: 1,
+            delay: 1800,
+          },
+        ],
+      },
+    ])
+  }
+
+  ReduceMainComponentHeight() {
+    setPropsFn([
+      {
+        elements: [this.mainComponent],
+        styleProps: [
+          {
+            name: styleProps.names.height,
+            value: '100px',
+            delay: 800,
+          },
+        ],
+      },
+    ])
   }
 
   checkIfEmptyFormInputsValue() {
@@ -647,6 +671,14 @@ class Form {
         },
       ])
     )
+  }
+
+  setSelfDestructEventToMainComponent() {
+    setListenersFn({
+      elements: [this.mainComponent],
+      events: [events.click],
+      cb: () => curtain.toggleShow(common.off),
+    })
   }
 }
 
