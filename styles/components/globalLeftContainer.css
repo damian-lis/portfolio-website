@@ -28,6 +28,7 @@
   border-left: none;
   opacity: 0.9;
   z-index: 1;
+  transition: 0s;
 }
 
 .global-left-btn img {
