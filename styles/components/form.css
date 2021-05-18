@@ -2,11 +2,12 @@
   width: 100%;
   max-width: 500px;
   height: 100%;
-  max-height: 600px;
+  max-height: 700px;
   padding: 10px;
   border: var(--borderColor) 1px solid;
   border-radius: 5px;
   background-color: var(--secondaryColor);
+  transition: 1s;
   opacity: 0;
   transform: translateX(200%);
   animation: slideInFromRight 0.5s 0.5s ease-in forwards;
@@ -20,16 +21,20 @@
 }
 
 .form-title-container {
+  position: relative;
   top: 0;
   min-height: 70px;
   display: flex;
+  flex-direction: column;
   flex-basis: 15%;
   justify-content: center;
   align-items: center;
+  transition: 0.7s;
 }
 
 .form-title {
   text-align: center;
+  transition: 0.7;
 }
 
 .form-container {
@@ -44,6 +49,7 @@
   padding: 15px;
   border-radius: 5px;
   background-color: var(--mainColor);
+  transition: 0.4;
 }
 
 .form-field {
@@ -51,7 +57,7 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .form-field-message {
@@ -59,7 +65,8 @@
 }
 
 .form-field-submit {
-  margin-top: 7px;
+  margin-top: 3px;
+  margin-bottom: 0;
 }
 
 .form-field label {
@@ -78,13 +85,15 @@ textarea {
 .form-field textarea {
   height: 100%;
   padding: 10px;
-  line-height: 180%;
+  /* margin-bottom: 0; */
+  line-height: 23px;
   resize: none;
 }
 
 .form-field input[type='submit'] {
   height: 41px;
   margin-top: 15px;
+  margin-bottom: 0;
   background-color: var(--buttonColor);
   cursor: pointer;
 }
@@ -98,7 +107,7 @@ textarea {
   bottom: -5px;
   width: fit-content;
   margin-left: 10px;
-  padding: 5px 7px;
+  padding: 2px 7px;
   border: 1px solid red;
   border-radius: 5px;
   background-color: var(--mainColor);
@@ -107,11 +116,12 @@ textarea {
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .form-field-submit-notification {
   position: absolute;
-  top: -8px;
+  top: -9px;
   left: 50%;
   transform: translateX(-50%);
   width: fit-content;
@@ -129,6 +139,7 @@ textarea {
   justify-content: center;
   align-items: center;
   transition: 0.2s;
+  z-index: 1;
 }
 
 .form-btn-delete {
@@ -149,13 +160,14 @@ textarea {
   width: 100%;
   height: 41px;
   margin-top: 15px;
-  margin-bottom: 7px;
+  margin-bottom: 0px;
   padding: 10px;
   border: 1px solid var(--borderColor);
   border-radius: 5px;
   background-color: var(--buttonColor);
   font-size: 14px;
   opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .form-spinner {
