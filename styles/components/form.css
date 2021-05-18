@@ -37,6 +37,14 @@
   transition: 0.7;
 }
 
+.form-title-whisper {
+  position: absolute;
+  top: 60%;
+  font-size: 14px;
+  opacity: 0;
+  transition: 0.9;
+}
+
 .form-container {
   flex-basis: 85%;
 }
