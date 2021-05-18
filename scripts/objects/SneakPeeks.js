@@ -84,13 +84,12 @@ class SneakPeeks {
         classes: [classNames.sneakPeek.iconsContainer],
       })
 
-      const icons = sneakPeek.icons.map((iconEl) => {
-        const icon = createElementFn({
+      const icons = sneakPeek.icons.map((iconEl) =>
+        createElementFn({
           element: elements.img,
           src: iconEl.image,
         })
-        return icon
-      })
+      )
 
       const ribbonContainer = sneakPeek.duringDevelopment
         ? createElementFn({

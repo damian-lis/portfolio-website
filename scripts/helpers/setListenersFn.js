@@ -10,9 +10,7 @@ export default ({ elements, events, cb, delay }) => {
             element = document.querySelector(el)
           }
 
-          events.map((event) => {
-            element.addEventListener(event, cb)
-          })
+          events.map((event) => element.addEventListener(event, cb))
         })
       }, delay)
     : elements.map((el) => {
@@ -22,8 +20,6 @@ export default ({ elements, events, cb, delay }) => {
           element = document.querySelector(el)
         }
 
-        events.map((event) => {
-          element.addEventListener(event, cb)
-        })
+        events.map((event) => element.addEventListener(event, cb))
       })
 }

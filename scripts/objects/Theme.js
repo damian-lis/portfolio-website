@@ -45,8 +45,8 @@ class Theme {
       classes: [classNames.theme.optionsContainer],
     })
 
-    this.optionsDots = Object.keys(this.themesObject).map((themeName) => {
-      return createElementFn({
+    this.optionsDots = Object.keys(this.themesObject).map((themeName) =>
+      createElementFn({
         element: elements.div,
         classes: [
           classNames.theme.optionsDot,
@@ -61,7 +61,7 @@ class Theme {
           },
         ],
       })
-    })
+    )
 
     this.note = createElementFn({
       element: elements.p,

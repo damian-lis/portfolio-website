@@ -14,9 +14,9 @@ export default ({
     element = document.querySelector(trigerElement)
   }
 
-  window.addEventListener(events.scroll, () => {
+  window.addEventListener(events.scroll, () =>
     window.innerHeight + window.pageYOffset - modifier > element.offsetTop
       ? cbOnEnterTriggerEl(element)
       : cbOnExitTriggerEl(element)
-  })
+  )
 }

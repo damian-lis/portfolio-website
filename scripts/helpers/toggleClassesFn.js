@@ -1,7 +1,7 @@
 import { common } from '/data/global/names.js'
 
-export default (toggle, { elements = [], classes = [] }) => {
-  classes.map((classEl) => {
+export default (toggle, { elements = [], classes = [] }) =>
+  classes.map((classEl) =>
     elements.map((el) => {
       let element = el
 
@@ -22,5 +22,4 @@ export default (toggle, { elements = [], classes = [] }) => {
           break
       }
     })
-  })
-}
+  )

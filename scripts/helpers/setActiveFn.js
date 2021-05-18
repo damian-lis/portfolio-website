@@ -14,7 +14,7 @@ export default ({ setOn, removeFrom = [], classes = [] }) => {
     })
   })
 
-  if (setOn) {
+  setOn &&
     setOn.map((el) => {
       let element = el
 
@@ -27,5 +27,4 @@ export default ({ setOn, removeFrom = [], classes = [] }) => {
         el.disabled = true
       })
     })
-  }
 }

@@ -76,9 +76,7 @@ class Curtain {
   }
 
   addCbsToCallOnHidden(cbs) {
-    cbs.map((cb) => {
-      this.cbsToCallOnHidden.push(cb)
-    })
+    cbs.map((cb) => this.cbsToCallOnHidden.push(cb))
   }
 
   toggleBodyOverflow(toggle) {
@@ -124,9 +122,7 @@ class Curtain {
   clear({ after }) {
     this.clearCbsToCallOnHidden()
     setTimeout(() => {
-      this.children.map((child) => {
-        child.remove()
-      })
+      this.children.map((child) => child.remove())
       this.clearChildren()
     }, after)
   }
