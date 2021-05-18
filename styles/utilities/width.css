@@ -1,3 +1,7 @@
+.w-fit {
+  width: fit-content;
+}
+
 .w-auto {
   width: auto;
 }

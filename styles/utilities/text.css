@@ -10,6 +10,10 @@
   text-align: justify;
 }
 
+.text-underline {
+  text-decoration: underline;
+}
+
 .text-lh-20 {
   line-height: 20px;
 }

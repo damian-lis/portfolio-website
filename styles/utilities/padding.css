@@ -1,8 +1,4 @@
 /* Global */
-.p-0 {
-  padding: 0;
-}
-
 .p-10 {
   padding: 10px;
 }
@@ -15,19 +11,7 @@
   padding: 30px;
 }
 
-.p-40 {
-  padding: 40px;
-}
-
-.p-50 {
-  padding: 50px;
-}
-
 /* Padding top */
-.pt-10 {
-  padding-top: 10px;
-}
-
 .pt-20 {
   padding-top: 20px;
 }
@@ -36,46 +20,39 @@
   padding-top: 30px;
 }
 
-.pt-40 {
-  padding-top: 40px;
-}
-
-.pt-50 {
-  padding-top: 50px;
-}
-
 /* Padding bottom */
-.pb-10 {
-  padding-bottom: 10px;
-}
-
-.pb-20 {
-  padding-bottom: 20px;
+.pb-25 {
+  padding-bottom: 25px;
 }
 
 .pb-30 {
   padding-bottom: 30px;
 }
 
-.pb-40 {
-  padding-bottom: 40px;
-}
-
-.pb-50 {
-  padding-bottom: 50px;
-}
-
 /* Padding left */
-.pl-10 {
-  padding-left: 10px;
-}
-
-.pl-20 {
-  padding-left: 20px;
-}
-
 .pl-30 {
   padding-left: 30px;
+}
+
+.pl-40 {
+  padding-left: 40px;
+}
+
+/* Padding right */
+.pr-7 {
+  padding-right: 0px;
+}
+
+.pr-10 {
+  padding-right: 10px;
+}
+
+.pr-20 {
+  padding-right: 20px;
+}
+
+.pr-40 {
+  padding-right: 35px;
 }
 
 /* Padding horizontal */
@@ -99,17 +76,7 @@
   padding-right: 40px;
 }
 
-.px-50 {
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
 /* Padding vertical */
-.py-10 {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
 .py-20 {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -118,16 +85,6 @@
 .py-30 {
   padding-top: 30px;
   padding-bottom: 30px;
-}
-
-.py-40 {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-.py-50 {
-  padding-top: 50px;
-  padding-bottom: 50px;
 }
 
 @media screen and (max-width: 800px) {
@@ -144,126 +101,19 @@
     padding: 20px;
   }
 
-  .sm-p-30 {
-    padding: 30px;
-  }
-
-  .sm-p-40 {
-    padding: 40px;
-  }
-
-  .sm-p-50 {
-    padding: 50px;
-  }
-
-  /* Padding top */
-  .sm-pt-10 {
-    padding-top: 10px;
-  }
-
-  .sm-pt-20 {
-    padding-top: 20px;
-  }
-
-  .sm-pt-30 {
-    padding-top: 30px;
-  }
-
-  .sm-pt-40 {
-    padding-top: 40px;
-  }
-
-  .sm-pt-50 {
-    padding-top: 50px;
-  }
-
   /* Padding left */
   .sm-pl-0 {
     padding-left: 0px;
   }
 
-  .sm-pl-10 {
-    padding-left: 10px;
-  }
-
-  .sm-pl-20 {
-    padding-left: 20px;
-  }
-
-  .sm-pl-30 {
-    padding-left: 30px;
-  }
-
   /* Padding bottom */
-  .sm-pb-10 {
-    padding-bottom: 10px;
-  }
-
   .sm-pb-20 {
     padding-bottom: 20px;
   }
 
-  .sm-pb-30 {
-    padding-bottom: 30px;
-  }
-
-  .sm-pb-40 {
-    padding-bottom: 40px;
-  }
-
-  .sm-pb-50 {
-    padding-bottom: 50px;
-  }
-
   /* Padding horizontal */
-  .sm-px-10 {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
   .sm-px-20 {
     padding-left: 20px;
     padding-right: 20px;
-  }
-
-  .sm-px-30 {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-
-  .sm-px-40 {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-
-  .sm-px-50 {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-
-  /* Padding vertical */
-  .sm-py-10 {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  .sm-py-20 {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  .sm-py-30 {
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-
-  .sm-py-40 {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-
-  .sm-py-50 {
-    padding-top: 50px;
-    padding-bottom: 50px;
   }
 }
