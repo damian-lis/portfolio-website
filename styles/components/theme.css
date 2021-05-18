@@ -9,7 +9,7 @@
   border: 1px solid var(--borderColor);
   border-bottom: none;
   border-radius: 5px 5px 0 0;
-  background-color: var(--mainColor);
+  background-color: var(--mainColorTransparent);
   opacity: 0;
   animation: slideInFromTop 0.5s 2s ease-in forwards, shake 3s 2s infinite;
 }
