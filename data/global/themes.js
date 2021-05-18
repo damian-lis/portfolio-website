@@ -4,7 +4,7 @@ export default {
     mainColorTransparent: 'rgba(18, 18, 18, 0.9)',
 
     secondaryColor: 'rgb(0,0,0)',
-    secondaryColorTransparent: 'rgba(0,0,0,0.9)',
+    secondaryColorTransparent: 'rgba(0, 0, 0, 0.9)',
 
     borderColor: 'rgb(85 ,85, 85)',
 
