@@ -53,7 +53,7 @@ class Form {
 
     this.emailImg = createElementFn({
       element: elements.img,
-      classes: [classNames.utilities.margin('t', 5)],
+      classes: [classNames.utilities.m.t(5)],
       src: paths.emailImg,
     })
   }
@@ -102,6 +102,12 @@ class Form {
       textContent: info.writeMessage,
     })
 
+    this.titleWhisper = createElementFn({
+      element: elements.p,
+      classes: ['form-title-whisper'],
+      innerHTML: '(click anywhere to close)',
+    })
+
     this.formContainer = createElementFn({
       element: elements.div,
       classes: [classNames.form.container],
@@ -140,10 +146,11 @@ class Form {
 
     this.formTextInputs = (() => {
       let textInputs = []
-      this.formFieldsElements.map((formFieldElements) => {
-        if (formFieldElements.input.type !== common.submit)
+      this.formFieldsElements.map(
+        (formFieldElements) =>
+          formFieldElements.input.type !== common.submit &&
           textInputs.push(formFieldElements.input)
-      })
+      )
 
       return textInputs
     })()
@@ -250,7 +257,7 @@ class Form {
     })()
 
     this.titleComponent = appendElementsToContainerFn(
-      [this.title],
+      [this.title, this.titleWhisper],
       this.titleContainer
     )
 
