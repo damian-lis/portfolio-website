@@ -339,4 +339,6 @@ export const paths = {
   privacyPolicyIntroduction: '/audio/privacyPolicyIntroduction.mp3',
 }
 
+export const emailValidationRegexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
 export const mailEndPoint = 'https://dirt-ten-risk.glitch.me/api/mail/portfolio'
