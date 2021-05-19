@@ -20,6 +20,7 @@ export const common = {
   header: 'header',
   list: 'list',
   image: 'image',
+  email: 'email',
   on: 'on',
   off: 'off',
 }
@@ -75,7 +76,6 @@ export const styleProps = {
     hidden: 'hidden',
     auto: 'auto',
     flex: 'flex',
-    visible: 'visible',
     hidden: 'hidden',
     relative: 'relative',
     translateX: (value) => `translateX(${value}%)`,
