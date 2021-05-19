@@ -125,31 +125,31 @@ export const formFieldsContent = [
     label: 'Name',
     type: 'text',
     name: 'name',
-    notification: 'name is required 😡',
+    notifications: ['name is required 😡'],
   },
   {
     label: 'Subject',
     type: 'text',
     name: 'subject',
-    notification: 'subject is required 😡',
+    notifications: ['subject is required 😡'],
   },
   {
     label: 'Email',
     type: 'email',
     name: 'email',
-    notification: 'email is required 😡',
+    notifications: ['email is required 😡', 'invalid email 😡'],
   },
   {
     label: 'Message',
     name: 'message',
     type: 'textarea',
-    notification: 'message is required 😡',
+    notifications: ['message is required 😡'],
   },
   {
     type: 'submit',
     value: 'Wyślij',
     name: 'submit',
-    notification: 'Please wait a moment! 🕐',
+    notifications: ['Please wait a moment! 🕐'],
   },
 ]
 
