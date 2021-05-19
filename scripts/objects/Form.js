@@ -20,6 +20,7 @@ import {
   formFieldsContent,
   common,
   info,
+  emailValidationRegexp,
 } from '/data/global/names.js'
 
 class Form {
@@ -118,6 +119,7 @@ class Form {
     this.form = createElementFn({
       element: elements.form,
       classes: [classNames.form.main],
+      noValidate: true,
       listeners: [
         { event: events.submit, cb: (e) => this.handleFormSubmit(e) },
       ],
@@ -153,8 +155,17 @@ class Form {
           formFieldElements.input.type !== common.submit &&
           textInputs.push(formFieldElements.input)
       )
-
       return textInputs
+    })()
+
+    this.formEmailInput = (() => {
+      let emailInput
+      this.formTextInputs.map((input) => {
+        if ('email' === input.id) {
+          emailInput = input
+        }
+      })
+      return emailInput
     })()
 
     this.formSpinnerContainer = createElementFn({
@@ -168,7 +179,7 @@ class Form {
     })
   }
 
-  createFormFieldElements({ label, type, name, value, notification }) {
+  createFormFieldElements({ label, type, name, value, notifications }) {
     let lab, input
 
     switch (type) {
@@ -197,35 +208,53 @@ class Form {
           listeners: [
             {
               event: events.input,
-              cb: (e) => this.handleFormInputTyping(e, name),
+              cb: (e) => {
+                this.handleFormInputTyping(e.target, name)
+              },
             },
             {
               event: events.focus,
-              cb: (e) => this.handleFormInputFocus(e),
+              cb: (e) => this.handleFormInputFocus(e.target),
             },
           ],
         })
         break
     }
-    const notificationEl = createElementFn({
-      element: elements.span,
-      attributes: [{ name: common.fieldname, value: name }],
-      classes: [
-        type === common.submit
-          ? classNames.form.fieldSubmitNotification
-          : classNames.form.fieldInputNotification,
-      ],
-      innerHTML: notification,
-      listeners: [
-        {
-          event: events.click,
-          cb: (e) =>
-            type !== common.submit && this.handleFormNotificationClick(e),
-        },
-      ],
-    })
 
-    return lab ? { lab, input, notificationEl } : { input, notificationEl }
+    const notificationEls = notifications.map((notificationEl) =>
+      createElementFn({
+        element: elements.span,
+        attributes: [{ name: common.fieldname, value: name }],
+        classes: [
+          type === common.submit
+            ? classNames.form.fieldSubmitNotification
+            : classNames.form.fieldInputNotification,
+        ],
+        innerHTML: notificationEl,
+        listeners: [
+          {
+            event: events.click,
+            cb: (e) => {
+              type !== common.submit &&
+                this.handleFormInputNotificationClick(e.target)
+            },
+          },
+        ],
+      })
+    )
+
+    return lab ? { lab, input, notificationEls } : { input, notificationEls }
+  }
+
+  checkInputNotificationVisibility(input) {
+    const notifications = [
+      ...input.parentElement.querySelectorAll(elements.span),
+    ]
+
+    return notifications.some(
+      (notification) =>
+        notification.style.visibility === styleProps.values.visible
+    )
   }
 
   createMainComponents() {
@@ -235,14 +264,14 @@ class Form {
     )
 
     this.formFieldComponents = this.formFields.map((field, index) => {
-      const { lab, input, notificationEl } = Object.entries(
+      const { lab, input, notificationEls } = Object.entries(
         this.formFieldsElements
       )[index][1]
 
       lab
-        ? appendElementsToContainerFn([lab, input, notificationEl], field)
+        ? appendElementsToContainerFn([lab, input, notificationEls], field)
         : appendElementsToContainerFn(
-            [input, notificationEl, this.formSpinnerComponent],
+            [input, ...notificationEls, this.formSpinnerComponent],
             field
           )
 
@@ -281,23 +310,27 @@ class Form {
     return this.mainComponent
   }
 
-  handleFormInputTyping(e, name) {
-    this.dataFromUser[name] = e.target.value
+  handleFormInputTyping(input, name) {
+    this.dataFromUser[name] = input.value
+    const isInputNotificationVisible = this.checkInputNotificationVisibility(
+      input
+    )
+    isInputNotificationVisible &&
+      this.toggleFormTextInputsNotification(common.off, { inputs: [input] })
   }
 
-  handleFormInputFocus(e) {
-    this.toggleBorderDanger(common.off, {
-      element: e.target,
-    })
-    this.toggleAlertMessage(common.off, {
-      element: e.target.parentElement.querySelector(elements.span),
-    })
+  handleFormInputFocus(input) {
+    const isInputNotificationVisible = this.checkInputNotificationVisibility(
+      input
+    )
+    isInputNotificationVisible &&
+      this.toggleFormTextInputsNotification(common.off, { inputs: [input] })
   }
 
-  handleFormNotificationClick(e) {
-    e.target.parentElement
+  handleFormInputNotificationClick(input) {
+    input.parentElement
       .querySelector(
-        e.target.attributes.fieldname.value === common.message
+        input.attributes.fieldname.value === common.message
           ? elements.textarea
           : elements.input
       )
@@ -313,7 +346,7 @@ class Form {
       cbsToCallOnHidden: [
         () => {
           this.toggleBtnComponent(common.on)
-          this.resetFormInputsValue()
+          this.resetFormTextInputsValue()
           this.resetDataFromUser()
         },
       ],
@@ -330,21 +363,34 @@ class Form {
       body: JSON.stringify(this.dataFromUser),
     })
       .then((response) => response.json())
-      .then(async (data) =>
+      .then((data) =>
         data.success ? info.messageSent : info.somethingWentWrong
       )
-      .catch(async () => await info.unableToConnecte)
+      .catch(() => info.unableToConnect)
   }
 
   async handleFormSubmit(e) {
     e.preventDefault()
-    const areEmptyFormInputsValue = this.checkIfEmptyFormInputsValue()
-    if (areEmptyFormInputsValue) return
+    const isEmailValidate = this.emailValidate()
+    const emptyTextInputs = this.findEmptyFormTextInputs()
+
+    this.formEmailInput.value &&
+      !isEmailValidate &&
+      this.toggleFormTextInputsNotification(common.on, {
+        inputs: [this.formEmailInput],
+        notificationNumber: 1,
+      })
+    emptyTextInputs.length &&
+      this.toggleFormTextInputsNotification(common.on, {
+        inputs: emptyTextInputs,
+      })
+
+    if (!isEmailValidate || emptyTextInputs.length) return
 
     this.disableFormInputs()
     this.toggleDeleteBtnComponent(common.off)
     this.toggleSpinnerComponent(common.on)
-    this.toggleSubmitlNotifications(common.on, {
+    this.toggleFormSubmitInputlNotifications(common.on, {
       firstNotificationDelay: 2000,
       secondNotificationDelay: 8000,
       thirdNotificationDelay: 15000,
@@ -352,12 +398,12 @@ class Form {
     curtain.togglePreventHidden(common.on)
 
     const feedback = await this.handleEmailSent()
-    this.resetFormInputsValue()
+    this.resetFormTextInputsValue()
     this.toggleSpinnerComponent(common.off)
-    this.toggleSubmitlNotifications(common.off, {})
+    this.toggleFormSubmitInputlNotifications(common.off, {})
     this.hideFormComponent()
     this.replaceTitleText(feedback)
-    this.ReduceMainComponentHeight()
+    this.reduceMainComponentHeight()
     this.moveTitleComponent()
     this.revealTitleWhisper()
 
@@ -387,7 +433,42 @@ class Form {
     ])
   }
 
-  toggleSubmitlNotifications(
+  toggleFormTextInputsNotification(toggle, { inputs, notificationNumber }) {
+    toggleClassesFn(toggle, {
+      elements: inputs,
+      classes: [classNames.utilities.border.danger],
+    })
+
+    inputs.map((input) => {
+      let notificationEls = [
+        ...input.parentElement.querySelectorAll(elements.span),
+      ]
+
+      setPropsFn([
+        {
+          elements:
+            toggle === common.off
+              ? notificationEls
+              : [notificationEls[notificationNumber ? notificationNumber : 0]],
+          styleProps: [
+            {
+              name: styleProps.names.visibility,
+              value:
+                toggle === common.on
+                  ? styleProps.values.visible
+                  : styleProps.values.hidden,
+            },
+            {
+              name: styleProps.names.opacity,
+              value: toggle === common.on ? 1 : 0,
+            },
+          ],
+        },
+      ])
+    })
+  }
+
+  toggleFormSubmitInputlNotifications(
     toggle,
     { firstNotificationDelay, secondNotificationDelay, thirdNotificationDelay }
   ) {
@@ -464,34 +545,6 @@ class Form {
     }
   }
 
-  toggleAlertMessage(toggle, { element }) {
-    setPropsFn([
-      {
-        elements: [element],
-        styleProps: [
-          {
-            name: styleProps.names.visibility,
-            value:
-              toggle === common.on
-                ? styleProps.values.visible
-                : styleProps.values.hidden,
-          },
-          {
-            name: styleProps.names.opacity,
-            value: toggle === common.on ? 1 : 0,
-          },
-        ],
-      },
-    ])
-  }
-
-  toggleBorderDanger(toggle, { element }) {
-    toggleClassesFn(toggle, {
-      elements: [element],
-      classes: [classNames.utilities.border.danger],
-    })
-  }
-
   toggleBtnComponent(toggle) {
     setPropsFn([
       {
@@ -538,7 +591,7 @@ class Form {
     ])
   }
 
-  resetFormInputsValue() {
+  resetFormTextInputsValue() {
     this.formTextInputs.map((input) => (input.value = ''))
   }
 
@@ -619,7 +672,7 @@ class Form {
     ])
   }
 
-  ReduceMainComponentHeight() {
+  reduceMainComponentHeight() {
     setPropsFn([
       {
         elements: [this.mainComponent],
@@ -634,19 +687,22 @@ class Form {
     ])
   }
 
-  checkIfEmptyFormInputsValue() {
-    let isEmptyInputValue = false
+  findEmptyFormTextInputs() {
+    let emptyInputs = []
+
     this.formTextInputs.map((input) => {
       if (input.value === '') {
-        this.toggleBorderDanger(common.on, { element: input })
-        this.toggleAlertMessage(common.on, {
-          element: input.parentElement.querySelector(elements.span),
-        })
-        isEmptyInputValue = true
+        emptyInputs.push(input)
       }
     })
 
-    return isEmptyInputValue
+    return emptyInputs
+  }
+
+  emailValidate() {
+    return emailValidationRegexp.test(
+      String(this.formEmailInput.value).toLowerCase()
+    )
   }
 
   disableFormInputs() {
