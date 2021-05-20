@@ -27,8 +27,8 @@ class Audio {
       const triggerElement = document.querySelector(trigger)
       triggerActionOnWindowScrollFn({
         onWhatElement: triggerElement,
-        cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.on),
-        cbOnExitTriggerEl: () => this.toggleBtnComponent(common.off),
+        cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.off),
+        cbOnExitTriggerEl: () => this.toggleBtnComponent(common.on),
         modifier: 80,
       })
     }
@@ -71,8 +71,8 @@ class Audio {
             name: styleProps.names.transform,
             value:
               toggle === common.on
-                ? styleProps.values.translateX(-100)
-                : styleProps.values.translateX(0),
+                ? styleProps.values.translateX(0)
+                : styleProps.values.translateX(-100),
           },
         ],
       },
