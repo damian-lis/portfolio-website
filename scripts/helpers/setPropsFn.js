@@ -1,7 +1,8 @@
 import { common } from '/data/global/names.js'
 
-export default (objs = []) => {
-  return setTimeout(() =>
+export default (objs = []) =>
+  objs.length &&
+  setTimeout(() =>
     objs.map((obj) =>
       obj.delay
         ? obj.elements.map((el) => {
@@ -53,4 +54,3 @@ export default (objs = []) => {
           })
     )
   )
-}

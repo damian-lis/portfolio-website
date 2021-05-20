@@ -1,25 +1,34 @@
 import { common } from '/data/global/names.js'
 
 export default (elements = [], container) => {
-  elements.map((el) => {
-    let element = el
+  if (!container) return
 
-    if (typeof el === common.string) {
-      element = document.querySelector(innerEl)
-    }
+  let containerEl = container
 
-    if (Array.isArray(el)) {
-      const innerEls = el
-      innerEls.map((innerEl) => {
-        let innerElement = innerEl
+  if (typeof container === common.string) {
+    containerEl = document.querySelector(container)
+  }
 
-        if (typeof el === common.string) {
-          innerElement = document.querySelector(innerEl)
-        }
-        container.appendChild(innerElement)
-      })
-    } else container.appendChild(element)
-  })
+  elements.length &&
+    elements.map((element) => {
+      let el = element
 
-  return container
+      if (typeof el === common.string) {
+        el = document.querySelector(innerEl)
+      }
+
+      if (Array.isArray(el)) {
+        const innerEls = el
+        innerEls.map((innerElement) => {
+          let innerEl = innerElement
+
+          if (typeof el === common.string) {
+            innerEl = document.querySelector(innerElement)
+          }
+          containerEl.appendChild(innerEl)
+        })
+      } else containerEl.appendChild(el)
+    })
+
+  return containerEl
 }

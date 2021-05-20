@@ -1,6 +1,8 @@
 import { common } from '/data/global/names.js'
 
 export default ({ element, ...rest }) => {
+  if (!element && !rest.length) return
+
   const createdElement = document.createElement(element)
 
   if (Object.keys(rest).length) {

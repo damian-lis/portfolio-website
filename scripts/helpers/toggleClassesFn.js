@@ -1,6 +1,9 @@
 import { common } from '/data/global/names.js'
 
 export default (toggle, { elements = [], classes = [] }) =>
+  toggle &&
+  elements.length &&
+  classes.length &&
   classes.map((classEl) =>
     elements.map((el) => {
       let element = el
