@@ -10,7 +10,10 @@ class SneakPeeks {
   constructor(container, trigger, wrapper, data) {
     this.containerSent = document.querySelector(container)
     this.data = data
-    this.isActionTriggered = false
+
+    this.createElements()
+    this.createComponents()
+    appendElementsToContainerFn([this.mainComponent], this.containerSent)
 
     if (trigger) {
       this.triggerElement = document.querySelector(trigger)
@@ -18,18 +21,9 @@ class SneakPeeks {
 
       triggerActionOnWindowScrollFn({
         onWhatElement: this.triggerElement,
-        cbOnEnterTriggerEl: () =>
-          !this.isActionTriggered && this.handleActionOnTriggerElement(),
+        cbOnEnterTriggerEl: () => this.handleOnEnterTriggerEl(),
       })
     }
-  }
-
-  handleActionOnTriggerElement() {
-    this.createElements()
-    this.createComponents()
-    this.setIsActionTriggered()
-    this.handleOnEnterTriggerEl()
-    appendElementsToContainerFn([this.mainComponent], this.containerSent)
   }
 
   createElements() {
@@ -175,10 +169,6 @@ class SneakPeeks {
       this.sneakPeekComponents,
       this.mainContainer
     )
-  }
-
-  setIsActionTriggered() {
-    this.isActionTriggered = true
   }
 
   handleOnEnterTriggerEl() {
