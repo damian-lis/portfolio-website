@@ -8,15 +8,23 @@ export default ({
 }) => {
   if (!trigerElement) return
 
+  let flag = true
   let element = trigerElement
 
   if (typeof trigerElement === common.string) {
     element = document.querySelector(trigerElement)
   }
 
-  window.addEventListener(events.scroll, () =>
-    window.innerHeight + window.pageYOffset - modifier > element.offsetTop
-      ? cbOnEnterTriggerEl(element)
-      : cbOnExitTriggerEl(element)
-  )
+  window.addEventListener(events.scroll, () => {
+    if (
+      window.innerHeight + window.pageYOffset - modifier >
+      element.offsetTop
+    ) {
+      flag && cbOnEnterTriggerEl(element)
+      flag = false
+    } else {
+      !flag && cbOnExitTriggerEl(element)
+      flag = true
+    }
+  })
 }
