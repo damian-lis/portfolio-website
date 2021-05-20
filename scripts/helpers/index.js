@@ -1,4 +1,3 @@
-// import setVariablesFn from './setVariablesFn.js'
 import createElementFn from './createElementFn.js'
 import triggerActionOnWindowScrollFn from './triggerActionOnWindowScrollFn.js'
 import appendElementsToContainerFn from './appendElementsToContainerFn.js'
@@ -10,7 +9,6 @@ import setListenersFn from './setListenersFn.js'
 import setDelayFn from './setDelayFn.js'
 
 export {
-  // setVariablesFn,
   createElementFn,
   triggerActionOnWindowScrollFn,
   appendElementsToContainerFn,
