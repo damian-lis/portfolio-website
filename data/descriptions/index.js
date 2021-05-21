@@ -9,6 +9,6 @@ export {
   privacyPolicy as privacyPolicyDescription,
   skills as skillsDescription,
   fluentBlog as fluentBlogDescription,
-  sneakPeeks,
+  sneakPeeks as sneakPeeksDescription,
   formFields as formFeidlsDescription,
 }

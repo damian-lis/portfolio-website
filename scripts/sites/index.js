@@ -1,7 +1,7 @@
 import themes from '/data/global/themes.js'
 import { idReferences, paths } from '/data/global/names.js'
 import {
-  sneakPeeks,
+  sneakPeeksDescription,
   skillsDescription,
   aboutDescription,
   formFeidlsDescription,
@@ -14,7 +14,6 @@ import {
   Particles,
   DescriptionArrange,
 } from '/scripts/objects/index.js'
-import {} from '../../data/descriptions'
 
 new DescriptionArrange(idReferences.about.description, aboutDescription)
 new DescriptionArrange(idReferences.skills.description, skillsDescription)
@@ -33,5 +32,5 @@ new SneakPeeks(
   idReferences.sneakPeeks.main,
   idReferences.sneakPeeks.trigger,
   idReferences.sneakPeeks.wrapper,
-  sneakPeeks
+  sneakPeeksDescription
 )
