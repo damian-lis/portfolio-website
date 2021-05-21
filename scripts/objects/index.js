@@ -5,7 +5,7 @@ import Form from './Form.js'
 import SneakPeeks from './SneakPeeks.js'
 import Audio from './Audio.js'
 import Theme from './Theme.js'
-import BackBtn from './BackBtn.js'
+import Back from './Back.js'
 
 export {
   DescriptionArrange,
@@ -15,5 +15,5 @@ export {
   SneakPeeks,
   Audio,
   Theme,
-  BackBtn,
+  Back,
 }

@@ -4,7 +4,7 @@ import {
 } from '/scripts/helpers/index.js'
 import { classNames, paths, elements } from '/data/global/names.js'
 
-class BackBtn {
+class Back {
   constructor(container) {
     this.createElements()
     this.createComponents()
@@ -29,4 +29,4 @@ class BackBtn {
   }
 }
 
-export default BackBtn
+export default Back

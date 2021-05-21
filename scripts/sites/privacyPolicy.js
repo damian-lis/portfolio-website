@@ -6,12 +6,12 @@ import {
   Theme,
   Particles,
   Form,
-  BackBtn,
+  Back,
   Audio,
 } from '/scripts/objects/index.js'
 
 new Theme(idReferences.theme.main, themes, Particles)
-new BackBtn(idReferences.global.leftContainer)
+new Back(idReferences.global.leftContainer)
 new Audio(idReferences.global.leftContainer, paths.privacyPolicyIntroduction)
 new Form(idReferences.global.leftContainer)
 new DescriptionArrange(
