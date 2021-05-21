@@ -545,6 +545,18 @@ class Form {
         break
 
       case common.off:
+        setPropsFn([
+          {
+            elements: formSubmitnotificationEls,
+            styleProps: [
+              {
+                name: styleProps.names.display,
+                value: styleProps.values.none,
+              },
+            ],
+          },
+        ])
+
         this.notificationTimeouts.map((notificationTimeout) => {
           clearInterval(notificationTimeout)
         })
