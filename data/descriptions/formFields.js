@@ -27,6 +27,10 @@ export default [
     type: 'submit',
     value: 'Wyślij',
     name: 'submit',
-    notifications: ['Please wait a moment! 🕐'],
+    notifications: [
+      'Please wait a moment! 🕐',
+      'literally a moment! 🛩',
+      'almost, almost! 🚀',
+    ],
   },
 ]

@@ -26,6 +26,7 @@ class Form {
   constructor(container, trigger, formFieldsDescription) {
     const containerSent = document.querySelector(container)
     this.formFieldsDescription = formFieldsDescription
+    this.notificationTimeouts = []
     this.dataFromUser = {}
 
     this.createInitialElements()
@@ -414,13 +415,12 @@ class Form {
     this.toggleDeleteBtnComponent(common.off)
     this.toggleSpinnerComponent(common.on)
     this.toggleFormSubmitInputlNotifications(common.on, {
-      firstNotificationDelay: 2000,
-      secondNotificationDelay: 8000,
-      thirdNotificationDelay: 15000,
+      notificationDuration: 5000,
     })
     curtain.togglePreventHidden(common.on)
 
     const feedback = await this.handleEmailSent()
+
     this.resetFormTextInputsValue()
     this.toggleSpinnerComponent(common.off)
     this.toggleFormSubmitInputlNotifications(common.off, {})
@@ -492,77 +492,61 @@ class Form {
     })
   }
 
-  toggleFormSubmitInputlNotifications(
-    toggle,
-    { firstNotificationDelay, secondNotificationDelay, thirdNotificationDelay }
-  ) {
-    const formSubmitnotification = this.formSubmitInput.parentElement.querySelector(
-      elements.span
-    )
+  toggleFormSubmitInputlNotifications(toggle, { notificationDuration }) {
+    const formSubmitnotificationEls = [
+      ...this.formSubmitInput.parentElement.querySelectorAll(elements.span),
+    ]
 
     switch (toggle) {
       case common.on:
-        this.showNotificationTimeout = setPropsFn([
-          {
-            elements: [formSubmitnotification],
-            styleProps: [
+        formSubmitnotificationEls.map((notificationEl, index) => {
+          const lastNotification =
+            formSubmitnotificationEls.length === index + 1
+          const delay = index * notificationDuration
+
+          const notificationTimeout = setPropsFn([
+            {
+              elements: [notificationEl],
+              styleProps: [
+                {
+                  name: styleProps.names.visibility,
+                  value: styleProps.values.visible,
+                },
+                {
+                  name: styleProps.names.opacity,
+                  value: 1,
+                },
+              ],
+              delay,
+            },
+          ])
+          this.notificationTimeouts.push(notificationTimeout)
+
+          !lastNotification &&
+            setPropsFn([
               {
-                name: styleProps.names.visibility,
-                value: styleProps.values.visible,
+                elements: [notificationEl],
+                styleProps: [
+                  {
+                    name: styleProps.names.visibility,
+                    value: styleProps.values.hidden,
+                  },
+                  {
+                    name: styleProps.names.opacity,
+                    value: 0,
+                  },
+                ],
+                delay: delay + notificationDuration,
               },
-              {
-                name: styleProps.names.opacity,
-                value: 1,
-              },
-            ],
-            delay: firstNotificationDelay,
-          },
-        ])
-        this.changeFirstNotificationTimout = setPropsFn([
-          {
-            elements: [formSubmitnotification],
-            props: [
-              {
-                name: elementProps.names.innerHTML,
-                value: info.momentLonger,
-              },
-            ],
-            delay: secondNotificationDelay,
-          },
-        ])
-        this.changeSecondNotificationTimout = setPropsFn([
-          {
-            elements: [formSubmitnotification],
-            props: [
-              {
-                name: elementProps.names.innerHTML,
-                value: info.sendingNow,
-              },
-            ],
-            delay: thirdNotificationDelay,
-          },
-        ])
+            ])
+        })
         break
 
       case common.off:
-        clearInterval(this.showNotificationTimeout)
-        clearInterval(this.changeFirstNotificationTimout)
-        clearInterval(this.changeSecondNotificationTimout)
-        setPropsFn([
-          {
-            elements: [formSubmitnotification],
-            styleProps: [
-              {
-                name: styleProps.names.visibility,
-                value: styleProps.values.hidden,
-              },
-              {
-                name: styleProps.names.opacity,
-                value: 0,
-              },
-            ],
-          },
-        ])
+        this.notificationTimeouts.map((notificationTimeout) =>
+          clearInterval(notificationTimeout)
+        )
+        break
 
       default:
         break
@@ -626,7 +610,7 @@ class Form {
   hideTitleInfo() {
     setPropsFn([
       {
-        elements: [this.titleInfoIcon, this.titleInfoMessage],
+        elements: [this.infoComponent],
         styleProps: [
           {
             name: styleProps.names.display,
