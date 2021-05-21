@@ -82,7 +82,7 @@ class Curtain {
 
   toggleActive(toggle) {
     toggleClassesFn(toggle, {
-      elements: [this.mainContainer],
+      elements: [this.curtain],
       classes: [classNames.curtain.active],
     })
   }

@@ -148,7 +148,7 @@ export const idNames = {
 
 export const classNames = {
   curtain: {
-    container: 'curtain-container',
+    main: 'curtain',
     active: 'curtain-active',
   },
   form: {
