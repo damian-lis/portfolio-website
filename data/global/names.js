@@ -109,6 +109,9 @@ export const fetchProps = {
 }
 
 export const info = {
+  clickAnywhereToClose: '(click anywhere to close)',
+  emailSendingDelay:
+    'The first time the form is sent quite a long time. Please be patient 🙂 (this is due to the e-mail service)',
   themeNote: '*Theme settings will be saved for Your next visit',
   personalizeTheme: 'Personalize Theme',
   duringDevelopment: 'During dev...',
@@ -186,6 +189,10 @@ export const classNames = {
     mainContainerInner: 'form-main-container-inner',
     titleContainer: 'form-title-container',
     title: 'form-title',
+    whisper: 'form-whisper',
+    infoContainer: 'form-info-container',
+    infoIcon: 'form-info-icon',
+    infoMessage: 'form-info-message',
     container: 'form-container',
     main: 'form',
     field: 'form-field',
@@ -334,6 +341,7 @@ export const paths = {
   playImg: '/images/icons/stopMusic.svg',
   pauseImg: '/images/icons/playMusic.svg',
   emailImg: '/images/icons/email.svg',
+  infoImg: '/images/icons/formInfo.svg',
   arrowImg: '/images/icons/arrow.svg',
   mainPageIntroduction: '/audio/mainPageIntroduction.mp3',
   privacyPolicyIntroduction: '/audio/privacyPolicyIntroduction.mp3',

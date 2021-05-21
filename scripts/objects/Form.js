@@ -107,8 +107,25 @@ class Form {
 
     this.titleWhisper = createElementFn({
       element: elements.p,
-      classes: ['form-title-whisper'],
-      innerHTML: '(click anywhere to close)',
+      classes: [classNames.form.whisper],
+      innerHTML: info.clickAnywhereToClose,
+    })
+
+    this.infoContainer = createElementFn({
+      element: elements.div,
+      classes: [classNames.form.infoContainer],
+    })
+
+    this.infoIcon = createElementFn({
+      element: elements.img,
+      classes: [classNames.form.infoIcon],
+      src: paths.infoImg,
+    })
+
+    this.infoMessage = createElementFn({
+      element: elements.p,
+      classes: [classNames.form.infoMessage],
+      innerHTML: info.emailSendingDelay,
     })
 
     this.formContainer = createElementFn({
@@ -287,8 +304,13 @@ class Form {
       return this.formContainer
     })()
 
+    this.infoComponent = appendElementsToContainerFn(
+      [this.infoIcon, this.infoMessage],
+      this.infoContainer
+    )
+
     this.titleComponent = appendElementsToContainerFn(
-      [this.title, this.titleWhisper],
+      [this.title, this.titleWhisper, this.infoComponent],
       this.titleContainer
     )
 
@@ -401,6 +423,7 @@ class Form {
     this.resetFormTextInputsValue()
     this.toggleSpinnerComponent(common.off)
     this.toggleFormSubmitInputlNotifications(common.off, {})
+    this.hideTitleInfo()
     this.hideFormComponent()
     this.replaceTitleText(feedback)
     this.reduceMainComponentHeight()
@@ -597,6 +620,20 @@ class Form {
 
   resetDataFromUser() {
     this.dataFromUser = {}
+  }
+
+  hideTitleInfo() {
+    setPropsFn([
+      {
+        elements: [this.titleInfoIcon, this.titleInfoMessage],
+        styleProps: [
+          {
+            name: styleProps.names.display,
+            value: styleProps.values.none,
+          },
+        ],
+      },
+    ])
   }
 
   hideFormComponent() {
