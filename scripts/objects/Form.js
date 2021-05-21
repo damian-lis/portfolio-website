@@ -504,7 +504,7 @@ class Form {
             formSubmitnotificationEls.length === index + 1
           const delay = index * notificationDuration
 
-          const notificationTimeout = setPropsFn([
+          const appearNotificationTimeout = setPropsFn([
             {
               elements: [notificationEl],
               styleProps: [
@@ -520,10 +520,10 @@ class Form {
               delay,
             },
           ])
-          this.notificationTimeouts.push(notificationTimeout)
+          this.notificationTimeouts.push(appearNotificationTimeout)
 
-          !lastNotification &&
-            setPropsFn([
+          if (!lastNotification) {
+            const hideNotificationTimeout = setPropsFn([
               {
                 elements: [notificationEl],
                 styleProps: [
@@ -539,13 +539,15 @@ class Form {
                 delay: delay + notificationDuration,
               },
             ])
+            this.notificationTimeouts.push(hideNotificationTimeout)
+          }
         })
         break
 
       case common.off:
-        this.notificationTimeouts.map((notificationTimeout) =>
+        this.notificationTimeouts.map((notificationTimeout) => {
           clearInterval(notificationTimeout)
-        )
+        })
         break
 
       default:
