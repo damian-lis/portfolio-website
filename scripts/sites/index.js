@@ -4,6 +4,7 @@ import {
   sneakPeeks,
   skillsDescription,
   aboutDescription,
+  formFeidlsDescription,
 } from '/data/descriptions/index.js'
 import {
   Audio,
@@ -13,6 +14,7 @@ import {
   Particles,
   DescriptionArrange,
 } from '/scripts/objects/index.js'
+import {} from '../../data/descriptions'
 
 new DescriptionArrange(idReferences.about.description, aboutDescription)
 new DescriptionArrange(idReferences.skills.description, skillsDescription)
@@ -21,7 +23,11 @@ new Audio(
   paths.mainPageIntroduction,
   idReferences.sneakPeeks.trigger
 )
-new Form(idReferences.global.leftContainer, idReferences.sneakPeeks.trigger)
+new Form(
+  idReferences.global.leftContainer,
+  idReferences.sneakPeeks.trigger,
+  formFeidlsDescription
+)
 new Theme(idReferences.theme.main, themes, Particles)
 new SneakPeeks(
   idReferences.sneakPeeks.main,

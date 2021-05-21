@@ -123,39 +123,6 @@ export const info = {
   unableToConnect: 'No connection 😔',
 }
 
-export const formFieldsContent = [
-  {
-    label: 'Name',
-    type: 'text',
-    name: 'name',
-    notifications: ['name is required 😡'],
-  },
-  {
-    label: 'Subject',
-    type: 'text',
-    name: 'subject',
-    notifications: ['subject is required 😡'],
-  },
-  {
-    label: 'Email',
-    type: 'email',
-    name: 'email',
-    notifications: ['email is required 😡', 'invalid email 😡'],
-  },
-  {
-    label: 'Message',
-    name: 'message',
-    type: 'textarea',
-    notifications: ['message is required 😡'],
-  },
-  {
-    type: 'submit',
-    value: 'Wyślij',
-    name: 'submit',
-    notifications: ['Please wait a moment! 🕐'],
-  },
-]
-
 export const idNames = {
   global: {
     mainContainer: 'global-main-container',

@@ -2,6 +2,7 @@ import about from './about.js'
 import privacyPolicy from './privacyPolicy.js'
 import skills from './skills.js'
 import { fluentBlog, sneakPeeks } from './projects/index.js'
+import formFields from './formFields.js'
 
 export {
   about as aboutDescription,
@@ -9,4 +10,5 @@ export {
   skills as skillsDescription,
   fluentBlog as fluentBlogDescription,
   sneakPeeks,
+  formFields as formFeidlsDescription,
 }

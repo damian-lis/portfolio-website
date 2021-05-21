@@ -17,15 +17,15 @@ import {
   classNames,
   mailEndPoint,
   paths,
-  formFieldsContent,
   common,
   info,
   emailValidationRegexp,
 } from '/data/global/names.js'
 
 class Form {
-  constructor(container, trigger) {
+  constructor(container, trigger, formFieldsDescription) {
     const containerSent = document.querySelector(container)
+    this.formFieldsDescription = formFieldsDescription
     this.dataFromUser = {}
 
     this.createInitialElements()
@@ -142,18 +142,19 @@ class Form {
       ],
     })
 
-    this.formFields = formFieldsContent.map((field) =>
+    this.formFields = this.formFieldsDescription.map((formFieldDescription) =>
       createElementFn({
         element: elements.div,
         classes: [
           classNames.form.field,
-          `${classNames.form.field}-${field.name}`,
+          `${classNames.form.field}-${formFieldDescription.name}`,
         ],
       })
     )
 
-    this.formFieldsElements = formFieldsContent.map((fieldContent) =>
-      this.createFormFieldElements(fieldContent)
+    this.formFieldsElements = this.formFieldsDescription.map(
+      (formFieldDescription) =>
+        this.createFormFieldElements(formFieldDescription)
     )
 
     this.formSubmitInput = (() => {
