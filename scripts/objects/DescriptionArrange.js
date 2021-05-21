@@ -6,11 +6,10 @@ import { common, elementProps } from '/data/global/names.js'
 
 class DataArrange {
   constructor(container, description) {
-    this.containerSent = document.querySelector(container)
     this.description = description
 
     this.createElements()
-    appendElementsToContainerFn(this.elements, this.containerSent)
+    appendElementsToContainerFn(this.elements, container)
   }
 
   createElements() {

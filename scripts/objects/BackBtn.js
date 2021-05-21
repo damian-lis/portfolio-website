@@ -6,15 +6,14 @@ import { classNames, paths, elements } from '/data/global/names.js'
 
 class BackBtn {
   constructor(container) {
-    const containerSent = document.querySelector(container)
     this.createElements()
     this.createComponents()
 
-    appendElementsToContainerFn([this.mainComponent], containerSent)
+    appendElementsToContainerFn([this.linkComponent], container)
   }
 
   createElements() {
-    this.mainContainer = createElementFn({
+    this.link = createElementFn({
       element: elements.a,
       href: '/',
       classes: [classNames.global.leftBtn],
@@ -26,10 +25,7 @@ class BackBtn {
   }
 
   createComponents() {
-    this.mainComponent = appendElementsToContainerFn(
-      [this.arrowImg],
-      this.mainContainer
-    )
+    this.linkComponent = appendElementsToContainerFn([this.arrowImg], this.link)
   }
 }
 

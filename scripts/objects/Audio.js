@@ -15,23 +15,20 @@ import {
 
 class Audio {
   constructor(container, path, trigger) {
-    const containerSent = document.querySelector(container)
     this.play = false
     this.path = path
 
     this.createElements()
     this.createComponents()
-    appendElementsToContainerFn([this.mainComponent], containerSent)
+    appendElementsToContainerFn([this.btnComponent], container)
 
-    if (trigger) {
-      const triggerElement = document.querySelector(trigger)
+    trigger &&
       triggerActionOnWindowScrollFn({
-        onWhatElement: triggerElement,
+        onWhatElement: trigger,
         cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.off),
         cbOnExitTriggerEl: () => this.toggleBtnComponent(common.on),
         modifier: 80,
       })
-    }
   }
 
   createElements() {
@@ -53,19 +50,13 @@ class Audio {
   }
 
   createComponents() {
-    this.mainComponent = appendElementsToContainerFn([this.audioImg], this.btn)
-  }
-
-  handleAudio() {
-    this.play = !this.play
-    this.play ? this.audio.play() : this.audio.pause()
-    this.audioImg.src = this.play ? paths.playImg : paths.pauseImg
+    this.btnComponent = appendElementsToContainerFn([this.audioImg], this.btn)
   }
 
   toggleBtnComponent(toggle) {
     setPropsFn([
       {
-        elements: [this.mainComponent],
+        elements: [this.btnComponent],
         styleProps: [
           {
             name: styleProps.names.transform,
@@ -77,6 +68,12 @@ class Audio {
         ],
       },
     ])
+  }
+
+  handleAudio() {
+    this.play = !this.play
+    this.play ? this.audio.play() : this.audio.pause()
+    this.audioImg.src = this.play ? paths.playImg : paths.pauseImg
   }
 }
 

@@ -24,23 +24,20 @@ import {
 
 class Form {
   constructor(container, trigger, formFieldsDescription) {
-    const containerSent = document.querySelector(container)
     this.formFieldsDescription = formFieldsDescription
     this.notificationTimeouts = []
     this.dataFromUser = {}
 
     this.createInitialElements()
     this.createInitialComponents()
-    appendElementsToContainerFn([this.btnComponent], containerSent)
+    appendElementsToContainerFn([this.btnComponent], container)
 
-    if (trigger) {
-      const triggerElement = document.querySelector(trigger)
+    trigger &&
       triggerActionOnWindowScrollFn({
-        onWhatElement: triggerElement,
+        onWhatElement: trigger,
         cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.off),
         cbOnExitTriggerEl: () => this.toggleBtnComponent(common.on),
       })
-    }
   }
 
   createInitialElements() {
@@ -106,7 +103,7 @@ class Form {
       textContent: info.writeMessage,
     })
 
-    this.titleWhisper = createElementFn({
+    this.whisper = createElementFn({
       element: elements.p,
       classes: [classNames.form.whisper],
       innerHTML: info.clickAnywhereToClose,
@@ -180,7 +177,7 @@ class Form {
     this.formEmailInput = (() => {
       let emailInput
       this.formTextInputs.map((input) => {
-        if ('email' === input.id) {
+        if (common.email === input.id) {
           emailInput = input
         }
       })
@@ -228,12 +225,12 @@ class Form {
             {
               event: events.input,
               cb: (e) => {
-                this.handleFormInputTyping(e.target, name)
+                this.handleFormTextInputTyping(e.target, name)
               },
             },
             {
               event: events.focus,
-              cb: (e) => this.handleFormInputFocus(e.target),
+              cb: (e) => this.handleFormTextInputFocus(e.target),
             },
           ],
         })
@@ -255,7 +252,7 @@ class Form {
             event: events.click,
             cb: (e) => {
               type !== common.submit &&
-                this.handleFormInputNotificationClick(e.target)
+                this.handleFormTextInputNotificationClick(e.target)
             },
           },
         ],
@@ -263,17 +260,6 @@ class Form {
     )
 
     return lab ? { lab, input, notificationEls } : { input, notificationEls }
-  }
-
-  checkInputNotificationVisibility(input) {
-    const notifications = [
-      ...input.parentElement.querySelectorAll(elements.span),
-    ]
-
-    return notifications.some(
-      (notification) =>
-        notification.style.visibility === styleProps.values.visible
-    )
   }
 
   createMainComponents() {
@@ -312,11 +298,11 @@ class Form {
     )
 
     this.titleComponent = appendElementsToContainerFn(
-      [this.title, this.titleWhisper, this.infoComponent],
+      [this.title, this.whisper, this.infoComponent],
       this.titleContainer
     )
 
-    this.cardInnerComponent = appendElementsToContainerFn(
+    this.mainComponentInner = appendElementsToContainerFn(
       [this.titleComponent, this.formComponent],
       this.mainContainerInner
     )
@@ -327,31 +313,31 @@ class Form {
     )
 
     this.mainComponent = appendElementsToContainerFn(
-      [this.btnDeleteComponent, this.cardInnerComponent],
+      [this.btnDeleteComponent, this.mainComponentInner],
       this.mainContainer
     )
 
     return this.mainComponent
   }
 
-  handleFormInputTyping(input, name) {
+  handleFormTextInputTyping(input, name) {
     this.dataFromUser[name] = input.value
-    const isInputNotificationVisible = this.checkInputNotificationVisibility(
+    const isInputNotificationVisible = this.checkFormTextInputNotificationVisibility(
       input
     )
     isInputNotificationVisible &&
       this.toggleFormTextInputsNotification(common.off, { inputs: [input] })
   }
 
-  handleFormInputFocus(input) {
-    const isInputNotificationVisible = this.checkInputNotificationVisibility(
+  handleFormTextInputFocus(input) {
+    const isInputNotificationVisible = this.checkFormTextInputNotificationVisibility(
       input
     )
     isInputNotificationVisible &&
       this.toggleFormTextInputsNotification(common.off, { inputs: [input] })
   }
 
-  handleFormInputNotificationClick(input) {
+  handleFormTextInputNotificationClick(input) {
     input.parentElement
       .querySelector(
         input.attributes.fieldname.value === common.message
@@ -467,7 +453,6 @@ class Form {
       let notificationEls = [
         ...input.parentElement.querySelectorAll(elements.span),
       ]
-
       setPropsFn([
         {
           elements:
@@ -613,6 +598,17 @@ class Form {
     ])
   }
 
+  checkFormTextInputNotificationVisibility(input) {
+    const inputNotifications = [
+      ...input.parentElement.querySelectorAll(elements.span),
+    ]
+
+    return inputNotifications.some(
+      (notification) =>
+        notification.style.visibility === styleProps.values.visible
+    )
+  }
+
   resetFormTextInputsValue() {
     this.formTextInputs.map((input) => (input.value = ''))
   }
@@ -692,7 +688,7 @@ class Form {
   revealTitleWhisper() {
     setPropsFn([
       {
-        elements: [this.titleWhisper],
+        elements: [this.whisper],
         styleProps: [
           {
             name: styleProps.names.opacity,

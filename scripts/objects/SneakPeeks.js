@@ -7,20 +7,18 @@ import {
 import { classNames, info, elements } from '/data/global/names.js'
 
 class SneakPeeks {
-  constructor(container, trigger, wrapper, data) {
-    this.containerSent = document.querySelector(container)
-    this.data = data
+  constructor(container, trigger, wrapper, sneakPeeksDescription) {
+    this.sneakPeeksDescription = sneakPeeksDescription
 
     this.createElements()
     this.createComponents()
-    appendElementsToContainerFn([this.mainComponent], this.containerSent)
+    appendElementsToContainerFn([this.mainComponent], container)
 
     if (trigger) {
       this.triggerElement = document.querySelector(trigger)
-      this.wrapperToRelease = document.querySelector(wrapper)
-
+      this.wrapperElement = document.querySelector(wrapper)
       triggerActionOnWindowScrollFn({
-        onWhatElement: this.triggerElement,
+        onWhatElement: trigger,
         cbOnEnterTriggerEl: () => this.handleOnEnterTriggerEl(),
       })
     }
@@ -32,8 +30,8 @@ class SneakPeeks {
       classes: [classNames.sneakPeeks.container],
     })
 
-    this.elements = this.data.map((sneakPeek) => {
-      const linkWrapper = sneakPeek.duringDevelopment
+    this.elements = this.sneakPeeksDescription.map((sneakPeekDescription) => {
+      const linkWrapper = sneakPeekDescription.duringDevelopment
         ? createElementFn({
             element: elements.a,
             classes: [classNames.sneakPeek.linkWrapper],
@@ -41,7 +39,7 @@ class SneakPeeks {
         : createElementFn({
             element: elements.a,
             classes: [classNames.sneakPeek.linkWrapper],
-            href: sneakPeek.href,
+            href: sneakPeekDescription.href,
           })
 
       const container = createElementFn({
@@ -52,8 +50,8 @@ class SneakPeeks {
       const thubnail = createElementFn({
         element: elements.img,
         classes: [classNames.sneakPeek.thubnail],
-        src: sneakPeek.image,
-        alt: sneakPeek.alt,
+        src: sneakPeekDescription.image,
+        alt: sneakPeekDescription.alt,
       })
 
       const prevContainer = createElementFn({
@@ -64,13 +62,13 @@ class SneakPeeks {
       const title = createElementFn({
         element: elements.h(6),
         classes: [classNames.sneakPeek.title],
-        textContent: sneakPeek.title,
+        textContent: sneakPeekDescription.title,
       })
 
       const intro = createElementFn({
         element: elements.p,
         classes: [classNames.sneakPeek.intro],
-        textContent: sneakPeek.intro,
+        textContent: sneakPeekDescription.intro,
       })
 
       const iconsContainer = createElementFn({
@@ -78,21 +76,21 @@ class SneakPeeks {
         classes: [classNames.sneakPeek.iconsContainer],
       })
 
-      const icons = sneakPeek.icons.map((iconEl) =>
+      const icons = sneakPeekDescription.icons.map((iconEl) =>
         createElementFn({
           element: elements.img,
           src: iconEl.image,
         })
       )
 
-      const ribbonContainer = sneakPeek.duringDevelopment
+      const ribbonContainer = sneakPeekDescription.duringDevelopment
         ? createElementFn({
             element: elements.div,
             classes: [classNames.sneakPeek.ribbon],
           })
         : null
 
-      const ribbonText = sneakPeek.duringDevelopment
+      const ribbonText = sneakPeekDescription.duringDevelopment
         ? createElementFn({
             element: elements.p,
             classes: [classNames.sneakPeek.ribbonText],
@@ -156,12 +154,12 @@ class SneakPeeks {
           )
         }
 
-        const linkWrapperComponent = appendElementsToContainerFn(
+        const linkSneakPeekComponent = appendElementsToContainerFn(
           [sneakPeekComponent],
           linkWrapper
         )
 
-        return linkWrapperComponent
+        return linkSneakPeekComponent
       }
     )
 
@@ -178,7 +176,7 @@ class SneakPeeks {
         classes: [classNames.utilities.h.full],
       },
       {
-        element: this.wrapperToRelease,
+        element: this.wrapperElement,
         classes: [classNames.utilities.animations.slideInFromTop],
       },
     ])

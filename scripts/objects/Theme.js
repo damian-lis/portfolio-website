@@ -13,7 +13,6 @@ import {
 
 class Theme {
   constructor(container, themesObject, BackgroundObj) {
-    const containerSent = document.querySelector(container)
     this.themesObject = themesObject
     this.BackgroundObj = BackgroundObj
     this.initialThemeName = this.setInitialThemeName()
@@ -24,7 +23,7 @@ class Theme {
     this.setGlobalVariables()
     this.createBackgroundAnimation()
 
-    appendElementsToContainerFn([this.mainComponent], containerSent)
+    appendElementsToContainerFn([this.mainComponent], container)
   }
 
   createElements() {

@@ -18,21 +18,20 @@ class Curtain {
   constructor(container) {
     if (Curtain.instance == null) {
       Curtain.instance = this
-      const sentContainer = document.querySelector(container)
       this.preventHidden = false
       this.cbsToCallOnHidden = []
       this.children = []
 
       this.createElements()
-      appendElementsToContainerFn([this.mainContainer], sentContainer)
+      appendElementsToContainerFn([this.curtain], container)
     }
     return (Curtain.instance = this)
   }
 
   createElements() {
-    this.mainContainer = createElementFn({
+    this.curtain = createElementFn({
       element: elements.div,
-      classes: [classNames.curtain.container],
+      classes: [classNames.curtain.main],
       listeners: [
         {
           event: events.click,
@@ -64,21 +63,6 @@ class Curtain {
     this.toggleActive(toggle)
   }
 
-  addElToChildren(el) {
-    this.children.push(el)
-  }
-
-  appendElements(elements) {
-    elements.map((el) => {
-      this.mainContainer.appendChild(el)
-      this.addElToChildren(el)
-    })
-  }
-
-  addCbsToCallOnHidden(cbs) {
-    cbs.map((cb) => this.cbsToCallOnHidden.push(cb))
-  }
-
   toggleBodyOverflow(toggle) {
     setPropsFn([
       {
@@ -105,6 +89,21 @@ class Curtain {
 
   togglePreventHidden(toggle) {
     this.preventHidden = toggle === common.on ? true : false
+  }
+
+  addElToChildren(el) {
+    this.children.push(el)
+  }
+
+  appendElements(elements) {
+    elements.map((el) => {
+      this.curtain.appendChild(el)
+      this.addElToChildren(el)
+    })
+  }
+
+  addCbsToCallOnHidden(cbs) {
+    cbs.map((cb) => this.cbsToCallOnHidden.push(cb))
   }
 
   callCbsOnHidden() {
