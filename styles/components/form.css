@@ -103,6 +103,7 @@
 
 .form-container {
   flex-basis: 85%;
+  transition: 0.4s;
 }
 
 .form {
@@ -113,7 +114,6 @@
   padding: 15px;
   border-radius: 5px;
   background-color: var(--mainColor);
-  transition: 0.4;
 }
 
 .form-field {

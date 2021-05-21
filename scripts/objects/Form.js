@@ -648,10 +648,6 @@ class Form {
             name: styleProps.names.opacity,
             value: 0,
           },
-          {
-            name: styleProps.names.visibility,
-            value: styleProps.values.hidden,
-          },
         ],
       },
     ])
