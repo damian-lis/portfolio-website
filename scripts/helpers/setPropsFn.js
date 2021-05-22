@@ -5,12 +5,19 @@ export default ({ toggle, objs = [], delay }) => {
     objs.length &&
     objs.map((obj) =>
       obj.delay
-        ? obj.elements.map((el) => {
+        ? obj.elements &&
+          obj.elements.map((el) => {
             let element = el
 
             if (typeof el === common.string) {
               element = document.querySelector(el)
             }
+
+            obj.listeners &&
+              obj.listeners.map((listener) => {
+                const { event, cb } = listener
+                element.addEventListener(event, (e) => cb(e))
+              })
 
             obj.styleProps &&
               obj.styleProps.map((prop) =>
@@ -32,12 +39,19 @@ export default ({ toggle, objs = [], delay }) => {
                 }, obj.delay)
               )
           })
-        : obj.elements.map((el) => {
+        : obj.elements &&
+          obj.elements.map((el) => {
             let element = el
 
             if (typeof el === common.string) {
               element = document.querySelector(el)
             }
+
+            obj.listeners &&
+              obj.listeners.map((listener) => {
+                const { event, cb } = listener
+                element.addEventListener(event, (e) => cb(e))
+              })
 
             obj.styleProps &&
               obj.styleProps.map((prop) => {

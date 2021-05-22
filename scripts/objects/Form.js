@@ -4,7 +4,6 @@ import {
   triggerActionOnWindowScrollFn,
   appendElementsToContainerFn,
   setPropsFn,
-  setListenersFn,
   setDelayFn,
   setClassesFn,
 } from '/scripts/helpers/index.js'
@@ -803,10 +802,18 @@ class Form {
   }
 
   setSelfDestructEventToMainComponent() {
-    setListenersFn({
-      elements: [this.mainComponent],
-      events: [events.click],
-      cb: () => curtain.toggleShow(common.off),
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.mainComponent],
+          listeners: [
+            {
+              event: events.click,
+              cb: () => curtain.toggleShow(common.off),
+            },
+          ],
+        },
+      ],
     })
   }
 }
