@@ -22,8 +22,8 @@ import {
 } from '/data/global/names.js'
 
 class Form {
-  constructor({ container, trigger, description }) {
-    this.formFieldsDescription = description
+  constructor({ container, trigger, data }) {
+    this.formFieldsInfo = data
     this.notificationTimeouts = []
     this.dataFromUser = {}
 
@@ -143,19 +143,18 @@ class Form {
       ],
     })
 
-    this.formFields = this.formFieldsDescription.map((formFieldDescription) =>
+    this.formFields = this.formFieldsInfo.map((formFieldInfo) =>
       createElementFn({
         element: elements.div,
         classes: [
           classNames.form.field,
-          `${classNames.form.field}-${formFieldDescription.name}`,
+          `${classNames.form.field}-${formFieldInfo.name}`,
         ],
       })
     )
 
-    this.formFieldsElements = this.formFieldsDescription.map(
-      (formFieldDescription) =>
-        this.createFormFieldElements({ formFieldDescription })
+    this.formFieldsElements = this.formFieldsInfo.map((formFieldInfo) =>
+      this.createFormFieldElements({ data: formFieldInfo })
     )
 
     this.formSubmitInput = (() => {
@@ -199,7 +198,7 @@ class Form {
   }
 
   createFormFieldElements({
-    formFieldDescription: { label, type, name, value, notifications },
+    data: { label, type, name, value, notifications },
   }) {
     let lab, input
 

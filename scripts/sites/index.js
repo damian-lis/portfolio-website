@@ -1,10 +1,9 @@
 import themes from '/data/global/themes.js'
 import { idReferences, paths } from '/data/global/names.js'
+import { formFieldsInfo, sneakPeeksInfo } from '/data/informations/index.js'
 import {
-  sneakPeeksDescription,
   skillsDescription,
   aboutDescription,
-  formFeidlsDescription,
 } from '/data/descriptions/index.js'
 import {
   Audio,
@@ -39,12 +38,12 @@ new Audio({
 new Form({
   container: idReferences.global.leftContainer,
   trigger: idReferences.sneakPeeks.trigger,
-  description: formFeidlsDescription,
+  data: formFieldsInfo,
 })
 
 new SneakPeeks({
   container: idReferences.sneakPeeks.main,
   trigger: idReferences.sneakPeeks.trigger,
   wrapper: idReferences.sneakPeeks.wrapper,
-  description: sneakPeeksDescription,
+  data: sneakPeeksInfo,
 })

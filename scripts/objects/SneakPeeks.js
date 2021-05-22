@@ -7,8 +7,8 @@ import {
 import { classNames, info, elements } from '/data/global/names.js'
 
 class SneakPeeks {
-  constructor({ container, trigger, wrapper, description }) {
-    this.sneakPeeksDescription = description
+  constructor({ container, trigger, wrapper, data }) {
+    this.sneakPeeksInfo = data
 
     this.createElements()
     this.createComponents()
@@ -30,8 +30,8 @@ class SneakPeeks {
       classes: [classNames.sneakPeeks.container],
     })
 
-    this.elements = this.sneakPeeksDescription.map((sneakPeekDescription) => {
-      const linkWrapper = sneakPeekDescription.duringDevelopment
+    this.elements = this.sneakPeeksInfo.map((sneakPeek) => {
+      const linkWrapper = sneakPeek.duringDevelopment
         ? createElementFn({
             element: elements.a,
             classes: [classNames.sneakPeek.linkWrapper],
@@ -39,7 +39,7 @@ class SneakPeeks {
         : createElementFn({
             element: elements.a,
             classes: [classNames.sneakPeek.linkWrapper],
-            href: sneakPeekDescription.href,
+            href: sneakPeek.href,
           })
 
       const container = createElementFn({
@@ -50,8 +50,8 @@ class SneakPeeks {
       const thubnail = createElementFn({
         element: elements.img,
         classes: [classNames.sneakPeek.thubnail],
-        src: sneakPeekDescription.image,
-        alt: sneakPeekDescription.alt,
+        src: sneakPeek.image,
+        alt: sneakPeek.alt,
       })
 
       const prevContainer = createElementFn({
@@ -62,13 +62,13 @@ class SneakPeeks {
       const title = createElementFn({
         element: elements.h(6),
         classes: [classNames.sneakPeek.title],
-        textContent: sneakPeekDescription.title,
+        textContent: sneakPeek.title,
       })
 
       const intro = createElementFn({
         element: elements.p,
         classes: [classNames.sneakPeek.intro],
-        textContent: sneakPeekDescription.intro,
+        textContent: sneakPeek.intro,
       })
 
       const iconsContainer = createElementFn({
@@ -76,21 +76,21 @@ class SneakPeeks {
         classes: [classNames.sneakPeek.iconsContainer],
       })
 
-      const icons = sneakPeekDescription.icons.map((iconEl) =>
+      const icons = sneakPeek.icons.map((iconEl) =>
         createElementFn({
           element: elements.img,
           src: iconEl.image,
         })
       )
 
-      const ribbonContainer = sneakPeekDescription.duringDevelopment
+      const ribbonContainer = sneakPeek.duringDevelopment
         ? createElementFn({
             element: elements.div,
             classes: [classNames.sneakPeek.ribbon],
           })
         : null
 
-      const ribbonText = sneakPeekDescription.duringDevelopment
+      const ribbonText = sneakPeek.duringDevelopment
         ? createElementFn({
             element: elements.p,
             classes: [classNames.sneakPeek.ribbonText],

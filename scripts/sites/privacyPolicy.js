@@ -1,9 +1,7 @@
 import themes from '/data/global/themes.js'
 import { idReferences, paths } from '/data/global/names.js'
-import {
-  privacyPolicyDescription,
-  formFeidlsDescription,
-} from '/data/descriptions/index.js'
+import { formFieldsInfo } from '/data/informations/index.js'
+import { privacyPolicyDescription } from '/data/descriptions/index.js'
 import {
   DescriptionArrange,
   Theme,
@@ -32,5 +30,5 @@ new Audio({
 })
 new Form({
   container: idReferences.global.leftContainer,
-  description: formFeidlsDescription,
+  data: formFieldsInfo,
 })
