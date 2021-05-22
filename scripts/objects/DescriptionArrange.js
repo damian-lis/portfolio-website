@@ -5,11 +5,11 @@ import {
 import { common, elementProps } from '/data/global/names.js'
 
 class DataArrange {
-  constructor(container, description) {
+  constructor({ container, description }) {
     this.description = description
 
     this.createElements()
-    appendElementsToContainerFn(this.elements, container)
+    appendElementsToContainerFn({ elements: this.elements, container })
   }
 
   createElements() {

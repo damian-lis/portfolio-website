@@ -22,7 +22,7 @@ class Curtain {
       this.children = []
 
       this.createElements()
-      appendElementsToContainerFn([this.curtain], container)
+      appendElementsToContainerFn({ elements: [this.curtain], container })
     }
     return (Curtain.instance = this)
   }
@@ -34,17 +34,17 @@ class Curtain {
       listeners: [
         {
           event: events.click,
-          cb: () => this.toggleShow(common.off),
+          cb: () => this.toggleShow({ toggle: common.off }),
         },
       ],
     })
   }
 
-  toggleShow(toggle, { appendElements, cbsToCallOnHidden } = {}) {
+  toggleShow({ toggle, appendElements, cbsToCallOnHidden } = {}) {
     switch (toggle) {
       case common.on:
-        this.addCbsToCallOnHidden(cbsToCallOnHidden)
-        this.appendElements(appendElements)
+        this.addCbsToCallOnHidden({ cbs: cbsToCallOnHidden })
+        this.appendElements({ elements: appendElements })
         break
 
       case common.off:
@@ -58,11 +58,11 @@ class Curtain {
         break
     }
 
-    this.toggleBodyOverflow(toggle)
-    this.toggleActive(toggle)
+    this.toggleBodyOverflow({ toggle })
+    this.toggleActive({ toggle })
   }
 
-  toggleBodyOverflow(toggle) {
+  toggleBodyOverflow({ toggle }) {
     setPropsFn({
       toggle,
       objs: [
@@ -82,7 +82,7 @@ class Curtain {
     })
   }
 
-  toggleActive(toggle) {
+  toggleActive({ toggle }) {
     setPropsFn({
       toggle,
       objs: [
@@ -109,22 +109,22 @@ class Curtain {
     })
   }
 
-  togglePreventHidden(toggle) {
+  togglePreventHidden({ toggle }) {
     this.preventHidden = toggle === common.on ? true : false
   }
 
-  addElToChildren(el) {
-    this.children.push(el)
+  addElToChildren({ element }) {
+    this.children.push(element)
   }
 
-  appendElements(elements) {
-    elements.map((el) => {
-      this.curtain.appendChild(el)
-      this.addElToChildren(el)
+  appendElements({ elements }) {
+    elements.map((element) => {
+      this.curtain.appendChild(element)
+      this.addElToChildren({ element })
     })
   }
 
-  addCbsToCallOnHidden(cbs) {
+  addCbsToCallOnHidden({ cbs }) {
     cbs.map((cb) => this.cbsToCallOnHidden.push(cb))
   }
 

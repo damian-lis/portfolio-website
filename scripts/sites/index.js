@@ -15,22 +15,36 @@ import {
   DescriptionArrange,
 } from '/scripts/objects/index.js'
 
-new DescriptionArrange(idReferences.about.description, aboutDescription)
-new DescriptionArrange(idReferences.skills.description, skillsDescription)
-new Audio(
-  idReferences.global.leftContainer,
-  paths.mainPageIntroduction,
-  idReferences.sneakPeeks.trigger
-)
-new Form(
-  idReferences.global.leftContainer,
-  idReferences.sneakPeeks.trigger,
-  formFeidlsDescription
-)
-new Theme(idReferences.theme.main, themes, Particles)
-new SneakPeeks(
-  idReferences.sneakPeeks.main,
-  idReferences.sneakPeeks.trigger,
-  idReferences.sneakPeeks.wrapper,
-  sneakPeeksDescription
-)
+new DescriptionArrange({
+  container: idReferences.about.description,
+  description: aboutDescription,
+})
+new DescriptionArrange({
+  container: idReferences.skills.description,
+  description: skillsDescription,
+})
+new Theme({
+  container: idReferences.theme.main,
+  themesObj: themes,
+  background: {
+    Object: Particles,
+    objContainer: idReferences.global.mainContainer,
+  },
+})
+new Audio({
+  container: idReferences.global.leftContainer,
+  trigger: idReferences.sneakPeeks.trigger,
+  path: paths.mainPageIntroduction,
+})
+new Form({
+  container: idReferences.global.leftContainer,
+  trigger: idReferences.sneakPeeks.trigger,
+  description: formFeidlsDescription,
+})
+
+new SneakPeeks({
+  container: idReferences.sneakPeeks.main,
+  trigger: idReferences.sneakPeeks.trigger,
+  wrapper: idReferences.sneakPeeks.wrapper,
+  description: sneakPeeksDescription,
+})

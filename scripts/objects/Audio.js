@@ -14,19 +14,20 @@ import {
 } from '/data/global/names.js'
 
 class Audio {
-  constructor(container, path, trigger) {
+  constructor({ container, trigger, path }) {
     this.play = false
     this.path = path
 
     this.createElements()
     this.createComponents()
-    appendElementsToContainerFn([this.btnComponent], container)
+    appendElementsToContainerFn({ elements: [this.btnComponent], container })
 
     trigger &&
       triggerActionOnWindowScrollFn({
         onWhatElement: trigger,
-        cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.off),
-        cbOnExitTriggerEl: () => this.toggleBtnComponent(common.on),
+        cbOnEnterTriggerEl: () =>
+          this.toggleBtnComponent({ toggle: common.off }),
+        cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: common.on }),
         modifier: 80,
       })
   }
@@ -50,10 +51,13 @@ class Audio {
   }
 
   createComponents() {
-    this.btnComponent = appendElementsToContainerFn([this.audioImg], this.btn)
+    this.btnComponent = appendElementsToContainerFn({
+      elements: [this.audioImg],
+      container: this.btn,
+    })
   }
 
-  toggleBtnComponent(toggle) {
+  toggleBtnComponent({ toggle }) {
     setPropsFn({
       toggle,
       objs: [

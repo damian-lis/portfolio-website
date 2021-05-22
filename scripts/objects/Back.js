@@ -5,11 +5,11 @@ import {
 import { classNames, paths, elements } from '/data/global/names.js'
 
 class Back {
-  constructor(container) {
+  constructor({ container }) {
     this.createElements()
     this.createComponents()
 
-    appendElementsToContainerFn([this.linkComponent], container)
+    appendElementsToContainerFn({ elements: [this.linkComponent], container })
   }
 
   createElements() {
@@ -25,7 +25,10 @@ class Back {
   }
 
   createComponents() {
-    this.linkComponent = appendElementsToContainerFn([this.arrowImg], this.link)
+    this.linkComponent = appendElementsToContainerFn({
+      elements: [this.arrowImg],
+      container: this.link,
+    })
   }
 }
 

@@ -22,20 +22,21 @@ import {
 } from '/data/global/names.js'
 
 class Form {
-  constructor(container, trigger, formFieldsDescription) {
-    this.formFieldsDescription = formFieldsDescription
+  constructor({ container, trigger, description }) {
+    this.formFieldsDescription = description
     this.notificationTimeouts = []
     this.dataFromUser = {}
 
     this.createInitialElements()
     this.createInitialComponents()
-    appendElementsToContainerFn([this.btnComponent], container)
+    appendElementsToContainerFn({ elements: [this.btnComponent], container })
 
     trigger &&
       triggerActionOnWindowScrollFn({
         onWhatElement: trigger,
-        cbOnEnterTriggerEl: () => this.toggleBtnComponent(common.off),
-        cbOnExitTriggerEl: () => this.toggleBtnComponent(common.on),
+        cbOnEnterTriggerEl: () =>
+          this.toggleBtnComponent({ toggle: common.off }),
+        cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: common.on }),
       })
   }
 
@@ -59,7 +60,10 @@ class Form {
   }
 
   createInitialComponents() {
-    this.btnComponent = appendElementsToContainerFn([this.emailImg], this.btn)
+    this.btnComponent = appendElementsToContainerFn({
+      elements: [this.emailImg],
+      container: this.btn,
+    })
   }
 
   createMainElements() {
@@ -86,7 +90,7 @@ class Form {
       listeners: [
         {
           event: events.click,
-          cb: () => curtain.toggleShow(common.off),
+          cb: () => curtain.toggleShow({ toggle: common.off }),
         },
       ],
     })
@@ -99,7 +103,7 @@ class Form {
     this.title = createElementFn({
       element: elements.h(3),
       classes: [classNames.form.title],
-      textContent: info.writeMessage,
+      innerHTML: info.writeMessage,
     })
 
     this.whisper = createElementFn({
@@ -151,7 +155,7 @@ class Form {
 
     this.formFieldsElements = this.formFieldsDescription.map(
       (formFieldDescription) =>
-        this.createFormFieldElements(formFieldDescription)
+        this.createFormFieldElements({ formFieldDescription })
     )
 
     this.formSubmitInput = (() => {
@@ -194,7 +198,9 @@ class Form {
     })
   }
 
-  createFormFieldElements({ label, type, name, value, notifications }) {
+  createFormFieldElements({
+    formFieldDescription: { label, type, name, value, notifications },
+  }) {
     let lab, input
 
     switch (type) {
@@ -224,12 +230,12 @@ class Form {
             {
               event: events.input,
               cb: (e) => {
-                this.handleFormTextInputTyping(e.target, name)
+                this.handleFormTextInputTyping({ input: e.target, name })
               },
             },
             {
               event: events.focus,
-              cb: (e) => this.handleFormTextInputFocus(e.target),
+              cb: (e) => this.handleFormTextInputFocus({ input: e.target }),
             },
           ],
         })
@@ -251,7 +257,7 @@ class Form {
             event: events.click,
             cb: (e) => {
               type !== common.submit &&
-                this.handleFormTextInputNotificationClick(e.target)
+                this.handleFormTextInputNotificationClick({ input: e.target })
             },
           },
         ],
@@ -262,10 +268,10 @@ class Form {
   }
 
   createMainComponents() {
-    this.formSpinnerComponent = appendElementsToContainerFn(
-      [this.formSpinner],
-      this.formSpinnerContainer
-    )
+    this.formSpinnerComponent = appendElementsToContainerFn({
+      elements: [this.formSpinner],
+      container: this.formSpinnerContainer,
+    })
 
     this.formFieldComponents = this.formFields.map((field, index) => {
       const { lab, input, notificationEls } = Object.entries(
@@ -273,70 +279,78 @@ class Form {
       )[index][1]
 
       lab
-        ? appendElementsToContainerFn([lab, input, notificationEls], field)
-        : appendElementsToContainerFn(
-            [input, ...notificationEls, this.formSpinnerComponent],
-            field
-          )
+        ? appendElementsToContainerFn({
+            elements: [lab, input, notificationEls],
+            container: field,
+          })
+        : appendElementsToContainerFn({
+            elements: [input, ...notificationEls, this.formSpinnerComponent],
+            container: field,
+          })
 
       return field
     })
 
-    this.formComponent = (() => {
-      this.formFieldComponents.map((fieldComponent) =>
-        this.form.appendChild(fieldComponent)
-      )
-      this.formContainer.appendChild(this.form)
+    this.formComponent = appendElementsToContainerFn({
+      elements: this.formFieldComponents,
+      container: this.form,
+    })
 
-      return this.formContainer
-    })()
+    this.formMainComponent = appendElementsToContainerFn({
+      elements: [this.formComponent],
+      container: this.formContainer,
+    })
 
-    this.infoComponent = appendElementsToContainerFn(
-      [this.infoIcon, this.infoMessage],
-      this.infoContainer
-    )
+    this.infoComponent = appendElementsToContainerFn({
+      elements: [this.infoIcon, this.infoMessage],
+      container: this.infoContainer,
+    })
 
-    this.titleComponent = appendElementsToContainerFn(
-      [this.title, this.whisper, this.infoComponent],
-      this.titleContainer
-    )
+    this.titleComponent = appendElementsToContainerFn({
+      elements: [this.title, this.whisper, this.infoComponent],
+      container: this.titleContainer,
+    })
 
-    this.mainComponentInner = appendElementsToContainerFn(
-      [this.titleComponent, this.formComponent],
-      this.mainContainerInner
-    )
+    this.mainComponentInner = appendElementsToContainerFn({
+      elements: [this.titleComponent, this.formMainComponent],
+      container: this.mainContainerInner,
+    })
 
-    this.btnDeleteComponent = appendElementsToContainerFn(
-      [this.btnDelete],
-      this.btnDeleteContainer
-    )
+    this.btnDeleteComponent = appendElementsToContainerFn({
+      elements: [this.btnDelete],
+      container: this.btnDeleteContainer,
+    })
 
-    this.mainComponent = appendElementsToContainerFn(
-      [this.btnDeleteComponent, this.mainComponentInner],
-      this.mainContainer
-    )
-
-    return this.mainComponent
+    this.mainComponent = appendElementsToContainerFn({
+      elements: [this.btnDeleteComponent, this.mainComponentInner],
+      container: this.mainContainer,
+    })
   }
 
-  handleFormTextInputTyping(input, name) {
+  handleFormTextInputTyping({ input, name }) {
     this.dataFromUser[name] = input.value
     const isInputNotificationVisible = this.checkFormTextInputNotificationVisibility(
-      input
+      { input }
     )
     isInputNotificationVisible &&
-      this.toggleFormTextInputsNotification(common.off, { inputs: [input] })
+      this.toggleFormTextInputsNotification({
+        toggle: common.off,
+        inputs: [input],
+      })
   }
 
-  handleFormTextInputFocus(input) {
+  handleFormTextInputFocus({ input }) {
     const isInputNotificationVisible = this.checkFormTextInputNotificationVisibility(
-      input
+      { input }
     )
     isInputNotificationVisible &&
-      this.toggleFormTextInputsNotification(common.off, { inputs: [input] })
+      this.toggleFormTextInputsNotification({
+        toggle: common.off,
+        inputs: [input],
+      })
   }
 
-  handleFormTextInputNotificationClick(input) {
+  handleFormTextInputNotificationClick({ input }) {
     input.parentElement
       .querySelector(
         input.attributes.fieldname.value === common.message
@@ -347,14 +361,15 @@ class Form {
   }
 
   handleMainComponentCreate() {
-    this.toggleBtnComponent(common.off)
+    this.toggleBtnComponent({ toggle: common.off })
     this.createMainElements()
     this.createMainComponents()
-    curtain.toggleShow(common.on, {
+    curtain.toggleShow({
+      toggle: common.on,
       appendElements: [this.mainComponent],
       cbsToCallOnHidden: [
         () => {
-          this.toggleBtnComponent(common.on)
+          this.toggleBtnComponent({ toggle: common.on })
           this.resetFormTextInputsValue()
           this.resetDataFromUser()
         },
@@ -385,43 +400,46 @@ class Form {
 
     this.formEmailInput.value &&
       !isEmailValidate &&
-      this.toggleFormTextInputsNotification(common.on, {
+      this.toggleFormTextInputsNotification({
+        toggle: common.on,
         inputs: [this.formEmailInput],
         notificationNumber: 1,
       })
     emptyTextInputs.length &&
-      this.toggleFormTextInputsNotification(common.on, {
+      this.toggleFormTextInputsNotification({
+        toggle: common.on,
         inputs: emptyTextInputs,
       })
 
     if (!isEmailValidate || emptyTextInputs.length) return
 
     this.disableFormInputs()
-    this.toggleDeleteBtnComponent(common.off)
-    this.toggleSpinnerComponent(common.on)
-    this.toggleFormSubmitInputlNotifications(common.on, {
+    this.toggleDeleteBtnComponent({ toggle: common.off })
+    this.toggleSpinnerComponent({ toggle: common.on })
+    this.toggleFormSubmitInputlNotifications({
+      toggle: common.on,
       notificationDuration: 5000,
     })
-    curtain.togglePreventHidden(common.on)
+    curtain.togglePreventHidden({ toggle: common.on })
 
     const feedback = await this.handleEmailSent()
 
     this.resetFormTextInputsValue()
-    this.toggleSpinnerComponent(common.off)
-    this.toggleFormSubmitInputlNotifications(common.off, {})
+    this.toggleSpinnerComponent({ toggle: common.off })
+    this.toggleFormSubmitInputlNotifications({ toggle: common.off })
     this.hideTitleInfo()
     this.hideFormComponent()
-    this.replaceTitleText(feedback)
+    this.replaceTitleText({ text: feedback })
     this.reduceMainComponentHeight()
     this.moveTitleComponent()
     this.revealTitleWhisper()
 
     await setDelayFn(2000)
     this.setSelfDestructEventToMainComponent()
-    curtain.togglePreventHidden(common.off)
+    curtain.togglePreventHidden({ toggle: common.off })
   }
 
-  toggleDeleteBtnComponent(toggle) {
+  toggleDeleteBtnComponent({ toggle }) {
     setPropsFn({
       toggle,
       objs: [
@@ -448,7 +466,7 @@ class Form {
     })
   }
 
-  toggleFormTextInputsNotification(toggle, { inputs, notificationNumber }) {
+  toggleFormTextInputsNotification({ toggle, inputs, notificationNumber }) {
     setClassesFn({
       toggle,
       objs: [
@@ -493,7 +511,7 @@ class Form {
     })
   }
 
-  toggleFormSubmitInputlNotifications(toggle, { notificationDuration }) {
+  toggleFormSubmitInputlNotifications({ toggle, notificationDuration = {} }) {
     const formSubmitnotificationEls = [
       ...this.formSubmitInput.parentElement.querySelectorAll(elements.span),
     ]
@@ -552,14 +570,13 @@ class Form {
 
       case common.off:
         setPropsFn({
-          toggle,
           objs: [
             {
               elements: formSubmitnotificationEls,
               styleProps: [
                 {
                   name: styleProps.names.display,
-                  values: styleProps.values.none,
+                  value: styleProps.values.none,
                 },
               ],
             },
@@ -576,7 +593,7 @@ class Form {
     }
   }
 
-  toggleBtnComponent(toggle) {
+  toggleBtnComponent({ toggle }) {
     setPropsFn({
       toggle,
       objs: [
@@ -596,7 +613,7 @@ class Form {
     })
   }
 
-  toggleSpinnerComponent(toggle) {
+  toggleSpinnerComponent({ toggle }) {
     setPropsFn({
       toggle,
       objs: [
@@ -628,7 +645,7 @@ class Form {
     })
   }
 
-  checkFormTextInputNotificationVisibility(input) {
+  checkFormTextInputNotificationVisibility({ input }) {
     const inputNotifications = [
       ...input.parentElement.querySelectorAll(elements.span),
     ]
@@ -667,7 +684,7 @@ class Form {
     setPropsFn({
       objs: [
         {
-          elements: [this.formComponent],
+          elements: [this.formMainComponent],
           styleProps: [
             {
               name: styleProps.names.overflow,
@@ -707,7 +724,7 @@ class Form {
     })
   }
 
-  replaceTitleText(message) {
+  replaceTitleText({ text }) {
     setPropsFn({
       objs: [
         {
@@ -715,7 +732,7 @@ class Form {
           props: [
             {
               name: elementProps.names.innerHTML,
-              value: message,
+              value: text,
             },
           ],
         },
@@ -732,11 +749,11 @@ class Form {
             {
               name: styleProps.names.opacity,
               value: 1,
-              delay: 1800,
             },
           ],
         },
       ],
+      delay: 1800,
     })
   }
 
@@ -749,11 +766,11 @@ class Form {
             {
               name: styleProps.names.height,
               value: '100px',
-              delay: 800,
             },
           ],
         },
       ],
+      delay: 800,
     })
   }
 
@@ -809,7 +826,7 @@ class Form {
           listeners: [
             {
               event: events.click,
-              cb: () => curtain.toggleShow(common.off),
+              cb: () => curtain.toggleShow({ toggle: common.off }),
             },
           ],
         },

@@ -7,12 +7,12 @@ import {
 import { classNames, info, elements } from '/data/global/names.js'
 
 class SneakPeeks {
-  constructor(container, trigger, wrapper, sneakPeeksDescription) {
-    this.sneakPeeksDescription = sneakPeeksDescription
+  constructor({ container, trigger, wrapper, description }) {
+    this.sneakPeeksDescription = description
 
     this.createElements()
     this.createComponents()
-    appendElementsToContainerFn([this.mainComponent], container)
+    appendElementsToContainerFn({ elements: [this.mainComponent], container })
 
     if (trigger) {
       this.triggerElement = document.querySelector(trigger)
@@ -127,46 +127,51 @@ class SneakPeeks {
         ribbonContainer,
         ribbonText,
       }) => {
-        const prevComponent = appendElementsToContainerFn(
-          [title, intro],
-          prevContainer
-        )
+        const prevComponent = appendElementsToContainerFn({
+          elements: [title, intro],
+          container: prevContainer,
+        })
 
-        const iconComponents = appendElementsToContainerFn(
-          icons,
-          iconsContainer
-        )
+        const iconComponents = appendElementsToContainerFn({
+          elements: icons,
+          container: iconsContainer,
+        })
 
-        let sneakPeekComponent = appendElementsToContainerFn(
-          [thubnail, prevComponent, iconComponents],
-          container
-        )
+        let sneakPeekComponent = appendElementsToContainerFn({
+          elements: [thubnail, prevComponent, iconComponents],
+          container,
+        })
 
         if (ribbonContainer && ribbonText) {
-          const ribbonComponent = appendElementsToContainerFn(
-            [ribbonText],
-            ribbonContainer
-          )
+          const ribbonComponent = appendElementsToContainerFn({
+            elements: [ribbonText],
+            container: ribbonContainer,
+          })
 
-          sneakPeekComponent = appendElementsToContainerFn(
-            [thubnail, prevComponent, iconComponents, ribbonComponent],
-            container
-          )
+          sneakPeekComponent = appendElementsToContainerFn({
+            elements: [
+              thubnail,
+              prevComponent,
+              iconComponents,
+              ribbonComponent,
+            ],
+            container,
+          })
         }
 
-        const linkSneakPeekComponent = appendElementsToContainerFn(
-          [sneakPeekComponent],
-          linkWrapper
-        )
+        const linkSneakPeekComponent = appendElementsToContainerFn({
+          elements: [sneakPeekComponent],
+          container: linkWrapper,
+        })
 
         return linkSneakPeekComponent
       }
     )
 
-    this.mainComponent = appendElementsToContainerFn(
-      this.sneakPeekComponents,
-      this.mainContainer
-    )
+    this.mainComponent = appendElementsToContainerFn({
+      elements: this.sneakPeekComponents,
+      container: this.mainContainer,
+    })
   }
 
   handleOnEnterTriggerEl() {

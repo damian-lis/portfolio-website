@@ -1,6 +1,6 @@
 import { common } from '/data/global/names.js'
 
-export default (elements = [], container) => {
+export default ({ elements = [], container }) => {
   if (!container) return
 
   let containerEl = container

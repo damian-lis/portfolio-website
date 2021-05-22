@@ -38,11 +38,9 @@ export default ({ element, ...rest }) => {
           if (
             createdElement.tagName === common.TEXTAREA &&
             propEl === common.type
-          ) {
+          )
             break
-          } else createdElement[propEl] = rest[propEl]
-
-          break
+          createdElement[propEl] = rest[propEl]
       }
     }
   }

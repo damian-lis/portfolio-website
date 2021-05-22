@@ -12,9 +12,9 @@ import {
 } from '/data/global/names.js'
 
 class Theme {
-  constructor(container, themesObject, BackgroundObj) {
-    this.themesObject = themesObject
-    this.BackgroundObj = BackgroundObj
+  constructor({ container, themesObj, background }) {
+    this.themesObj = themesObj
+    this.background = background
     this.initialThemeName = this.setInitialThemeName()
     this.initialThemeObject = this.setInitialThemeObject()
 
@@ -23,11 +23,13 @@ class Theme {
     this.setGlobalVariables()
     this.createBackgroundAnimation()
 
-    appendElementsToContainerFn([this.mainComponent], container)
+    appendElementsToContainerFn({ elements: [this.mainComponent], container })
   }
 
   createElements() {
-    this.background = new this.BackgroundObj()
+    this.background = new this.background.Object({
+      container: this.background.objContainer,
+    })
 
     this.mainContainer = createElementFn({
       element: elements.div,
@@ -44,7 +46,7 @@ class Theme {
       classes: [classNames.theme.optionsContainer],
     })
 
-    this.optionsDots = Object.keys(this.themesObject).map((themeName) =>
+    this.optionsDots = Object.keys(this.themesObj).map((themeName) =>
       createElementFn({
         element: elements.div,
         classes: [
@@ -70,23 +72,23 @@ class Theme {
   }
 
   createComponents() {
-    this.optionsComponent = appendElementsToContainerFn(
-      this.optionsDots,
-      this.optionsContainer
-    )
+    this.optionsComponent = appendElementsToContainerFn({
+      elements: this.optionsDots,
+      container: this.optionsContainer,
+    })
 
-    this.mainComponent = appendElementsToContainerFn(
-      [this.title, this.optionsComponent, this.note],
-      this.mainContainer
-    )
+    this.mainComponent = appendElementsToContainerFn({
+      elements: [this.title, this.optionsComponent, this.note],
+      container: this.mainContainer,
+    })
   }
 
   handleDotClick({ element, themeName }) {
-    const themeObject = this.themesObject[themeName]
+    const themeObj = this.themesObj[themeName]
 
-    this.setGlobalVariables(themeObject)
-    this.background.setTheme(themeObject)
-    this.saveThemeNameInLocalStorage(themeName)
+    this.setGlobalVariables({ themeObj })
+    this.background.setTheme({ themeObj })
+    this.saveThemeNameInLocalStorage({ themeName })
 
     setClassesFn({
       objs: [
@@ -99,33 +101,29 @@ class Theme {
     })
   }
 
-  setGlobalVariables(themeObject) {
-    for (const property in themeObject
-      ? themeObject
-      : this.initialThemeObject) {
+  setGlobalVariables({ themeObj } = {}) {
+    for (const property in themeObj ? themeObj : this.initialThemeObject) {
       document.documentElement.style.setProperty(
         `--${property}`,
-        themeObject ? themeObject[property] : this.initialThemeObject[property]
+        themeObj ? themeObj[property] : this.initialThemeObject[property]
       )
     }
   }
 
   setInitialThemeName() {
-    return (
-      localStorage.getItem(common.theme) || Object.keys(this.themesObject)[0]
-    )
+    return localStorage.getItem(common.theme) || Object.keys(this.themesObj)[0]
   }
 
   setInitialThemeObject() {
-    return this.themesObject[this.initialThemeName]
+    return this.themesObj[this.initialThemeName]
   }
 
-  saveThemeNameInLocalStorage(theme) {
-    localStorage.setItem(common.theme, theme)
+  saveThemeNameInLocalStorage({ themeName }) {
+    localStorage.setItem(common.theme, themeName)
   }
 
   createBackgroundAnimation() {
-    this.background.start(this.initialThemeObject)
+    this.background.start({ themeObj: this.initialThemeObject })
   }
 }
 

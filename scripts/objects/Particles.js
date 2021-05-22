@@ -6,7 +6,7 @@ import {
 import { idNames, events, elements } from '/data/global/names.js'
 
 class Particles {
-  constructor() {
+  constructor({ container }) {
     this.canvas = createElementFn({
       element: elements.canvas,
       id: idNames.theme.canvas,
@@ -22,7 +22,10 @@ class Particles {
 
     this.setContext()
     this.listenForResize()
-    appendElementsToContainerFn([this.canvas], document.body)
+    appendElementsToContainerFn({
+      elements: [this.canvas],
+      container,
+    })
   }
 
   setIsMobile() {
@@ -35,14 +38,14 @@ class Particles {
     this.ctx.canvas.height = window.innerHeight
   }
 
-  setTheme(theme) {
-    this.theme = theme
-    this.strokeColor = theme.strokeColor
-    this.ctx.fillStyle = theme.ctxFillStyle
+  setTheme({ themeObj }) {
+    this.theme = themeObj
+    this.strokeColor = themeObj.strokeColor
+    this.ctx.fillStyle = themeObj.ctxFillStyle
   }
 
-  start(theme) {
-    this.setTheme(theme)
+  start({ themeObj }) {
+    this.setTheme({ themeObj })
     this.init()
     this.animate()
     this.update()
