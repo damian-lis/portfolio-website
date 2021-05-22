@@ -54,20 +54,23 @@ class Audio {
   }
 
   toggleBtnComponent(toggle) {
-    setPropsFn([
-      {
-        elements: [this.btnComponent],
-        styleProps: [
-          {
-            name: styleProps.names.transform,
-            value:
-              toggle === common.on
-                ? styleProps.values.translateX(0)
-                : styleProps.values.translateX(-100),
-          },
-        ],
-      },
-    ])
+    setPropsFn({
+      toggle,
+      objs: [
+        {
+          elements: [this.btnComponent],
+          styleProps: [
+            {
+              name: styleProps.names.transform,
+              values: {
+                on: styleProps.values.translateX(0),
+                off: styleProps.values.translateX(-100),
+              },
+            },
+          ],
+        },
+      ],
+    })
   }
 
   handleAudio() {

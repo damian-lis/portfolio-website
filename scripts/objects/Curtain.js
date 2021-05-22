@@ -2,7 +2,6 @@ import {
   createElementFn,
   appendElementsToContainerFn,
   setPropsFn,
-  toggleClassesFn,
 } from '/scripts/helpers/index.js'
 
 import {
@@ -64,26 +63,49 @@ class Curtain {
   }
 
   toggleBodyOverflow(toggle) {
-    setPropsFn([
-      {
-        elements: [document.body],
-        styleProps: [
-          {
-            name: styleProps.names.overflow,
-            value:
-              toggle === common.on
-                ? styleProps.values.hidden
-                : styleProps.values.auto,
-          },
-        ],
-      },
-    ])
+    setPropsFn({
+      toggle,
+      objs: [
+        {
+          elements: [document.body],
+          styleProps: [
+            {
+              name: styleProps.names.overflow,
+              values: {
+                on: styleProps.values.hidden,
+                off: styleProps.values.auto,
+              },
+            },
+          ],
+        },
+      ],
+    })
   }
 
   toggleActive(toggle) {
-    toggleClassesFn(toggle, {
-      elements: [this.curtain],
-      classes: [classNames.curtain.active],
+    setPropsFn({
+      toggle,
+      objs: [
+        {
+          elements: [this.curtain],
+          styleProps: [
+            {
+              name: styleProps.names.visibility,
+              values: {
+                on: styleProps.values.visible,
+                off: styleProps.values.hidden,
+              },
+            },
+            {
+              name: styleProps.names.opacity,
+              values: {
+                on: 1,
+                off: 0,
+              },
+            },
+          ],
+        },
+      ],
     })
   }
 

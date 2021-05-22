@@ -423,57 +423,71 @@ class Form {
   }
 
   toggleDeleteBtnComponent(toggle) {
-    setPropsFn([
-      {
-        elements: [this.btnDeleteComponent],
-        styleProps: [
-          {
-            name: styleProps.names.visibility,
-            value:
-              toggle === common.off
-                ? styleProps.values.hidden
-                : styleProps.values.visible,
-          },
-          {
-            name: styleProps.names.opacity,
-            value: toggle === common.off ? 0 : 1,
-          },
-        ],
-      },
-    ])
-  }
-
-  toggleFormTextInputsNotification(toggle, { inputs, notificationNumber }) {
-    toggleClassesFn(toggle, {
-      elements: inputs,
-      classes: [classNames.utilities.border.danger],
-    })
-
-    inputs.map((input) => {
-      let notificationEls = [
-        ...input.parentElement.querySelectorAll(elements.span),
-      ]
-      setPropsFn([
+    setPropsFn({
+      toggle,
+      objs: [
         {
-          elements:
-            toggle === common.off
-              ? notificationEls
-              : [notificationEls[notificationNumber ? notificationNumber : 0]],
+          elements: [this.btnDeleteComponent],
           styleProps: [
             {
               name: styleProps.names.visibility,
-              value:
-                toggle === common.on
-                  ? styleProps.values.visible
-                  : styleProps.values.hidden,
+              values: {
+                on: styleProps.values.visible,
+                off: styleProps.values.hidden,
+              },
             },
             {
               name: styleProps.names.opacity,
-              value: toggle === common.on ? 1 : 0,
+              values: {
+                on: 1,
+                off: 0,
+              },
             },
           ],
         },
-      ])
+      ],
+    })
+  }
+
+  toggleFormTextInputsNotification(toggle, { inputs, notificationNumber }) {
+    toggleClassesFn(toggle, [
+      {
+        elements: inputs,
+        classes: [classNames.utilities.border.danger],
+      },
+    ])
+
+    inputs.map((input) => {
+      const notificationEls = [
+        ...input.parentElement.querySelectorAll(elements.span),
+      ]
+
+      const rightNotificationEls =
+        toggle === common.on
+          ? [notificationEls[notificationNumber ? notificationNumber : 0]]
+          : notificationEls
+
+      setPropsFn({
+        toggle,
+        objs: [
+          {
+            elements: rightNotificationEls,
+            styleProps: [
+              {
+                name: styleProps.names.visibility,
+                values: {
+                  on: styleProps.values.visible,
+                  off: styleProps.values.hidden,
+                },
+              },
+              {
+                name: styleProps.names.opacity,
+                values: { on: 1, off: 0 },
+              },
+            ],
+          },
+        ],
+      })
     })
   }
 
@@ -489,58 +503,66 @@ class Form {
             formSubmitnotificationEls.length === index + 1
           const delay = index * notificationDuration
 
-          const appearNotificationTimeout = setPropsFn([
-            {
-              elements: [notificationEl],
-              styleProps: [
-                {
-                  name: styleProps.names.visibility,
-                  value: styleProps.values.visible,
-                },
-                {
-                  name: styleProps.names.opacity,
-                  value: 1,
-                },
-              ],
-              delay,
-            },
-          ])
-          this.notificationTimeouts.push(appearNotificationTimeout)
-
-          if (!lastNotification) {
-            const hideNotificationTimeout = setPropsFn([
+          const appearNotificationTimeout = setPropsFn({
+            objs: [
               {
                 elements: [notificationEl],
                 styleProps: [
                   {
                     name: styleProps.names.visibility,
-                    value: styleProps.values.hidden,
+                    value: styleProps.values.visible,
                   },
                   {
                     name: styleProps.names.opacity,
-                    value: 0,
+                    value: 1,
                   },
                 ],
-                delay: delay + notificationDuration,
               },
-            ])
+            ],
+            delay,
+          })
+
+          this.notificationTimeouts.push(appearNotificationTimeout)
+
+          if (!lastNotification) {
+            const hideNotificationTimeout = setPropsFn({
+              objs: [
+                {
+                  elements: [notificationEl],
+                  styleProps: [
+                    {
+                      name: styleProps.names.visibility,
+                      value: styleProps.values.hidden,
+                    },
+                    {
+                      name: styleProps.names.opacity,
+                      value: 0,
+                    },
+                  ],
+                },
+              ],
+              delay: delay + notificationDuration,
+            })
             this.notificationTimeouts.push(hideNotificationTimeout)
           }
         })
         break
 
       case common.off:
-        setPropsFn([
-          {
-            elements: formSubmitnotificationEls,
-            styleProps: [
-              {
-                name: styleProps.names.display,
-                value: styleProps.values.none,
-              },
-            ],
-          },
-        ])
+        setPropsFn({
+          toggle,
+          objs: [
+            {
+              elements: formSubmitnotificationEls,
+              styleProps: [
+                {
+                  name: styleProps.names.display,
+                  values: styleProps.values.none,
+                },
+              ],
+            },
+          ],
+        })
 
         this.notificationTimeouts.map((notificationTimeout) => {
           clearInterval(notificationTimeout)
@@ -553,49 +575,55 @@ class Form {
   }
 
   toggleBtnComponent(toggle) {
-    setPropsFn([
-      {
-        elements: [this.btnComponent],
-        styleProps: [
-          {
-            name: styleProps.names.transform,
-            value:
-              toggle === common.on
-                ? styleProps.values.translateX(0)
-                : styleProps.values.translateX(-100),
-          },
-        ],
-      },
-    ])
+    setPropsFn({
+      toggle,
+      objs: [
+        {
+          elements: [this.btnComponent],
+          styleProps: [
+            {
+              name: styleProps.names.transform,
+              values: {
+                on: styleProps.values.translateX(0),
+                off: styleProps.values.translateX(-100),
+              },
+            },
+          ],
+        },
+      ],
+    })
   }
 
   toggleSpinnerComponent(toggle) {
-    setPropsFn([
-      {
-        elements: [this.formSubmitInput],
-        styleProps: [
-          {
-            name: styleProps.names.display,
-            value:
-              toggle === common.on
-                ? styleProps.values.none
-                : styleProps.values.block,
-          },
-        ],
-      },
-      {
-        elements: [this.formSpinnerComponent],
-        styleProps: [
-          {
-            name: styleProps.names.display,
-            value:
-              toggle === common.on
-                ? styleProps.values.flex
-                : styleProps.values.none,
-          },
-        ],
-      },
-    ])
+    setPropsFn({
+      toggle,
+      objs: [
+        {
+          elements: [this.formSubmitInput],
+          styleProps: [
+            {
+              name: styleProps.names.display,
+              values: {
+                on: styleProps.values.none,
+                off: styleProps.values.block,
+              },
+            },
+          ],
+        },
+        {
+          elements: [this.formSpinnerComponent],
+          styleProps: [
+            {
+              name: styleProps.names.display,
+              values: {
+                on: styleProps.values.flex,
+                off: styleProps.values.none,
+              },
+            },
+          ],
+        },
+      ],
+    })
   }
 
   checkFormTextInputNotificationVisibility(input) {
@@ -618,101 +646,113 @@ class Form {
   }
 
   hideTitleInfo() {
-    setPropsFn([
-      {
-        elements: [this.infoComponent],
-        styleProps: [
-          {
-            name: styleProps.names.display,
-            value: styleProps.values.none,
-          },
-        ],
-      },
-    ])
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.infoComponent],
+          styleProps: [
+            {
+              name: styleProps.names.display,
+              value: styleProps.values.none,
+            },
+          ],
+        },
+      ],
+    })
   }
 
   hideFormComponent() {
-    setPropsFn([
-      {
-        elements: [this.formComponent],
-        styleProps: [
-          {
-            name: styleProps.names.overflow,
-            value: styleProps.values.hidden,
-          },
-          {
-            name: styleProps.names.opacity,
-            value: 0,
-          },
-        ],
-      },
-    ])
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.formComponent],
+          styleProps: [
+            {
+              name: styleProps.names.overflow,
+              value: styleProps.values.hidden,
+            },
+            {
+              name: styleProps.names.opacity,
+              value: 0,
+            },
+          ],
+        },
+      ],
+    })
   }
 
   moveTitleComponent() {
-    setPropsFn([
-      {
-        elements: [this.titleComponent],
-        styleProps: [
-          {
-            name: styleProps.names.top,
-            value: '50%',
-          },
-          {
-            name: styleProps.names.position,
-            value: styleProps.values.relative,
-          },
-          {
-            name: styleProps.names.transform,
-            value: styleProps.values.translateY(-70),
-          },
-        ],
-      },
-    ])
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.titleComponent],
+          styleProps: [
+            {
+              name: styleProps.names.top,
+              value: '50%',
+            },
+            {
+              name: styleProps.names.position,
+              value: styleProps.values.relative,
+            },
+            {
+              name: styleProps.names.transform,
+              value: styleProps.values.translateY(-70),
+            },
+          ],
+        },
+      ],
+    })
   }
 
   replaceTitleText(message) {
-    setPropsFn([
-      {
-        elements: [this.title],
-        props: [
-          {
-            name: elementProps.names.innerHTML,
-            value: message,
-          },
-        ],
-      },
-    ])
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.title],
+          props: [
+            {
+              name: elementProps.names.innerHTML,
+              value: message,
+            },
+          ],
+        },
+      ],
+    })
   }
 
   revealTitleWhisper() {
-    setPropsFn([
-      {
-        elements: [this.whisper],
-        styleProps: [
-          {
-            name: styleProps.names.opacity,
-            value: 1,
-            delay: 1800,
-          },
-        ],
-      },
-    ])
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.whisper],
+          styleProps: [
+            {
+              name: styleProps.names.opacity,
+              value: 1,
+              delay: 1800,
+            },
+          ],
+        },
+      ],
+    })
   }
 
   reduceMainComponentHeight() {
-    setPropsFn([
-      {
-        elements: [this.mainComponent],
-        styleProps: [
-          {
-            name: styleProps.names.height,
-            value: '100px',
-            delay: 800,
-          },
-        ],
-      },
-    ])
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.mainComponent],
+          styleProps: [
+            {
+              name: styleProps.names.height,
+              value: '100px',
+              delay: 800,
+            },
+          ],
+        },
+      ],
+    })
   }
 
   findEmptyFormTextInputs() {
@@ -737,23 +777,25 @@ class Form {
     const formInputs = [this.formSubmitInput, ...this.formTextInputs]
 
     formInputs.map((input) =>
-      setPropsFn([
-        {
-          elements: [input],
-          props: [
-            {
-              name: elementProps.names.disabled,
-              value: true,
-            },
-          ],
-          styleProps: [
-            {
-              name: styleProps.names.opacity,
-              value: 0.4,
-            },
-          ],
-        },
-      ])
+      setPropsFn({
+        objs: [
+          {
+            elements: [input],
+            props: [
+              {
+                name: elementProps.names.disabled,
+                value: true,
+              },
+            ],
+            styleProps: [
+              {
+                name: styleProps.names.opacity,
+                value: 0.4,
+              },
+            ],
+          },
+        ],
+      })
     )
   }
 
