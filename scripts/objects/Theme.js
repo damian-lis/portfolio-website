@@ -1,7 +1,7 @@
 import {
   createElementFn,
   appendElementsToContainerFn,
-  setActiveFn,
+  setClassesFn,
 } from '/scripts/helpers/index.js'
 import {
   classNames,
@@ -84,14 +84,19 @@ class Theme {
   handleDotClick({ element, themeName }) {
     const themeObject = this.themesObject[themeName]
 
-    setActiveFn({
-      setOn: [element],
-      removeFrom: this.optionsDots,
-      classes: [classNames.theme.optionsDotActive],
-    })
     this.setGlobalVariables(themeObject)
     this.background.setTheme(themeObject)
     this.saveThemeNameInLocalStorage(themeName)
+
+    setClassesFn({
+      objs: [
+        {
+          elements: [element],
+          removeFromEls: this.optionsDots,
+          classes: [classNames.theme.optionsDotActive],
+        },
+      ],
+    })
   }
 
   setGlobalVariables(themeObject) {
