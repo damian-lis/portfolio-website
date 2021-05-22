@@ -16,11 +16,11 @@ import {
 
 new DescriptionArrange({
   container: idReferences.about.description,
-  description: aboutDescription,
+  data: aboutDescription,
 })
 new DescriptionArrange({
   container: idReferences.skills.description,
-  description: skillsDescription,
+  data: skillsDescription,
 })
 new Theme({
   container: idReferences.theme.main,

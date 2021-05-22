@@ -5,8 +5,8 @@ import {
 import { common, elementProps } from '/data/global/names.js'
 
 class DataArrange {
-  constructor({ container, description }) {
-    this.description = description
+  constructor({ container, data }) {
+    this.description = data
 
     this.createElements()
     appendElementsToContainerFn({ elements: this.elements, container })

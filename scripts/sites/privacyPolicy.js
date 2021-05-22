@@ -13,7 +13,7 @@ import {
 
 new DescriptionArrange({
   container: idReferences.privacyPolicy.description,
-  description: privacyPolicyDescription,
+  data: privacyPolicyDescription,
 })
 new Theme({
   container: idReferences.theme.main,

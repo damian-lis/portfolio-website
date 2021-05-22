@@ -13,7 +13,7 @@ import {
 
 new DescriptionArrange({
   container: idReferences.project.description,
-  description: fluentBlogDescription,
+  data: fluentBlogDescription,
 })
 new Theme({
   container: idReferences.theme.main,
