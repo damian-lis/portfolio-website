@@ -170,16 +170,18 @@ class SneakPeeks {
   }
 
   handleOnEnterTriggerEl() {
-    setClassesFn([
-      {
-        element: this.triggerElement,
-        classes: [classNames.utilities.h.full],
-      },
-      {
-        element: this.wrapperElement,
-        classes: [classNames.utilities.animations.slideInFromTop],
-      },
-    ])
+    setClassesFn({
+      objs: [
+        {
+          elements: [this.triggerElement],
+          classes: [classNames.utilities.h.full],
+        },
+        {
+          elements: [this.wrapperElement],
+          classes: [classNames.utilities.animations.slideInFromTop],
+        },
+      ],
+    })
   }
 }
 

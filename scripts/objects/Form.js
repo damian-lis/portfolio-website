@@ -6,7 +6,7 @@ import {
   setPropsFn,
   setListenersFn,
   setDelayFn,
-  toggleClassesFn,
+  setClassesFn,
 } from '/scripts/helpers/index.js'
 import {
   styleProps,
@@ -450,12 +450,15 @@ class Form {
   }
 
   toggleFormTextInputsNotification(toggle, { inputs, notificationNumber }) {
-    toggleClassesFn(toggle, [
-      {
-        elements: inputs,
-        classes: [classNames.utilities.border.danger],
-      },
-    ])
+    setClassesFn({
+      toggle,
+      objs: [
+        {
+          elements: inputs,
+          classes: [classNames.utilities.border.danger],
+        },
+      ],
+    })
 
     inputs.map((input) => {
       const notificationEls = [
