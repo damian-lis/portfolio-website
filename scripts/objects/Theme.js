@@ -111,7 +111,7 @@ class Theme {
   }
 
   setInitialThemeName() {
-    return localStorage.getItem(common.theme) || Object.keys(this.themesObj)[0]
+    return localStorage.getItem(common.theme) || Object.keys(this.themesObj)[1]
   }
 
   setInitialThemeObject() {
