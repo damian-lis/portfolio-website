@@ -58,11 +58,11 @@ class Curtain {
         break
     }
 
-    this.toggleBodyOverflow({ toggle })
+    this.toggleBodyFreeze({ toggle })
     this.toggleActive({ toggle })
   }
 
-  toggleBodyOverflow({ toggle }) {
+  toggleBodyFreeze({ toggle }) {
     setPropsFn({
       toggle,
       objs: [
