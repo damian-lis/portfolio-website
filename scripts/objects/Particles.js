@@ -7,25 +7,32 @@ import { idNames, events, elements } from '/data/global/names.js'
 
 class Particles {
   constructor({ container }) {
-    this.canvas = createElementFn({
-      element: elements.canvas,
-      id: idNames.theme.canvas,
-    })
     this.particleArray = []
     this.theme = {}
-    this.mouse = {
-      x: null,
-      y: null,
-      radius: (this.canvas.height / 80) * (this.canvas.width / 80),
-    }
     this.isMobile = this.setIsMobile()
 
+    this.createElements()
     this.setContext()
     this.listenForResize()
     appendElementsToContainerFn({
       elements: [this.canvas],
       container,
     })
+  }
+
+  createElements() {
+    this.canvas = createElementFn({
+      element: elements.canvas,
+      id: idNames.theme.canvas,
+    })
+  }
+
+  setMouse() {
+    return {
+      x: null,
+      y: null,
+      radius: (this.canvas.height / 80) * (this.canvas.width / 80),
+    }
   }
 
   setIsMobile() {
