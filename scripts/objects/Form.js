@@ -256,7 +256,9 @@ class Form {
             event: events.click,
             cb: (e) => {
               type !== common.submit &&
-                this.handleFormTextInputNotificationClick({ input: e.target })
+                this.handleFormTextInputNotificationClick({
+                  notification: e.target,
+                })
             },
           },
         ],
@@ -349,10 +351,10 @@ class Form {
       })
   }
 
-  handleFormTextInputNotificationClick({ input }) {
-    input.parentElement
+  handleFormTextInputNotificationClick({ notification }) {
+    notification.parentElement
       .querySelector(
-        input.attributes.fieldname.value === common.message
+        notification.attributes.fieldname.value === common.message
           ? elements.textarea
           : elements.input
       )
