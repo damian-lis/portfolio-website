@@ -1377,6 +1377,10 @@ In the example above, we have an element with id skills-description, which is a 
 
 ## 3.2. Specific
 
+This part of the description is related to the logic of individual objects that appear in the project. The description of each object is structured and is very similar in each case discussed.
+
+<br/>
+
 ### 3.2.1. Logic of background animation by Particles object
 
 Table of content of this section:
@@ -1403,16 +1407,16 @@ To achieve the above effect, Particle and Particles objects were created.
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
-&nbsp; &nbsp; &nbsp; &nbsp; 2.1. Code example of Particle object <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.2. Description of constructor <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.1. Code example of Particle object constructor <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.2. Description of variables in constructor <br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 2.3. Description of draw method <br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 2.4. Description of update method <br/>
 
 <br/>
 
-#### 2.1. Code example of Particle object
+#### 2.1. Code example of Particle object constructor
 
-The following is an example of a Particle object (scripts/objects/Particle.js):
+The following is an example of a Particle object constructor (scripts/objects/Particle.js):
 
 ```
 class Particle {
@@ -1428,33 +1432,15 @@ class Particle {
     this.speedY = this.directionY
   }
 
-  draw() {
-    this.ctx.beginPath()
-    this.ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false)
-    this.ctx.fill()
-  }
-
-  update() {
-    if (this.x > this.canvas.width || this.x < 0) {
-      this.directionX = -this.directionX
-      this.speedX = this.directionX
-    }
-    if (this.y + this.size > this.canvas.height || this.y - this.size < 0) {
-      this.directionY = -this.directionY
-      this.speedY = this.directionY
-    }
-
-    this.x += this.directionX
-    this.y += this.directionY
-
-    this.draw()
-  }
+  more code here...
 }
 
 export default Particle
 ```
 
-#### 2.2. Description of object constructor
+<br/>
+
+#### 2.2. Description of variables in constructor
 
 As we can see in the code example in the constructor we have only following variables:
 
@@ -1467,6 +1453,8 @@ As we can see in the code example in the constructor we have only following vari
 - this.size which assign the passed size for particle,
 - this.speedX which assign the passed speed of x coordinate for particle,
 - this.speedY which assign the passed speed of y coordinate for particle
+
+<br/>
 
 #### 2.3. Description of draw method
 
@@ -1519,17 +1507,17 @@ In order to be able to create many such particles and make it move, the Particle
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
 &nbsp; &nbsp; &nbsp; &nbsp; 3.1. Code example of constructor of Particle object <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.2. Description variables in object constructor <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.3. Description setIsMobile method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.4. Description createElements method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.5. Description setContext method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.6. Description listenForResize method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.7. Description start method <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.8. Description setTheme method <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.9. Description init method <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.10. Description animate method <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.11. Description connect method <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.12. Description update method <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.2. Description of variables in object constructor <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.3. Description of setIsMobile method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.4. Description of createElements method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.5. Description of setContext method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.6. Description of listenForResize method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.7. Description of start method <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.8. Description of setTheme method <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.9. Description of init method <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.10. Description of animate method <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.11. Description of connect method <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.12. Description of update method <br/>
 
 <br/>
 
@@ -1538,13 +1526,6 @@ To make it easier to find yourself in the description below, there is a list of 
 The Particles object is shown below (scripts/objects/Particles.js):
 
 ```
-import Particle from './Particle.js'
-import {
-  createElementFn,
-  appendElementsToContainerFn,
-} from '/scripts/helpers/index.js'
-import { idNames, events, elements } from '/data/global/names.js'
-
 class Particles {
   constructor({ container }) {
     this.particleArray = []
@@ -1568,7 +1549,7 @@ export default Particles
 
 <br/>
 
-#### 3.2. Description variables in object constructor
+#### 3.2. Description of variables in object constructor
 
 As we can see in the code example above we have three variables in the constructor:
 
@@ -1578,7 +1559,7 @@ As we can see in the code example above we have three variables in the construct
 
 <br/>
 
-#### 3.3. Description setIsMobile method (constructor)
+#### 3.3. Description of setIsMobile method (constructor)
 
 Below is an implementation of setIsMobile method (scripts/objects/Particles.js):
 
@@ -1594,9 +1575,7 @@ As we can see above, it is a simple method in which the screen width is checked 
 
 #### 3.4. Description of createElements method (constructor)
 
-After assigning values to variables, the createElements method is called, which uses the createElementFn helper (the implementation here is scripts/helpers/createElementFn.js) to create only one simple element: this.canvas.
-
-Below is an example of this method (scripts/objects/Particles.js):
+After assigning values to variables, the createElements method is called, the implementation of which is shown below (scripts/objects/Particles.js):
 
 ```
   createElements() {
@@ -1607,11 +1586,13 @@ Below is an example of this method (scripts/objects/Particles.js):
   }
 ```
 
+As we can see above, it is a simple method that creates this.canvas element via the createElementFn helper.
+
 <br/>
 
 #### 3.5. Description of setContext method (constructor)
 
-Below is an example of this method (scripts/objects/Particles.js):
+Below is an example of setContext method (scripts/objects/Particles.js):
 
 ```
   setContext() {
@@ -1627,7 +1608,7 @@ As we can see above, this method sets context 2d and canvas size to the size of 
 
 #### 3.6. Description of listenForResize method and related resize method (constructor)
 
-Below is an example of this method (scripts/objects/Particles.js):
+Below is an example of listenForResize method and related resize method (scripts/objects/Particles.js):
 
 ```
   listenForResize() {
@@ -1650,7 +1631,7 @@ As we can see above, the listenForResize method sets the event resize on the win
 
 #### 3.7. Description of start method
 
-Below is an implementation of this method (scripts/objects/Particles.js):
+Below is an implementation of start method (scripts/objects/Particles.js):
 
 ```
   start({ themeObj }) {
@@ -1667,7 +1648,7 @@ As we can see above this method takes an object with themes and starts the entir
 
 #### 3.8. Description of setTheme method
 
-Below is an implementation of this method (scripts/objects/Particles.js):
+Below is an implementation of setTheme method (scripts/objects/Particles.js):
 
 ```
   setTheme({ themeObj }) {
@@ -1683,7 +1664,7 @@ As we can see above, it is a method which, based on the passed theme, selects th
 
 #### 3.9. Description of init method
 
-Below is an implementation of this method (scripts/objects/Particles.js):
+Below is an implementation of init method (scripts/objects/Particles.js):
 
 ```
   init() {
@@ -1710,7 +1691,7 @@ As we can see above, this is the method responsible for initialization the parti
 
 #### 3.10. Description of animate method
 
-Below is an implementation of this method (scripts/objects/Particles.js):
+Below is an implementation of animate method (scripts/objects/Particles.js):
 
 ```
   animate() {
@@ -1729,7 +1710,7 @@ As we can see above, the animate method is responsible for setting the particles
 
 #### 3.11. Description of connect method
 
-Below is an implementation of this method (scripts/objects/Particles.js):
+Below is an implementation of connect method (scripts/objects/Particles.js):
 
 ```
   connect() {
@@ -1761,7 +1742,7 @@ As we can see in the example above, the connect method allows you to manipulate 
 
 #### 3.12. Description of update method
 
-Below is an implementation of this method (scripts/objects/Particles.js):
+Below is an implementation of update method (scripts/objects/Particles.js):
 
 ```
   update() {
@@ -1819,18 +1800,20 @@ Above is an example of creating an instance of the Theme object within several o
 
 To the discussed instance of Theme object the container element is passed (on the basis of which the appropriate element from the DOM structure will be retrieved, to which the component responsible for setting the theme will be attached), an object containing information about themes and background object in which the animation object (previously discussed Particles object) and the container to which this object is to be attached are given.
 
+<br/>
+
 #### 3.Description of Theme object logic
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
 &nbsp; &nbsp; &nbsp; &nbsp; 3.1. Code example of constructor of Theme object <br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 3.2. Description variables in object constructor <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.3. Description setInitialThemeName method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.4. Description setInitialThemeObject method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.5. Description createElements method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.6. Description createComponents method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.7. Description setGlobalVariables method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.8. Description createBackgroundAnimation method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.3. Description of setInitialThemeName method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.4. Description of setInitialThemeObject method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.5. Description of createElements method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.6. Description of createComponents method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.7. Description of setGlobalVariables method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.8. Description of createBackgroundAnimation method (constructor) <br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 3.9. Description of use appendElementsToContainerFn helper (constructor) <br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 3.10. Description of the logic for changing the theme and related handleDotClick method <br/>
 
@@ -1841,19 +1824,6 @@ To make it easier to find yourself in the description below, there is a list of 
 The implementation of this Theme object is shown below (scripts/objects/Theme.js):
 
 ```
-import {
-  createElementFn,
-  appendElementsToContainerFn,
-  setClassesFn,
-} from '/scripts/helpers/index.js'
-import {
-  classNames,
-  common,
-  info,
-  elements,
-  events,
-} from '/data/global/names.js'
-
 class Theme {
   constructor({ container, themesObj, background }) {
     this.themesObj = themesObj
@@ -1875,16 +1845,20 @@ more code here...
 export default Theme
 ```
 
-#### 3.2. Description variables in object constructor
+<br/>
+
+#### 3.2. Description of variables in object constructor
 
 As we can see in the code example above, in the constructor we have following variables:
 
 - this.themesObj to which the passed object with the theme is assigned,
 - this.background to which the passed object with the background is assigned,
 - this.initialThemeName which takes the return value from the setInitialThemeName method which chooses and returns the name of the theme based on the passed theme object method explained in the next subsection,
-- this.initialThemeObject which takes the return value from the setInitialThemeObject method which, based on the selected name of the theme (through the previous method), returns the appropriate object with colors of the individual theme (method explained in the next subsection),
+- this.initialThemeObject which takes the return value from the setInitialThemeObject method which, based on the selected name of the theme (through the previous method), returns the appropriate object with colors of the individual theme (method explained in the next subsection)
 
-#### 3.3. Description setInitialThemeName method (constructor)
+<br/>
+
+#### 3.3. Description of setInitialThemeName method (constructor)
 
 Implementation of the setInitialThemeNam method is presented below (scripts/objects/Theme.js):
 
@@ -1898,7 +1872,9 @@ Implementation of the setInitialThemeNam method is presented below (scripts/obje
 
 As we can see above, it is a simple method that either takes the theme name saved in local storage or if it is not there, it sets the default theme name on base of this.themesObj object.
 
-#### 3.4. Description setInitialThemeObject method (constructor)
+<br/>
+
+#### 3.4. Description of setInitialThemeObject method (constructor)
 
 The implementation of the setInitialThemeObject method is below (scripts/objects/Theme.js):
 
@@ -1910,15 +1886,84 @@ setInitialThemeObject() {
 
 As we can see in code example above this method, based on the previously determined name of the theme (this.initialThemeName), selects and return the appropriate theme object with a color combination from this.themesObj.
 
-#### 3.5. Description createElements method (constructor)
+#### 3.5. Description of createElements method (constructor)
 
-Next, in the constructor logic, the createElements method (which uses the createElementFn helper - implementation is here scripts/helpers/createElementFn) is called (at this stage, an instance of the passed background object is also created), which is responsible for creating the appropriate elements of this object (this method is not described below because it is simple and occurs in every object).
+Next, in the constructor logic, the createElements method is called, the implementation of which is below (scripts/objects/Theme.js):
 
-#### 3.6. Description createComponents method (constructor)
+```
+  createElements() {
+    this.background = new this.background.Object({
+      container: this.background.objContainer,
+    })
 
-From these created elements, through the createComponents (which uses the appendElementsToContainerFn helper - implementation is here scripts/helpers/appendElementsToContainerFn) method, individual components are created, which at the end are combined into the main component named this.mainContainer (this method is not described below because it is simple and occurs in every object).
+    this.mainContainer = createElementFn({
+      element: elements.div,
+      classes: [classNames.theme.container],
+    })
 
-#### 3.7. Description setGlobalVariables method (constructor)
+    this.title = createElementFn({
+      element: elements.h(5),
+      textContent: info.personalizeTheme,
+    })
+
+    this.optionsContainer = createElementFn({
+      element: elements.div,
+      classes: [classNames.theme.optionsContainer],
+    })
+
+    this.optionsDots = Object.keys(this.themesObj).map((themeName) =>
+      createElementFn({
+        element: elements.div,
+        classes: [
+          classNames.theme.optionsDot,
+          themeName === this.initialThemeName &&
+            classNames.theme.optionsDotActive,
+        ],
+        id: themeName,
+        listeners: [
+          {
+            event: events.click,
+            cb: (e) => this.handleDotClick({ element: e.target, themeName }),
+          },
+        ],
+      })
+    )
+
+    this.note = createElementFn({
+      element: elements.p,
+      classes: [classNames.theme.note],
+      textContent: info.themeNote,
+    })
+  }
+```
+
+As we can see above, in this method, at the very beginning, an instance of the background object (this.background) is created, then several UI elements are created (via createElementFn helper), from which the this.optionsDots element is an array containing elements (dot) on which the listener is set to event click that calls the handleDotClick method to which the clicked element (e.target) and theme name (themeName) are passed (this method will be discussed later).
+
+<br/>
+
+#### 3.6. Description of createComponents method (constructor)
+
+After calling the createElements method described above, the createComponents method is called, the implementation of which is below (scripts/objects/Theme.js):
+
+```
+  createComponents() {
+    this.optionsComponent = appendElementsToContainerFn({
+      elements: this.optionsDots,
+      container: this.optionsContainer,
+    })
+
+    this.mainComponent = appendElementsToContainerFn({
+      elements: [this.title, this.optionsComponent, this.note],
+      container: this.mainContainer,
+    })
+  }
+```
+
+As we can see above, this method, based on previously created elements, combines them into components (this.optionsComponents and this.mainComponent) using the appendElementsToContainerFn helper.
+
+<br/>
+
+#### 3.7. Description of setGlobalVariables method (constructor)
 
 At the end part of the constructor logic of discussed object, the method setGlobalVariables responsible for overwriting the values of global variables with the properties of a given theme is called.
 
@@ -1937,7 +1982,9 @@ The implementation of the first of this method is presented below (scripts/objec
 
 As we can see above, this method, depending on whether a given theme object has been sent or not (if it has not been sent, the object set at the time of creating the instance is taken - this.initialThemeObject) sets global styles (global variables), thanks to which the colors of individual elements are side are changed.
 
-#### 3.8. Description createBackgroundAnimation method (constructor)
+<br/>
+
+#### 3.8. Description of createBackgroundAnimation method (constructor)
 
 The last method in the constructor is createBackgroundAnimation method which is responsible for starting the background creation mechanism based on the selected theme are called (here the particles animation starts).
 
@@ -1963,7 +2010,7 @@ At the very end of the constructor logic the main component (this.mainComponent)
 
 Describing the rest of the operation of the Theme object, changing the theme is possible through the so-called dots elements (created via the createElements method), which listen for a click and call the handleDotClick method, to which the appropriate name of the theme and the clicked element are passed.
 
-Below is a fragment of the createElements method, in which we can see the process of creating dots elements with the event listener set to click to call the handleDotClick method with passing the clicked element and the name of the theme (scripts/objects/Theme.js):
+Below is a fragment of the createElements method that concerns the this.optionsDots array and the implementation of the handleDotClick method (scripts/objects/Theme.js):
 
 ```
     this.optionsDots = Object.keys(this.themesObj).map((themeName) =>
@@ -1983,38 +2030,34 @@ Below is a fragment of the createElements method, in which we can see the proces
         ],
       })
     )
-```
 
-<br/>
+    handleDotClick({ element, themeName }) {
+      const themeObj = this.themesObj[themeName]
 
-The handleDotClick method is shown below (scripts/objects/Theme.js):
+      this.setGlobalVariables({ themeObj })
+      this.background.setTheme({ themeObj })
+      this.saveThemeNameInLocalStorage({ themeName })
 
-```
-  handleDotClick({ element, themeName }) {
-    const themeObj = this.themesObj[themeName]
-
-    this.setGlobalVariables({ themeObj })
-    this.background.setTheme({ themeObj })
-    this.saveThemeNameInLocalStorage({ themeName })
-
-    setClassesFn({
-      objs: [
-        {
-          elements: [element],
-          removeFromEls: this.optionsDots,
-          classes: [classNames.theme.optionsDotActive],
-        },
-      ],
-    })
+      setClassesFn({
+        objs: [
+          {
+            elements: [element],
+            removeFromEls: this.optionsDots,
+            classes: [classNames.theme.optionsDotActive],
+          },
+        ],
+      })
   }
 ```
 
-In the above method, the appropriate theme object is first selected based on the dynamically sent theme name (through the appropriate option dot).
+As we can see above, the andleDotClick method is called via event click on each dot element. When this method is called, the clicked element (dot) and the name of the theme (themeName) are passed.
+
+In the discussed method in the first place, the appropriate theme object is first selected based on the dynamically passed theme name.
 
 Next three methods are called to which the object with the selected theme is passed:
 
 - setGlobalVariables (which was discussed earlier but in this case is the theme object passed to it),
-- background.setTheme (method for setting the theme of the animation object - the implementation is here scripts/objects/Particles.js) ,
+- background.setTheme (method for setting the theme of the animation object - the method was discussed in the Particles object section) ,
 - saveThemeNameInLocalStorage, the implementation of which is shown below:
 
 ```
@@ -2046,6 +2089,8 @@ Each additional functionality on the page is triggered by buttons located on the
 Below is a visual example of discussed buttons on the privacy policy page (this example because we have a list of all buttons together):
 
 <!-- Przykład zestawu buttonów po lewej x 3 -->
+
+<br/>
 
 #### 2. Description of the container for buttons
 
@@ -2110,7 +2155,7 @@ It also worth adding that the buttons container (with global-left-container id) 
 <br/>
 <br/>
 
-### 3.2.4. Audio support on the site
+### 3.2.4. Audio support on the site by Audio object
 
 Table of content of this section:
 
@@ -2123,6 +2168,12 @@ Table of content of this section:
 #### 1. Introdution
 
 The first of the additional functionalities on the website which I would like to describe is related to audio support on the website (on or off).
+
+Below is a visual example of turning audio on and off on the home page:
+
+<!-- Wizualny przykłąd włąćzania i wyłączania dźwieku -->
+
+<br/>
 
 #### 2. Description of creating an instance of an Audio object
 
@@ -2149,17 +2200,19 @@ new Audio({
 
 As we can see in the two examples above, to the instance, first is passed the reference of the container (on the basis of which the appropriate DOM element is searched for, which acts as a container for the elements created in Audio object), the path with the audio file (the audio file containing the audio small description of a given page with background music) and a reference to the trigger element (it is only sent in the case of the home page and on the basis of this reference the appropriate DOM element is searched for, which acts as an action trigger element, which will be described when discussing the Audio object in depth).
 
+<br/>
+
 #### 3. Description of Audio object logic
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
 &nbsp; &nbsp; &nbsp; &nbsp; 3.1. Code example of constructor of Audio object <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.2. Description variables in object constructor <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.3. Description createElements method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.4. Description createComponents method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.2. Description of variables in object constructor <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.3. Description of createElements method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.4. Description of createComponents method (constructor) <br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 3.5. Description of use appendElementsToContainerFn helper (constructor)<br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 3.6. Description of use triggerActionOnWindowScrollFn helper with related toggleBtnComponent method (constructor) <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.7. Description handleAudio method <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.7. Description of handleAudio method <br/>
 
 <br/>
 
@@ -2221,9 +2274,7 @@ As we can see in the code example above, in constructor of the object we have fo
 
 #### 3.3. Description createElements method (constructor)
 
-After assigning values to variables, the createElements method is called, which uses the createElementFn helper (the implementation here is scripts/helpers/createElementFn.js) to create three very simple elements: this.audio, this.btn and this.audioImg.
-
-Below is an example of this method (scripts/objects/Audio.js):
+After assigning values to variables, the createElements method is called, the implementation of which is below (scripts/objects/Audio.js):
 
 ```
   createElements() {
@@ -2245,13 +2296,17 @@ Below is an example of this method (scripts/objects/Audio.js):
   }
 ```
 
+As we can see above, the discussed method uses the createElementFn helper to create following elements:
+
+- this.audio - element with a soundtrack,
+- this.btn - button element that handles audio on which the listener is set to the event click that calls the handleAudio method,
+- this.audioImg - element with sound icon
+
 <br/>
 
 #### 3.4. Description createComponents method (constructor)
 
-Next, in the constructor of discussed object, we call the createComponents method, which, based on previously created elements (this.audioImg and this.btn), combines them into the so-called main component (this.mainComponent) via helper appendElementsToContainer (implementation is here).
-
-Below is an example of this method (scripts/objects/Audio.js):
+Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below (scripts/objects/Audio.js):
 
 ```
   createComponents() {
@@ -2262,21 +2317,54 @@ Below is an example of this method (scripts/objects/Audio.js):
   }
 ```
 
-This component corresponds to the button we see on the left side of the page screen. Below is a visual example of this component:
-
-<!-- Przykład komponentu przycisku Audio po lewej stronie -->
+As we can see above, the discussed method based on previously created elements (this.audioImg and this.btn), combines them into the so-called main component (this.mainComponent) via helper appendElementsToContainer.
 
 <br/>
 
 #### 3.5. Description of use appendElementsToContainerFn helper (constructor)
 
-After the above-mentioned methods, the created this.mainComponent component is connected to the container whose reference has been sent to the object (this connection is also made using the appendElementsToContainerFn helper).
+At the end part of the constructor logic created component (this.btnComponent) are attached to the passed container using appendElementsToContainerFn helper.
 
 <br/>
 
 #### 3.6. Description of use triggerActionOnWindowScrollFn helper with related toggleBtnComponent method (constructor)
 
-At the very end in the constructor logic there is a conditional call (depending on whether the trigger element reference has been sent) of the triggerActionOnWindowScrollFn helper, to which are passed:
+At the very end in the constructor logic there is a conditional call (depending on whether the trigger element reference has been sent) of the triggerActionOnWindowScrollFn helper.
+
+Below is an example of calling this helper along with the toggleBtnComponent method that is passed to it (scripts/objects/Form.js):
+
+```
+    trigger &&
+      triggerActionOnWindowScrollFn({
+        onWhatElement: trigger,
+        cbOnEnterTriggerEl: () =>
+          this.toggleBtnComponent({ toggle: common.off }),
+        cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: common.on }),
+        modifier: 80,
+      })
+
+    toggleBtnComponent({ toggle }) {
+      setPropsFn({
+        toggle,
+        objs: [
+          {
+            elements: [this.btnComponent],
+            styleProps: [
+              {
+                name: styleProps.names.transform,
+                values: {
+                  on: styleProps.values.translateX(0),
+                  off: styleProps.values.translateX(-100),
+                },
+              },
+            ],
+          },
+        ],
+      })
+  }
+```
+
+As we can see above, to this helper are passed following arguments:
 
 - the trigger element,
 - the toggleBtnComponent method with passing a different toggle value "on"/"off" depending on the position relative to the trigger element
@@ -2284,31 +2372,9 @@ At the very end in the constructor logic there is a conditional call (depending 
 
 I will not discuss how this helper works here because it was done in the helpers description section.
 
-Below is an implementation of the mentioned toggleBtnComponent method (scripts/objects/Form.js):
+The toggleBtnComponent method that is used in this helper uses the setPropsFn helper to set the appropriate style properties on the this.btnComponent component (depending on the value of toggle, the component either hides or shows)
 
-```
-  toggleBtnComponent({ toggle }) {
-    setPropsFn({
-      toggle,
-      objs: [
-        {
-          elements: [this.btnComponent],
-          styleProps: [
-            {
-              name: styleProps.names.transform,
-              values: {
-                on: styleProps.values.translateX(0),
-                off: styleProps.values.translateX(-100),
-              },
-            },
-          ],
-        },
-      ],
-    })
-  }
-```
-
-As we can see in the above example, this method uses the setPropsFn helper (implementation is here scripts/helper/setPropsFn.js) to set the appropriate style properties on the this.btnComponent component (depending on the value of toggle, the component either hides or shows)
+<br/>
 
 Below is a visual example of the above solution in which, when scrolled, the toggleBtnComponent method is called with a different toggle value depending on the position of the trigger:
 
@@ -2318,9 +2384,13 @@ As we can see above, the button for sound handling hides and appears faster in r
 
 Summarizing, thanks to this solution, when the trigger element is crossed during the page scroll, above discussed method will be called with the toggle value of "on" (styles are added thanks to which the button is hidden) and when the trigger element is leaved by scrolling, the same method is called but with toggle set to "off" (styles are added thanks to which the button is show).
 
+<br/>
+
 #### 3.7. Description handleAudio method
 
-In the case of the created this.btn element in createElements method, we have an event listener that is set to event click, which calls the handleAudio method, the implementation of which is below (scripts/objects/Audio.js):
+In the case of the created this.btn element in createElements method, we have an event listener that is set to event click, which calls the handleAudio method.
+
+Below is an excerpt from the createElements method that pertains to this.btn element, along with the implementation of handleAudio method (scripts/objects/Audio.js):
 
 ```
   this.btn = createElementFn({
@@ -2328,8 +2398,6 @@ In the case of the created this.btn element in createElements method, we have an
     classes: [classNames.global.leftBtn],
     listeners: [{ event: events.click, cb: () => this.handleAudio() }],
   })
-
-// above example is a part of createElements method
 
   handleAudio() {
     this.play = !this.play
@@ -2386,17 +2454,15 @@ To make it easier to find yourself in the description below, there is a list of 
 &nbsp; &nbsp; &nbsp; &nbsp; 2.4. Description of createElements method (constructor) <br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 2.5. Description of use appendElementsToContainerFn helper (constructor) </br>
 &nbsp; &nbsp; &nbsp; &nbsp; 2.6. Description of toggleShow method (toggle "on")<br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.7. Description of addCbsToCallOnHidden method<br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.7. Description of appendElements method <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.8. Description of appendElements and related addElToChildren method <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.9. Description of toggleBodyFreeze <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.10. Description of toggleActive method <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.11. A visual example of adding a form component to the curtain <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.12. Description of toggleShow method (toggle "off") <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.13. Description of togglePreventHidden method <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.14. Description of callCbsOnHidden method <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.15. Description of clear method with related clearChildren and clearCbsToCallOnHidden methods <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 2.16. A visual example of removing a form component from a curtain <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.7. Description of addCbsToCallOnHidden method (inside toggleShow method with passing toggle parameter with "on" value)<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.8. Description of appendElements and related addElToChildren method (inside toggleShow method with passing toggle parameter with "on" value) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.9. Description of toggleBodyFreeze (inside toggleShow method with passing toggle parameter with "on" value) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.10. Description of toggleActive method (inside toggleShow method with passing toggle parameter with "on" value) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.11. A visual example of adding a form component to the curtain (the effect of calling the toggleShow method with the toggle parameter set to "on") <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.12. Description of togglePreventHidden method (inside toggleShow method with passing toggle parameter with "off" value) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.13. Description of callCbsOnHidden method (inside toggleShow method with passing toggle parameter with "off" value)<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.14. Description of clear method with related clearChildren and clearCbsToCallOnHidden methods (inside toggleShow method with passing toggle parameter with "off" value)<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 2.15. A visual example of removing a form component from a curtain <br/>
 
 <br/>
 
@@ -2405,21 +2471,6 @@ To make it easier to find yourself in the description below, there is a list of 
 Below is an implementation of the Curtain object constructor (scripts/objects/Curtain.js):
 
 ```
-import {
-  createElementFn,
-  appendElementsToContainerFn,
-  setPropsFn,
-} from '/scripts/helpers/index.js'
-
-import {
-  classNames,
-  idReferences,
-  common,
-  elements,
-  events,
-  styleProps,
-} from '/data/global/names.js'
-
 class Curtain {
   constructor(container) {
     if (Curtain.instance == null) {
@@ -2450,7 +2501,7 @@ As we can see in the example above, in the constructor we are dealing with singl
 
 <br/>
 
-#### 2.3. Description variables in object constructor
+#### 2.3. Description of variables in object constructor
 
 As we can see in the code example above in the object constructor we have following variables:
 
@@ -2460,9 +2511,9 @@ As we can see in the code example above in the object constructor we have follow
 
 <br/>
 
-#### 2.4. Description createElements method (constructor)
+#### 2.4. Description of createElements method (constructor)
 
-Next, in the constructor logic, the createElements method is called which creates only one element (this.curtain). Below is an example of this method (scripts/objects/Curtain.js):
+Next, in the constructor logic, the createElements method is called the implementation of which is below (scripts/objects/Curtain.js):
 
 ```
   createElements() {
@@ -2479,17 +2530,17 @@ Next, in the constructor logic, the createElements method is called which create
   }
 ```
 
-As we can see, it is a simple method that creates the this.curtain element with the help of the createElementFn helper, which has the listener set to event clicks which calls the toggleShow method.
+As we can see, it is a simple method that creates the this.curtain element with the help of the createElementFn helper, which has the listener set to event clicks which calls the toggleShow method (method discussed later)
 
 <br/>
 
 #### 2.5. Description of use appendElementsToContainerFn helper (constructor)
 
-At the end of the constructor logic created element (this.curtain) is attached to the passed container using appendElementsToContainerFn helper (the element is visible in the DOM structure).
+At the end of the constructor logic created element (this.curtain) is attached to the passed container using appendElementsToContainerFn helper.
 
 <br/>
 
-#### 2.6. Description of toggleShow method (toggle "on")
+#### 2.6. Description of toggleShow method
 
 The main method that calls the rest of the Curtain object methods is the toggleShow method, the implementation of which is shown below (scripts/objects/Curtain.js):
 
@@ -2519,39 +2570,41 @@ The main method that calls the rest of the Curtain object methods is the toggleS
 
 As we can see above, this is a method that takes the following arguments:
 
-- toggle (true / false),
+- toggle ("on"/"off"),
 - appendElements (elements to be attached to the curtain),
 - callbacks (to be called when the curtain hides)
 
+Then in this method, there may be two cases (toggle "on"/"off") where different methods are called (by switch statement) and their description is in the subsections below.
+
 <br/>
 
-Below I will describe two scenarios of calling the toggleShow method:
+#### 2.7. Description of addCbsToCallOnHidden method (inside toggleShow method with passing toggle parameter with "on" value)
 
 In first scenario where toggleShow method is called with toggle value "on", the sent callbacks are added to the this.cbsToCallOnHidden array via the addCbsToCallOnHidden method.
 
-<br/>
-
-#### 2.7. Description of addCbsToCallOnHidden method
-
-The following is an implementation of the addCbsToCallOnHidden method (scripts/objects/Curtain.js):
+Below is a fragment of the toggleShow method in which the discussed method is called and its implementation next to it (scripts/objects/Form.js):
 
 ```
+  this.addCbsToCallOnHidden({ cbs: cbsToCallOnHidden })
+
   addCbsToCallOnHidden({ cbs }) {
     cbs.map((cb) => this.cbsToCallOnHidden.push(cb))
   }
 ```
 
-As we can see above, this is a simple method that iterates through adds the sent callbacks to the this.cbsToCallOnHidden array.
+As we can see above, this is a simple method that iterates through adds the passed callbacks to the this.cbsToCallOnHidden array.
 
 <br/>
 
-#### 2.8. Description of appendElements and related addElToChildren method
+#### 2.8. Description of appendElements and related addElToChildren method (inside toggleShow method with passing toggle parameter with "on" value)
 
-Next, in the toggleShow method (with the toggle parameter value set to "on") the sent elements to this method are attached to the this.curtain element via the appendElements method (e.g. .form component, which I will describe in the next subsection).
+Next, in the toggleShow method (with the toggle parameter value set to "on") the appendElements method is called.
 
-The following is an implementation of the appendElementsmethod (scripts/objects/Curtain.js):
+Below is a fragment of the toggleShow method in which the discussed method is called and its implementation next to it (scripts/objects/Form.js):
 
 ```
+  this.appendElements({ elements: appendElements })
+
   appendElements({ elements }) {
     elements.map((element) => {
       this.curtain.appendChild(element)
@@ -2560,7 +2613,7 @@ The following is an implementation of the appendElementsmethod (scripts/objects/
   }
 ```
 
-As we can see above, it is also a simple method which, during the interaction, attaches elements to the previously created this.curtain element and calls the addElToChildren method, the implementation of which is shown below (scripts/objects/Curtain.js):
+As we can see above, it is also a simple method which, during the interaction, attaches passed elements to the previously created this.curtain element and calls the addElToChildren method, the implementation of which is shown below (scripts/objects/Curtain.js):
 
 ```
   addElToChildren({ element }) {
@@ -2572,13 +2625,15 @@ As we can see above, this method is only responsible for adding the passed eleme
 
 <br/>
 
-#### 2.9. Description of toggleBodyFreeze
+#### 2.9. Description of toggleBodyFreeze (inside toggleShow method with passing toggle parameter with "on" value)
 
-At the very end of the toggleShow method two more methods are called, the first (toggleBodyOverflow) through the setPropsFn helper sets the overflow style property to hidden
+In the penultimate place in method toggleShow, method toggleBodyFreeze is called.
 
-The implementation of the toggleBodyFreeze method is shown below (scripts/objects/Curtain.js):
+Below is a fragment of the toggleShow method in which the discussed method is called and its implementation next to it (scripts/objects/Form.js):
 
 ```
+  this.toggleBodyFreeze({ toggle })
+
   toggleBodyFreeze({ toggle }) {
     setPropsFn({
       toggle,
@@ -2600,16 +2655,15 @@ The implementation of the toggleBodyFreeze method is shown below (scripts/object
   }
 ```
 
-As we can see in the example above, this method uses the setPropsFn helper (implementation is here scripts/helpers/setPropsFn.js), thanks to which it sets the appropriate styles depends on toggle value on the body element (in our scenario the value of the toggle parameter is "on" so the overflow property of the body element is set to hidden, which causes the screen to freeze).
-)
+As we can see in the example above, this method uses the setPropsFn helper (implementation is here scripts/helpers/setPropsFn.js), thanks to which it sets the appropriate styles depends on passed toggle value on the body element (in our scenario the value of the toggle parameter is "on" so the overflow property of the body element is set to hidden, which causes the screen to freeze).
 
 <br/>
 
-#### 2.10. Description of toggleActive method
+#### 2.10. Description of toggleActive method (inside toggleShow method with passing toggle parameter with "on" value)
 
-The last method that is called in toggleShow is toggleActive method which sets the appropriate styles for the this.curtain element, thanks to which the background becomes darker.
+The last method that is called in toggleShow is toggleActive method.
 
-The implementation of the toggleActive method is shown below (scripts/objects/Curtain.js):
+Below is a fragment of the toggleShow method in which the discussed method is called and its implementation next to it (scripts/objects/Form.js):
 
 ```
   toggleActive({ toggle }) {
@@ -2640,11 +2694,11 @@ The implementation of the toggleActive method is shown below (scripts/objects/Cu
   }
 ```
 
-As we can see above, the toggleActive method through the helper setPropsFn, similar to the previous method, sets the appropriate styles (visibility and opacity) thanks to which we have a visible curtain (in scenario when we have toggle value on true).
+As we can see above, the toggleActive method through the helper setPropsFn, similar to the previous method, sets the appropriate styles (visibility and opacity) thanks to which we have a visible dark curtain (in scenario when we have toggle value "on").
 
 <br/>
 
-#### 2.11. A visual example of adding a form component to the curtain
+#### 2.11. A visual example of adding a form component to the curtain (the effect of calling the toggleShow method with the toggle parameter set to "on")
 
 Below is a visual example of adding a form component to a curtain by pressing the button with the form icon (this process will be discussed in the next section):
 
@@ -2654,9 +2708,9 @@ The above operation is possible by calling the toggleShow method, to which the t
 
 <br/>
 
-#### 2.12. Description of toggleShow method (toggle "off")
+#### 2.12. Description of togglePreventHidden method (inside toggleShow method with passing toggle parameter with "off" value)
 
-In order to better understand the next description (if toggle is set to "off"), the toggleShow method has been quoted below once again to make it easier to refer to the described logic below (scripts/objects/Curtain.js):
+In order to better understand this and the next description (if toggle is set to "off"), the toggleShow method has been quoted below once again to make it easier to refer to the described logic below (scripts/objects/Curtain.js):
 
 ```
   toggleShow({ toggle, appendElements, cbsToCallOnHidden } = {}) {
@@ -2684,17 +2738,19 @@ In order to better understand the next description (if toggle is set to "off"), 
 
 In the case when toggleShow method is called with toggle value "off", at the beginning the condition is checked whether the value of this.preventHidden is true (this value is set by the simply togglePreventHidden method). If it is true, the whole function is return (this option is set when the form data is sent to the backend so that the component cannot be removed).
 
-<br/>
-
-#### 2.13. Description of togglePreventHidden method
-
-Below is an example of an implementation of the togglePreventHidden method thanks to which we can set the value of the this.preventHidden variable (scripts/objects/Curtain.js):
+Below is an example of an implementation of the togglePreventHidden method and an example of calling it in a Form object in the handleFormSubmit method (scripts/objects/Curtain.js):
 
 ```
+  curtain.togglePreventHidden({ toggle: common.on })
+
   togglePreventHidden({ toggle }) {
     this.preventHidden = toggle === common.on ? true : false
   }
 ```
+
+As we can see, thanks to this method, we can set the variable this.preventHidden depending on the value of the passed toggle parameter (in this case we have passed the value of the toggle parameter "on").
+
+<br/>
 
 Below is a visual example that shows the inability to close the form component when sending data to the server:
 
@@ -2702,27 +2758,33 @@ Below is a visual example that shows the inability to close the form component w
 
 <br/>
 
-#### 2.14. Description of callCbsOnHidden method
+#### 2.13. Description of callCbsOnHidden method (inside toggleShow method with passing toggle parameter with "off" value)
 
-If the value of this.preventHidden is false previously passed callbacks (sent when toggle value was "on") are called via callCbsOnHidden method the implementation of which is below (scripts/objects/Curtain.js):
+If the value of this.preventHidden is false previously passed callbacks (sent when toggle value was "on") are called via callCbsOnHidden method.
+
+Below is a fragment of the toggleShow method in which the discussed method is called and its implementation next to it (scripts/objects/Form.js):
 
 ```
- callCbsOnHidden() {
+  this.callCbsOnHidden()
+
+  callCbsOnHidden() {
     this.cbsToCallOnHidden.map((cb) => cb())
   }
 ```
 
-As we can see above, it is a simple method that calls elements (callbacks) while iterating through the array.
+As we can see above, it is a simple method that calls functions (callbacks) while iterating through the array.
 
 <br/>
 
-#### 2.15. Description of clear method with related clearChildren and clearCbsToCallOnHidden methods
+#### 2.14. Description of clear method with related clearChildren and clearCbsToCallOnHidden methods (inside toggleShow method with passing toggle parameter with "off" value)
 
-The next method that is called in sequence is clear method which after a specified time removes the children of this.curtain element, removes the array with children (in the case at hand, form component) and callbacks (sent when toggle value was "on").
+The next method that is called in sequence is clear method.
 
-Below is an implementation of the clear method with accompanying clearChildren and clearCbsToCallOnHidden methods (scripts/objects/Curtain.js):
+Below is a fragment of the toggleShow method in which the discussed method is called and its implementation with related methods next to it (scripts/objects/Form.js):
 
 ```
+  this.clear({ after: 200 })
+
   clearCbsToCallOnHidden() {
     this.cbsToCallOnHidden = []
   }
@@ -2740,17 +2802,19 @@ Below is an implementation of the clear method with accompanying clearChildren a
   }
 ```
 
-As we can see above, this method calls:
+As we can see above, this method is called with the delay argument of 200 (the time after which individual curtain elements are to be removed - it was introduced so that the user does not feel the sudden removal of elements)
+
+In this method, the following methods are called:
 
 - the clearCbsToCallOnHidden method, which sets the default empty array of this.cbsToCallOnHidden (clearing the array),
 - the setTimeout function, which after a certain time, calls function with an iteration on the array with curtain children, during which this children are removed from the curtain structure,
 - clearChildren method, which sets the default empty array of this.children (clearing the array)
 
-At the very end of toggleShow method in the case of toggle is "off", the same methods that I described earlier (toggleBodyOverflow, toggleActive) are called, but in the opposite way.
+In this section I will add that at the very end of toggleShow method (in the case of toggle is "off"), the same methods that I described earlier (toggleBodyOverflow, toggleActive) are called, but in the opposite way (therefore I will not quote them further).
 
 <br/>
 
-#### 2.16. A visual example of removing a form component from a curtain
+#### 2.15. A visual example of removing a form component from a curtain
 
 Below is a visual example of removing the component form by clicking on the curtain and by clicking on the X button of the form component (in both cases the toggleShow method is called with the toggle parameter set to "off" - for the X button of the form component, this process will be discussed in the next section):
 
@@ -2831,7 +2895,34 @@ FORM INPUT LOGIC PART
 
 FORM SUBMIT LOGIC PART
 
-&nbsp; &nbsp; &nbsp; &nbsp; 3.16 Description of the form submit logic with handleFormSubmit method<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.16 Description of the form submit logic with handleFormSubmit method <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.17. Description of the emailValidate (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.18. Description of findEmptyFormTextInputs method (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.19. Description of toggleFormTextInputsNotification method (toggle "on") (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.20. Description of disableFormInputs method (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.21. Description of toggleDeleteBtnComponent method (toggle "off")
+(inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.22. Description of toggleSpinnerComponent method (toggle "on")
+(inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.23. Description of toggleFormSubmitInputlNotifications method (toggle "on") (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.24. Description of togglePreventHidden method (toggle "on") of Curtain object (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.25. Description of handleEmailSent method (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.26. Description of resetFormTextInputsValue method (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.27. Description of toggleSpinnerComponent method (toggle "off") (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.28. Description of toggleFormSubmitInputlNotifications method (toggle "off") (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.29. Description of hideTitleInfo method (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.30. Description of hideFormComponent method (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.31. Description of replaceTitleText method (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.32. Description of reduceMainComponentHeight method (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.33. Description of moveTitleComponent method (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.34. Description of revealTitleWhisper method with visual animation example (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.35. Description of setDelayFn helper (inside handleFormSubmit method) <br/>
+
+FORM DELETE LOGIC PART:
+
+&nbsp; &nbsp; &nbsp; &nbsp; 3.36. Description of setSelfDestructEventToMainComponent method (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.37. Description of togglePreventHidden method (toggle "off") of Curtain object (inside handleFormSubmit method) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.38. Description of delete a form component through this.btnDelete element <br/>
 
 <br/>
 
@@ -2858,8 +2949,6 @@ class Form {
         cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: common.on }),
       })
   }
-
-more code here...
 }
 ```
 
@@ -2871,13 +2960,13 @@ As we can see in the code example above we have following variables in the const
 
 - this.formFieldsInfo which is a set of data on the basis of which will be created form fields
 - which is an array to which the setTimoeut id will be added regarding notifications(default is empty),
-- this.dataFromUser which is an object to which data written via the form will be dynamically added
+- this.dataFromUser which is an object to which data written via the form will be dynamically added.
+
+<br/>
 
 #### 3.3. Description of createInitialElements method (constructor)
 
-Next, after variables in the constructor, the createInitialElements method is called, which uses the createElementFn helper (the implementation here is scripts/helpers/createElementFn.js) to create individual elements of form button (the one on the left side of page).
-
-Below is an example of this method (scripts/objects/Form.js):
+Next, after variables in the constructor, the createInitialElements method is called, the implementation of which is below (scripts/objects/Form.js):
 
 ```
   createInitialElements() {
@@ -2921,56 +3010,70 @@ Below is an example of this method (scripts/objects/Audio.js):
   }
 ```
 
-As we can see in the code example above this method combines this.emailImg with this.btn via the appendElementsToContainerFn helper (implementation is here scripts/helpers/appendElementsToContainerFn.js) to create this.btnComponent.
+As we can see in the code example above this method combines this.emailImg with this.btn via the appendElementsToContainerFn helper to create this.btnComponent.
 
 <br/>
 
 #### 3.5. Description of use appendElementsToContainerFn helper (constructor)
 
-In the next part the previously created this.button Component is attached to the passed container to Form object and thus we have a visible button on the left side of the page.
-
-<!-- Przykłąd form buttona po lewej stronie -->
+In the next part the previously created this.button Component is attached to the passed container to Form object by appendElementsToContainerFn helper.
 
 <br/>
 
 #### 3.6. Description of use triggerActionOnWindowScrollFn helper with related toggleBtnComponent method (constructor)
 
-At the very end in the constructor logic there is a conditional call (depending on whether the trigger element reference has been sent) of the triggerActionOnWindowScrollFn helper, to which are passed:
+At the very end in the constructor logic there is a conditional call (depending on whether the trigger element reference has been sent) of the triggerActionOnWindowScrollFn helper.
+
+Below is an example of calling this helper along with the toggleBtnComponent method that is passed to it (scripts/objects/Form.js):
+
+```
+    trigger &&
+      triggerActionOnWindowScrollFn({
+        onWhatElement: trigger,
+        cbOnEnterTriggerEl: () =>
+          this.toggleBtnComponent({ toggle: common.off }),
+        cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: common.on }),
+      })
+
+    toggleBtnComponent({ toggle }) {
+      setPropsFn({
+        toggle,
+        objs: [
+          {
+            elements: [this.btnComponent],
+            styleProps: [
+              {
+                name: styleProps.names.transform,
+                values: {
+                  on: styleProps.values.translateX(0),
+                  off: styleProps.values.translateX(-100),
+                },
+              },
+            ],
+          },
+        ],
+      })
+    }
+```
+
+As we can see above, to this helper are passed following arguments:
 
 - the trigger element,
-- the toggleBtnComponent method with passing a different toggle value "on"/"off" depending on the position relative to the trigger element
+- the toggleBtnComponent method with passing a different toggle value "on"/"off" depending on the position relative to the trigger element.
 
 I will not discuss how this helper works here because it was done in the helpers description section.
 
-Below is an implementation of the mentioned toggleBtnComponent method (scripts/objects/Form.js):
+The toggleBtnComponent method that is used in this helper uses the setPropsFn helper to set the appropriate style properties on the this.btnComponent component (depending on the value of toggle, the component either hides or shows)
 
-```
-  toggleBtnComponent({ toggle }) {
-    setPropsFn({
-      toggle,
-      objs: [
-        {
-          elements: [this.btnComponent],
-          styleProps: [
-            {
-              name: styleProps.names.transform,
-              values: {
-                on: styleProps.values.translateX(0),
-                off: styleProps.values.translateX(-100),
-              },
-            },
-          ],
-        },
-      ],
-    })
-  }
-```
-
-As we can see in the above example, this method uses the setPropsFn helper (implementation is here scripts/helper/setPropsFn.js) to set the appropriate style properties on the this.btnComponent component (depending on the value of toggle, the component either hides or shows)
+<br/>
 
 Below is a visual example of the above solution in which, when scrolled, the toggleBtnComponent method is called with a different toggle value depending on the position of the trigger:
 
 <!-- Przykład chowania się i pokazywania buttonów -->
+
+<br/>
+
+Summarizing, thanks to this solution, when the trigger element is crossed during the page scroll, above discussed method will be called with the toggle value of "on" (styles are added thanks to which the button is hidden) and when the trigger element is leaved by scrolling, the same method is called but with toggle set to "off" (styles are added thanks to which the button is show).
 
 <br/>
 
@@ -3012,12 +3115,12 @@ below is an example where this.btn element (which occurs in the createInitialEle
 
 As we can see above, this.btn, when clicked, calls the x method, which includes several other methods, which will be described below .
 
-#### 3.8 Description of toggleBtnComponent method (toggle "off") inside handleMainComponentCreate method
+#### 3.8 Description of toggleBtnComponent method (toggle "off") (inside handleMainComponentCreate method)
 
 First, the toggleBtnComponent method is called with passing the toggle argument with "off" value.
 This method has already been introduced when discussing the trigger helper, so I will just mention that thanks to it and the toggle argument that is "off", the form button on the left is hidden.
 
-#### 3.9 Description of createMainElements method inside handleMainComponentCreate method
+#### 3.9 Description of createMainElements method (inside handleMainComponentCreate method)
 
 Going forward, we have the createMainElements method which is responsible for creating form component elements.
 
@@ -3317,8 +3420,6 @@ the following elements are created:
 It should be added that in the case of an object of the textarea type, instead of the input element, a textarea element is created, which makes it easier to enter longer messages (this element has also been assigned to the input variable to make it easier to manage the code).
 
 (all the methods in the elements outlined above will be explained later)
-
-<!-- Tutaj -->
 
 #### 3.12 Description of createMainComponents method (inside handleMainComponentCreate method)
 
@@ -3681,7 +3782,9 @@ As we can see in the example above, the handleFormSubmit is an asynchronous meth
 - handleEmailSent method (responsible for sending the form data to the server)
 - setDelayFn helper (which is used to suspend the described method for a certain period of time)
 
-####
+<br/>
+
+#### 3.17. Description of the emailValidate (inside handleFormSubmit method)
 
 At the very beginning of the discussed handleFormSubmit method, we have the default event blocked by preventDefault method and then we have a method call that validates the email entered by the user (emailValidate) which is returned true/valse value to the isEmailValidate variable.
 
@@ -3701,7 +3804,7 @@ As we can see above, this is a simple method that uses the values assigned to th
 
 <br/>
 
-####
+#### 3.18. Description of findEmptyFormTextInputs method (inside handleFormSubmit method)
 
 Going further in the handleFormSubmit method, we call the findEmptyFormTextInputs method, which returns true/false value to the emptyTextInputs variable.
 
@@ -3725,7 +3828,7 @@ As we can see in the above example, it is a simple method that checks the value 
 
 <br/>
 
-####
+#### 3.19. Description of toggleFormTextInputsNotification method (toggle "on") (inside handleFormSubmit method)
 
 Next, in the handleFormSubmit method we have two conditional calls to the toggleFormTextInputsNotification method, which will be called when:
 
@@ -3813,7 +3916,7 @@ Below is a visual example of the appearance of various notifications:
 
 <br/>
 
-#### disableFormInputs
+#### 3.20. Description of disableFormInputs method (inside handleFormSubmit method)
 
 Going further in the logic of the handleFormSubmit method, when all the values have been entered correctly we have a disableFormInputs method call the implementation of which is below (scripts/objects/Form.js):
 
@@ -3856,7 +3959,7 @@ A visual example of excluding inputs from use is shown below:
 
 <br/>
 
-#### toggleDeleteBtnComponent
+#### 3.21. Description of toggleDeleteBtnComponent method (toggle "off") (inside handleFormSubmit method)
 
 Then in the method handleFormSubmit we have a toggleDeleteBtnComponent method call with passing toggle value "off".
 The implementation of mentioned method along with a fragment of the call of this method is below (scripts/objects/Form.js):
@@ -3896,7 +3999,7 @@ As we can see in the above example, through the setPropsFn helper, styles are se
 
 <br/>
 
-#### toggleSpinnerComponent
+#### 3.22. Description of toggleSpinnerComponent method (toggle "on") (inside handleFormSubmit method)
 
 Going further in the logic of the handleFormSubmit method we have a toggleSpinnerComponent method call with passing toggle value "on".
 
@@ -3946,7 +4049,7 @@ Below is a visual example of this solution:
 
 <br/>
 
-#### toggleFormSubmitInputlNotifications
+#### 3.23. Description of toggleFormSubmitInputlNotifications method (toggle "on") (inside handleFormSubmit method)
 
 Then in the method handleFormSubmit we have a toggleFormSubmitInputlNotifications method call with passing "on" value of the toggle parameter and "5000" value of the notificationDuration parameter.
 
@@ -4041,11 +4144,11 @@ The implementation of mentioned method along with a fragment of the call of this
   }
 ```
 
-As we can see above, it is a fairly extensive method, in which all notifications about input with the submit type are searched at the beginning. Then, when the toggle parameter with the value "on" is passed to the method (as in the discussed case), two setProps helpers are called depending on the length of the notification table . The first helper sets the appropriate styles to appear after the specified time, which increases with iteration through the table with notification elements (index \* notificationDuration), and the second helper sets the removal of previously set styles after a set time (delay + notificationDuration).
+As we can see above, it is a fairly extensive method, in which all notifications about input with the submit type are searched at the beginning. Then, when the toggle parameter with the value "on" is passed to the method (as in the discussed case), two setProps helpers are called depending on the length of the notification table . The first helper sets the appropriate styles to appear notification after the specified time, which increases with iteration through the array with notification elements (index \* notificationDuration), and the second helper sets the removal of previously set styles after a set time (delay + notificationDuration).
 
 In the case of the last iteration on the notification elements array, the second helper, which removes the set styles by the earlier one, is not called (so that the user can see the notification continuously until he receives a response from the server).
 
-Each of the called helpers is returned (setTimoeuts of these functions) to a variable (appearNotificationTimeout and hideNotificationTimeout) that is added to the this.notificationTimeouts array during each iteration. Thanks to this, in the case of calling the toggleFormSubmitInputlNotifications method with toggle parameter of the value "off" (after receiving a reply from the server), we can refer to the setTimeouts and remove them (so that when the user receives a message from the server earlier, there are no setTimout functions that have not been called yet).
+Each of the called helpers is returned (setTimoeuts of these functions) to a variable (appearNotificationTimeout and hideNotificationTimeout) that is added to the this.notificationTimeouts array during each iteration. Thanks to this, in the case of calling the toggleFormSubmitInputlNotifications method with toggle parameter of the value "off" (after receiving a reply from the server - a situation to be discussed later), we can refer to the setTimeouts, remove them and we clean the this.notificationTimeouts array (so that when the user receives a message from the server earlier, there are no setTimout functions that have not been called yet).
 
 Thanks to this solution, we have a smooth appearance and disappearance of individual notifications regarding input of the submit type within a specified time.
 
@@ -4057,59 +4160,34 @@ Below is an example of the discussed solution:
 
 <br/>
 
-####
+#### 3.24. Description of togglePreventHidden method (toggle "on") of Curtain object (inside handleFormSubmit method)
 
-<!-- Tutaj -->
+Next up, as we'll see in the handleFormSubmit method, we call the togglePreventHidden method of the Curtain object which prevents the form from being deleted through the curtain element (this method was explained at the time of describing the Curtain object).
 
-The same process as mentioned above is the case with the next method (togglePreventHidden), this time the method called on an instance of the Curtain object, which also prevents the form from being deleted through the curtain element (this process is described in subsection 3.2.4 regarding the Curtain object).
+The following is an example of calling it in the handleFormSubmit method (scripts/objects/Form.js):
+
+```
+  curtain.togglePreventHidden({ toggle: common.on })
+```
+
+As we can see above, when calling the method, we pass the toggle parameter with the value "on" (thanks to this, the possibility of removing the curtain is blocked).
+
+<br/>
 
 Below is a visual example of this solution:
 
 <!-- Przykład braku moliwosci usuniecia formularza przez kurtynę -->
 
-<br/>
+#### 3.25. Description of handleEmailSent method (inside handleFormSubmit method)
 
-<
+After blocking the possibility of removing the form, the method x is called, which is returned to the variable feedback.
 
-<br/>
-
-The very last method before calling the asynchronous handleEmailSent method (responsible for sending data) is the togglePreventHidden method of instance of Curtain object which prevents the removal of the form by clicking on the curtain element (this process was explained when describing the Curtain object)
-
-Below is a visual example of this solution:
-
-<!-- Wizualny przykład braku molwiosci usunięcia formularza poprzez klikniecie na element kurtyny -->
-
-In order to better illustrate the following descriptions, I will present the entire handleFormSubmit( method once again (scripts/objects/Form.js):
+Below is a fragment of the handleFormSubmit method in which the discussed method is called and its implementation next to it(scripts/objects/Form.js):
 
 ```
-  async handleFormSubmit(e) {
-    e.preventDefault()
-    const areEmptyFormInputsValue = this.checkIfEmptyFormInputsValue()
-    if (areEmptyFormInputsValue) return
+    const feedback = await this.handleEmailSent()
 
-    this.disableFormInputs()
-    this.toggleDeleteBtnComponent(common.off)
-    this.toggleSpinnerComponent(common.on)
-    this.toggleSubmitlNotifications(common.on, {
-      firstNotificationDelay: 2000,
-      secondNotificationDelay: 8000,
-      thirdNotificationDelay: 15000,
-    })
-    curtain.togglePreventHidden(common.on)
-    await this.handleEmailSent()
-    this.toggleDeleteBtnComponent(common.off)
-    this.toggleSpinnerComponent(common.off)
-    this.toggleSubmitlNotifications(common.off, {})
-    curtain.togglePreventHidden(common.off)
-  }
-```
-
-As we can see above, after calling the previously described methods, the asynchronous handleEmailSent method is called, which is responsible for sending the form data to the server.
-
-The implementation of this method is below (scripts/objects/Form.js):
-
-```
-  async handleEmailSent() {
+    async handleEmailSent() {
     return await fetch(mailEndPoint, {
       method: fetchProps.methods.POST,
       headers: {
@@ -4120,56 +4198,119 @@ The implementation of this method is below (scripts/objects/Form.js):
     })
       .then((response) => response.json())
       .then((data) =>
-        data.success
-          ? this.showMessageAfterSubmit(info.messageSent)
-          : this.showMessageAfterSubmit(info.somethingWentWrong)
+        data.success ? info.messageSent : info.somethingWentWrong
       )
-      .catch(() => this.showMessageAfterSubmit(info.unableToConnecte))
+      .catch(() => info.unableToConnect)
   }
 ```
 
-As we can see above, this method is a simple method which uses the fetch function, which takes the appropriate endpoint (here is the endpoint related to my server application [Emails Handler](https://github.com/damian-lis/Emails-handler)) and sends the data collected form data using the POST method. At the end of this method, depending on the response from the server, a different message is sent to the showMessageAfterSubmit method.
+As we can see, it is a simple method that uses the fetch function to send the collected data via a form to the appropriate endpoint (https://dirt-ten-risk.glitch.me/api/mail/portfolio) of the server (my backend application [Emails Handler](https://github.com/damian-lis/Emails-handler) that supports various e-mail services).
 
-The implementation of method responsible for displaying the final messages depending on the response from the server is presented below (scripts/objects/Form.js):
+Depending on the response from the server, an appropriate message is returned from discussed method:
+
+- info.messageSent - when the message was sent,
+- info.somethingWentWrong - when, for example, something happened with the email service or by incorrectly sent data to this email service,
+- info.unableToConnect - when there is no connection to the server
+
+<br/>
+
+Below is a visual with three replies from the server:
+
+<!-- Wizualny przykład 3 odpowiedzi z serwera -->
+
+<br/>
+
+#### 3.26. Description of resetFormTextInputsValue method (inside handleFormSubmit method)
+
+After receiving the response from the server, the resetFormTextInputsValue method is first called.
+
+Below is a fragment of the handleFormSubmit method in which the discussed method is called and its implementation next to it (scripts/objects/Form.js):
 
 ```
-showMessageAfterSubmit(message) {
-    this.resetFormInputsValue()
-    setPropsFn(
-      [
+  this.resetFormTextInputsValue()
+
+  resetFormTextInputsValue() {
+    this.formTextInputs.map((input) => (input.value = ''))
+  }
+```
+
+As we can see above, it is a very simple method that removes the value of all inputs (except for the submit type).
+
+<br/>
+
+Below is a visual example of this method:
+
+<!-- Wizualny przykład usuwania wartości inputów -->
+
+<br/>
+
+#### 3.27. Description of toggleSpinnerComponent method (toggle "off") (inside handleFormSubmit method)
+
+Next, the handleFormSubmit method calls toggleSpinnerComponent with the toggle parameter set to "off". Below I will present just an example of calling this method because its logic has already been discussed earlier, and in this case it just works the opposite (the spinner is replaced with input type submit) (scripts/objects/Form.js):
+
+```
+  this.toggleSpinnerComponent({ toggle: common.off })
+```
+
+<br/>
+
+#### 3.28. Description of toggleFormSubmitInputlNotifications method (toggle "off") (inside handleFormSubmit method)
+
+Then, after replacing the spinner with input of type submit, the toggleFormSubmitInputlNotifications method is called (scripts/objects/Form.js):
+
+```
+this.toggleFormSubmitInputlNotifications({ toggle: common.off })
+```
+
+I am not providing an implementation example here because the logic of this method has been explained earlier (also in the case of the passed toggle parameter with the value "off").
+
+I will just add that this method in this case removes the notifications that appear while the user is waiting for a response from the server.
+
+<br/>
+
+#### 3.29. Description of hideTitleInfo method (inside handleFormSubmit method)
+
+Next, we have a series of methods that are responsible for the final animation of the form component. First, the hideTitleInfo method is called, the calling example and implementation of which is shown below (scripts/objects/Form.js):
+
+```
+    this.hideTitleInfo()
+
+    hideTitleInfo() {
+    setPropsFn({
+      objs: [
         {
-          elements: [this.titleComponent],
+          elements: [this.infoComponent],
           styleProps: [
             {
-              name: styleProps.names.top,
-              value: '50%',
-            },
-            {
-              name: styleProps.names.transition,
-              value: '0.9s',
-            },
-            {
-              name: styleProps.names.position,
-              value: styleProps.values.relative,
-            },
-            {
-              name: styleProps.names.transform,
-              value: styleProps.values.translateY(-50),
+              name: styleProps.names.display,
+              value: styleProps.values.none,
             },
           ],
         },
+      ],
+    })
+  }
+```
 
+As we can see above, it is a simple method that uses the setPropsFn helper, which hides the this.infoComponent element (an information icon with an information window regarding the waiting time for a response from the server).
+
+(an example of this animation is provided at the end of the description (including other animations) of all methods involved in animating a form component).
+
+<br/>
+
+#### 3.30. Description of hideFormComponent method (inside handleFormSubmit method)
+
+The next step is to call the hideFormComponent method, the calling example and implementation of which is shown below (scripts/objects/Form.js):
+
+```
+    this.hideFormComponent
+
+    hideFormComponent() {
+    setPropsFn({
+      objs: [
         {
-          elements: [this.formComponent],
+          elements: [this.formMainComponent],
           styleProps: [
-            {
-              name: styleProps.names.transition,
-              value: '0.3s',
-            },
-            {
-              name: styleProps.names.height,
-              value: '0px',
-            },
             {
               name: styleProps.names.overflow,
               value: styleProps.values.hidden,
@@ -4178,65 +4319,228 @@ showMessageAfterSubmit(message) {
               name: styleProps.names.opacity,
               value: 0,
             },
-            {
-              name: styleProps.names.visibility,
-              value: styleProps.values.hidden,
-            },
           ],
         },
+      ],
+    })
+  }
+```
+
+As we can see above this is a method which also uses the setPropsFn helper which hides the this.formMainComponent element.
+
+(an example of this animation is provided at the end of the description (including other animations) of all methods involved in animating a form component).
+
+<br/>
+
+#### 3.31. Description of replaceTitleText method (inside handleFormSubmit method)
+
+After hiding this.formMainComponent element, the method replaceTitleText is called, the calling example and implementation of which is shown below (scripts/objects/Form.js):
+
+```
+  this.replaceTitleText({ text: feedback })
+
+  replaceTitleText({ text }) {
+    setPropsFn({
+      objs: [
         {
           elements: [this.title],
           props: [
             {
               name: elementProps.names.innerHTML,
-              value: message,
+              value: text,
             },
           ],
         },
       ],
-      300
-    )
-  }
-```
-
-As we can see above, this method initially removes the input values via the resetFormInputsValue method (which is very simple and will not be described in detail here). Then, using the setPropsFn helper and the message sent to the discussed method, the appropriate message is displayed to the user (by changing the styles and properties of various elements).
-
-Below is a visual example of this solution:
-
-<!-- Wizualny przykłąd końcowych wiaodmości -->
-
-After receiving a response from the server regarding whether the email with the sent form data has been sent or not, the methods (toggleDeleteBtnComponent, toggleSpinnerComponent, toggleSubmitlNotifications togglePreventHidden) that were already described earlier are called, but in the opposite way (I will not describe the operation of this methods because their logic is just opposite.)
-
-Here is one more example of the handleFormSubmit method in which these methods follow the handleEmailSent method.(scripts/objects/Form.js):
-
-```
-  async handleFormSubmit(e) {
-    e.preventDefault()
-    const areEmptyFormInputsValue = this.checkIfEmptyFormInputsValue()
-    if (areEmptyFormInputsValue) return
-
-    this.disableFormInputs()
-    this.toggleDeleteBtnComponent(common.off)
-    this.toggleSpinnerComponent(common.on)
-    this.toggleSubmitlNotifications(common.on, {
-      firstNotificationDelay: 2000,
-      secondNotificationDelay: 8000,
-      thirdNotificationDelay: 15000,
     })
-    curtain.togglePreventHidden(common.on)
-    await this.handleEmailSent()
-    this.toggleDeleteBtnComponent(common.off)
-    this.toggleSpinnerComponent(common.off)
-    this.toggleSubmitlNotifications(common.off, {})
-    curtain.togglePreventHidden(common.off)
   }
 ```
+
+As we can see above, calling this method takes place with the feedback argument (in the form of the text prop), which contains information about the response from the server (I discussed this earlier).
+
+This method overrides the innerHTML property of this.title element with the sent information (text) through the setPropsFn helper.
+
+(an example of this animation is provided at the end of the description (including other animations) of all methods involved in animating a form component).
 
 <br/>
 
-9. Overview of creating a this.btnDelete element with logic in createMainElements method.
+#### 3.32. Description of reduceMainComponentHeight method (inside handleFormSubmit method)
 
-Before I finish discussing the createMainElements method, which, as we know, is responsible for creating the above-mentioned elements, I would like to comment on the element (this.btnDelete) responsible for removing the form component and its creation method is presented below (scripts/objects/Form.js):
+After the method I just described, the method reduceMainComponentHeight is called, the calling example and implementation of which is shown below (scripts/objects/Form.js):
+
+```
+  this.reduceMainComponentHeight({ delay: 800 })
+
+  reduceMainComponentHeight({ delay }) {
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.mainComponent],
+          styleProps: [
+            {
+              name: styleProps.names.height,
+              value: '100px',
+            },
+          ],
+        },
+      ],
+      delay
+    })
+  }
+```
+
+As we can see above, the method is called with a delay argument that specifies the time after which this method is to be called.
+
+This method reduces the size of this.mainComponent to 100px via the setPropsFn helper after 800 milliseconds (delay).
+
+(an example of this animation is provided at the end of the description (including other animations) of all methods involved in animating a form component).
+
+<br/>
+
+#### 3.33. Description of moveTitleComponent method (inside handleFormSubmit method)
+
+The penultimate method that applies to animating a form component is the moveTitleComponent method, the calling example and implementation of which is shown below (scripts/objects/Form.js):
+
+```
+  this.moveTitleComponent()
+
+  moveTitleComponent() {
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.titleComponent],
+          styleProps: [
+            {
+              name: styleProps.names.top,
+              value: '50%',
+            },
+            {
+              name: styleProps.names.position,
+              value: styleProps.values.relative,
+            },
+            {
+              name: styleProps.names.transform,
+              value: styleProps.values.translateY(-70),
+            },
+          ],
+        },
+      ],
+    })
+  }
+```
+
+As we can see above, this method through the setPropsFn helper sets a number of properties on the this.titleComponent element, thanks to which we obtain the effect of moving this element to the middle of form component.
+
+(an example of this animation is provided at the end of the description (including other animations) of all methods involved in animating a form component)
+
+<br/>
+
+#### 3.34. Description of revealTitleWhisper method with visual animation example (inside handleFormSubmit method)
+
+The last method related to the animation of component forms is the revealTitleWhisper method, the calling example and implementation of which is shown below (scripts/objects/Form.js):
+
+```
+    this.revealTitleWhisper({ delay: 1800 })
+
+    revealTitleWhisper() {
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.whisper],
+          styleProps: [
+            {
+              name: styleProps.names.opacity,
+              value: 1,
+            },
+          ],
+        },
+      ],
+      delay: 1800,
+    })
+  }
+```
+
+As we can see above, it is a method that is passed a delay argument of 1800 value (the delay time when calling the method).
+
+The method itself, through the setPropsFn helper, reveals the this.whisper element to the user (information that by clicking anywhere on the screen the form component will be deleted).
+
+<br/>
+
+Below is a visual example of the form component animation methods discussed above:
+
+<!-- Animacja po wysłaniu formularza -->
+
+<br/>
+
+#### 3.35. Description of setDelayFn helper (inside handleFormSubmit method)
+
+After the methods calling the animation the setDelayFn helper is called, the example of which is shown below (scripts/objects/Form.js):
+
+```
+  await setDelayFn(2000)
+```
+
+The helper we see above (the logic of the helper shown above was discussed in the section on helpers) executes at the same time as the form component animation methods and is used to delay the handleFormSubmit method for 2 seconds before the next methods are called (so that the animation can complete itself)
+
+<br/>
+
+#### 3.36. Description of setSelfDestructEventToMainComponent method (inside handleFormSubmit method)
+
+After the handleFormSubmit method is delayed via the setDelayFn helper, the setSelfDestructEventToMainComponent method is called, the calling example and implementation of which is shown below (scripts/objects/Form.js):
+
+```
+  this.setSelfDestructEventToMainComponent()
+
+  setSelfDestructEventToMainComponent() {
+    setPropsFn({
+      objs: [
+        {
+          elements: [this.mainComponent],
+          listeners: [
+            {
+              event: events.click,
+              cb: () => curtain.toggleShow({ toggle: common.off }),
+            },
+          ],
+        },
+      ],
+    })
+  }
+```
+
+As we can see above, it is a method that sets the listener to the event click on the this.mainComponent element, which calls the toggleShow method of the Curtain object, passing to it the toggle parameter with the value "off" (by clicking on this.mainComponent this element will be removed from the curtain structure).
+
+The exact operation of the toggleShow method is explained in the Curtain object section.
+
+<br/>
+
+Below is a visual example of this solution
+
+<!-- Wizualny przykład usunięcia komponentu form po animacji -->
+
+<br/>
+
+#### 3.37. Description of togglePreventHidden method (toggle "off") of Curtain object (inside handleFormSubmit method)
+
+At the very end of the handleFormSubmit method is the togglePreventHidden method of Curtain object, which is called as follows (scripts/objects/Form.js):
+
+```
+  curtain.togglePreventHidden({ toggle: common.off })
+```
+
+As we can see above, this method is called with the toggle parameter set to "off", thanks to which the option to remove the curtain child (in this case, this.mainComponent) is activated (the exact operation of the togglePreventHidden method is explained in the Curtain object section).
+
+<br/>
+
+Below is a visual example of this solution
+
+<!-- Wizualny przykład usunięcia komponentu form po animacji poprzez kurtynę -->
+
+<br/>
+
+#### 3.38. Description of delete a form component through this.btnDelete element
+
+Removing the form component is also done through the this.btnDelete element, which is presented below as a part of the createMainElements method (scripts/objects/Form.js):
 
 ```
     this.btnDelete = createElementFn({
@@ -4246,339 +4550,19 @@ Before I finish discussing the createMainElements method, which, as we know, is 
       listeners: [
         {
           event: events.click,
-          cb: () => curtain.toggleShow(common.off),
+          cb: () => curtain.toggleShow({ toggle: common.off }),
         },
       ],
     })
 ```
 
-As we can see in the above example, the presented element has an event listener for the event click, after which the toggleShow method of the Curtain object is called with the toggle value set to "off". With this method, the previously added form component (by the toggleShow method of Curtain object called with toggle set to "on" - this process will be presented in a moment) is removed from the structure of container element(curtain) of Curtain object.
+As we can see above, on the this.btnDelete element, the listener is set to the click event, which calls the previously described toggleShow method of the Curtain object, passing the toggle parameter with the value "off" (the form component is removed from the Curtain object structure).
 
-It is worth mentioning here that the discussed form component can be removed by clicking on the curtain element of the Curtain object, which triggers the same method.
+The exact operation of the toggleShow method is explained in the Curtain object section.
 
-An example of the discussed element (curtain) is shown below for the Curtain object:(scripts/objects/Curtain.js):
+Below is a visual example of this solution
 
-```
-    this.mainContainer = createElementFn({
-      element: elements.div,
-      classes: [classNames.curtain.container],
-      listeners: [
-        {
-          event: events.click,
-          cb: () => this.toggleShow(common.off),
-        },
-      ],
-    })
-```
-
-As we can see above, the same as in the this.btnDelete element, the this.mainContainer element (curtain) has an event listener, on event click, which calls the toggleShow method passing toggle with the value "off".
-
-Below is a visual example of removing a form component by clicking its button (this.btnDelete) and by clicking a curtain (this.mainContainer of Curtain object):
-
-<!-- Przykład usunięcia formularza przez X oraz kurtynę -->
-
-<br/>
-
-For a small summary, the above detailed description was about the most complex elements and their logic (this is also where the numbering ends), which were created by the createMainElements method in the handleMainComponentCreate method, which is called as previously described by clicking on the button on the left side of the form icon page.
-
-As a reminder, an example of the handleMainComponentCreate method is shown below once again (scripts/objects/Form.js):
-
-```
-  handleMainComponentCreate() {
-    this.toggleBtnComponent(common.off)
-    this.createMainElements()
-    this.createMainComponents()
-    curtain.toggleShow(common.on, {
-      appendElements: [this.mainComponent],
-      cbsToCallOnHidden: [
-        () => {
-          this.toggleBtnComponent(common.on)
-          this.resetFormInputsValue()
-          this.resetDataFromUser()
-        },
-      ],
-    })
-  }
-```
-
-As we can see above, the next method after discussed earlier createMainElements method is the createMainComponents method, which combines previously created elements into components.
-
-Below is an implementation of the createMainComponents method (scripts/objects/Form.js):
-
-```
-  createMainComponents() {
-    this.formSpinnerComponent = appendElementsToContainerFn(
-      [this.formSpinner],
-      this.formSpinnerContainer
-    )
-
-    this.formFieldComponents = this.formFields.map((field, index) => {
-      const { lab, input, notificationEl } = Object.entries(
-        this.formFieldsElements
-      )[index][1]
-
-      lab
-        ? appendElementsToContainerFn([lab, input, notificationEl], field)
-        : appendElementsToContainerFn(
-            [input, notificationEl, this.formSpinnerComponent],
-            field
-          )
-
-      return field
-    })
-
-    this.formComponent = (() => {
-      this.formFieldComponents.map((fieldComponent) =>
-        this.form.appendChild(fieldComponent)
-      )
-      this.formContainer.appendChild(this.form)
-
-      return this.formContainer
-    })()
-
-    this.titleComponent = appendElementsToContainerFn(
-      [this.title],
-      this.titleContainer
-    )
-
-    this.cardInnerComponent = appendElementsToContainerFn(
-      [this.titleComponent, this.formComponent],
-      this.mainContainerInner
-    )
-
-    this.btnDeleteComponent = appendElementsToContainerFn(
-      [this.btnDelete],
-      this.btnDeleteContainer
-    )
-
-    this.mainComponent = appendElementsToContainerFn(
-      [this.btnDeleteComponent, this.cardInnerComponent],
-      this.mainContainer
-    )
-
-    return this.mainComponent
-  }
-```
-
-As we can see above, it is a simple method that properly combines previously created elements into components using the appendElementsToContainer helper. It is simply process of attaching elements to a container elements, in which each container with attached elements is assigned to the component variable to highlight the element with children. At the very end of this method, after the various components are properly combined, the this.mainComponent is created, which is returned from the createMainComponents method.
-
-Next the mentioned component (this.mainComponent) is sent through the toggleShow method of Curtain object (last fragment of the handleMainComponentCreate method) to attach this component to curtain element (the entire logic of the toggleShow method of Curtain object is explained when discussing the Curtain object in section 3.2.5.).
-
-An example of calling this method is shown below (scripts/objects/Form.js):
-
-```
-     curtain.toggleShow(common.on, {
-      appendElements: [this.mainComponent],
-      cbsToCallOnHidden: [
-        () => {
-          this.toggleBtnComponent(common.on)
-          this.resetFormInputsValue()
-          this.resetDataFromUser()
-        },
-      ],
-    })
-
-```
-
-As we can see above, to toggleShow method is sent the toggle value "on" (process of curtain show), an object with elements to be attached (the mentioned this.mainComponent) and a callback, which is to call 3 methods (this toggleBtnComponent, this.resetFormInputsValue, this.resetDataFromUser) after the logic of hiding the curtain element (mentioned methods whose operation is very simple wont be described here - entire implementation is here scripts/objects/Form.js).
-
-Finally, below is a visual example of the process of creating a form component and its attachment to the container (curtain) element of a Curtain object:
-
-For a better illustration of hiding specific form field notifications on event focus of input element, below is a visual example of this process:
-
-<!-- Wizualny przykłąd chowania notyfikacji -->
-
-Below is the implementation of the two mentioned methods : toggleBorderDanger and toggleAlertMessage, which in this case are responsible for hiding the notification of a specific form field (passed toggle value "off") (scripts/objects/Form.js):
-
-```
-  toggleBorderDanger(toggle, { element }) {
-    toggleClassesFn(toggle, {
-      elements: [element],
-      classes: [classNames.utilities.border.danger],
-    })
-  }
-
-  toggleAlertMessage(toggle, { element }) {
-    setPropsFn([
-      {
-        elements: [element],
-        styleProps: [
-          {
-            name: styleProps.names.visibility,
-            value:
-              toggle === common.on
-                ? styleProps.values.visible
-                : styleProps.values.hidden,
-          },
-          {
-            name: styleProps.names.opacity,
-            value: toggle === common.on ? 1 : 0,
-          },
-        ],
-      },
-    ])
-  }
-```
-
-In the case of the first of the above presented methods (toggleBorderDanger), a helper called toggleClassesFn (implementation is here scripts/helpers/toggleClassesFn) is used, which sets or removes the given class name. In this case, the class responsible for the red input border is removed (toggle value "off").
-
-In the case of the second method (toggleAlertMessage), the setPropsFn helper (implementation is here scripts/helpers/setPropsFn) was used, thanks to which the passed element related to the notification is hidden (toggle value "off").
-
-<br/>
-
-The operation of the input element of type submit will be explained when discussing a form element that has an event listener set to event submit, which is called via the mentioned input element (this input element itself does not have any event listener).
-
-<br/>
-
-5. Overview of creating a label element in createFormFieldElements method.
-
-Next, I'd like to discuss the label element which is assigned to the lab variable, which is only created for inputs of a type other than submit. Below is an excerpt from the createFormFieldElements method that shows the process of creating a label element (scripts/objects/Form.js):
-
-```
-        lab = createElementFn({
-          element: elements.label,
-          textContent: label,
-          htmlFor: name,
-        })
-```
-
-As we can see in the example above, this is a simple process using the createElementFn helper that occurs every time you create different elements.
-
-Thanks to this label element, we have a short, small header for a given input element and an option thanks to which, after clicking on this element, an event focus will be triggered on the associated input element.
-
-<br/>
-
-6. Overview of creating a notification element with logic in createFormFieldElements method.
-
-At the very end of the createFormFieldElements method, the so-called notifications that occur in each case of the input element (also in the case of input of the submit type).
-
-Below is an excerpt from the createFormFieldElements method that shows the process of creating a notification element (scripts/objects/Form.js):
-
-```
-    const notificationEl = createElementFn({
-      element: elements.span,
-      attributes: [{ name: common.fieldname, value: name }],
-      classes: [
-        type === common.submit
-          ? classNames.form.fieldSubmitNotification
-          : classNames.form.fieldInputNotification,
-      ],
-      innerHTML: notification,
-      listeners: [
-        {
-          event: events.click,
-          cb: (e) =>
-            type !== common.submit && this.handleFormNotificationClick(e),
-        },
-      ],
-    })
-
-```
-
-As we can see in the above example, the notification element being created assigned to the notificationEl variable, in addition to a few additional properties, contains an event listener which is set to event click, which calls the handleFormNotificationClick method with the passing of the event (e) to it.
-
-Below is an implementation of the mentioned handleFormNotificationClick method (scripts/objects/Form.js):
-
-```
-  handleFormNotificationClick(e) {
-    e.target.parentElement
-      .querySelector(
-        e.target.attributes.fieldname.value === common.message
-          ? elements.textarea
-          : elements.input
-      )
-      .focus()
-  }
-```
-
-As we can see above, this method searches for the input or textarea element associated with the clicked element (e.target) and sets the event focus on it by calling the focus function. Thanks to this, the previously discussed handleFormInputFocus method is triggered on input element, and it regains the event focus (the same logic as if we clicked directly on the input element).
-
-This solution was introduced because the notification takes up part of the space of the input element and if you want to enter some values, it might not hit the input directly (improve user experience). Therefore, the focus on the input element is also triggered when clicking on the associated notification.
-
-Below is a visual example of this solution:
-
-<!-- Przykład kliknięcia w notyfikację -->
-
-<br/>
-
-7. Overview of how to arrange the created inputs (form fields element) in the createMainElements method.
-
-After discussing the creation of elements of individual field forms, I would like to mention that the input elements created for better management have been separated (their references) into two variables: this.formSubmitInput and this.formTextInputs.
-
-Below is an example of this solution (scripts/objects/Form.js):
-
-```
-    this.formSubmitInput = (() => {
-      let submitInput
-      this.formFieldsElements.map((formFieldElements) => {
-        if (formFieldElements.input.type === common.submit)
-          submitInput = formFieldElements.input
-      })
-      return submitInput
-    })()
-
-    this.formTextInputs = (() => {
-      let textInputs = []
-      this.formFieldsElements.map((formFieldElements) => {
-        if (formFieldElements.input.type !== common.submit)
-          textInputs.push(formFieldElements.input)
-      })
-
-      return textInputs
-    })()
-
-```
-
-As we can see in the example above, both variables contain self-moving functions that return a specific input element in the iteration process over the array of form fields elements.
-
-In the case of the this.formSubmitInput variable, input of the submit type is returned, and in the case of the this.formTextInputs variable, the remaining inputs related to entering data into the form are returned.
-
-<br/>
-
-8. Overview of creating a form element with logic in createMainElements method.
-
-After the individual elements of form fields have been created, along with the elements of containers for these elements (form fields), it is time to discuss the form element, which is a container for the mentioned elements.
-
-Below is an example of creating this element in a createMainElements method (scripts/objects/Form.js):
-
-```
-    this.form = createElementFn({
-      element: elements.form,
-      classes: [classNames.form.main],
-      listeners: [
-        { event: events.submit, cb: (e) => this.handleFormSubmit(e) },
-      ],
-    })
-```
-
-As we can see above, this element has a simple property structure with event listener set to event form submit that calls the handleFormSubmit method to which the event(e) is passed.
-
-The implementation of the mentioned method is presented below (scripts/objects/Form.js):
-
-```
-  async handleFormSubmit(e) {
-    e.preventDefault()
-    const areEmptyFormInputsValue = this.checkIfEmptyFormInputsValue()
-    if (areEmptyFormInputsValue) return
-
-    this.disableFormInputs()
-    this.toggleDeleteBtnComponent(common.on)
-    this.toggleSpinnerComponent(common.on)
-    this.toggleSubmitlNotifications(common.on, {
-      firstNotificationDelay: 2000,
-      secondNotificationDelay: 8000,
-      thirdNotificationDelay: 15000,
-    })
-    curtain.togglePreventHidden(common.on)
-    await this.handleEmailSent()
-    this.toggleDeleteBtnComponent(common.off)
-    this.toggleSpinnerComponent(common.off)
-    this.toggleSubmitlNotifications(common.off, {})
-    curtain.togglePreventHidden(common.off)
-  }
-```
-
-<!-- Przyykład tworznia formularza -->
+<!-- Wizualny przykład usunięcia komponentu form po animacji poprzez button X -->
 
 <br/>
 <br/>
@@ -4617,6 +4601,7 @@ new Back({ container: idReferences.global.leftContainer })
 ```
 
 As we can see in the example presented above, only the reference of the container element is passed to the created instance (elements created inside of discussed object are attached to it)
+
 <br/>
 
 #### 3. Description of Back object logic
@@ -4636,12 +4621,6 @@ To make it easier to find yourself in the description below, there is a list of 
 The logic of constructor of the discussed Back object is implemented as follows (is very similar to the Audio object constructor) (scripts/objects/Back.js):
 
 ```
-import {
-  createElementFn,
-  appendElementsToContainerFn,
-} from '/scripts/helpers/index.js'
-import { classNames, paths, elements } from '/data/global/names.js'
-
 class Back {
   constructor({ container }) {
     this.createElements()
@@ -4649,8 +4628,6 @@ class Back {
 
     appendElementsToContainerFn({ elements: [this.linkComponent], container })
   }
-
-  more code here...
 }
 
 export default BackBtn
@@ -4658,11 +4635,9 @@ export default BackBtn
 
 <br/>
 
-#### 3.2. Description createElements method (constructor)
+#### 3.2. Description of createElements method (constructor)
 
-In the constructor, first, the createElements method is called, which uses the createElementFn helper (the implementation here is scripts/helpers/createElementFn.js) to create individual elements of Back object.
-
-Below is an example of this method (scripts/objects/Back.js):
+In the constructor, first, the createElements method is called, the implementation of which is below (scripts/objects/Back.js):
 
 ```
   createElements() {
@@ -4678,15 +4653,13 @@ Below is an example of this method (scripts/objects/Back.js):
   }
 ```
 
-As we can see in the code example above, two elements this.link and this.arrowImg are created which have a very simple structure.
+As we can see in the code example above, two elements this.link and this.arrowImg (are created via createElementFn helper) which have a very simple structure.
 
 <br/>
 
 #### 3.3. Description createComponents method (constructor)
 
-Next, in the constructor of discussed object, we call the createComponents method, which, based on previously created elements (this.link and this.arrowImg):
-
-Below is an example of this method (scripts/objects/Audio.js):
+Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below (scripts/objects/Back.js):
 
 ```
   createComponents() {
@@ -4697,11 +4670,7 @@ Below is an example of this method (scripts/objects/Audio.js):
   }
 ```
 
-As we can see in code example above, this method combines previously created elements into the so-called component (this.linkComponent) via helper appendElementsToContainer (implementation is here)
-
-This component corresponds to the button we see on the left side of the page screen. Below is a visual example of this component:
-
-<!-- Zdjęcie komponentu buttonu Back -->
+As we can see in code example above, this method combines previously created elements into the so-called component (this.linkComponent) via helper appendElementsToContainer.
 
 <br/>
 <br/>
@@ -4767,14 +4736,6 @@ To make it easier to find yourself in the description below, there is a list of 
 Below is the constructor implementation of the discussed object (scripts/objects/SneakPeeks.js):
 
 ```
-import {
-  createElementFn,
-  triggerActionOnWindowScrollFn,
-  appendElementsToContainerFn,
-  setClassesFn,
-} from '/scripts/helpers/index.js'
-import { classNames, info, elements } from '/data/global/names.js'
-
 class SneakPeeks {
   constructor({ container, trigger, wrapper, data }) {
     this.sneakPeeksInfo = data
@@ -4801,7 +4762,7 @@ export default SneakPeeks
 
 As we can see above, the course of the logic of this object is very similar to the objects discussed earlier.
 
-#### 3.2. Description variables of object constructor
+#### 3.2. Description of variables of object constructor
 
 As we can see in the code example above, in the object constructor we have following variables:
 
@@ -4809,11 +4770,9 @@ As we can see in the code example above, in the object constructor we have follo
 - this.triggerElement which conditionally (whether the trigger reference was sent or not) assign the passed reference to the trigger element
 - this.wrapperElement which conditionally (whether the trigger reference was sent or not) assign the passed reference to the wrapper element
 
-#### 3.3. Description createElements method (constructor)
+#### 3.3. Description of createElements method (constructor)
 
-After assigning data to this.sneakPeeksInfo variable, the createElements method is called, which uses the createElementFn helper (the implementation here is scripts/helpers/createElementFn.js) to create individual elements of sneak peek and container for sneak peeks.
-
-Below is an example of this method (scripts/objects/Audio.js):
+After assigning data to this.sneakPeeksInfo variable, the createElements method is called, the implementation of which is below (scripts/objects/Audio.js):
 
 ```
 createElements() {
@@ -4908,11 +4867,11 @@ createElements() {
 
 As we can see above, this is very simple method, in which, through the createElementFn helper, a container element (this.mainContainer) and an array (this.elements) of objects with individual sneak peek elements are created.
 
+<br/>
+
 #### 3.4. Description of createComponents method (constructor)
 
-Next, in the constructor of discussed object, we call the createComponents method, which, based on previously created elements (this.mainContainer, this.elements), combines them into the so-called components via helper appendElementsToContainer (implementation is here scripts/helpersappendElementsToContainer.js).
-
-Below is an example of this method (scripts/objects/Audio.js):
+Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below (scripts/objects/Audio.js):
 
 ```
 createComponents() {
@@ -4977,13 +4936,13 @@ createComponents() {
   }
 ```
 
-As we can see, it is a simple method which, through interactions on a previously created array with objects (this.elements), creates this.sneakPeeksComponents (a set of smaller components), which at the end of the discussed method is appended to this.mainContainer to form this.mainComponent (as I mentioned earlier, all connections of elements into components are made via the appendElementsToContainerFn helper).
+As we can see, it is a simple method which, through interactions on a previously created array with objects (this.elements), creates this.sneakPeeksComponents (a set of smaller components), which at the end of the discussed method is appended to this.mainContainer to form this.mainComponent (all connections of elements into components are made via the appendElementsToContainerFn helper).
 
 <br/>
 
 #### 3.5. Description of use appendElementsToContainerFn helper (constructor)
 
-After the above-mentioned methods, the created this.mainComponent component is connected to the container by appendElementsToContainerFn helper (at this stage, individual sneak peeks are available on the website).
+After the above-mentioned methods, the created this.mainComponent component is connected to the container by appendElementsToContainerFn helper.
 
 <br/>
 
@@ -5085,6 +5044,8 @@ export default [
 
 As we can see in the above example, data is an array of objects, each of which has an appropriate information structure, thanks to which the createElements method during iteration can easly create appropriate elements with appropriate properties.
 
+<br/>
+
 #### 3.7. Description of use triggerActionOnWindowScrollFn helper with related handleOnEnterTriggerEl method (constructor)
 
 Finally, the triggerActionOnWindowScrollFn helper is executed in the object's constructor, which works a bit differently than the objects mentioned earlier.
@@ -5095,7 +5056,7 @@ A visual example of this process is shown below:
 
 <!-- Wizualny przykład pokazania sneak peeks -->
 
-In order to describe in detail the operation of the above example, I will present below the triggerActionOnWindowScrollFn helper without other constructor elements of the discussed object (scripts/objects/SneakPeeks.js):
+In order to describe in detail the logic of the above example, below I would like to mention once again the triggerActionOnWindowScrollFn helper call along with the implementation of the method it calls (scripts/objects/SneakPeeks.js):
 
 ```
     if (trigger) {
@@ -5106,6 +5067,21 @@ In order to describe in detail the operation of the above example, I will presen
         cbOnEnterTriggerEl: () => this.handleOnEnterTriggerEl(),
       })
     }
+
+    handleOnEnterTriggerEl() {
+      setClassesFn({
+        objs: [
+          {
+            elements: [this.triggerElement],
+            classes: [classNames.utilities.h.full],
+          },
+          {
+            elements: [this.wrapperElement],
+            classes: [classNames.utilities.animations.slideInFromTop],
+          },
+        ],
+      })
+  }
 ```
 
 As we can see in the above example, the discussed helper can only be called when the reference to the trigger element is sent to the object (this was introduced because in some cases this element may not be sent).
@@ -5114,26 +5090,7 @@ After checking the condition, before the helper is called, the appropriate eleme
 
 Then, after queried the appropriate elements from the DOM structure, the discussed helper is called and thanks to this, the method handleOnEnterTriggerEl is called when the trigger element is scrolled (in this case we only have one call without toggle parameter).
 
-The following is an implementation of the handleOnEnterTriggerEl method which is responsible for the appearance of the sneak peeks on the website (scripts/objects/SneakPeeks.js):
-
-```
-  handleOnEnterTriggerEl() {
-    setClassesFn({
-      objs: [
-        {
-          elements: [this.triggerElement],
-          classes: [classNames.utilities.h.full],
-        },
-        {
-          elements: [this.wrapperElement],
-          classes: [classNames.utilities.animations.slideInFromTop],
-        },
-      ],
-    })
-  }
-```
-
-As we can see above, it is a simple method which, using the setClassesFn helper (the entire implementation is in scripts/helper/setClassesFn.js), sets the class associated with the full height on the this.triggerElement element and on the this.wrapperToRelease element the class with the slideInFromTop animation responsible for the effect of sliding from the top.
+The discussed handleOnEnterTriggerEl method using the setClassesFn helper and sets the class associated with the full height on the this.triggerElement element and on the this.wrapperToRelease element the class with the slideInFromTop animation responsible for the effect of sliding from the top.
 
 <br/>
 <br/>
@@ -5179,13 +5136,15 @@ new DescriptionArrange({
 
 Created instances of the DescriptionArrange object, as we can see above, take the reference to container element to which the element (container) found through this reference will be attached elements created on the basis of the data sent regarding the description (aboutDescription and skillsDescription).
 
+<br/>
+
 #### 3. Description of DescriptionArrange object logic
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
 &nbsp; &nbsp; &nbsp; &nbsp; 3.1. Code example of DescriptionArrange object constructor <br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 3.2. Description variables of object constructor <br/>
-&nbsp; &nbsp; &nbsp; &nbsp; 3.3. Description createElements method (constructor) <br/>
+&nbsp; &nbsp; &nbsp; &nbsp; 3.3. Description of createElements method (constructor) <br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 3.4. Description of use appendElementsToContainerFn helper (constructor)
 &nbsp; &nbsp; &nbsp; &nbsp; 3.5. Code example and description of data/descriptions/skills.js file <br/>
 &nbsp; &nbsp; &nbsp; &nbsp; 3.6. Additional informations <br/>
@@ -5197,12 +5156,6 @@ To make it easier to find yourself in the description below, there is a list of 
 The object itself, which is responsible for creating the description is presented below (scripts/objects/DescriptionArrange.js):
 
 ```
-import {
-  createElementFn,
-  appendElementsToContainerFn,
-} from '/scripts/helpers/index.js'
-import { common, elementProps } from '/data/global/names.js'
-
 class DescriptionArrange {
   constructor({ container, data }) {
     this.description = data
@@ -5216,9 +5169,13 @@ more code here...
 export default DescriptionArrange
 ```
 
+<br/>
+
 #### 3.2. Description variables of object constructor
 
 As we can see in the code example above, in the constructor we only have one variable this.description that takes an array with objects associated with a given description (data)
+
+<br/>
 
 #### 3.3. Description createElements method (constructor)
 
@@ -5329,7 +5286,9 @@ The createElements method is responsible for creating elements, as in the previo
 
 As we can see in above code example, the createElements method has very simple logic and depending on the passed data (this process will be explained in subsection 3.4.), an appropriate description element is created using the switch statement and the createElementFn helper (the implementation is here scripts/helpers/createElementsFn.js)
 
-#### #### 3.4. Description of use appendElementsToContainerFn helper (constructor)
+<br/>
+
+#### 3.4. Description of use appendElementsToContainerFn helper (constructor)
 
 At the very end of the constructor logic created elements (this.elements) are attached to the passed container using appendElementsToContainerFn helper (after this operation, the entire description is ready and visible on the website).
 
