@@ -431,9 +431,9 @@ class Form {
     this.hideTitleInfo()
     this.hideFormComponent()
     this.replaceTitleText({ text: feedback })
-    this.reduceMainComponentHeight()
+    this.reduceMainComponentHeight({ delay: 800 })
     this.moveTitleComponent()
-    this.revealTitleWhisper()
+    this.revealTitleWhisper({ delay: 1800 })
 
     await setDelayFn(2000)
     this.setSelfDestructEventToMainComponent()
@@ -741,7 +741,7 @@ class Form {
     })
   }
 
-  revealTitleWhisper() {
+  revealTitleWhisper({ delay }) {
     setPropsFn({
       objs: [
         {
@@ -754,11 +754,11 @@ class Form {
           ],
         },
       ],
-      delay: 1800,
+      delay,
     })
   }
 
-  reduceMainComponentHeight() {
+  reduceMainComponentHeight({ delay }) {
     setPropsFn({
       objs: [
         {
@@ -771,7 +771,7 @@ class Form {
           ],
         },
       ],
-      delay: 800,
+      delay,
     })
   }
 
