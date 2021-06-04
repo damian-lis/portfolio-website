@@ -2,7 +2,7 @@ import {
   createElementFn,
   appendElementsToContainerFn,
 } from '/scripts/helpers/index.js'
-import { common, elementProps } from '/data/global/names.js'
+import { common, elements } from '/data/global/names.js'
 
 class DataArrange {
   constructor({ container, data }) {
@@ -15,97 +15,67 @@ class DataArrange {
   createElements() {
     this.elements = this.description.map((object) => {
       switch (object.type) {
-        case common.headline:
-          const headline = createElementFn({
-            element: object.element,
-            classes: object.classes,
-            textContent: object.content,
-          })
-
-          return headline
-
         case common.header:
-          const title = createElementFn({
-            element: object.element,
-            textContent: object.content,
+          return createElementFn({
+            element: elements.h(object.size),
+            innerHTML: object.content,
             classes: object.classes,
           })
 
-          return title
+        case common.paragraph:
+          return object.content.map((paragraphContent) =>
+            createElementFn({
+              element: elements.p,
+              classes: object.classes,
+              innerHTML: paragraphContent,
+            })
+          )
+
+        case common.list:
+          const list = createElementFn({
+            element: elements.ul,
+            classes: object.classes.list,
+          })
+
+          const items = object.content.map((itemContent, index) =>
+            createElementFn({
+              element: elements.li,
+              classes:
+                object.content.length - 1 === index
+                  ? object.classes.lastItem
+                  : object.classes.item,
+              innerHTML: itemContent,
+            })
+          )
+
+          items.map((item) => list.appendChild(item))
+          return list
 
         case common.image:
-          const image = createElementFn({
-            element: object.element,
+          return createElementFn({
+            element: elements.img,
             classes: object.classes,
             src: object.content,
           })
 
-          return image
-
-        case common.paragraph:
-          return object.content.map((paragraphContent) => {
-            const paragraph = createElementFn({
-              element: object.element,
-              classes: object.classes,
-              textContent: paragraphContent,
-            })
-
-            return paragraph
-          })
-
-        case common.link:
-          const link = createElementFn({
-            element: object.elements.link,
-            target: elementProps.values.sblank,
-            classes: object.classes.link,
-            href: object.path,
-            textContent: object.content.link,
-          })
-          const paragraph = createElementFn({
-            element: object.elements.paragraph,
-            classes: object.classes.paragraph,
-            textContent: object.content.paragraph,
-          })
-          paragraph.appendChild(link)
-
-          return paragraph
-
-        case common.list:
-          const list = createElementFn({
-            element: object.elements.list,
-            classes: object.classes.list,
-          })
-
-          const listItems = object.content.map((listItemContent, index) =>
-            object.content.length - 1 === index
-              ? createElementFn({
-                  element: object.elements.listItem,
-                  classes: object.classes.lastListItem,
-                  textContent: listItemContent,
-                })
-              : createElementFn({
-                  element: object.elements.listItem,
-                  classes: object.classes.listItem,
-                  textContent: listItemContent,
-                })
-          )
-
-          listItems.map((listItem) => list.appendChild(listItem))
-
-          return list
-
         case common.code:
           const pre = createElementFn({
-            element: object.elements.pre,
+            element: elements.pre,
+            classes: object.classes.pre,
           })
           const code = createElementFn({
-            element: object.elements.code,
-            classes: [object.classes.code],
+            element: elements.code,
+            classes: object.classes.code,
             textContent: object.content,
           })
           pre.appendChild(code)
 
           return pre
+
+        case common.break:
+          return createElementFn({
+            element: elements.br,
+          })
 
         default:
           break
