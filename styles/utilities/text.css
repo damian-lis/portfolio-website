@@ -26,6 +26,18 @@
   line-height: 30px;
 }
 
+.text-size-17 {
+  font-size: 17px;
+}
+
+.text-size-20 {
+  font-size: 20px;
+}
+
+.letter-spacing-20 {
+  letter-spacing: 1px;
+}
+
 .text-dash::before {
   content: '-';
   display: inline-block;

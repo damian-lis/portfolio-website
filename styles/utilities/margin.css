@@ -48,7 +48,19 @@
   margin-top: 50px;
 }
 
+.mt-60 {
+  margin-top: 60px;
+}
+
+.mt-90 {
+  margin-top: 90px;
+}
+
 /* Margin left */
+
+.ml-5 {
+  margin-left: 5px;
+}
 
 .ml-10 {
   margin-left: 10px;
