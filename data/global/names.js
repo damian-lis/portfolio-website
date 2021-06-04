@@ -20,6 +20,7 @@ export const common = {
   header: 'header',
   list: 'list',
   image: 'image',
+  break: 'break',
   email: 'email',
   on: 'on',
   off: 'off',
@@ -43,6 +44,7 @@ export const elements = {
   span: 'span',
   ul: 'ul',
   li: 'li',
+  br: 'br',
 }
 
 export const elementProps = {
@@ -242,6 +244,8 @@ export const classNames = {
       dash: 'text-dash',
       center: 'text-center',
       lh: (value) => `text-lh-${value}`,
+      size: (value) => `text-size-${value}`,
+      letterSpacing: (value) => `letter-spacing-${value}`,
 
       sm: {
         left: 'sm-text-left',
@@ -251,6 +255,11 @@ export const classNames = {
 
     h: {
       full: 'h-full',
+    },
+
+    w: {
+      full: 'w-full',
+      max: (value) => `w-max-${value}`,
     },
 
     m: {
