@@ -1,6 +1,6 @@
 export default [
   {
-    href: '/',
+    href: '/portfolioWebsite.html',
     image: '/images/projects/PortfolioWebsite/introDesktop.gif',
     alt: 'Potfolio Website',
     title: 'Portfolio Website (OOP)',
@@ -14,7 +14,7 @@ export default [
   },
 
   {
-    href: '/',
+    href: '/talkToGisapiaAndTheOthers.html',
     image: '/images/projects/TalkToGisapiaAndTheOthers/introDesktop.gif',
     alt: 'Talk to Gisapia and the Others',
     title: 'Talk to Gisapia and the Others (OOP)',
@@ -29,7 +29,7 @@ export default [
   },
 
   {
-    href: '/',
+    href: '/emailsHandler.html',
     image: '/images/projects/EmailsHandler/emailsHandlerIntro.gif',
     alt: 'Emails Handler',
     title: 'Emails Handler',
