@@ -2,8 +2,8 @@ import themes from '/data/global/themes.js'
 import { idReferences, paths } from '/data/global/names.js'
 import { formFieldsInfo, sneakPeeksInfo } from '/data/informations/index.js'
 import {
-  skillsDescription,
-  aboutDescription,
+  skillsSectionDescription,
+  aboutSectionDescription,
 } from '/data/descriptions/index.js'
 import {
   Audio,
@@ -16,11 +16,11 @@ import {
 
 new DescriptionArrange({
   container: idReferences.about.description,
-  data: aboutDescription,
+  data: aboutSectionDescription,
 })
 new DescriptionArrange({
   container: idReferences.skills.description,
-  data: skillsDescription,
+  data: skillsSectionDescription,
 })
 new Theme({
   container: idReferences.theme.main,
