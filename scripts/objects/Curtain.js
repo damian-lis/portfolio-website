@@ -11,6 +11,7 @@ import {
   elements,
   events,
   styleProps,
+  toggleValue,
 } from '/data/global/names.js'
 
 class Curtain {
@@ -34,7 +35,7 @@ class Curtain {
       listeners: [
         {
           event: events.click,
-          cb: () => this.toggleShow({ toggle: common.off }),
+          cb: () => this.toggleShow({ toggle: toggleValue.off }),
         },
       ],
     })
@@ -42,12 +43,12 @@ class Curtain {
 
   toggleShow({ toggle, appendElements, cbsToCallOnHidden } = {}) {
     switch (toggle) {
-      case common.on:
+      case toggleValue.on:
         this.addCbsToCallOnHidden({ cbs: cbsToCallOnHidden })
         this.appendElements({ elements: appendElements })
         break
 
-      case common.off:
+      case toggleValue.off:
         if (this.preventHidden) return
         this.callCbsOnHidden()
         this.clear({ after: 200 })
@@ -110,7 +111,7 @@ class Curtain {
   }
 
   togglePreventHidden({ toggle }) {
-    this.preventHidden = toggle === common.on ? true : false
+    this.preventHidden = toggle === toggleValue.on ? true : false
   }
 
   addElToChildren({ element }) {

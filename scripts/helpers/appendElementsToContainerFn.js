@@ -1,34 +1,33 @@
-import { common } from '/data/global/names.js'
+import { types } from '/data/global/names.js'
 
-export default ({ elements = [], container }) => {
-  if (!container) return
+export default ({ elements, container }) => {
+  if (!container || !elements) return
 
   let containerEl = container
 
-  if (typeof container === common.string) {
+  if (typeof container === types.string) {
     containerEl = document.querySelector(container)
   }
 
-  elements.length &&
-    elements.map((element) => {
-      let el = element
+  elements.map((element) => {
+    let el = element
 
-      if (typeof el === common.string) {
-        el = document.querySelector(innerEl)
-      }
+    if (typeof element === types.string) {
+      el = document.querySelector(innerEl)
+    }
 
-      if (Array.isArray(el)) {
-        const innerEls = el
-        innerEls.map((innerElement) => {
-          let innerEl = innerElement
+    if (Array.isArray(el)) {
+      const innerEls = el
+      innerEls.map((innerElement) => {
+        let innerEl = innerElement
 
-          if (typeof el === common.string) {
-            innerEl = document.querySelector(innerElement)
-          }
-          containerEl.appendChild(innerEl)
-        })
-      } else containerEl.appendChild(el)
-    })
+        if (typeof innerElement === types.string) {
+          innerEl = document.querySelector(innerElement)
+        }
+        containerEl.appendChild(innerEl)
+      })
+    } else containerEl.appendChild(el)
+  })
 
   return containerEl
 }

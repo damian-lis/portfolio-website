@@ -7,7 +7,7 @@ import {
 import {
   classNames,
   paths,
-  common,
+  toggleValue,
   elements,
   styleProps,
   events,
@@ -26,8 +26,9 @@ class Audio {
       triggerActionOnWindowScrollFn({
         onWhatElement: trigger,
         cbOnEnterTriggerEl: () =>
-          this.toggleBtnComponent({ toggle: common.off }),
-        cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: common.on }),
+          this.toggleBtnComponent({ toggle: toggleValue.off }),
+        cbOnExitTriggerEl: () =>
+          this.toggleBtnComponent({ toggle: toggleValue.on }),
         modifier: 80,
       })
   }

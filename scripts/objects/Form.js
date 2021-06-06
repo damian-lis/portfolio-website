@@ -19,6 +19,7 @@ import {
   common,
   info,
   emailValidationRegexp,
+  toggleValue,
 } from '/data/global/names.js'
 
 class Form {
@@ -35,8 +36,9 @@ class Form {
       triggerActionOnWindowScrollFn({
         onWhatElement: trigger,
         cbOnEnterTriggerEl: () =>
-          this.toggleBtnComponent({ toggle: common.off }),
-        cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: common.on }),
+          this.toggleBtnComponent({ toggle: toggleValue.off }),
+        cbOnExitTriggerEl: () =>
+          this.toggleBtnComponent({ toggle: toggleValue.on }),
       })
   }
 
@@ -90,7 +92,7 @@ class Form {
       listeners: [
         {
           event: events.click,
-          cb: () => curtain.toggleShow({ toggle: common.off }),
+          cb: () => curtain.toggleShow({ toggle: toggleValue.off }),
         },
       ],
     })
@@ -335,7 +337,7 @@ class Form {
     )
     isInputNotificationVisible &&
       this.toggleFormTextInputsNotification({
-        toggle: common.off,
+        toggle: toggleValue.off,
         inputs: [input],
       })
   }
@@ -346,7 +348,7 @@ class Form {
     )
     isInputNotificationVisible &&
       this.toggleFormTextInputsNotification({
-        toggle: common.off,
+        toggle: toggleValue.off,
         inputs: [input],
       })
   }
@@ -362,15 +364,15 @@ class Form {
   }
 
   handleMainComponentCreate() {
-    this.toggleBtnComponent({ toggle: common.off })
+    this.toggleBtnComponent({ toggle: toggleValue.off })
     this.createMainElements()
     this.createMainComponents()
     curtain.toggleShow({
-      toggle: common.on,
+      toggle: toggleValue.on,
       appendElements: [this.mainComponent],
       cbsToCallOnHidden: [
         () => {
-          this.toggleBtnComponent({ toggle: common.on })
+          this.toggleBtnComponent({ toggle: toggleValue.on })
           this.resetFormTextInputsValue()
           this.resetDataFromUser()
         },
@@ -402,32 +404,32 @@ class Form {
     this.formEmailInput.value &&
       !isEmailValidate &&
       this.toggleFormTextInputsNotification({
-        toggle: common.on,
+        toggle: toggleValue.on,
         inputs: [this.formEmailInput],
         notificationNumber: 1,
       })
     emptyTextInputs.length &&
       this.toggleFormTextInputsNotification({
-        toggle: common.on,
+        toggle: toggleValue.on,
         inputs: emptyTextInputs,
       })
 
     if (!isEmailValidate || emptyTextInputs.length) return
 
     this.disableFormInputs()
-    this.toggleDeleteBtnComponent({ toggle: common.off })
-    this.toggleSpinnerComponent({ toggle: common.on })
+    this.toggleDeleteBtnComponent({ toggle: toggleValue.off })
+    this.toggleSpinnerComponent({ toggle: toggleValue.on })
     this.toggleFormSubmitInputlNotifications({
-      toggle: common.on,
+      toggle: toggleValue.on,
       notificationDuration: 5000,
     })
-    curtain.togglePreventHidden({ toggle: common.on })
+    curtain.togglePreventHidden({ toggle: toggleValue.on })
 
     const feedback = await this.handleEmailSent()
 
     this.resetFormTextInputsValue()
-    this.toggleSpinnerComponent({ toggle: common.off })
-    this.toggleFormSubmitInputlNotifications({ toggle: common.off })
+    this.toggleSpinnerComponent({ toggle: toggleValue.off })
+    this.toggleFormSubmitInputlNotifications({ toggle: toggleValue.off })
     this.hideTitleInfo()
     this.hideFormComponent()
     this.replaceTitleText({ text: feedback })
@@ -437,7 +439,7 @@ class Form {
 
     await setDelayFn(2000)
     this.setSelfDestructEventToMainComponent()
-    curtain.togglePreventHidden({ toggle: common.off })
+    curtain.togglePreventHidden({ toggle: toggleValue.off })
   }
 
   toggleDeleteBtnComponent({ toggle }) {
@@ -484,7 +486,7 @@ class Form {
       ]
 
       const rightNotificationEls =
-        toggle === common.on
+        toggle === toggleValue.on
           ? [notificationEls[notificationNumber ? notificationNumber : 0]]
           : notificationEls
 
@@ -518,7 +520,7 @@ class Form {
     ]
 
     switch (toggle) {
-      case common.on:
+      case toggleValue.on:
         formSubmitnotificationEls.map((notificationEl, index) => {
           const lastNotification =
             formSubmitnotificationEls.length === index + 1
@@ -569,7 +571,7 @@ class Form {
         })
         break
 
-      case common.off:
+      case toggleValue.off:
         setPropsFn({
           objs: [
             {
@@ -827,7 +829,7 @@ class Form {
           listeners: [
             {
               event: events.click,
-              cb: () => curtain.toggleShow({ toggle: common.off }),
+              cb: () => curtain.toggleShow({ toggle: toggleValue.off }),
             },
           ],
         },

@@ -1,4 +1,4 @@
-import { common, events } from '/data/global/names.js'
+import { types, events } from '/data/global/names.js'
 
 export default ({
   onWhatElement: trigerElement,
@@ -11,7 +11,7 @@ export default ({
   let flag = true
   let element = trigerElement
 
-  if (typeof trigerElement === common.string) {
+  if (typeof trigerElement === types.string) {
     element = document.querySelector(trigerElement)
   }
 

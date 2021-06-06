@@ -15,13 +15,19 @@ export const common = {
   styles: 'styles',
   TEXTAREA: 'TEXTAREA',
   type: 'type',
-  string: 'string',
   object: 'object',
   header: 'header',
   list: 'list',
   image: 'image',
   break: 'break',
   email: 'email',
+}
+
+export const types = {
+  string: 'string',
+}
+
+export const toggleValue = {
   on: 'on',
   off: 'off',
 }
