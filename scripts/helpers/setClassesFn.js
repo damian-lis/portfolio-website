@@ -41,7 +41,7 @@ export default ({ toggle, objs, delay }) => {
                   break
                 case toggleValue.off:
                   el.classList.remove(classEl)
-                  el.disabled = true
+                  el.disabled = false
                   break
 
                 default:
