@@ -17,7 +17,7 @@ const structure = {
     return {
       type: common.header,
       size,
-      content: content,
+      content,
       classes: (() => {
         const classesSet = []
 
@@ -54,11 +54,11 @@ const structure = {
     }
   },
 
-  im: (path, { mt = 10, mb = 20, maxWidth } = {}) => {
+  im: (imgPath, { mt = 10, mb = 20, maxWidth } = {}) => {
     return {
       type: common.image,
       element: elements.img,
-      content: `/images/projects/${path}`,
+      path: `/images/projects/${imgPath}`,
       classes: (() => {
         const classesSet = []
 
@@ -143,9 +143,9 @@ const structure = {
     return { type: common.break }
   },
 
-  s: (value) => `<strong>${value}</strong>`,
+  s: (content) => `<strong>${content}</strong>`,
 
-  a: (label, link) => `<a href=${link}>${label}</a>`,
+  a: (label, path) => `<a href=${path}>${label}</a>`,
 }
 
 const { h, p, im, c, l, b, s, a } = structure

@@ -55,7 +55,7 @@ class DataArrange {
           return createElementFn({
             element: elements.img,
             classes: object.classes,
-            src: object.content,
+            src: object.path,
           })
 
         case common.code:
