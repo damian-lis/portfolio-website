@@ -1,5 +1,7 @@
 import { h, p, im, c, l, b, s, a } from '/data/descriptions/structure.js'
 
+const folder = (path) => `FluentBlog/${path}`
+
 export default [
   h(`App description`, {
     align: 'center',
@@ -15,7 +17,7 @@ export default [
         'https://github.com/damian-lis/fluent-blog/blob/master/README.md'
       )})`,
     ],
-    { align: 'center', smAlign: 'center' }
+    { align: 'center' }
   ),
 
   h(`Table of contents:`),
@@ -38,11 +40,11 @@ export default [
 
   p([`Below is the desktop version of the application:`]),
 
-  im(`viewSites.gif`),
+  im(folder(`viewSites.gif`)),
 
   p([`Below is the mobile version of the application:`]),
 
-  im(`mobile.gif`),
+  im(folder(`mobile.gif`)),
 
   h(`2. Technologies`),
 
@@ -213,7 +215,7 @@ export default [
 
   p([`Below is a visual example of dynamically created projects description:`]),
 
-  im(`projectsExample.jpg`),
+  im(folder(`projectsExample.jpg`)),
 
   h(`3.2. A dynamic way of creating a page with the content of an article`, {
     size: 5,
@@ -311,7 +313,7 @@ export default [
 
   p([`Below is a visual example of dynamically created article teasers:`]),
 
-  im(`articleTeasersExample.jpg`),
+  im(folder(`articleTeasersExample.jpg`)),
 
   p([
     `To create a page of a specific article in a dynamic way (after clicking on a specific article teaser), a [slug].js file has been created in the pages/articles folder (it will dynamically build the page depending on the so-called article slug, i.e. its name).`,
@@ -489,7 +491,7 @@ export default [
 
   p([`Below is a visual example of a dynamically generated article:`]),
 
-  im(`articleExample.gif`),
+  im(folder(`articleExample.gif`)),
 
   h(`3.3. A button that allows to quickly return to the top of the page`, {
     size: 5,
@@ -503,7 +505,7 @@ export default [
 
   p([`Below is an visual example of this solution:`]),
 
-  im(`btnTopScrollExample.gif`),
+  im(folder(`btnTopScrollExample.gif`)),
 
   p([
     `For the above process is responsible component named BtnTopScroll, the implementation of which is below:`,
@@ -611,7 +613,7 @@ export default () => {
 
   p([`Below is a visual example of this solution:`]),
 
-  im(`loaderExample.gif`),
+  im(folder(`loaderExample.gif`)),
 
   p([
     `For the above process is responsible component named Loader, the implementation of which is below (along with the content of the associated file):`,
