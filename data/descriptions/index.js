@@ -1,5 +1,6 @@
-import { about, skills } from './sections/index.js'
 import {
+  aboutSection,
+  skillsSection,
   fluentBlog,
   emailsHandler,
   privacyPolicy,
@@ -8,9 +9,9 @@ import {
 } from './sites/index.js'
 
 export {
-  about as aboutDescription,
+  aboutSection as aboutSectionDescription,
+  skillsSection as skillsSectionDescription,
   privacyPolicy as privacyPolicyDescription,
-  skills as skillsDescription,
   fluentBlog as fluentBlogDescription,
   emailsHandler as emailsHandlerDescription,
   portfolioWebsite as portfolioWebsiteDescription,
