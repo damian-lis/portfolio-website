@@ -34,6 +34,14 @@
   font-size: 20px;
 }
 
+.text-size-30 {
+  font-size: 30px;
+}
+
+.text-size-35 {
+  font-size: 35px;
+}
+
 .letter-spacing-20 {
   letter-spacing: 1px;
 }
