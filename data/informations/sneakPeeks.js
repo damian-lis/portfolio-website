@@ -1,7 +1,7 @@
 export default [
   {
     href: '/sites/portfolioWebsite.html',
-    image: '/images/projects/PortfolioWebsite/introDesktop.gif',
+    image: '/images/readme/introDesktop.gif',
     alt: 'Potfolio Website',
     title: 'Portfolio Website (OOP)',
     intro:
