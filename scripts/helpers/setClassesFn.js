@@ -16,8 +16,8 @@ export default ({ toggle, objs, delay }) => {
           }
 
           obj.classes.map((classEl) => {
-            if (obj.removeFromElements) {
-              obj.removeFromElements.map((removeFromElement) => {
+            if (obj.removeFromEls) {
+              obj.removeFromEls.map((removeFromElement) => {
                 let removeFromEl = removeFromElement
 
                 if (typeof removeFromElement === types.string) {
