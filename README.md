@@ -4,15 +4,15 @@ This project provides information about me and projects that I have done and all
 
 <br/>
 
-Desktop version:
+## Desktop version:
 
-<!--  -->
+![](images/readme/introDesktop.gif)
 
 <br/>
 
-Mobile version:
+## Mobile version:
 
-<!--  -->
+![](images/readme/introMobile.gif)
 
 <br/>
 
@@ -41,7 +41,7 @@ The following technologies were used in the project:
 
 ## 2. Setup
 
-You don't need any commands to run this project
+You don't need any commands to run this project.
 
 <br/>
 
@@ -100,7 +100,7 @@ There are three folders in the data folder: descriptions, global and information
 
 The structure of the data folder is shown below:
 
-<!-- Zdjęcie data folderu -->
+![](images/readme/dataFolder.jpg)
 
 <br/>
 
@@ -115,9 +115,10 @@ Table of content of this section:
 ### 1. Global folder
 
 First, let me explain the global folder (because many files depend on it).
-Below is an example of the global folder structure:
 
-<!-- Zdjęcie folderu global -->
+Below is an example of global folder content:
+
+![](images/readme/globalFolderJs.jpg)
 
 As we can see above, there are two files: names.js, which contains all names in the project (string types written as variables to avoid typos), and themes.js, which contains three themes (appropriate color combinations) that can be set by the user via the Theme.js object (this process is explained later).
 
@@ -196,7 +197,7 @@ As we can see in the example above, objects contain properties in the form of di
  h: (value) => `h${value}`
 ```
 
-Thanks to above solution, I can provide a different html value for the h tag.
+Thanks to above solution, I can provide a different html value for the `<h></h>` tag.
 
 <br/>
 
@@ -291,15 +292,13 @@ In the case of the next folder (of data folder) called descriptions, there are:
 
 <br/>
 
-Below are examples of description files:
+Below is an example of description folder content:
 
-<!-- Zdjęcie descriptions -->
+![](images/readme/descriptionsFolder.jpg)
 
 <br/>
 
-First, I'd like to explain the structure.js file as that is where all the descriptions in the sites folder are based on.
-
-Below is the content of the discussed file:
+First, I'd like to explain the structure.js file as that is where all the descriptions in the sites folder are based on. Below is the content of the discussed file:
 
 ```
 //data/descriptions/structure.js file:
@@ -546,6 +545,12 @@ The last folder in the data folder is named informations, which contains files w
 
 <br/>
 
+Below is an example of informations folder content:
+
+![](images/readme/informationsFolder.jpg)
+
+<br/>
+
 In order to illustrate the content of the files regarding the informations folder, below there is an example file with informations about form fields:
 
 ```
@@ -595,9 +600,9 @@ As we can see in the example above, it is a collection of information about form
 
 ### 3.1.2. Description of the structure and content of the scripts folder
 
-The scripts folder contains four folders: helpers, objects, plugins and sites and its structure is shown below:
+The scripts folder contains four folders: helpers, objects, plugins and sites and its content is shown below:
 
-<!-- Zdjęce Struktura folderu scripts -->
+![](images/readme/scriptsFolder.jpg)
 
 <br/>
 
@@ -614,9 +619,11 @@ Table of content of this section:
 
 In the case of the helpers folder, we deal with files that contain functions that are responsible for specific logic and are reusable throughout the project (they can also be used in other projects). They play the role of support functions that increase the readability of the code and the developer experience.
 
-Below is an example of the helpers folder structure:
+<br/>
 
-<!-- Zdjęcie folderu helpers -->
+Below is an example of the helpers folder content:
+
+![](images/readme/helpersFolder.jpg)
 
 <br/>
 
@@ -641,6 +648,8 @@ Helpers list:
 ### 1.1 appendElementsToContainerFn
 
 The first helper in the order is appendElementsToContainerFn which is responsible for attaching elements to the container.
+
+<br/>
 
 Its implementation is shown below:
 
@@ -693,7 +702,7 @@ In the body of a function we have a logic in which:
 
 - the passed values are checked (without them, the function will not execute its logic),
 - when references have been passed to the function, appropriate elements are searched for in the DOM structure on their basis,
-- the elements are attached to the container element based on the map method
+- the elements are attached to the container element based on the map method.
 
 <br/>
 
@@ -808,6 +817,8 @@ As we can see in the above example, we pass an object with the name of button el
 
 The next helper in the order is setClassesFn which is responsible for setting different classes for different elements.
 
+<br/>
+
 Its implementation is shown below:
 
 ```
@@ -901,7 +912,7 @@ As we can see in the above example, the function destructs the passed object int
 
 In the body of a function we have a logic in which:
 
-- the passed objs is checked ((if not sent, the function is returned))
+- the passed objs is checked (if not sent, the function is returned),
 - a DOM elements are searched if the passed elements are a reference,
 - the helperLogic function is created, in which, classes on the elements are added or removed depending on the arguments passed to helper,
 - at the very end, when the delay value has been passed to the function, the setTimeout function is called with created helperLogic function and returned in the helper (because of the setTimeout specific id that it returns), if delay value is not passed, the helperLogic function itself is called.
@@ -1141,7 +1152,7 @@ export default ({
 
 As we can see in the above example, the function destructs the passed object into:
 
-- triggerElement (renamed from onWhatElement) on the basis of which appropriate actions are triggered ,
+- triggerElement (renamed from onWhatElement) on the basis of which appropriate actions are triggered,
 - the cbOnEnterTriggerEl function that is to be called when the triggerElement is exceeded during the window scroll (by default it returns a function to avoid errors),
 - the cbOnExitTriggerEl function to be called when the triggerElement is leaved during the window scroll (by default it returns a function to avoid errors),
 - the so-called modifier, thanks to which we can slightly change the place where the action is triggered relative to the triggerElement (when there is no value given, the value of 0 is taken by default, where the action call stays in the point of the triggerElement).
@@ -1150,9 +1161,9 @@ As we can see in the above example, the function destructs the passed object int
 
 In the body of a function we have a logic in which:
 
-- we check whether a given element trigger has been sent (if not, the whole function is returned to avoid an error)
-- if a trigger element reference was sent to the function, then on its basis the given element is searched in the DOM structure and assigned to the variable element.
-- at the very end we have an event listener whose event is set to scroll and calls a function in which when the screen scroll aligns with the top edge of the tigger element, the cbOnEnterTriggerEl function is triggered, otherwise the cbOnExitTriggerEl function (a flag is set to prevent nonsensical calls of the same function when scrolling)
+- we check whether a given element trigger has been sent (if not, the whole function is returned to avoid an error),
+- if a trigger element reference was sent to the function, then on its basis the given element is searched in the DOM structure and assigned to the variable element,
+- at the very end we have an event listener whose event is set to scroll and calls a function in which when the screen scroll aligns with the top edge of the tigger element, the cbOnEnterTriggerEl function is triggered, otherwise the cbOnExitTriggerEl function (a flag is set to prevent nonsensical calls of the same function when scrolling).
 
 <br/>
 
@@ -1177,17 +1188,17 @@ As we can see above, an object with a trigger element is passed to the helper, t
 
 <br/>
 
-### 2. Scripts folder
+### 2. Objects folder
 
-Moving down the scripts folder structure we have an objects folder, the contents of which look like this:
+Moving down the scripts folder structure we have an objects folder, the content of which look like this:
 
-<!-- Zdjęcie plików w folderze objects -->
-
-<br/>
+![](images/readme/objectsFolder.jpg)
 
 The objects folder contains files with objects (classes) with appropriate methods, the structure of which is very similar due to the use of helper functions.
 
 These class objects were introduced to help manage the logic of certain components on the pages and to practice deeply object oriented programming.
+
+<br/>
 
 Below is an example of a combination of two objects (SneakPeeks.js and Audio.js) to show the similarities of properties and methods:
 
@@ -1331,11 +1342,11 @@ Such a structure was designed to ensure ease of development and increase the dev
 
 The next folder is the plugins folder, which contains files related to various packages that help in the development of the project.
 
-The structure of this folder is shown below:
-
-<!-- Struktura folderu plugins -->
-
 <br/>
+
+Below is an example of plugins folder content::
+
+![](images/readme/pluginsFolderJs.jpg)
 
 As we can see above, in the plugins folder there is only the prism.js file, which is responsible for the appropriate arrangement of the code presented on the page. The second file of this package is in the styles/plugins/prism.css folder, which is responsible for the appropriate styles in the presented code. (examples will be later in the description).
 
@@ -1343,25 +1354,23 @@ As we can see above, in the plugins folder there is only the prism.js file, whic
 
 Below is an visual example of using PrismJS plugin:
 
-<!-- PrismJS kod visual-->
+![](images/readme/prismJSexample.jpg)
 
 <br/>
 
 ### 4. Sites folder
 
-The last folder in this scripts folder structure is the sites folder, the contents of which are shown below:
+The last folder in this scripts folder structure is the sites folder, the content of which are shown below:
 
-<!-- Zdjęcie struktury sites folder js -->
-
-<br/>
+![](images/readme/sitesFolderJs.jpg)
 
 In the example above, we can see that the sites folder contains various js files with the names of individual site that act as main scripts used on the html files of a specific site (home.js corresponds to index.html file).
 
+<br/>
+
 Here I would also like to add that all html files for subpages are in the sites folder (index.html (home) is out). Below is the sites folder with html files that are related to the subpages:
 
-<!-- Zdjęcie struktury sites folder html-->
-
-<br/>
+![](images/readme/sitesFolderHtml.jpg)
 
 Each of the js files in sites folder is responsible for generating appropriate instances of classes that play a specific role on the site (handling a specific functionality on the website).
 
@@ -1454,9 +1463,11 @@ Thanks to the solution presented in the whole point, it is very easy to add new 
 
 The styles folder consists of the components, global, plugins, and utilities folders (index.css at the end, which exports all local files).
 
-The following is an example of the styles folder structure:
+<br/>
 
-<!-- Zdjęcie folderu styles -->
+The following is an example of the styles folder content:
+
+![](images/readme/stylesFolder.jpg)
 
 <br/>
 
@@ -1475,9 +1486,9 @@ In the case of the first folder named components, we have style files in it that
 
 <br/>
 
-Below is an example of the components folder structure:
+Below is an example of the components folder content:
 
-<!-- Zdjęcie folderu components -->
+![](images/readme/componentsFolder.jpg)
 
 <br/>
 
@@ -1533,7 +1544,7 @@ As we can see above, a simple css file with different styles for individual form
 
 Below is a visual representation of the form component:
 
-<!-- Zdjęcie komponentu form -->
+![](images/readme/formExample.jpg)
 
 <br/>
 
@@ -1543,9 +1554,9 @@ In the case of the next folder named global, we deal with global styles.
 
 <br/>
 
-The structure of this folder is shown below:
+The content of this folder is shown below:
 
-<!-- Zdjęcie struktury folderu global -->
+![](images/readme/globalFolderCss.jpg)
 
 <br/>
 
@@ -1564,11 +1575,9 @@ The next folder in the sequence of styles folder is the plugins folder which con
 
 <br/>
 
-The structure of this folder is shown below:
+The content of this folder is shown below:
 
-<!-- Zdjęcie struktury plugins style -->
-
-<br/>
+![](images/readme/pluginsFolderCss.jpg)
 
 As we can see above, in this folder there is only one file called prism.css, thanks to which we have the appropriate coloring placed on the code page (part of the Prism.js package, the rest of which is in scripts/plugins/prism.js).
 
@@ -1576,7 +1585,7 @@ As we can see above, in this folder there is only one file called prism.css, tha
 
 Below is a visual example of this solution (in conjunction with scripts/plugins/prism.js):
 
-<!-- Przykład prism js -->
+![](images/readme/prismJSexample.jpg)
 
 <br/>
 
@@ -1586,11 +1595,9 @@ The last folder in the styles folder is called utilities, in which files contain
 
 <br/>
 
-The structure of this folder is shown below:
+The content of this folder is shown below:
 
-<!-- Zdjęcie struktury utilities -->
-
-<br/>
+![](images/readme/utilitiesFolder.jpg)
 
 As we can see in the example above, we have a many style files that correspond to some style property. We also have sets of various properties that are often used together in a project, e.g. the card.css file.
 
@@ -1613,8 +1620,6 @@ Below is an example of the card.css file:
   background-color: var(--previewShadow);
 }
 ```
-
-<br/>
 
 It is also worth mentioning that the file structure.css is inspired by the Bootstrap framework, which includes row and column properties (with some own modifications).
 
@@ -1788,7 +1793,7 @@ In order to obtain a better user experience while using the website, an animated
 
 Below is a visual example of the applied background:
 
-<!-- Przykład animacji tła -->
+![](images/readme/Particles.gif)
 
 To achieve the above effect, Particle and Particles objects were created.
 
@@ -2202,7 +2207,7 @@ Each page has an option to set the theme in three colors: black, blue and purple
 
 Below is an example of setting the three mentioned themes:
 
-<!-- GIF USTAWIANIA MOTYWU -->
+![](images/readme/changeTheme.gif)
 
 <br/>
 
@@ -2558,7 +2563,7 @@ Each additional functionality on the page is triggered by buttons located on the
 
 Below is a visual example of discussed buttons on the privacy policy page (this example because we have a list of all buttons together):
 
-<!-- Przykład zestawu buttonów po lewej x 3 -->
+![](images/readme/leftButtons.jpg)
 
 <br/>
 
@@ -2647,7 +2652,7 @@ The first of the additional functionalities on the website which I would like to
 
 Below is a visual example of turning audio on and off on the home page:
 
-<!-- Wizualny przykłąd włąćzania i wyłączania dźwieku -->
+![](images/readme/toggleAudio.gif)
 
 <br/>
 
@@ -2656,7 +2661,9 @@ Below is a visual example of turning audio on and off on the home page:
 Before I go on to the implementation of the Audio object, which is responsible for
 handling the audio on the page, I would like to focus on how to create an instance of this object.
 
-The following is an example of creating an instance of the Audio object in sites/home.js file which is the main script for the index.html file (home page)):
+<br/>
+
+The following is an example of creating an instance of the Audio object in sites/home.js file which is the main script for the index.html file (home page):
 
 ```
 //scripts/sites/home.js file:
@@ -2864,11 +2871,9 @@ The toggleBtnComponent method that is used in this helper uses the setPropsFn he
 
 Below is a visual example of the above solution in which, when scrolled, the toggleBtnComponent method is called with a different toggle value depending on the position of the trigger:
 
-<!-- Przykład chowania się i pokazywania buttonów -->
+![](images/readme/showAndHideButtons.gif)
 
-<br/>
-
-As we can see above, the button for sound handling hides and appears faster in relation to the adjacent form button due to the modifier discussed earlier (in a later section, I will explain how to create a form using the form button shown above).
+As we can see above, the sound button behaves differently to the form button due to the modifier discussed earlier (in a later section, I will explain how to create a form component using the form button shown above).
 
 <br/>
 
@@ -2879,6 +2884,8 @@ Summarizing, thanks to this solution, when the trigger element is crossed during
 ### 3.7. Description of the handleAudio method
 
 In the case of the created this.btn element in createElements method, we have an event listener that is set to event click, which calls the handleAudio method.
+
+<br/>
 
 Below is an excerpt from the createElements method that pertains to this.btn element, along with the implementation of handleAudio method:
 
@@ -2922,9 +2929,7 @@ The discussed object is responsible for creating the container element (curtain)
 
 At the beginning I would like to mention that this container element (curtain) appears in the form of a dark background with the simultaneous immobilization of the page, which can be seen in the example below when creating the form component:
 
-<!-- Przedstawienie klikniecia formularza i jego stworzenia -->
-
-<br/>
+![](images/readme/createForm.gif)
 
 Based on the example presented above, we can see that after click on the button on the left side of the main page (this solution is also available on every subpage) a form component appears (after the short animation) with the curtain simultaneously.
 
@@ -3233,9 +3238,7 @@ As we can see above, the toggleActive method through the helper setPropsFn, simi
 
 Below is a visual example of adding a form component to a curtain by pressing the button with the form icon (this process will be discussed in the next section):
 
-<!-- Przykład dodawania forumarza -->
-
-<br/>
+![](images/readme/createForm.gif)
 
 The above operation is possible by calling the toggleShow method, to which the toggle "on" value is passed.
 
@@ -3293,7 +3296,7 @@ As we can see, thanks to this method, we can set the variable this.preventHidden
 
 Below is a visual example that shows the inability to close the form component when sending data to the server:
 
-<!-- Brak moliwości usunięcia formularza gif -->
+![](images/readme/preventFormDelete.gif)
 
 <br/>
 
@@ -3369,7 +3372,7 @@ In this section I will add that at the very end of toggleShow method (in the cas
 
 Below is a visual example of removing the component form by clicking on the curtain and by clicking on the X button of the form component (in both cases the toggleShow method is called with the toggle parameter set to "off" - for the X button of the form component, this process will be discussed in the next section):
 
-<!-- Usunięcie formularza gif -->
+![](images/readme/deleteForm.gif)
 
 <br/>
 <br/>
@@ -3392,7 +3395,7 @@ In this section, I would like to focus on explaining the creation of the form co
 
 Below is one more visual example of the logic of form component which is create by a Form object(an example also used when discussing the Curtain object):
 
-<!-- Przykład tworzenia formularza wizualny -->
+![](images/readme/createForm.gif)
 
 <br/>
 
@@ -3523,6 +3526,8 @@ FORM DELETE LOGIC PART:
 &nbsp; 3.38. Description of delete a form component through the this.btnDelete element
 
 <br/>
+
+### FORM BUTTON CREATING PART:
 
 ### 3.1. Code example of the constructor of the Form object
 
@@ -3679,13 +3684,13 @@ The toggleBtnComponent method that is used in this helper uses the setPropsFn he
 
 Below is a visual example of the above solution in which, when scrolled, the toggleBtnComponent method is called with a different toggle value depending on the position of the trigger:
 
-<!-- Przykład chowania się i pokazywania buttonów -->
-
-<br/>
+![](images/readme/showAndHideButtons.gif)
 
 Summarizing, thanks to this solution, when the trigger element is crossed during the page scroll, above discussed method will be called with the toggle value of "on" (styles are added thanks to which the button is hidden) and when the trigger element is leaved by scrolling, the same method is called but with toggle set to "off" (styles are added thanks to which the button is show).
 
 <br/>
+
+### FORM COMPONENT CREATING PART:
 
 ### 3.7. Description of the handleMainComponentCreate method
 
@@ -4134,9 +4139,9 @@ As we can see above, it is a simple method that combines individual previously c
 
 <br/>
 
-Below is an visual example of a component created:
+Below is an visual example of the form component created:
 
-<!-- Przykłąd stworoznego komponentu form -->
+![](images/readme/formExample.jpg)
 
 <br/>
 
@@ -4171,6 +4176,8 @@ As we can see in the above code example, the toggleShow method is called with:
 - with a callback that calls 3 methods : toggleBtnComponent, resetFormTextInputsValue,resetDataFromUser (this methods will be explained later).
 
 <br/>
+
+### FORM INPUT LOGIC PART:
 
 ### 3.14 Description of the input (text, email and textarea) logic with the handleFormTextInputTyping and the handleFormTextInputFocus methods
 
@@ -4313,7 +4320,7 @@ In this case, with the value toggle "off" helper setClassesFn removes the class 
 
 Below is a visual example of hiding notifications using the previously mentioned methods:
 
-<!-- Wizualny przykład chowania się notyfikacji -->
+![](images/readme/focusInputs.gif)
 
 <br/>
 
@@ -4373,17 +4380,23 @@ This solution has been introduced because sometimes the user will click on the n
 
 Below is a visual example of this solution:
 
-<!-- Przykłąd kliknięcia w notyfikację -->
+![](images/readme/formNotificationsClick.gif)
 
 <br/>
+
+### FORM SUBMIT LOGIC PART:
 
 ### 3.16. Description of the form submit logic with the handleFormSubmit method
 
 The handleFormSubmit method is responsible for handling the logic of sending data to the server and the behavior of the form component. This method is called by the event submit, which was set in the this.form element (the call is done directly by clicking the input type submit).
 
-Below is a fragment of the createMainElements method in which the this.form element is created and the implementation of the handleFormSubmit method (scripts/objects/Form.js):
+<br/>
+
+Below is a fragment of the createMainElements method in which the this.form element is created and the implementation of the handleFormSubmit method:
 
 ```
+//scripts/objects/Form.js file:
+
     this.form = createElementFn({
       element: elements.form,
       classes: [classNames.form.main],
@@ -4594,9 +4607,13 @@ As we can see above, it is a simple condition, in which if the email is invalid 
 
 <br/>
 
-Below is a visual example of the appearance of various notifications:
+Below is a visual examples of the appearance of various notifications:
 
-<!-- Pojawianie się rónych notyfikacji -->
+![](images/readme/showNotifications.gif)
+
+<br/>
+
+![](images/readme/emailNotification.gif)
 
 <br/>
 
@@ -4645,7 +4662,7 @@ This solution was introduced so that the user could not enter anything when send
 
 A visual example of excluding inputs from use is shown below:
 
-<!-- Wizualny przykłąd wyłączenia inputów z uzytku -->
+![](images/readme/disabledInputs.gif)
 
 <br/>
 
@@ -4746,7 +4763,7 @@ As we can see above, this simple method, through the setPropsFn helper, in the c
 
 Below is a visual example of this solution:
 
-<!-- Przykład spinnera -->
+![](images/readme/spinner.gif)
 
 <br/>
 
@@ -4849,7 +4866,7 @@ The implementation of mentioned method along with a fragment of the call of this
   }
 ```
 
-As we can see above, it is a fairly extensive method, in which all notifications about input with the submit type are searched at the beginning. Then, when the toggle parameter with the value "on" is passed to the method (as in the discussed case), two setProps helpers are called depending on the length of the notification table . The first helper sets the appropriate styles to appear notification after the specified time, which increases with iteration through the array with notification elements (index \* notificationDuration), and the second helper sets the removal of previously set styles after a set time (delay + notificationDuration).
+As we can see above, it is a fairly extensive method, in which all notifications about input with the submit type are searched at the beginning. Then, when the toggle parameter with the value "on" is passed to the method (as in the discussed case), two setProps helpers are called depending on the length of the notification array . The first helper sets the appropriate styles to appear notification after the specified time, which increases with iteration through the array with notification elements (index \* notificationDuration), and the second helper sets the removal of previously set styles after a set time (delay + notificationDuration).
 
 In the case of the last iteration on the notification elements array, the second helper, which removes the set styles by the earlier one, is not called (so that the user can see the notification continuously until he receives a response from the server).
 
@@ -4861,7 +4878,7 @@ Thanks to this solution, we have a smooth appearance and disappearance of indivi
 
 Below is an example of the discussed solution:
 
-<!-- Przykłąd pojawiania się i znikania notyfikacji input submita -->
+![](images/readme/spinner.gif)
 
 <br/>
 
@@ -4885,7 +4902,7 @@ As we can see above, when calling the method, we pass the toggle parameter with 
 
 Below is a visual example of this solution:
 
-<!-- Przykład braku moliwosci usuniecia formularza przez kurtynę -->
+![](images/readme/preventFormDelete.gif)
 
 <br/>
 
@@ -4931,9 +4948,17 @@ Depending on the response from the server, an appropriate message is returned fr
 
 <br/>
 
-Below is a visual with three replies from the server:
+Below are three examples of replies from the server:
 
-<!-- Wizualny przykład 3 odpowiedzi z serwera -->
+![](images/readme/messageSent.jpg)
+
+<br/>
+
+![](images/readme/errorTryAgain.jpg)
+
+<br/>
+
+![](images/readme/noConnection.jpg)
 
 <br/>
 
@@ -4961,7 +4986,7 @@ As we can see above, it is a very simple method that removes the value of all in
 
 Below is a visual example of this method:
 
-<!-- Wizualny przykład usuwania wartości inputów -->
+![](images/readme/deleteInputsValue.gif)
 
 <br/>
 
@@ -5211,7 +5236,7 @@ The method itself, through the setPropsFn helper, reveals the this.whisper eleme
 
 Below is a visual example of the form component animation methods discussed above:
 
-<!-- Animacja po wysłaniu formularza -->
+![](images/readme/deleteInputsValue.gif)
 
 <br/>
 
@@ -5228,6 +5253,8 @@ After the methods calling the animation the setDelayFn helper is called, the exa
 The helper we see above (the logic of the helper shown above was discussed in the section on helpers) executes at the same time as the form component animation methods and is used to delay the handleFormSubmit method for 2 seconds before the next methods are called (so that the animation can complete itself).
 
 <br/>
+
+### FORM DELETE LOGIC PART:
 
 ### 3.36. Description of the setSelfDestructEventToMainComponent method (inside the handleFormSubmit method)
 
@@ -5263,7 +5290,7 @@ As we can see above, it is a method that sets the listener to the event click on
 
 Below is a visual example of this solution:
 
-<!-- Wizualny przykład usunięcia komponentu form po animacji -->
+![](images/readme/formClickAfterAnimation.gif)
 
 <br/>
 
@@ -5283,7 +5310,7 @@ As we can see above, this method is called with the toggle parameter set to "off
 
 Below is a visual example of this solution
 
-<!-- Wizualny przykład usunięcia komponentu form po animacji poprzez kurtynę -->
+![](images/readme/curtainClickAfterAnimation.gif)
 
 <br/>
 
@@ -5313,9 +5340,9 @@ The exact operation of the toggleShow method is explained in the Curtain object 
 
 <br/>
 
-Below is a visual example of this solution
+Below is a visual example of this solution (along with an example of clicking on the curtain)
 
-<!-- Wizualny przykład usunięcia komponentu form po animacji poprzez button X -->
+![](images/readme/deleteForm.gif)
 
 <br/>
 <br/>
@@ -5340,7 +5367,7 @@ As in the case of audio handling and creating a form, this functionality is call
 
 Below is a visual example of this solution on the privacy policy page (the same solution applies to subpages related to the descriptions of projects I have created):
 
-<!-- Zdjęcie buttona cofania na private policy -->
+![](images/readme/backBtn.gif)
 
 <br/>
 
@@ -5453,13 +5480,13 @@ Table of content of this section:
 
 Sneak peeks of the projects that I have created appear at the bottom of the home page. It looks like this:
 
-<!-- Przykład z zajawkami -->
+![](images/readme/sneakPeeks.jpg)
 
 <br/>
 
 ### 2. Description of creating an instance of the SneakPeeks object
 
-Before I go to the description of the logic of this object, which is responsible for creating the sneak peeks presented above, I would like to present the process of creating its instance with the transfer of appropriate parameters.
+Before I go to the description of the logic of this object, which is responsible for creating the sneak peeks presented above, I would like to present the process of creating its instance with the pass of appropriate parameters.
 
 <br/>
 
@@ -5649,11 +5676,13 @@ As we can see above, this is large but very simple method, in which, through the
 
 <br/>
 
-#### 3.4. Description of the createComponents method (constructor)
+### 3.4. Description of the createComponents method (constructor)
 
-Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below (scripts/objects/Audio.js):
+Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below:
 
 ```
+//scripts/objects/SneakPeeks.js file:
+
 createComponents() {
     this.sneakPeekComponents = this.elements.map(
       ({
@@ -5838,7 +5867,7 @@ The action of the mentioned helper applies to all the sneak peeks when you scrol
 
 A visual example of this process is shown below:
 
-<!-- Wizualny przykład pokazania sneak peeks -->
+![](images/readme/sneakPeeksApperance.gif)
 
 <br/>
 
@@ -5897,19 +5926,23 @@ Table of content of this section:
 
 Most of the descriptions in the project were created using the DescriptionArrange object. This solution was introduced because creating descriptions in the html file itself is not readable.
 
-In the case of the home site, there is a description of my person and my skills created dynamically by the DescriptionArrange object (such a dynamic description is also created on the privacy policy site and on each subsites with the description of the created project - a visual example of them is provided at the end of this subsection).
+In the case of the home site, there is a description of my person and my skills created dynamically by the DescriptionArrange object (such a dynamic description is also created on the privacy policy site and on each subpages with the description of the created project - a visual example of them is provided at the end of this subsection).
 
 <br/>
 
 Below is a visual example of my person and my skills section descriptions on the home site:
 
-<!-- Przykłady opisów na stronie głównej -->
+![](images/readme/aboutSection.jpg)
 
 <br/>
 
-Below is a visual example of the TalkToGisapiaAndTheOthers subsite description:
+![](images/readme/skillsSection.jpg)
 
-<!-- Przykłady opisów Gisapii -->
+<br/>
+
+Below is a visual example of the TalkToGisapiaAndTheOthers subpage description:
+
+![](images/readme/gisapiaDescription.gif)
 
 <br/>
 
