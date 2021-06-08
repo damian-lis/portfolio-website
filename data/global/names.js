@@ -327,6 +327,11 @@ export const paths = {
   arrowImg: '/images/icons/arrow.svg',
   mainPageIntroduction: '/audio/mainPageIntroduction.mp3',
   privacyPolicyIntroduction: '/audio/privacyPolicyIntroduction.mp3',
+  fluentBlogIntroduction: '/audio/fluentBlogIntroduction.mp3',
+  emailsHandlerIntroduction: '/audio/emailsHandlerIntroduction.mp3',
+  portfolioWebsiteIntroduction: '/audio/portfolioWebsiteIntroduction.mp3',
+  talkToGisapiaAndTheOthersIntroduction:
+    '/audio/talkToGisapiaAndTheOthersIntroduction.mp3',
 }
 
 export const emailValidationRegexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
