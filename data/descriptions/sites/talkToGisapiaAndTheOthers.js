@@ -2730,4 +2730,13 @@ class MessengerInterface {
   p([
     `As we can see above, this method and its way of calling is very similar to the one mentioned in the previous subsection, so I will not focus on explaining it.`,
   ]),
+
+  b(),
+
+  p([
+    `This description is also on my github ${a(
+      'here',
+      'https://github.com/damian-lis/emails-handler/blob/main/README.md'
+    )}`,
+  ]),
 ]
