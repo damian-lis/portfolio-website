@@ -26,7 +26,7 @@ new Theme({
 new Back({ container: idReferences.global.leftContainer })
 new Audio({
   container: idReferences.global.leftContainer,
-  path: paths.privacyPolicyIntroduction,
+  path: paths.talkToGisapiaAndTheOthersIntroduction,
 })
 new Form({
   container: idReferences.global.leftContainer,

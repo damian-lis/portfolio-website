@@ -1,5 +1,5 @@
 import themes from '/data/global/themes.js'
-import { idReferences } from '/data/global/names.js'
+import { idReferences, paths } from '/data/global/names.js'
 import { formFieldsInfo } from '/data/informations/index.js'
 import { emailsHandlerDescription } from '/data/descriptions/index.js'
 import {
@@ -26,7 +26,7 @@ new Theme({
 new Back({ container: idReferences.global.leftContainer })
 new Audio({
   container: idReferences.global.leftContainer,
-  path: paths.fluentBlogPageInfo,
+  path: paths.emailsHandlerIntroduction,
 })
 new Form({
   container: idReferences.global.leftContainer,
