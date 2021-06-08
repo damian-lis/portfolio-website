@@ -10,16 +10,6 @@ export default [
     smAlign: 'center',
   }),
 
-  p(
-    [
-      `(detailed description can be found on my github ${a(
-        'here',
-        'https://github.com/damian-lis/fluent-blog/blob/master/README.md'
-      )})`,
-    ],
-    { align: 'center' }
-  ),
-
   h(`Table of contents:`),
 
   l([s('1. Introduction'), s('2. Technologies'), s('3. Features')], {
