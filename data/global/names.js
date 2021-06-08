@@ -16,6 +16,7 @@ export const common = {
   styles: 'styles',
   type: 'type',
   object: 'object',
+  language: 'language',
   Name: 'Name',
   name: 'name',
   Subject: 'Subject',
