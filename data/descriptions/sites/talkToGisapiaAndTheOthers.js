@@ -1,13 +1,14 @@
 import { h, p, im, c, l, b, s, a } from '/data/descriptions/structure.js'
+import { txtAlign, programmingLngs } from '/data/global/names.js'
 
 const folder = (path) => `TalkToGisapiaAndTheOthers/${path}`
 
 export default [
   h(`App description`, {
-    align: 'center',
+    align: txtAlign.center,
     size: 2,
     mt: 10,
-    smAlign: 'center',
+    smAlign: txtAlign.center,
   }),
 
   h(`Table of contents:`),
@@ -862,7 +863,7 @@ export default [
   <link rel="stylesheet" href="styles/main/privatePolicy.css">
   <link rel="stylesheet" href="styles/main/selectCharUI.css">
 </head>`,
-    { lng: 'html' }
+    { lng: programmingLngs.html }
   ),
 
   h(`3.1.4. The structure of js objects and their methods`, { size: 5 }),

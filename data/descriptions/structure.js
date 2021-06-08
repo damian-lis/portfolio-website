@@ -1,4 +1,5 @@
 import { classNames, common, elements } from '/data/global/names.js'
+import { txtAlign, elPosition, programmingLngs } from '/data/global/names.js'
 
 const { m, text, border, w, position } = classNames.utilities
 
@@ -9,8 +10,8 @@ const structure = {
       size = 3,
       mt = 60,
       mb = 20,
-      align = 'left',
-      smAlign = 'left',
+      align = txtAlign.left,
+      smAlign = txtAlign.left,
       underline,
     } = {}
   ) => {
@@ -35,7 +36,7 @@ const structure = {
 
   p: (
     content,
-    { my = 10, align = 'justify', smAlign = 'left', lh = 25 } = {}
+    { my = 10, align = txtAlign.justify, smAlign = txtAlign.left, lh = 25 } = {}
   ) => {
     return {
       type: common.paragraph,
@@ -79,8 +80,16 @@ const structure = {
       elements: { pre: elements.pre, code: elements.code },
       content,
       classes: {
-        code: [lng ? `language-${lng}` : `language-js`],
-        pre: [lng ? `language-${lng}` : `language-js`],
+        code: [
+          lng
+            ? `${common.language}-${lng}`
+            : `${common.language}-${programmingLngs.js}`,
+        ],
+        pre: [
+          lng
+            ? `${common.language}-${lng}`
+            : `${common.language}-${programmingLngs.js}`,
+        ],
       },
     }
   },
@@ -88,9 +97,9 @@ const structure = {
   l: (
     content,
     {
-      listAlign = 'justify',
-      listSmAlign = 'left',
-      listPosition = 'relative',
+      listAlign = txtAlign.justify,
+      listSmAlign = txtAlign.left,
+      listPosition = elPosition.relative,
       itemMb = 15,
       itemMl = 20,
       itemDash = true,

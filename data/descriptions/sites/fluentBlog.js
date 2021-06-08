@@ -1,13 +1,14 @@
 import { h, p, im, c, l, b, s, a } from '/data/descriptions/structure.js'
+import { txtAlign, programmingLngs } from '/data/global/names.js'
 
 const folder = (path) => `FluentBlog/${path}`
 
 export default [
   h(`App description`, {
-    align: 'center',
+    align: txtAlign.center,
     size: 2,
     mt: 10,
-    smAlign: 'center',
+    smAlign: txtAlign.center,
   }),
 
   h(`Table of contents:`),
@@ -96,7 +97,7 @@ export default [
     - CSS
     - JavaScript (OOP)
   ---`,
-    { lng: 'html' }
+    { lng: programmingLngs.html }
   ),
 
   p([
@@ -127,8 +128,7 @@ export default [
         createdAt: data.date ? Number(new Date(data.date)) : null
       };
     });
-  };`,
-    'js'
+  };`
   ),
 
   p([`In the case of the getList function we have the following logic:`]),
@@ -189,8 +189,7 @@ export default [
         </Layout>
       </>
     );
-  }`,
-    'js'
+  }`
   ),
 
   p([
@@ -245,7 +244,7 @@ export default [
   Consider the two ways to make your life easier, the first one will be the Immer - Immer is a package that lets you deliver the next state by "mutating" the draft of the previous state:
   
   Article copied from **[here](www.dev.to/fkrasnowski/immer-vs-ramda-two-approaches-towards-writing-redux-reducers-3fe0)**`,
-    { lng: 'html' }
+    { lng: programmingLngs.html }
   ),
 
   p([
@@ -291,8 +290,7 @@ export default [
         </Layout>
       </>
     );
-  }`,
-    { lng: 'js' }
+  }`
   ),
 
   p([
@@ -338,8 +336,7 @@ export default [
       slug,
       createdAt: data.date ? Number(new Date(data.date)) : null
     };
-  };`,
-    { lng: 'js' }
+  };`
   ),
 
   p([
@@ -389,8 +386,7 @@ export default [
     const article = await getFileBySlug('_articles', slug);
   
     return article;
-  };`,
-    { lng: 'js' }
+  };`
   ),
 
   p([

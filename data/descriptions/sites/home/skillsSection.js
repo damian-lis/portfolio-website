@@ -1,11 +1,13 @@
 import { h, l } from '/data/descriptions/structure.js'
+import { txtAlign } from '/data/global/names.js'
+
 export default [
   h('Skills', {
     mt: 10,
     mb: 10,
-    align: 'center',
+    align: txtAlign.center,
     underline: true,
-    smAlign: 'center',
+    smAlign: txtAlign.center,
   }),
 
   h('1. Frontend:', { size: 5, mt: 20, mb: 5 }),
@@ -19,7 +21,7 @@ export default [
       'Next (basic knowledge of the concept of server side rendering and how to use it),',
       'TypeScript (basic knowledge of types).',
     ],
-    { listAlign: 'left' }
+    { listAlign: txtAlign.left }
   ),
 
   h('2. Backend:', { size: 5, mt: 40, mb: 5 }),
@@ -30,6 +32,6 @@ export default [
       'MongoDB (basic handling with Express),',
       'PHP (basic syntax and logic).',
     ],
-    { listAlign: 'left' }
+    { listAlign: txtAlign.left }
   ),
 ]

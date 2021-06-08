@@ -1,26 +1,49 @@
 export const common = {
   headline: 'headline',
+  header: 'header',
   title: 'title',
   image: 'image',
   paragraph: 'paragraph',
   link: 'link',
+  list: 'list',
+  break: 'break',
   code: 'code',
   theme: 'theme',
-  submit: 'submit',
   fieldname: 'fieldname',
-  message: 'message',
   listeners: 'listeners',
   attributes: 'attributes',
   classes: 'classes',
   styles: 'styles',
-  TEXTAREA: 'TEXTAREA',
   type: 'type',
   object: 'object',
-  header: 'header',
-  list: 'list',
-  image: 'image',
-  break: 'break',
+  Name: 'Name',
+  name: 'name',
+  Subject: 'Subject',
+  subject: 'subject',
+  Email: 'Email',
   email: 'email',
+  Message: 'Message',
+  message: 'message',
+  TEXTAREA: 'TEXTAREA',
+  textarea: 'textarea',
+  text: 'text',
+  submit: 'submit',
+  Send: 'Send',
+}
+
+export const programmingLngs = {
+  js: 'js',
+  html: 'html',
+}
+
+export const elPosition = {
+  relative: 'relative',
+}
+
+export const txtAlign = {
+  center: 'center',
+  left: 'left',
+  justify: 'justify',
 }
 
 export const types = {

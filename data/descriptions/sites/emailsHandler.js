@@ -1,11 +1,12 @@
 import { h, p, c, l, b, s, a } from '/data/descriptions/structure.js'
+import { txtAlign } from '/data/global/names.js'
 
 export default [
   h(`App description`, {
-    align: 'center',
+    align: txtAlign.center,
     size: 2,
     mt: 10,
-    smAlign: 'center',
+    smAlign: txtAlign.center,
   }),
 
   h(`Table of contents:`),
