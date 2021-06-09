@@ -126,7 +126,7 @@ As we can see above, there are two files: names.js, which contains all names in 
 
 The following is an example of abbreviated names.js file:
 
-```
+```js
 //data/global/names.js file:
 
 export const common = {
@@ -191,10 +191,10 @@ more code here...
 
 As we can see in the example above, objects contain properties in the form of different names that contain string values. In some cases, a function was used to make it easier to specify a given name, for example:
 
-```
+```js
 //data/global/themes.js file:
 
- h: (value) => `h${value}`
+h: (value) => `h${value}`
 ```
 
 Thanks to above solution, I can provide a different html value for the `<h></h>` tag.
@@ -203,7 +203,7 @@ Thanks to above solution, I can provide a different html value for the `<h></h>`
 
 Below is an example of the content of the themes.js file (second file in global folder):
 
-```
+```js
 //data/global/themes.js file:
 
 export default {
@@ -300,10 +300,11 @@ Below is an example of description folder content:
 
 First, I'd like to explain the structure.js file as that is where all the descriptions in the sites folder are based on. Below is the content of the discussed file:
 
-```
+```js
 //data/descriptions/structure.js file:
 
 import { classNames, common, elements } from '/data/global/names.js'
+import { txtAlign, elPosition, programmingLngs } from '/data/global/names.js'
 
 const { m, text, border, w, position } = classNames.utilities
 
@@ -314,15 +315,15 @@ const structure = {
       size = 3,
       mt = 60,
       mb = 20,
-      align = 'left',
-      smAlign = 'left',
+      align = txtAlign.left,
+      smAlign = txtAlign.left,
       underline,
     } = {}
   ) => {
     return {
       type: common.header,
       size,
-      content: content,
+      content,
       classes: (() => {
         const classesSet = []
 
@@ -340,7 +341,7 @@ const structure = {
 
   p: (
     content,
-    { my = 10, align = 'justify', smAlign = 'left', lh = 25 } = {}
+    { my = 10, align = txtAlign.justify, smAlign = txtAlign.left, lh = 25 } = {}
   ) => {
     return {
       type: common.paragraph,
@@ -359,11 +360,11 @@ const structure = {
     }
   },
 
-  im: (path, { mt = 10, mb = 20, maxWidth } = {}) => {
+  im: (imgPath, { mt = 10, mb = 20, maxWidth } = {}) => {
     return {
       type: common.image,
       element: elements.img,
-      content: `/images/projects/${path}`,
+      path: `/images/projects/${imgPath}`,
       classes: (() => {
         const classesSet = []
 
@@ -384,8 +385,16 @@ const structure = {
       elements: { pre: elements.pre, code: elements.code },
       content,
       classes: {
-        code: [lng ? `language-${lng}` : `language-js`],
-        pre: [lng ? `language-${lng}` : `language-js`],
+        code: [
+          lng
+            ? `${common.language}-${lng}`
+            : `${common.language}-${programmingLngs.js}`,
+        ],
+        pre: [
+          lng
+            ? `${common.language}-${lng}`
+            : `${common.language}-${programmingLngs.js}`,
+        ],
       },
     }
   },
@@ -393,9 +402,9 @@ const structure = {
   l: (
     content,
     {
-      listAlign = 'justify',
-      listSmAlign = 'left',
-      listPosition = 'relative',
+      listAlign = txtAlign.justify,
+      listSmAlign = txtAlign.left,
+      listPosition = elPosition.relative,
       itemMb = 15,
       itemMl = 20,
       itemDash = true,
@@ -448,9 +457,9 @@ const structure = {
     return { type: common.break }
   },
 
-  s: (value) => `<strong>${value}</strong>`,
+  s: (content) => `<strong>${content}</strong>`,
 
-  a: (label, link) => `<a href=${link}>${label}</a>`,
+  a: (label, path) => `<a href=${path}>${label}</a>`,
 }
 
 const { h, p, im, c, l, b, s, a } = structure
@@ -479,19 +488,20 @@ a - <a></a>
 
 To understand well how to create descriptions using the above-mentioned solution, below is a fragment of the TalkToGisapiaAndTheOthers project description:
 
-```
-//data/descriptions/sites/talkToGisapiaAndTheOthers file:
+```js
+//data/descriptions/sites/talkToGisapiaAndTheOthers.js file:
 
 import { h, p, im, c, l, b, s, a } from '/data/descriptions/structure.js'
+import { txtAlign, programmingLngs } from '/data/global/names.js'
 
 const folder = (path) => `TalkToGisapiaAndTheOthers/${path}`
 
 export default [
   h(`App description`, {
-    align: 'center',
+    align: txtAlign.center,
     size: 2,
     mt: 10,
-    smAlign: 'center',
+    smAlign: txtAlign.center,
   }),
 
   h(`Table of contents:`),
@@ -531,6 +541,7 @@ export default [
   p([
     `Most of the project is built in oop javascript for a very in-depth understanding of the language. The list of the most interesting solutions is presented below:`,
   ]),
+]
 ```
 
 As we can see above, using the discussed solution, we can easily create a description by using various functions that return appropriate objects with information about a given element (we can also modify the default objects that have been set in the structure.js file by sending appropriate parameters to the function) .
@@ -553,38 +564,40 @@ Below is an example of informations folder content:
 
 In order to illustrate the content of the files regarding the informations folder, below there is an example file with informations about form fields:
 
-```
+```js
 //data/informations/formFields.js file:
+
+import { common } from '/data/global/names.js'
 
 export default [
   {
-    label: 'Name',
-    type: 'text',
-    name: 'name',
+    label: common.Name,
+    type: common.text,
+    name: common.name,
     notifications: ['name is required 😡'],
   },
   {
-    label: 'Subject',
-    type: 'text',
-    name: 'subject',
+    label: common.Subject,
+    type: common.text,
+    name: common.subject,
     notifications: ['subject is required 😡'],
   },
   {
-    label: 'Email',
-    type: 'email',
-    name: 'email',
+    label: common.Email,
+    type: common.email,
+    name: common.email,
     notifications: ['email is required 😡', 'invalid email 😡'],
   },
   {
-    label: 'Message',
-    type: 'textarea',
-    name: 'message',
+    label: common.Message,
+    type: common.textarea,
+    name: common.message,
     notifications: ['message is required 😡'],
   },
   {
-    type: 'submit',
-    value: 'Wyślij',
-    name: 'submit',
+    type: common.submit,
+    value: common.Send,
+    name: common.submit,
     notifications: [
       'Please wait a moment! 🕐',
       'literally a moment! 🛩',
@@ -653,7 +666,7 @@ The first helper in the order is appendElementsToContainerFn which is responsibl
 
 Its implementation is shown below:
 
-```
+```js
 //scripts/helpers/appendElementsToContainerFn.js file:
 
 import { types } from '/data/global/names.js'
@@ -708,8 +721,8 @@ In the body of a function we have a logic in which:
 
 To understand how to use this helper in practice, below is an example of its use in createMainComponents method of Form object:
 
-```
-/scripts/objects/Form.js file:
+```js
+//scripts/objects/Form.js file:
 
 this.titleComponent = appendElementsToContainerFn({
   elements: [this.title, this.whisper, this.infoComponent],
@@ -729,7 +742,7 @@ Next helper that I would like to briefly describe is createElementFn, which is u
 
 Its implementation is shown below:
 
-```
+```js
 //scripts/helpers/createElementFn.js file:
 
 import { common } from '/data/global/names.js'
@@ -799,7 +812,7 @@ In the body of a function we have a logic in which:
 
 To understand how to use this helper in practice, below is an example of its use in createElements method of Audio object:
 
-```
+```js
 //scripts/objects/Audio.js file:
 
 this.btn = createElementFn({
@@ -821,7 +834,7 @@ The next helper in the order is setClassesFn which is responsible for setting di
 
 Its implementation is shown below:
 
-```
+```js
 //scripts/helpers/setClassesFn.js file:
 
 import { types, toggleValue } from '/data/global/names.js'
@@ -921,7 +934,7 @@ In the body of a function we have a logic in which:
 
 To understand how to use this helper in practice, below is an example of its use in toggleFormTextInputsNotification method of Form object:
 
-```
+```js
 //scripts/objects/Form.js file:
 
 setClassesFn({
@@ -954,7 +967,7 @@ Going forward, next helper in the sequence is called setPropsFn, whose logic is 
 
 Its implementation is shown below:
 
-```
+```js
 //scripts/helpers/setPropsFn.js file:
 
 import { types, toggleValue } from '/data/global/names.js'
@@ -1041,7 +1054,7 @@ Due to the very similarity of logic to the previous helper, I will not focus on 
 
 To understand how to use this helper in practice, below is an example of its use in toggleFormTextInputsNotification method of Form object:
 
-```
+```js
 //scripts/objects/Curtain.js file:
 
 setPropsFn({
@@ -1075,7 +1088,7 @@ The next very short helper is setDelayFn, which allows you to set a delay for so
 
 Its implementation is shown below:
 
-```
+```js
 //scripts/helpers/setDelayFn.js file:
 
 export default async (delay = 0) => {
@@ -1095,7 +1108,7 @@ In the body of a function we have a logic in which:
 
 To understand how to use this helper in practice, below is an example of its use in handleFormSubmit method of Form object:
 
-```
+```js
 //scripts/objects/Form.js file:
 
 this.revealTitleWhisper()
@@ -1115,7 +1128,7 @@ The last of the helpers available in the project is triggerActionOnWindowScrollF
 
 Its implementation is shown below:
 
-```
+```js
 // scripts/helpers/triggerActionOnWindowScrollFn.js file:
 
 import { types, events } from '/data/global/names.js'
@@ -1173,12 +1186,13 @@ I would also like to point out that when changing the screen layout, e.g. from d
 
 To understand how to use this helper in practice, below is an example of its use in constructor of SneakPeeks object:
 
-```
+```js
 //scripts/objects/SneakPeeks.js file:
 
 triggerActionOnWindowScrollFn({
   onWhatElement: trigger,
-  cbOnEnterTriggerEl: () => this.toggleBtnComponent({ toggle: toggleValue.off }),
+  cbOnEnterTriggerEl: () =>
+    this.toggleBtnComponent({ toggle: toggleValue.off }),
   cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: toggleValue.on }),
   modifier: 80,
 })
@@ -1202,7 +1216,7 @@ These class objects were introduced to help manage the logic of certain componen
 
 Below is an example of a combination of two objects (SneakPeeks.js and Audio.js) to show the similarities of properties and methods:
 
-```
+```js
 //scripts/objects/SneakPeeks.js file:
 
 import {
@@ -1249,13 +1263,13 @@ class SneakPeeks {
     })
   }
 
-  more code here...
+  //more code here...
 }
 ```
 
 <br/>
 
-```
+```js
 //scripts/objects/Audio.js file:
 
 import {
@@ -1287,7 +1301,8 @@ class Audio {
         onWhatElement: trigger,
         cbOnEnterTriggerEl: () =>
           this.toggleBtnComponent({ toggle: toggleValue.off }),
-        cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: toggleValue.on }),
+        cbOnExitTriggerEl: () =>
+          this.toggleBtnComponent({ toggle: toggleValue.on }),
         modifier: 80,
       })
   }
@@ -1317,7 +1332,7 @@ class Audio {
     })
   }
 
-  more code here...
+  //more code here...
 }
 ```
 
@@ -1378,7 +1393,7 @@ Each of the js files in sites folder is responsible for generating appropriate i
 
 To illustrate the content of these files, index.js file was used, which is the main script of index.html:
 
-```
+```js
 //scripts/sites/index.js file:
 
 import themes from '/data/global/themes.js'
@@ -1448,10 +1463,14 @@ Each of the created instances accepts object with similar elements like containe
 
 To attach such a js file to the html file, we use a simple script tag, thanks to which we can import various functionalities to a given site (in this case to the index.html homesite):
 
-```
+```html
 <!-- index.html file: -->
 
-<script type="module" type="text/javascript" src="/scripts/sites/main.js"></script>
+<script
+  type="module"
+  type="text/javascript"
+  src="/scripts/sites/main.js"
+></script>
 ```
 
 Thanks to the solution presented in the whole point, it is very easy to add new functionalities to our website while keeping the code clean (the logic of each of the presented objects will be described later).
@@ -1494,7 +1513,7 @@ Below is an example of the components folder content:
 
 In order to illustrate the content of the files, the fragment of form.css file was used, which contains classes and properties related to the form component:
 
-```
+```css
 /* styles/components/form.css file: */
 
 .form-main-container {
@@ -1534,8 +1553,6 @@ In order to illustrate the content of the files, the fragment of form.css file w
   text-align: center;
   transition: 0.7;
 }
-
-more code here...
 ```
 
 As we can see above, a simple css file with different styles for individual form elements.
@@ -1605,7 +1622,7 @@ As we can see in the example above, we have a many style files that correspond t
 
 Below is an example of the card.css file:
 
-```
+```css
 /* styles/utilities/card.css file: */
 
 .card {
@@ -1627,7 +1644,7 @@ It is also worth mentioning that the file structure.css is inspired by the Boots
 
 Below is an example of the structure.css file:
 
-```
+```css
 /* styles/utilities/structure.css file: */
 
 /* Row */
@@ -1668,8 +1685,7 @@ Below is an example of the structure.css file:
 .col-35 {
   flex-basis: 35%;
 }
-
-up to 100%...
+/* up to 100%...*/
 
 @media screen and (max-width: 800px) {
   .row-xy {
@@ -1682,31 +1698,33 @@ up to 100%...
 
 To understand well how to use the styles presented above, I will use a fragment of the index.html structure:
 
-```
+```html
 <!-- index.html file: -->
 
 <section class="mb-40">
-    <div class="card p-30 element-center pr-7 sm-wrap-x-500 sm-p-20 slideInFromLeft">
-       <div class="row-xy">
-           <div  class="col-45 content-center-xy sm-mb-10 showObject">
-            <img class=" w-full rounded" src="/images/about/me.jpg" alt="">
-           </div>
-           <div class="col-55 content-center-xy sm-mt-10 showObject">
-            <div class="card-inner pl-30 pt-30 sm-pl-0">
-                <div class="preview-container">
-                    <div id="preview-corner-tl" class="preview-corner"></div>
-                    <div id="preview-corner-tr" class="preview-corner"></div>
-                    <h3 class="mb-20 text-underline">What I do?</h3>
-                    <p>I am a Frontend Developer</p>
-                    <p>who creates web applications,</p>
-                    <p>sites and many other web solutions</p>
-                    <div id="preview-corner-br" class="preview-corner"></div>
-                    <div id="preview-corner-bl" class="preview-corner"></div>
-                </div>
-            </div>
-           </div>
-       </div>
+  <div
+    class="card p-30 element-center pr-7 sm-wrap-x-500 sm-p-20 slideInFromLeft"
+  >
+    <div class="row-xy">
+      <div class="col-45 content-center-xy sm-mb-10 showObject">
+        <img class=" w-full rounded" src="/images/about/me.jpg" alt="" />
+      </div>
+      <div class="col-55 content-center-xy sm-mt-10 showObject">
+        <div class="card-inner pl-30 pt-30 sm-pl-0">
+          <div class="preview-container">
+            <div id="preview-corner-tl" class="preview-corner"></div>
+            <div id="preview-corner-tr" class="preview-corner"></div>
+            <h3 class="mb-20 text-underline">What I do?</h3>
+            <p>I am a Frontend Developer</p>
+            <p>who creates web applications,</p>
+            <p>sites and many other web solutions</p>
+            <div id="preview-corner-br" class="preview-corner"></div>
+            <div id="preview-corner-bl" class="preview-corner"></div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 ```
 
@@ -1747,19 +1765,24 @@ The mentioned element with the id property acts as a container for the elements 
 
 Below is an example of such a solution of the index.html file:
 
-```
+```html
 <!-- index.html file: -->
 
 <section class="mb-30">
-    <div class="card element-center wrap-x-700 px-30 pb-30 pt-30 sm-p-20 sm-wrap-x-500 slideInFromLeft">
-        <div class="row-y ">
-            <div class="col-100 showObject">
-                <div id="skills-description"  class="card-inner row-y element-center p-20">
-                     <!-- DescriptionArrange -->
-               </div>
-            </div>
+  <div
+    class="card element-center wrap-x-700 px-30 pb-30 pt-30 sm-p-20 sm-wrap-x-500 slideInFromLeft"
+  >
+    <div class="row-y ">
+      <div class="col-100 showObject">
+        <div
+          id="skills-description"
+          class="card-inner row-y element-center p-20"
+        >
+          <!-- DescriptionArrange -->
         </div>
-     </div>
+      </div>
+    </div>
+  </div>
 </section>
 ```
 
@@ -1815,7 +1838,7 @@ To make it easier to find yourself in the description below, there is a list of 
 
 ### 2.1. Code example of the Particle object constructor
 
-```
+```js
 //scripts/objects/Particle.js file:
 
 class Particle {
@@ -1855,7 +1878,7 @@ As we can see in the code example in the constructor we have only following vari
 
 Below is an implementation of draw method of discussed object:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   draw() {
@@ -1873,7 +1896,7 @@ As we can see in the code example above, the draw method draws a given particle 
 
 Below is an implementation of update method of discussed object:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   update() {
@@ -1937,7 +1960,7 @@ To make it easier to find yourself in the description below, there is a list of 
 
 <br/>
 
-```
+```js
 //scripts/objects/Particles.js file:
 
 class Particles {
@@ -1973,7 +1996,7 @@ As we can see in the code example above we have three variables in the construct
 
 Below is an implementation of setIsMobile method:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   setIsMobile() {
@@ -1989,7 +2012,7 @@ As we can see above, it is a simple method in which the screen width is checked 
 
 After assigning values to variables, the createElements method is called, the implementation of which is shown below:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   createElements() {
@@ -2008,7 +2031,7 @@ As we can see above, it is a simple method that creates this.canvas element via 
 
 Below is an example of setContext method:
 
-```
+```js
 // scripts/objects/Particles.js file:
 
   setContext() {
@@ -2026,7 +2049,7 @@ As we can see above, this method sets context 2d and canvas size to the size of 
 
 Below is an example of listenForResize method and related resize method:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   listenForResize() {
@@ -2051,7 +2074,7 @@ As we can see above, the listenForResize method sets the event resize on the win
 
 Below is an implementation of start method:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   start({ themeObj }) {
@@ -2070,7 +2093,7 @@ As we can see above this method takes an object with themes and starts the entir
 
 Below is an implementation of setTheme method:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   setTheme({ themeObj }) {
@@ -2088,7 +2111,7 @@ As we can see above, it is a method which, based on the passed theme, selects th
 
 Below is an implementation of init method:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   init() {
@@ -2117,7 +2140,7 @@ As we can see above, this is the method responsible for initialization the parti
 
 Below is an implementation of animate method:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   animate() {
@@ -2138,7 +2161,7 @@ As we can see above, the animate method is responsible for setting the particles
 
 Below is an implementation of connect method:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   connect() {
@@ -2172,7 +2195,7 @@ As we can see in the example above, the connect method allows you to manipulate 
 
 Below is an implementation of update method:
 
-```
+```js
 //scripts/objects/Particles.js file:
 
   update() {
@@ -2219,7 +2242,7 @@ The above logic is possible thanks to the Theme object, an instance of which is 
 
 For example, for the home page, the instance of this object is created in the index.js file as shown below:
 
-```
+```js
 //scripts/objects/index.js file:
 
 new Theme({
@@ -2274,7 +2297,7 @@ To make it easier to find yourself in the description below, there is a list of 
 
 The implementation of this Theme object is shown below:
 
-```
+```js
 // scripts/objects/Theme.js file:
 
 class Theme {
@@ -2311,7 +2334,7 @@ As we can see in the code example above, in the constructor we have following va
 
 Implementation of the setInitialThemeNam method is presented below:
 
-```
+```js
 //scripts/objects/Theme.js file:
 
   setInitialThemeName() {
@@ -2329,7 +2352,7 @@ As we can see above, it is a simple method that either takes the theme name save
 
 The implementation of the setInitialThemeObject method is below:
 
-```
+```js
 //scripts/objects/Theme.js file:
 
 setInitialThemeObject() {
@@ -2345,7 +2368,7 @@ As we can see in code example above this method, based on the previously determi
 
 Next, in the constructor logic, the createElements method is called, the implementation of which is below:
 
-```
+```js
 //scripts/objects/Theme.js file:
 
   createElements() {
@@ -2402,7 +2425,7 @@ As we can see above, in this method at the very beginning, an instance of the ba
 
 After calling the createElements method described above, the createComponents method is called, the implementation of which is below:
 
-```
+```js
 // scripts/objects/Theme.js file:
 
   createComponents() {
@@ -2430,7 +2453,7 @@ At the end part of the constructor logic of discussed object, the method setGlob
 
 The implementation of the first of this method is presented below:
 
-```
+```js
 //scripts/objects/Theme.js file:
 
   setGlobalVariables({ themeObj } = {}) {
@@ -2455,7 +2478,7 @@ The last method in the constructor is createBackgroundAnimation method which is 
 
 In the case of the second, previously mentioned method (createBackgroundAnimation) its implementation is as follows:
 
-```
+```js
 //scripts/objects/Theme.js file:
 
   createBackgroundAnimation() {
@@ -2481,7 +2504,7 @@ Describing the rest of the operation of the Theme object, changing the theme is 
 
 Below is a fragment of the createElements method that concerns the this.optionsDots array and the implementation of the handleDotClick method:
 
-```
+```js
 //scripts/objects/Theme.js file:
 
     this.optionsDots = Object.keys(this.themesObj).map((themeName) =>
@@ -2531,7 +2554,7 @@ Next three methods are called to which the object with the selected theme is pas
 - background.setTheme (method for setting the theme of the animation object - the method was discussed in the Particles object section) ,
 - saveThemeNameInLocalStorage, the implementation of which is shown below:
 
-```
+```js
 //scripts/objects/Theme.js file:
 
   saveThemeNameInLocalStorage({ themeName }) {
@@ -2575,7 +2598,7 @@ The element of the container to which the buttons shown above are attached has a
 
 The styles for the discussed solution are presented below:
 
-```
+```css
 /* styles/components/globalLeftContainer.css file: */
 
 #global-left-container {
@@ -2665,7 +2688,7 @@ handling the audio on the page, I would like to focus on how to create an instan
 
 The following is an example of creating an instance of the Audio object in sites/home.js file which is the main script for the index.html file (home page):
 
-```
+```js
 //scripts/sites/home.js file:
 
 new Audio({
@@ -2720,7 +2743,7 @@ To make it easier to find yourself in the description below, there is a list of 
 
 After explaining how the instances of the Audio object are created for different pages, now I would like to present the implementation of this object below:
 
-```
+```js
 //scripts/objects/Audio.js file:
 
 class Audio {
@@ -2737,7 +2760,8 @@ class Audio {
         onWhatElement: trigger,
         cbOnEnterTriggerEl: () =>
           this.toggleBtnComponent({ toggle: toggleValue.off }),
-        cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: toggleValue.on }),
+        cbOnExitTriggerEl: () =>
+          this.toggleBtnComponent({ toggle: toggleValue.on }),
         modifier: 80,
       })
   }
@@ -2759,7 +2783,7 @@ As we can see in the code example above, in constructor of the object we have fo
 
 After assigning values to variables, the createElements method is called, the implementation of which is below:
 
-```
+```js
 //scripts/objects/Audio.js file:
 
   createElements() {
@@ -2793,7 +2817,7 @@ As we can see above, the discussed method uses the createElementFn helper to cre
 
 Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below:
 
-```
+```js
 //scripts/objects/Audio.js file:
 
   createComponents() {
@@ -2822,7 +2846,7 @@ At the very end in the constructor logic there is a conditional call (depending 
 
 Below is an example of calling this helper along with the toggleBtnComponent method that is passed to it:
 
-```
+```js
 //scripts/objects/Audio.js file:
 
     trigger &&
@@ -2889,7 +2913,7 @@ In the case of the created this.btn element in createElements method, we have an
 
 Below is an excerpt from the createElements method that pertains to this.btn element, along with the implementation of handleAudio method:
 
-```
+```js
 //scripts/objects/Audio.js file:
 
   this.btn = createElementFn({
@@ -2983,7 +3007,7 @@ To make it easier to find yourself in the description below, there is a list of 
 
 Below is an implementation of the Curtain object constructor:
 
-```
+```js
 //scripts/objects/Curtain.js file:
 
 class Curtain {
@@ -3027,7 +3051,7 @@ As we can see in the code example above in the object constructor we have follow
 
 Next, in the constructor logic, the createElements method is called the implementation of which is below:
 
-```
+```js
 // scripts/objects/Curtain.js file:
 
   createElements() {
@@ -3058,7 +3082,7 @@ At the end of the constructor logic created element (this.curtain) is attached t
 
 The main method that calls the rest of the Curtain object methods is the toggleShow method, the implementation of which is shown below:
 
-```
+```js
 //scripts/objects/Curtain.js file:
 
   toggleShow({ toggle, appendElements, cbsToCallOnHidden } = {}) {
@@ -3104,8 +3128,8 @@ In first scenario where toggleShow method is called with toggle value "on", the 
 
 Below is a fragment of the toggleShow method in which the discussed method is called and its implementation next to it:
 
-```
-//scripts/objects/Form.js file:
+```js
+//scripts/objects/Curtain.js file:
 
   this.addCbsToCallOnHidden({ cbs: cbsToCallOnHidden })
 
@@ -3126,8 +3150,8 @@ Next, in the toggleShow method (with the toggle parameter value set to "on") the
 
 Below is a fragment of the toggleShow method in which the discussed method is called and its implementation next to it:
 
-```
-//scripts/objects/Form.js file:
+```js
+//scripts/objects/Curtain.js file:
 
   this.appendElements({ elements: appendElements })
 
@@ -3161,8 +3185,8 @@ In the penultimate place in method toggleShow (with the toggle parameter value s
 
 Below is a fragment of the toggleShow method in which the discussed method is called and its implementation next to it:
 
-```
-//scripts/objects/Form.js file:
+```js
+//scripts/objects/Curtain.js file:
 
   this.toggleBodyFreeze({ toggle })
 
@@ -3199,8 +3223,8 @@ The last method that is called in toggleShow (with the toggle parameter value se
 
 Below is a fragment of the toggleShow method in which the discussed method is called and its implementation next to it:
 
-```
-//scripts/objects/Form.js file:
+```js
+//scripts/objects/Curtain.js file:
 
   toggleActive({ toggle }) {
     setPropsFn({
@@ -3248,7 +3272,7 @@ The above operation is possible by calling the toggleShow method, to which the t
 
 In order to better understand this and the next description (with the toggle parameter value set to "off"), the toggleShow method has been quoted below once again to make it easier to refer to the described logic below:
 
-```
+```js
 //scripts/objects/Curtain.js file:
 
   toggleShow({ toggle, appendElements, cbsToCallOnHidden } = {}) {
@@ -3280,8 +3304,8 @@ In the case when toggleShow method is called with toggle value "off", at the beg
 
 Below is an example of an implementation of the togglePreventHidden method and an example of calling it in a Form object in the handleFormSubmit method:
 
-```
-//scripts/objects/Curtain.js file:
+```js
+//scripts/objects/Form.js file:
 
   curtain.togglePreventHidden({ toggle: toggleValue.on })
 
@@ -3308,8 +3332,8 @@ If the value of this.preventHidden is false previously passed callbacks (sent wh
 
 Below is a fragment of the toggleShow method in which the discussed method is called and its implementation next to it:
 
-```
-//scripts/objects/Form.js file:
+```js
+//scripts/objects/Curtain.js file:
 
   this.callCbsOnHidden()
 
@@ -3330,8 +3354,8 @@ The next method that is called in sequence is clear method.
 
 Below is a fragment of the toggleShow method in which the discussed method is called and its implementation with related methods next to it:
 
-```
-//scripts/objects/Form.js file:
+```js
+//scripts/objects/Curtain.js file:
 
   this.clear({ after: 200 })
 
@@ -3407,7 +3431,7 @@ Before I go on to the implementation of the Form object, which is responsible fo
 
 The following is an example of creating an instance of the Form object in sites/home.js file which is the main script for the index.html file (home page):
 
-```
+```js
 //scripts/sites/index.js file:
 
 new Form({
@@ -3533,7 +3557,7 @@ FORM DELETE LOGIC PART:
 
 Moving on to the logic of the discussed object, first I would like to focus on the constructor of the object, which is very simple and is presented below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
 class Form {
@@ -3551,7 +3575,8 @@ class Form {
         onWhatElement: trigger,
         cbOnEnterTriggerEl: () =>
           this.toggleBtnComponent({ toggle: toggleValue.off }),
-        cbOnExitTriggerEl: () => this.toggleBtnComponent({ toggle: toggleValue.on }),
+        cbOnExitTriggerEl: () =>
+          this.toggleBtnComponent({ toggle: toggleValue.on }),
       })
   }
 }
@@ -3573,7 +3598,7 @@ As we can see in the code example above we have following variables in the const
 
 Next, after variables in the constructor, the createInitialElements method is called, the implementation of which is below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   createInitialElements() {
@@ -3610,7 +3635,7 @@ Going further in the logic of the discussed object constructor, we have a call t
 
 Below is an example of this method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   createInitialComponents() {
@@ -3639,7 +3664,7 @@ At the very end in the constructor logic there is a conditional call (depending 
 
 Below is an example of calling this helper along with the toggleBtnComponent method that is passed to it:
 
-```
+```js
 //scripts/objects/Form.js file:
 
     trigger &&
@@ -3700,7 +3725,7 @@ Now I would like to focus on explaining the handleMainComponentCreate method, wh
 
 Below is an example where this.btn element (which occurs in the createInitialElements method§) is compiled together with the handleMainComponentCreatem method which it calls:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   this.btn = createElementFn({
@@ -3750,7 +3775,7 @@ Going forward, we have the createMainElements method which is responsible for cr
 
 Below is an implementation of this method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   createMainElements() {
@@ -3910,38 +3935,40 @@ Before I go over to the createFormFieldElements methods, I would like to mention
 
 Below is an example of data regarding form fields elements that are passed to the Form object:
 
-```
+```js
 //data/informations/formFields file:
+
+import { common } from '/data/global/names.js'
 
 export default [
   {
-    label: 'Name',
-    type: 'text',
-    name: 'name',
+    label: common.Name,
+    type: common.text,
+    name: common.name,
     notifications: ['name is required 😡'],
   },
   {
-    label: 'Subject',
-    type: 'text',
-    name: 'subject',
+    label: common.Subject,
+    type: common.text,
+    name: common.subject,
     notifications: ['subject is required 😡'],
   },
   {
-    label: 'Email',
-    type: 'email',
-    name: 'email',
+    label: common.Email,
+    type: common.email,
+    name: common.email,
     notifications: ['email is required 😡', 'invalid email 😡'],
   },
   {
-    label: 'Message',
-    type: 'textarea',
-    name: 'message',
+    label: common.Message,
+    type: common.textarea,
+    name: common.message,
     notifications: ['message is required 😡'],
   },
   {
-    type: 'submit',
-    value: 'Wyślij',
-    name: 'submit',
+    type: common.submit,
+    value: common.Send,
+    name: common.submit,
     notifications: [
       'Please wait a moment! 🕐',
       'literally a moment! 🛩',
@@ -3963,7 +3990,7 @@ In this subsection I would like to move on to discuss the logic of the createFor
 
 This method is presented below together with the this.formFieldsElements variable, in which it is called (part of createMainElements method):
 
-```
+```js
 //scripts/objects/Form.js file:
 
     this.formFieldsElements = this.formFieldsInfo.map((formFieldInfo) =>
@@ -4071,7 +4098,7 @@ Next, in the handleMainComponentCreate method, we call the createMainComponents 
 
 Below is an example of this method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
 createMainComponents() {
@@ -4153,20 +4180,20 @@ The last method that is called in the handleMainComponentCreate method is the to
 
 The following is an excerpt from the handleMainComponentCreate method with the called toggleShow method of the Curtain object:
 
-```
+```js
 //scripts/objects/Form.js file:
 
-    curtain.toggleShow({
-      toggle: toggleValue.on,
-      appendElements: [this.mainComponent],
-      cbsToCallOnHidden: [
-        () => {
-          this.toggleBtnComponent({ toggle: toggleValue.on })
-          this.resetFormTextInputsValue()
-          this.resetDataFromUser()
-        },
-      ],
-    })
+curtain.toggleShow({
+  toggle: toggleValue.on,
+  appendElements: [this.mainComponent],
+  cbsToCallOnHidden: [
+    () => {
+      this.toggleBtnComponent({ toggle: toggleValue.on })
+      this.resetFormTextInputsValue()
+      this.resetDataFromUser()
+    },
+  ],
+})
 ```
 
 As we can see in the above code example, the toggleShow method is called with:
@@ -4187,12 +4214,11 @@ Now that we have the forms component created, I would like to move on to describ
 
 The first four inputs of the form with types: 2x text, email and textarea, have the same logic as shown in the fragment of the createFormFieldElements method in which these inputs are created (here we omit the input type submit):
 
-```
+```js
 //scripts/objects/Form.js file:
 
 input = createElementFn({
-  element:
-    type === elements.textarea ? elements.textarea : elements.input,
+  element: type === elements.textarea ? elements.textarea : elements.input,
   type,
   name,
   id: name,
@@ -4220,7 +4246,7 @@ As we can see above, two events are set on the input element:
 
 The handleFormTextInputTyping method that is called on event input is shown below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   handleFormTextInputTyping({ input, name }) {
@@ -4242,7 +4268,7 @@ As we can see above, it is a method that first dynamically adds the value entere
 
 Next, it is checked whether input notification is visible via the checkFormTextInputNotificationVisibility method to which the given input is passed. The following is an implementation of this method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   checkFormTextInputNotificationVisibility({ input }) {
@@ -4263,7 +4289,7 @@ As we can see above, it is a simple method which, based on the passed input, sel
 
 Returning to the handleFormTextInputTyping method, at the very end of it, when the notification is visible (isInputNotificationVisible variable has true value), the toggleFormTextInputsNotification method is called, to which we pass the input and the toggle parameter with the value "off". The following is an implementation of this method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   toggleFormTextInputsNotification({ toggle, inputs, notificationNumber }) {
@@ -4334,7 +4360,7 @@ Each of the notifications (except for the input notification of the submit type)
 
 Below is a fragment of the createFormFieldsElements method, in which we see notifications (notificationEls) that have the x method set to event click and the implementation of this method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
     const notificationEls = notifications.map((notificationEl) =>
@@ -4394,7 +4420,7 @@ The handleFormSubmit method is responsible for handling the logic of sending dat
 
 Below is a fragment of the createMainElements method in which the this.form element is created and the implementation of the handleFormSubmit method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
     this.form = createElementFn({
@@ -4468,7 +4494,7 @@ At the very beginning of the discussed handleFormSubmit method, we have the defa
 
 Below is an implementation of this method along with the data it uses:
 
-```
+```js
 //data/global/names.js file:
 
   export const emailValidationRegexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -4495,7 +4521,7 @@ Going further in the handleFormSubmit method, we call the findEmptyFormTextInput
 
 Below is an example with implementation of this method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   findEmptyFormTextInputs() {
@@ -4526,7 +4552,7 @@ Next, in the handleFormSubmit method we have two conditional calls to the toggle
 
 The following is the example with portion of the handleFormSubmit method in question, along with the implementation of toggleFormTextInputsNotification method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
     this.formEmailInput.value &&
@@ -4597,10 +4623,10 @@ After selecting the appropriate notification, the helper setClassesFn sets the r
 
 At the very end of this part of the discussed process, we have the following piece of code:
 
-```
+```js
 //scripts/objects/Form.js file:
 
-  if (!isEmailValidate || emptyTextInputs.length) return
+if (!isEmailValidate || emptyTextInputs.length) return
 ```
 
 As we can see above, it is a simple condition, in which if the email is invalid and some of the inputs have no values entered, the entire handleFormSubmit method is returned (we will not go to the further process of this method).
@@ -4625,7 +4651,7 @@ Going further in the logic of the handleFormSubmit method, when all the values h
 
 Its implementation is shown below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   disableFormInputs() {
@@ -4674,7 +4700,7 @@ Then in the method handleFormSubmit we have a toggleDeleteBtnComponent method ca
 
 The implementation of mentioned method along with a fragment of the call of this method is below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   this.toggleDeleteBtnComponent({ toggle: toggleValue.off })
@@ -4719,7 +4745,7 @@ Going further in the logic of the handleFormSubmit method we have a toggleSpinne
 
 The implementation of mentioned method along with a fragment of the call of this method is below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   this.toggleSpinnerComponent({ toggle: toggleValue.on })
@@ -4775,7 +4801,7 @@ Then in the method handleFormSubmit we have a toggleFormSubmitInputlNotification
 
 The implementation of mentioned method along with a fragment of the call of this method is below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
     this.toggleFormSubmitInputlNotifications({
@@ -4890,10 +4916,10 @@ Next up, as we'll see in the handleFormSubmit method, we call the togglePreventH
 
 The following is an example of calling it in the handleFormSubmit method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
-  curtain.togglePreventHidden({ toggle: toggleValue.on })
+curtain.togglePreventHidden({ toggle: toggleValue.on })
 ```
 
 As we can see above, when calling the method, we pass the toggle parameter with the value "on" (thanks to this, the possibility of removing the curtain is blocked).
@@ -4914,7 +4940,7 @@ After blocking the possibility of removing the form, the method x is called, whi
 
 Below is a fragment of the handleFormSubmit method in which the discussed method is called and its implementation next to it:
 
-```
+```js
 //scripts/objects/Form.js file:
 
     const feedback = await this.handleEmailSent()
@@ -4970,7 +4996,7 @@ After receiving the response from the server, the resetFormTextInputsValue metho
 
 Below is a fragment of the handleFormSubmit method in which the discussed method is called and its implementation next to it:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   this.resetFormTextInputsValue()
@@ -4998,10 +5024,10 @@ Next, the handleFormSubmit method calls toggleSpinnerComponent with the toggle p
 
 Below I will present just an example of calling this method because its logic has already been discussed earlier, and in this case it just works the opposite (the spinner is replaced with input type submit):
 
-```
+```js
 //scripts/objects/Form.js file:
 
-  this.toggleSpinnerComponent({ toggle: toggleValue.off })
+this.toggleSpinnerComponent({ toggle: toggleValue.off })
 ```
 
 <br/>
@@ -5010,7 +5036,7 @@ Below I will present just an example of calling this method because its logic ha
 
 Then, after replacing the spinner with input of type submit, the toggleFormSubmitInputlNotifications method is called:
 
-```
+```js
 //scripts/objects/Form.js file:
 
 this.toggleFormSubmitInputlNotifications({ toggle: toggleValue.off })
@@ -5028,7 +5054,7 @@ Next, we have a series of methods that are responsible for the final animation o
 
 First, the hideTitleInfo method is called, the calling example and implementation of which is shown below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
     this.hideTitleInfo()
@@ -5060,7 +5086,7 @@ As we can see above, it is a simple method that uses the setPropsFn helper, whic
 
 The next step is to call the hideFormComponent method, the calling example and implementation of which is shown below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
     this.hideFormComponent
@@ -5096,7 +5122,7 @@ As we can see above this is a method which also uses the setPropsFn helper which
 
 After hiding this.formMainComponent element, the method replaceTitleText is called, the calling example and implementation of which is shown below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   this.replaceTitleText({ text: feedback })
@@ -5130,7 +5156,7 @@ This method overrides the innerHTML property of this.title element with the sent
 
 After the method I just described, the method reduceMainComponentHeight is called, the calling example and implementation of which is shown below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   this.reduceMainComponentHeight({ delay: 800 })
@@ -5165,8 +5191,8 @@ This method reduces the size of this.mainComponent to 100px via the setPropsFn h
 
 The penultimate method that applies to animating a form component is the moveTitleComponent method, the calling example and implementation of which is shown below:
 
-```
-/scripts/objects/Form.js file:
+```js
+//scripts/objects/Form.js file:
 
   this.moveTitleComponent()
 
@@ -5205,7 +5231,7 @@ As we can see above, this method through the setPropsFn helper sets a number of 
 
 The last method related to the animation of component forms is the revealTitleWhisper method, the calling example and implementation of which is shown below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
     this.revealTitleWhisper({ delay: 1800 })
@@ -5244,10 +5270,10 @@ Below is a visual example of the form component animation methods discussed abov
 
 After the methods calling the animation the setDelayFn helper is called, the example of which is shown below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
-  await setDelayFn(2000)
+await setDelayFn(2000)
 ```
 
 The helper we see above (the logic of the helper shown above was discussed in the section on helpers) executes at the same time as the form component animation methods and is used to delay the handleFormSubmit method for 2 seconds before the next methods are called (so that the animation can complete itself).
@@ -5260,7 +5286,7 @@ The helper we see above (the logic of the helper shown above was discussed in th
 
 After the handleFormSubmit method is delayed via the setDelayFn helper, the setSelfDestructEventToMainComponent method is called, the calling example and implementation of which is shown below:
 
-```
+```js
 //scripts/objects/Form.js file:
 
   this.setSelfDestructEventToMainComponent()
@@ -5298,10 +5324,10 @@ Below is a visual example of this solution:
 
 At the very end of the handleFormSubmit method is the togglePreventHidden method of Curtain object, which is called as follows:
 
-```
+```js
 //scripts/objects/Form.js file:
 
-  curtain.togglePreventHidden({ toggle: toggleValue.off })
+curtain.togglePreventHidden({ toggle: toggleValue.off })
 ```
 
 As we can see above, this method is called with the toggle parameter set to "off", thanks to which the option to remove the curtain child (in this case, this.mainComponent) is activated (the exact operation of the togglePreventHidden method is explained in the Curtain object section).
@@ -5318,20 +5344,20 @@ Below is a visual example of this solution
 
 Removing the form component is also done through the this.btnDelete element, which is presented below as a part of the createMainElements method:
 
-```
+```js
 //scripts/objects/Form.js file:
 
-    this.btnDelete = createElementFn({
-      element: elements.button,
-      classes: [classNames.form.btnDelete],
-      textContent: 'X',
-      listeners: [
-        {
-          event: events.click,
-          cb: () => curtain.toggleShow({ toggle: toggleValue.off }),
-        },
-      ],
-    })
+this.btnDelete = createElementFn({
+  element: elements.button,
+  classes: [classNames.form.btnDelete],
+  textContent: 'X',
+  listeners: [
+    {
+      event: events.click,
+      cb: () => curtain.toggleShow({ toggle: toggleValue.off }),
+    },
+  ],
+})
 ```
 
 As we can see above, on the this.btnDelete element, the listener is set to the click event, which calls the previously described toggleShow method of the Curtain object, passing the toggle parameter with the value "off" (the form component is removed from the Curtain object structure).
@@ -5379,7 +5405,7 @@ In order to implement the logic we see above, an instance of the BackBtn object 
 
 The solution looks as follows:
 
-```
+```js
 //scripts/sites/privacyPolicy.js file:
 
 new Back({ container: idReferences.global.leftContainer })
@@ -5405,7 +5431,7 @@ To make it easier to find yourself in the description below, there is a list of 
 
 ### 3.1. Code example of the Back object constructor
 
-```
+```js
 //scripts/objects/Back.js file:
 
 class Back {
@@ -5426,7 +5452,7 @@ export default BackBtn
 
 In the constructor, first, the createElements method is called, the implementation of which is below:
 
-```
+```js
 //scripts/objects/Back.js file:
 
   createElements() {
@@ -5450,7 +5476,7 @@ As we can see in the code example above, two elements this.link and this.arrowIm
 
 Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below:
 
-```
+```js
 //scripts/objects/Back.js file:
 
   createComponents() {
@@ -5492,7 +5518,7 @@ Before I go to the description of the logic of this object, which is responsible
 
 Below is an example of creating an instance of a SneakPeeks object (alongside other instances of other objects) in sites/home.js file which is the main script for index.html (home page):
 
-```
+```js
 //scripts/sites/index.js file:
 
 new SneakPeeks({
@@ -5540,7 +5566,7 @@ To make it easier to find yourself in the description below, there is a list of 
 
 Below is the constructor implementation of the discussed object:
 
-```
+```js
 //scripts/objects/SneakPeeks.js file:
 
 class SneakPeeks {
@@ -5579,8 +5605,8 @@ As we can see in the code example above, in the object constructor we have follo
 
 After assigning data to this.sneakPeeksInfo variable, the createElements method is called, the implementation of which is below:
 
-```
-//scripts/objects/Audio.js file:
+```js
+//scripts/objects/SneakPeeks.js file:
 
 createElements() {
     this.mainContainer = createElementFn({
@@ -5680,7 +5706,7 @@ As we can see above, this is large but very simple method, in which, through the
 
 Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below:
 
-```
+```js
 //scripts/objects/SneakPeeks.js file:
 
 createComponents() {
@@ -5759,7 +5785,7 @@ After the above-mentioned methods, the created this.mainComponent component is c
 
 In order to understand well how given sneak peek elements are created, below is a file (data) with a collection of information on individual projects on the basis of which these elements were created:
 
-```
+```js
 //data/informations/sneakPeeks.js file:
 
 export default [
@@ -5821,7 +5847,7 @@ export default [
   },
 
   {
-    href: '/',
+    href: '/sites/uniqueChoice.html',
     image: '/images/icons/projects/uniqueChoice.jpg',
     alt: 'Unique Choice',
     title: 'Unique Choice',
@@ -5837,7 +5863,7 @@ export default [
   },
 
   {
-    href: '/',
+    href: '/sites/leafi.html',
     image: '/images/icons/projects/leaf.jpg',
     alt: 'Leaf',
     title: 'Leaf',
@@ -5873,7 +5899,7 @@ A visual example of this process is shown below:
 
 In order to describe in detail the logic of the above example, below I would like to mention once again the triggerActionOnWindowScrollFn helper call along with the implementation of the method it calls:
 
-```
+```js
 //scripts/objects/SneakPeeks.js file:
 
     if (trigger) {
@@ -5956,7 +5982,7 @@ In order to create the descriptions (about and skills section) for home site, tw
 
 Below is an example of this solution:
 
-```
+```js
 //scripts/sites/home.js file:
 
 new DescriptionArrange({
@@ -5991,7 +6017,7 @@ To make it easier to find yourself in the description below, there is a list of 
 
 The object itself, which is responsible for creating the description is presented below:
 
-```
+```js
 //scripts/objects/DescriptionArrange.js file:
 
 class DescriptionArrange {
@@ -6016,7 +6042,7 @@ As we can see in the code example above, in the constructor we only have one var
 
 The createElements method is responsible for creating elements, as in the previous objects, which in this case looks as follows:
 
-```
+```js
 //scripts/objects/DescriptionArrange.js file:
 
 createElements() {
