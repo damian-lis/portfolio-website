@@ -67,6 +67,7 @@ export default [
       { image: '/images/icons/technologies/react.jpg' },
       { image: '/images/icons/technologies/nodejs.jpg' },
       { image: '/images/icons/technologies/mongodb.jpg' },
+      { image: '/images/icons/technologies/stripe.svg' },
     ],
     duringDevelopment: true,
   },
