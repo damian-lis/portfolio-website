@@ -58,22 +58,6 @@ export default [
 
   {
     href: '/',
-    image: '/images/icons/projects/uniqueChoice.jpg',
-    alt: 'Unique Choice',
-    title: 'Unique Choice',
-    intro:
-      'It is an E-Commerce fullstack project with all the functionality that allows You to make purchases.',
-    icons: [
-      { image: '/images/icons/technologies/bootstrap.jpg' },
-      { image: '/images/icons/technologies/react.jpg' },
-      { image: '/images/icons/technologies/nodejs.jpg' },
-      { image: '/images/icons/technologies//mongodb.jpg' },
-    ],
-    duringDevelopment: true,
-  },
-
-  {
-    href: '/',
     image: '/images/icons/projects/leaf.jpg',
     alt: 'Leaf',
     title: 'Leaf',
