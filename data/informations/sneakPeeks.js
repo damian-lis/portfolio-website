@@ -59,8 +59,8 @@ export default [
   {
     href: '/',
     image: '/images/icons/projects/leaf.jpg',
-    alt: 'Leaf',
-    title: 'Leaf',
+    alt: 'Leafi',
+    title: 'Leafi',
     intro:
       'It is a fullstack project that aims to recreate many functionalities, structures and styles from apple.com.',
     icons: [
