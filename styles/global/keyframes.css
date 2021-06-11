@@ -1,26 +1,17 @@
-@keyframes slideInFromLeft {
+@keyframes slideInX {
   30% {
-    opacity: 1;
+    opacity: 0;
+    visibility: hidden;
   }
 
   100% {
     transform: translateX(0);
     opacity: 1;
+    visibility: visible;
   }
 }
 
-@keyframes slideInFromRight {
-  30% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInFromTop {
+@keyframes slideInY {
   50% {
     opacity: 0;
     visibility: hidden;

@@ -1,17 +1,17 @@
 .slideInFromLeft {
   opacity: 0;
   transform: translateX(-200%);
-  animation: slideInFromLeft 0.5s 0.5s ease-in forwards;
+  animation: slideInX 0.5s 0.5s ease-in forwards;
 }
 
 .slideInFromRight {
   opacity: 0;
   transform: translateX(200%);
-  animation: slideInFromRight 0.5s 0.5s ease-in forwards;
+  animation: slideInX 0.5s 0.5s ease-in forwards;
 }
 
 .slideInFromTop {
-  animation: slideInFromTop 0.7s ease-in forwards;
+  animation: slideInY 0.7s ease-in forwards;
 }
 
 .showObject {

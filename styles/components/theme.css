@@ -11,7 +11,7 @@
   border-radius: 5px 5px 0 0;
   background-color: var(--mainColorTransparent);
   opacity: 0;
-  animation: slideInFromTop 0.5s 2s ease-in forwards, shake 3s 2s infinite;
+  animation: slideInY 0.5s 2s ease-in forwards, shake 3s 2s infinite;
 }
 
 .theme-options-container {
