@@ -31,16 +31,11 @@ class SneakPeeks {
     })
 
     this.elements = this.sneakPeeksInfo.map((sneakPeek) => {
-      const linkWrapper = sneakPeek.duringDevelopment
-        ? createElementFn({
-            element: elements.a,
-            classes: [classNames.sneakPeek.linkWrapper],
-          })
-        : createElementFn({
-            element: elements.a,
-            classes: [classNames.sneakPeek.linkWrapper],
-            href: sneakPeek.href,
-          })
+      const linkWrapper = createElementFn({
+        element: elements.a,
+        classes: [classNames.sneakPeek.linkWrapper],
+        href: sneakPeek.href,
+      })
 
       const container = createElementFn({
         element: elements.div,
