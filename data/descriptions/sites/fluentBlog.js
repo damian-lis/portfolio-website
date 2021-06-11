@@ -29,6 +29,14 @@ export default [
 
   b(),
 
+  p([
+    `Live version is ${a('here', 'https://fluentblog.pl/')}.`,
+
+    `Github is ${a('here', 'https://github.com/damian-lis/fluent-blog')}.`,
+  ]),
+
+  b(),
+
   p([`Below is the desktop version of the application:`]),
 
   im(folder(`viewSites.gif`)),

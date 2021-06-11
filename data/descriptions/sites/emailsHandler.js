@@ -23,15 +23,23 @@ export default [
 
   p([
     `The main purpose of the application is to handle messages sent via the form on the portfolio website
-    (${a('site', 'https://damianlis.pl/')},
+    (${a('website', 'https://damianlis.pl/')},
     ${a('github', 'https://github.com/damian-lis/Portfolio-Website')})
     and via the messenger in the Talk to Gisapia and the others app 
-    (${a('site', 'https://talktogisapiaandtheothers.pl/')},
+    (${a('website', 'https://talktogisapiaandtheothers.pl/')},
     ${a(
       'github',
       'https://github.com/damian-lis/Talk-to-Gisapia-and-the-Others'
     )}).
     `,
+  ]),
+
+  b(),
+
+  p([
+    `Live version is ${a('here', 'http://www.emailshandler.pl/')}.`,
+
+    `Github is ${a('here', 'https://github.com/damian-lis/emails-handler')}.`,
   ]),
 
   h(`2. Technologies`),

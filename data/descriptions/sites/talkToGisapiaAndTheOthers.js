@@ -29,6 +29,17 @@ export default [
 
   b(),
 
+  p([
+    `Live version is ${a('here', 'https://talktogisapiaandtheothers.pl/')}.`,
+
+    `Github is ${a(
+      'here',
+      'https://github.com/damian-lis/talk-to-gisapia-and-the-others'
+    )}.`,
+  ]),
+
+  b(),
+
   p([`Below is the desktop version of the app:`]),
 
   im(folder(`introDesktop.gif`)),
