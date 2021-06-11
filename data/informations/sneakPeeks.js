@@ -57,14 +57,15 @@ export default [
   },
 
   {
-    href: '/',
-    image: '/images/icons/projects/leaf.jpg',
+    href: '/sites/leafi.html',
+    image: '/images/icons/projects/leafi.jpg',
     alt: 'Leafi',
     title: 'Leafi',
     intro:
       'It is a fullstack project that aims to recreate many functionalities, structures and styles from apple.com.',
     icons: [
       { image: '/images/icons/technologies/react.jpg' },
+      { image: '/images/icons/technologies/redux.svg' },
       { image: '/images/icons/technologies/nodejs.jpg' },
       { image: '/images/icons/technologies/mongodb.jpg' },
       { image: '/images/icons/technologies/stripe.svg' },

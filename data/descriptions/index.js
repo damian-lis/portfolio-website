@@ -6,6 +6,7 @@ import {
   privacyPolicy,
   portfolioWebsite,
   talkToGisapiaAndTheOthers,
+  leafi,
 } from './sites/index.js'
 
 export {
@@ -16,4 +17,5 @@ export {
   emailsHandler as emailsHandlerDescription,
   portfolioWebsite as portfolioWebsiteDescription,
   talkToGisapiaAndTheOthers as talkToGisapiaAndTheOthersDescription,
+  leafi as leafiDescription,
 }
