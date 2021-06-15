@@ -13,12 +13,14 @@ const structure = {
       align = txtAlign.left,
       smAlign = txtAlign.left,
       underline,
+      id,
     } = {}
   ) => {
     return {
       type: common.header,
       size,
       content,
+      id,
       classes: (() => {
         const classesSet = []
 

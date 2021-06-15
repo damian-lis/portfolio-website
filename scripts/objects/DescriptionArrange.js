@@ -20,6 +20,7 @@ class DataArrange {
             element: elements.h(object.size),
             innerHTML: object.content,
             classes: object.classes,
+            id: object.id,
           })
 
         case common.paragraph:
