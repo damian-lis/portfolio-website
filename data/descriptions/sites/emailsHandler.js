@@ -11,15 +11,22 @@ export default [
 
   h(`Table of contents:`),
 
-  l([s('1. Introduction'), s('2. Technologies'), s('3. Features')], {
-    itemDash: false,
-    listSize: 20,
-    itemMl: 5,
-  }),
+  l(
+    [
+      s(a('1. Introduction', '#introduction')),
+      s(a('2. Technologies', '#technologies')),
+      s(a('3. Features', '#features')),
+    ],
+    {
+      itemDash: false,
+      listSize: 20,
+      itemMl: 5,
+    }
+  ),
 
   b(),
 
-  h(`1. Introduction`),
+  h(`1. Introduction`, { id: 'introduction' }),
 
   p([
     `The main purpose of the application is to handle messages sent via the form on the portfolio website
@@ -42,13 +49,13 @@ export default [
     `Github is ${a('here', 'https://github.com/damian-lis/emails-handler')}.`,
   ]),
 
-  h(`2. Technologies`),
+  h(`2. Technologies`, { id: 'technologies' }),
 
   p([`The following technologies were used in the project:`]),
 
   l([`Node/Express`, `Nodemailer`, ` Mailgun`, `SendGrid`]),
 
-  h(`3. Features`),
+  h(`3. Features`, { id: 'features' }),
 
   p([`The app uses services such as nodemailer, mailgun and sendgrid.`]),
 
@@ -60,14 +67,14 @@ export default [
 
   l(
     [
-      `3.1. Routes,`,
-      `3.2. Handle mailgun/nodemailer services,`,
-      `3.3. Handle sendgrid service,`,
+      a(`3.1. Routes,`, '#routes'),
+      a(`3.2. Handle mailgun/nodemailer services,`, '#mailgun'),
+      a(`3.3. Handle sendgrid service,`, '#sendgrid'),
     ],
     { itemDash: false, itemMl: 5 }
   ),
 
-  h(`3.1. Routes`, { size: 5 }),
+  h(`3.1. Routes`, { size: 5, id: 'routes' }),
 
   p([`The app supports two query paths:`]),
 
@@ -89,7 +96,7 @@ app.use('/api/mail/gisapia', sendGisapiaMail)`,
     'js'
   ),
 
-  h(`3.2. Handle mailgun/nodemailer services`, { size: 5 }),
+  h(`3.2. Handle mailgun/nodemailer services`, { size: 5, id: 'mailgun' }),
 
   p([
     `Below is the code responsible for sending email to my mailbox from the portfolio website via mailgun/nodemailer sercices.`,
@@ -152,7 +159,7 @@ app.use('/api/mail/gisapia', sendGisapiaMail)`,
     `calling the sendPortfolioMail function as a result of sending a query to the appropriate server route ('/api/mail/portfolio'), which destructs the passed data and uses them to dynamically complete the object assigned to the mailOptions variable. At the very end, in the discussed function, the sendMail method of the transporter object is called, which is responsible for sending the e-mail (when the e-mail is sent, json is returned with information about success, otherwise the status 500 with information about failure).`,
   ]),
 
-  h(`4.3. Handle sendgrid service`, { size: 5 }),
+  h(`4.3. Handle sendgrid service`, { size: 5, id: 'sendgrid' }),
 
   p([
     `Below is the code responsible for sending email to user mailbox from the Talk to Gisapia and the others app via sendgrid sercice.`,

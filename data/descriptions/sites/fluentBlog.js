@@ -13,15 +13,22 @@ export default [
 
   h(`Table of contents:`),
 
-  l([s('1. Introduction'), s('2. Technologies'), s('3. Features')], {
-    itemDash: false,
-    listSize: 20,
-    itemMl: 5,
-  }),
+  l(
+    [
+      s(a('1. Introduction', '#introduction')),
+      s(a('2. Technologies', '#technologies')),
+      s(a('3. Features', '#features')),
+    ],
+    {
+      itemDash: false,
+      listSize: 20,
+      itemMl: 5,
+    }
+  ),
 
   b(),
 
-  h(`1. Introduction`),
+  h(`1. Introduction`, { id: 'introduction' }),
 
   p([
     `The site is dedicated to blogging about the IT industry and it contains various articles, author's description and completed projects for the portfolio.`,
@@ -45,13 +52,13 @@ export default [
 
   im(folder(`mobile.gif`)),
 
-  h(`2. Technologies`),
+  h(`2. Technologies`, { id: 'technologies' }),
 
   p([
     `The entire project was created using Next and TailwindCSS technologies due to the speed and ease of development, efficiency and the ability to render the code on the server side, which contributes to better SEO.`,
   ]),
 
-  h(`3. Features`),
+  h(`3. Features`, { id: 'features' }),
 
   p([
     `In this section, I will focus on a more detailed description of the various functionalities that have been introduced in the project.`,
@@ -65,19 +72,29 @@ export default [
 
   l(
     [
-      `3.1. Adding data related to portfolio projects dynamically,`,
+      a(
+        `3.1. Adding data related to portfolio projects dynamically,`,
+        '#adding-data-dynamically'
+      ),
 
-      `3.2. A dynamic way of creating a page with the content of an article,`,
+      a(
+        `3.2. A dynamic way of creating a page with the content of an article,`,
+        '#creating-page-dynamically'
+      ),
 
-      `3.3. A button that allows to quickly return to the top of the page,`,
+      a(
+        `3.3. A button that allows to quickly return to the top of the page,`,
+        '#scroll-btn'
+      ),
 
-      `3.4. A loader before displaying a specific article.`,
+      a(`3.4. A loader before displaying a specific article.`, '#loader'),
     ],
     { itemDash: false, itemMl: 5 }
   ),
 
   h(`3.1. Adding data related to portfolio projects dynamically`, {
     size: 5,
+    id: 'adding-data-dynamically',
   }),
 
   p([
@@ -216,6 +233,7 @@ export default [
 
   h(`3.2. A dynamic way of creating a page with the content of an article`, {
     size: 5,
+    id: 'creating-page-dynamically',
   }),
 
   p([
@@ -489,6 +507,7 @@ export default [
 
   h(`3.3. A button that allows to quickly return to the top of the page`, {
     size: 5,
+    id: 'scroll-btn',
   }),
 
   p([
@@ -597,7 +616,10 @@ export default () => {
     `As we can see in the example above, it is a component that appears alongside other major components such as Navbar and Footer, which are available on every page.`,
   ]),
 
-  h(`3.4. A loader before displaying a specific article`, { size: 5 }),
+  h(`3.4. A loader before displaying a specific article`, {
+    size: 5,
+    id: 'loader',
+  }),
 
   p([
     `When the user uses weaker equipment or has access to weaker internet speed, a situation may arise that pages related to specific articles may load in a few seconds. To increase the user experience of using the application, the so-called loader has been created, which informs the user that the content is being loaded.`,
