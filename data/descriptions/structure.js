@@ -154,8 +154,12 @@ const structure = {
 
   s: (content) => `<strong>${content}</strong>`,
 
-  a: (label, path) => `<a href=${path} rel="noopener noreferrer nofollow" 
-  target="_blank">${label}</a>`,
+  a: (label, path) => {
+    return path && path.includes('#')
+      ? `<a style="color:white" href=${path}>${label}</a>`
+      : `<a href=${path} rel="noopener noreferrer nofollow" 
+    target="_blank">${label}</a>`
+  },
 }
 
 const { h, p, im, c, l, b, s, a } = structure
