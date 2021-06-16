@@ -22,14 +22,16 @@ This project provides information about me and projects that I have done and all
 
 ## Table of Contents
 
-1. Technologies
-2. Setup
-3. Solutions
+1. [Technologies](#technologies)
+
+2. [Setup](#setup)
+
+3. [Solutions](#solutions)
 
 <br/>
 <br/>
 
-## 1. Technologies
+<h2 id="technologies">1. Technologies</h2>
 
 The following technologies were used in the project:
 
@@ -39,13 +41,13 @@ The following technologies were used in the project:
 
   <br/>
 
-## 2. Setup
+<h2 id="setup">2. Setup</h2>
 
 You don't need any commands to run this project.
 
 <br/>
 
-## 3. Solutions
+<h2 id="solutions">3. Solutions</h2>
 
 The entire project is built using OOP javascript (for a very in-depth understanding of the language) and using its own framework that refers to the css frameworks like tailwindCSS (utility-first CSS) and Bootsrap for better understand how css works.
 
@@ -53,48 +55,48 @@ The entire project is built using OOP javascript (for a very in-depth understand
 
 The list of the most interesting solutions is presented below:
 
-### 3.1. General
+### 3.1. [General](#general)
 
-&nbsp; 3.1.1. Description of the structure and content of the data folder
+&nbsp; 3.1.1. [Description of the structure and content of the data folder](#data-folder)
 
-&nbsp; 3.1.2. Description of the structure and content of the scripts folder
+&nbsp; 3.1.2. [Description of the structure and content of the scripts folder](#scripts-folder)
 
-&nbsp; 3.1.3. Description of the structure and content of the styles folder
+&nbsp; 3.1.3. [Description of the structure and content of the styles folder](#styles-folder)
 
-&nbsp; 3.1.4. Characteristics of html file
-
-<br/>
-
-### 3.2. Specific:
-
-&nbsp; 3.2.1. Logic of background animation by Particles object
-
-&nbsp; 3.2.2. Option to set the site theme by Theme object
-
-&nbsp; 3.2.3. Functionalities on the website called through the buttons on the left side of the page
-
-&nbsp; 3.2.4. Audio support on the site by Audio object
-
-&nbsp; 3.2.5. A Curtain object that allows to attach components dynamically
-
-&nbsp; 3.2.6. Dynamic form creation by Form object
-
-&nbsp; 3.2.7. Possibility to go back to the home page by BackBtn object
-
-&nbsp; 3.2.8. Create project sneak peeks by SneakPeeks object
-
-&nbsp; 3.2.9. Create descriptions by DescriptionArrange object
+&nbsp; 3.1.4. [Characteristics of html file](#html-file)
 
 <br/>
+
+### 3.2. [Specific](#specific)
+
+&nbsp; 3.2.1. [Logic of background animation by Particles object](#particles-object)
+
+&nbsp; 3.2.2. [Option to set the site theme by Theme object](#theme-object)
+
+&nbsp; 3.2.3. [Functionalities on the website called through the buttons on the left side of the page](#left-buttons)
+
+&nbsp; 3.2.4. [Audio support on the site by Audio object](#audio-object)
+
+&nbsp; 3.2.5. [A Curtain object that allows to attach components dynamically](#curtain-object)
+
+&nbsp; 3.2.6. [Dynamic form creation by Form object](#form-object)
+
+&nbsp; 3.2.7. [Possibility to go back to the home page by Back object](#back-object)
+
+&nbsp; 3.2.8. [Create project sneak peeks by SneakPeeks object](#sneakpeeks-object)
+
+&nbsp; 3.2.9. [Create descriptions by DescriptionArrange object](#descriptionarrange-object)
+
+<br/>
 <br/>
 
-## 3.1. General
+<h2 id="general">3.1. General</h2>
 
 In this section, I would like to describe the general elements of the app that will allow a better understanding of the application architecture and logic that will be discussed in the sepcific section.
 
 <br/>
 
-### 3.1.1. Description of the structure and content of the data folder
+<h3 id="data-folder">3.1.1. Description of the structure and content of the data folder</h3>
 
 There are three folders in the data folder: descriptions, global and informations.
 
@@ -106,13 +108,15 @@ The structure of the data folder is shown below:
 
 Table of content of this section:
 
-1. Global folder
-2. Descriptions folder
-3. Informations folder
+1. [Global folder](#global-folder)
+
+2. [Descriptions folder](#descriptions-folder)
+
+3. [Informations folder](#informations-folder)
 
 <br/>
 
-### 1. Global folder
+<h3 id="global-folder">1. Global folder</h3>
 
 First, let me explain the global folder (because many files depend on it).
 
@@ -282,7 +286,7 @@ As we can see above, the file contains three objects that have a different color
 
 <br/>
 
-### 2. Descriptions folder
+<h3 id="descriptions-folder">2. Descriptions folder</h3>
 
 In the case of the next folder (of data folder) called descriptions, there are:
 
@@ -459,7 +463,8 @@ const structure = {
 
   s: (content) => `<strong>${content}</strong>`,
 
-  a: (label, path) => `<a href=${path}>${label}</a>`,
+  a: (label, path) => `<a href=${path} rel="noopener noreferrer nofollow" 
+  target="_blank">${label}</a>`,
 }
 
 const { h, p, im, c, l, b, s, a } = structure
@@ -550,7 +555,7 @@ Next, such created description is processed by the DescriptionArrange object (sc
 
 <br/>
 
-### 3. Informations folder
+<h3 id="informations-folder">3. Informations folder</h3>
 
 The last folder in the data folder is named informations, which contains files with various data, e.g. information about form fields and projects sneak peeks.
 
@@ -611,7 +616,7 @@ As we can see in the example above, it is a collection of information about form
 
 <br/>
 
-### 3.1.2. Description of the structure and content of the scripts folder
+<h3 id="scripts-folder">3.1.2. Description of the structure and content of the scripts folder</h3>
 
 The scripts folder contains four folders: helpers, objects, plugins and sites and its content is shown below:
 
@@ -621,14 +626,17 @@ The scripts folder contains four folders: helpers, objects, plugins and sites an
 
 Table of content of this section:
 
-1. Helpers folder
-2. Objects folder
-3. Plugins folder
-4. Sites folder
+1. [Helpers folder](#helpers-folder)
+
+2. [Objects folder](#objects-folder)
+
+3. [Plugins folder](#plugins-folder)
+
+4. [Sites folder](#sites-folder)
 
 <br/>
 
-### 1. Helpers folder
+<h3 id="helpers-folder">1. Helpers folder</h3>
 
 In the case of the helpers folder, we deal with files that contain functions that are responsible for specific logic and are reusable throughout the project (they can also be used in other projects). They play the role of support functions that increase the readability of the code and the developer experience.
 
@@ -644,21 +652,23 @@ To better understand the logic of the page, which I will describe in the general
 
 Helpers list:
 
-&nbsp; 1.1. appendElementsToContainerFn
+&nbsp; 1.1. [appendElementsToContainerFn](#appendelementstocontainerfn)
 
-&nbsp; 1.2. createElementFn
+&nbsp; 1.2. [createElementFn](#createelementfn)
 
-&nbsp; 1.3. setClassesFn
+&nbsp; 1.3. [setClassesFn](#setclassesfn)
 
-&nbsp; 1.4. setPropsFn
+&nbsp; 1.4. [setPropsFn](#setpropsfn)
 
-&nbsp; 1.5. setDelayFn
+&nbsp; 1.5. [setDelayFn](#setdelayfn)
 
-&nbsp; 1.6. triggerActionOnWindowScrollFn
+&nbsp; 1.6. [triggerActionOnWindowScrollFn](#triggeractiononwindowscrollfn)
 
 <br/>
 
-### 1.1 appendElementsToContainerFn
+<h3 id="appendelementstocontainerfn">1.1 appendElementsToContainerFn</h3>
+
+###
 
 The first helper in the order is appendElementsToContainerFn which is responsible for attaching elements to the container.
 
@@ -734,7 +744,7 @@ As we can see in the above example, we pass to the helper function an object wit
 
 <br/>
 
-### 1.2. createElementFn
+<h3 id="createelementfn">1.2. createElementFn</h3>
 
 Next helper that I would like to briefly describe is createElementFn, which is used most often within the logic of the app and is used to create any html element with various properties.
 
@@ -826,7 +836,7 @@ As we can see in the above example, we pass an object with the name of button el
 
 <br/>
 
-### 1.3. setClassesFn
+<h3 id="setclassesfn">1.3. setClassesFn</h3>
 
 The next helper in the order is setClassesFn which is responsible for setting different classes for different elements.
 
@@ -959,7 +969,7 @@ Before going further, I would like to add that the toggle parameter does not nee
 
 <br/>
 
-### 1.4. setPropsFn
+<h3 id="setpropsfn">1.4. setPropsFn</h3>
 
 Going forward, next helper in the sequence is called setPropsFn, whose logic is very similar to the previous setClassesFn helper and differs only in that instead of setting or removing classes on the passed elements, it sets various properties (also style properties).
 
@@ -1080,7 +1090,7 @@ As we can see above, the use of this helper is also very similar to the setClass
 
 <br/>
 
-### 1.5. setDelayFn
+<h3 id="setdelayfn">1.5. setDelayFn</h3>
 
 The next very short helper is setDelayFn, which allows you to set a delay for some functions.
 
@@ -1120,7 +1130,7 @@ As we can see in the above example, the setSelfDestructEventToMainComponent meth
 
 <br/>
 
-### 1.6. triggerActionOnWindowScrollFn
+<h3 id="triggeractiononwindowscrollfn">1.6. triggerActionOnWindowScrollFn</h3>
 
 The last of the helpers available in the project is triggerActionOnWindowScrollFn helper, which is responsible for triggering the appropriate actions within or outside the so-called trigger element.
 
@@ -1202,7 +1212,7 @@ As we can see above, an object with a trigger element is passed to the helper, t
 
 <br/>
 
-### 2. Objects folder
+<h3 id="objects-folder">2. Objects folder</h3>
 
 Moving down the scripts folder structure we have an objects folder, the content of which look like this:
 
@@ -1353,7 +1363,7 @@ Such a structure was designed to ensure ease of development and increase the dev
 
 <br/>
 
-### 3. Plugins folder
+<h3 id="plugins-folder">3. Plugins folder</h3>
 
 The next folder is the plugins folder, which contains files related to various packages that help in the development of the project.
 
@@ -1373,7 +1383,7 @@ Below is an visual example of using PrismJS plugin:
 
 <br/>
 
-### 4. Sites folder
+<h3 id="sites-folder">4. Sites folder</h3>
 
 The last folder in this scripts folder structure is the sites folder, the content of which are shown below:
 
@@ -1478,7 +1488,7 @@ Thanks to the solution presented in the whole point, it is very easy to add new 
 <br/>
 <br/>
 
-### 3.1.3. Description of the structure and contents of the styles folder
+<h3 id="styles-folder">3.1.3. Description of the structure and contents of the styles folder</h3>
 
 The styles folder consists of the components, global, plugins, and utilities folders (index.css at the end, which exports all local files).
 
@@ -1492,14 +1502,17 @@ The following is an example of the styles folder content:
 
 Table of content of this section:
 
-1. Components folder
-2. Global folder
-3. Plugins folder
-4. Utilities folder
+1. [Components folder](#components-folder)
+
+2. [Global folder](#global-folder)
+
+3. [Plugins folder](#plugins-folder)
+
+4. [Utilities folder](#utilities-folder)
 
 <br/>
 
-### 1. Components folder
+<h3 id="components-folder">1. Components folder</h3>
 
 In the case of the first folder named components, we have style files in it that describe the individual components on the page.
 
@@ -1565,7 +1578,7 @@ Below is a visual representation of the form component:
 
 <br/>
 
-### 2. Global folder
+<h3 id="global-folder">2. Global folder</h3>
 
 In the case of the next folder named global, we deal with global styles.
 
@@ -1586,7 +1599,7 @@ As we can see in the above example, we deal with files such as:
 
 <br/>
 
-### 3. Plugins folder
+<h3 id="plugins-folder">3. Plugins folder</h3>
 
 The next folder in the sequence of styles folder is the plugins folder which contains external (downloaded from the internet) files of style.
 
@@ -1606,7 +1619,7 @@ Below is a visual example of this solution (in conjunction with scripts/plugins/
 
 <br/>
 
-### 4. Utilities folder
+<h3 id="utilities-folder">4. Utilities folder</h3>
 
 The last folder in the styles folder is called utilities, in which files containing appropriate classes were created that refer to the TailwindCSS and Bootstrap frameworks (a custom combination was created).
 
@@ -1751,7 +1764,7 @@ So the general principle of creating styles in the project is that if the elemen
 <br/>
 <br/>
 
-### 3.1.4. Characteristics of html files
+<h3 id="html-files">3.1.4. Characteristics of html files</h3>
 
 In the case of html files, in addition to what was presented in the previous subsection, there is a global element that acts as a container, in which each part of the site is represented by a separate section.
 
@@ -1792,23 +1805,25 @@ In the example above, we have an element with id skills-description, which is a 
 <br/>
 <br/>
 
-## 3.2. Specific
+<h2 id="specific">3.2. Specific</h2>
 
 This part of the description is related to the logic of individual objects that appear in the project. The description of each object is structured and is very similar in each case discussed.
 
 <br/>
 
-### 3.2.1. Logic of background animation by Particles object
+<h3 id="particles-object">3.2.1. Logic of background animation by Particles object</h3>
 
 Table of content of this section:
 
-1. Introdution
-2. Description of Particle object
-3. Description of Particles object
+1. [Introdution](#particle-introduction)
+
+2. [Description of Particle object](#particle-object-description)
+
+3. [Description of Particles object](#particles-object-description)
 
 <br/>
 
-### 1. Introdution
+<h3 id="particle-introduction">1. Introdution</h3>
 
 In order to obtain a better user experience while using the website, an animated background has been introduced, which contains movable so-called particles that connect with each other by means of lines when they are brought closer to each other.
 
@@ -1822,21 +1837,21 @@ To achieve the above effect, Particle and Particles objects were created.
 
 <br/>
 
-### 2. Description of the Particle object
+<h3 id="particle-object-description">2. Description of the Particle object</h3>
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
-&nbsp; 2.1. Code example of the Particle object constructor
+&nbsp; 2.1. [Code example of the Particle object constructor](#particle-code-example)
 
-&nbsp; 2.2. Description of the variables in the constructor
+&nbsp; 2.2. [Description of the variables in the constructor](#particle-constructor-variables)
 
-&nbsp; 2.3. Description of the draw method
+&nbsp; 2.3. [Description of the draw method](#particle-draw-method)
 
-&nbsp; 2.4. Description of the update method
+&nbsp; 2.4. [Description of the update method](#particle-update-method)
 
 <br/>
 
-### 2.1. Code example of the Particle object constructor
+<h3 id="particle-code-example">2.1. Code example of the Particle object constructor</h3>
 
 ```js
 //scripts/objects/Particle.js file:
@@ -1858,7 +1873,7 @@ class Particle {
 
 <br/>
 
-### 2.2. Description of the variables in the constructor
+<h3 id="particle-constructor-variables">2.2. Description of the variables in the constructor</h3>
 
 As we can see in the code example in the constructor we have only following variables:
 
@@ -1874,7 +1889,7 @@ As we can see in the code example in the constructor we have only following vari
 
 <br/>
 
-### 2.3. Description of the draw method
+<h3 id="particle-draw-method">2.3. Description of the draw method</h3>
 
 Below is an implementation of draw method of discussed object:
 
@@ -1892,7 +1907,7 @@ As we can see in the code example above, the draw method draws a given particle 
 
 <br/>
 
-### 2.4. Description of the update method
+<h3 id="particle-update-method">2.4. Description of the update method</h3>
 
 Below is an implementation of update method of discussed object:
 
@@ -1922,7 +1937,7 @@ It is worth adding here that the whole process of the particle's movement is car
 
 <br/>
 
-### 3. Description of the Particles object
+<h3 id="particles-object-description">3. Description of the Particles object</h3>
 
 In order to be able to create many such particles and make it move, the Particles object was created (which uses the previously discussed Particle object) with appropriate methods that enable it.
 
@@ -1930,33 +1945,33 @@ In order to be able to create many such particles and make it move, the Particle
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
-&nbsp; 3.1. Code example of the constructor of the Particle object
+&nbsp; 3.1. [Code example of the constructor of the Particles object](#particles-code-example)
 
-&nbsp; 3.2. Description of the variables in the object constructor
+&nbsp; 3.2. [Description of the variables in the object constructor](#particles-constructor-variables)
 
-&nbsp; 3.3. Description of the setIsMobile method (constructor)
+&nbsp; 3.3. [Description of the setIsMobile method (constructor)](#particles-setismobile-method)
 
-&nbsp; 3.4. Description of the createElements method (constructor)
+&nbsp; 3.4. [Description of the createElements method (constructor)](#particles-createelements-method)
 
-&nbsp; 3.5. Description of the setContext method (constructor)
+&nbsp; 3.5. [Description of the setContext method (constructor)](#particles-setcontext-method)
 
-&nbsp; 3.6. Description of the listenForResize method and the related resize method (constructor)
+&nbsp; 3.6. [Description of the listenForResize method and the related resize method (constructor)](#particles-listenforresize-method)
 
-&nbsp; 3.7. Description of the start method
+&nbsp; 3.7. [Description of the start method](#particles-start-method)
 
-&nbsp; 3.8. Description of the setTheme method
+&nbsp; 3.8. [Description of the setTheme method](#particles-settheme-method)
 
-&nbsp; 3.9. Description of the init method
+&nbsp; 3.9. [Description of the init method](#particles-init-method)
 
-&nbsp; 3.10. Description of the animate method
+&nbsp; 3.10. [Description of the animate method](#particles-animate-method)
 
-&nbsp; 3.11. Description of the connect method
+&nbsp; 3.11. [Description of the connect method](#particles-connect-method)
 
-&nbsp; 3.12. Description of the update method
+&nbsp; 3.12. [Description of the update method](#particles-update-method)
 
 <br/>
 
-### 3.1. Code example of the constructor of the Particle object
+<h3 id="particles-code-example">3.1. Code example of the constructor of the Particles object</h3>
 
 <br/>
 
@@ -1982,7 +1997,7 @@ class Particles {
 
 <br/>
 
-### 3.2. Description of the variables in the object constructor
+<h3 id="particles-constructor-variables">3.2. Description of the variables in the object constructor</h3>
 
 As we can see in the code example above we have three variables in the constructor:
 
@@ -1992,7 +2007,7 @@ As we can see in the code example above we have three variables in the construct
 
 <br/>
 
-### 3.3. Description of the setIsMobile method (constructor)
+<h3 id="particles-setismobile-method">3.3. Description of the setIsMobile method (constructor)</h3>
 
 Below is an implementation of setIsMobile method:
 
@@ -2008,7 +2023,7 @@ As we can see above, it is a simple method in which the screen width is checked 
 
 <br/>
 
-### 3.4. Description of the createElements method (constructor)
+<h3 id="particles-createelements-method">3.4. Description of the createElements method (constructor)</h3>
 
 After assigning values to variables, the createElements method is called, the implementation of which is shown below:
 
@@ -2027,7 +2042,7 @@ As we can see above, it is a simple method that creates this.canvas element via 
 
 <br/>
 
-### 3.5. Description of the setContext method (constructor)
+<h3 id="particles-setcontext-method">3.5. Description of the setContext method (constructor)</h3>
 
 Below is an example of setContext method:
 
@@ -2045,7 +2060,7 @@ As we can see above, this method sets context 2d and canvas size to the size of 
 
 <br/>
 
-### 3.6. Description of the listenForResize method and the related resize method (constructor)
+<h3 id="particles-listenforresize-method">3.6. Description of the listenForResize method and the related resize method (constructor)</h3>
 
 Below is an example of listenForResize method and related resize method:
 
@@ -2070,7 +2085,7 @@ As we can see above, the listenForResize method sets the event resize on the win
 
 <br/>
 
-### 3.7. Description of the start method
+<h3 id="particles-start-method">3.7. Description of the start method</h3>
 
 Below is an implementation of start method:
 
@@ -2089,7 +2104,7 @@ As we can see above this method takes an object with themes and starts the entir
 
 <br/>
 
-### 3.8. Description of the setTheme method
+<h3 id="particles-settheme-method">3.8. Description of the setTheme method</h3>
 
 Below is an implementation of setTheme method:
 
@@ -2107,7 +2122,7 @@ As we can see above, it is a method which, based on the passed theme, selects th
 
 <br/>
 
-### 3.9. Description of the init method
+<h3 id="particles-init-method">3.9. Description of the init method</h3>
 
 Below is an implementation of init method:
 
@@ -2136,7 +2151,7 @@ As we can see above, this is the method responsible for initialization the parti
 
 <br/>
 
-### 3.10. Description of the animate method
+<h3 id="particles-animate-method">3.10. Description of the animate method</h3>
 
 Below is an implementation of animate method:
 
@@ -2157,7 +2172,7 @@ As we can see above, the animate method is responsible for setting the particles
 
 <br/>
 
-### 3.11. Description of the connect method
+<h3 id="particles-connect-method">3.11. Description of the connect method</h3>
 
 Below is an implementation of connect method:
 
@@ -2191,7 +2206,7 @@ As we can see in the example above, the connect method allows you to manipulate 
 
 <br/>
 
-### 3.12. Description of the update method
+<h3 id="particles-update-method">3.12. Description of the update method</h3>
 
 Below is an implementation of update method:
 
@@ -2212,17 +2227,19 @@ Thanks to this method we have logic which allows to keep all the animation runni
 <br/>
 <br/>
 
-### 3.2.2. Option to set the page theme by Theme object
+<h3 id="theme-object">3.2.2. Option to set the page theme by Theme object</h3>
 
 Table of content of this section:
 
-1. Introdution
-2. Description of creating an instance of the Theme object
-3. Description of the Theme object logic
+1. [Introdution](#theme-introduction)
+
+2. [Description of creating an instance of the Theme object](#theme-instance)
+
+3. [Description of the Theme object logic](#theme-logic)
 
 <br/>
 
-### 1. Introdution
+<h3 id="theme-introduction">1. Introdution</h3>
 
 Each page has an option to set the theme in three colors: black, blue and purple via the theme setting panel.
 
@@ -2234,7 +2251,7 @@ Below is an example of setting the three mentioned themes:
 
 <br/>
 
-### 2. Description of creating an instance of the Theme object
+<h3 id="theme-instance">2. Description of creating an instance of the Theme object</h3>
 
 The above logic is possible thanks to the Theme object, an instance of which is created in a file that is the main script of a given page.
 
@@ -2267,33 +2284,33 @@ To the discussed instance of Theme object object is passed with:
 
 <br/>
 
-### 3.Description of the Theme object logic
+<h3 id="theme-logic">3. Description of the Theme object logic</h3>
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
-&nbsp; 3.1. Code example of the constructor of the Theme object
+&nbsp; 3.1. [Code example of the constructor of the Theme object](#theme-code-example)
 
-&nbsp; 3.2. Description variables in the object constructor
+&nbsp; 3.2. [Description variables in the object constructor](#theme-constructor-variables)
 
-&nbsp; 3.3. Description of the setInitialThemeName method (constructor)
+&nbsp; 3.3. [Description of the setInitialThemeName method (constructor)](#theme-setinitialthemename-method)
 
-&nbsp; 3.4. Description of the setInitialThemeObject method (constructor)
+&nbsp; 3.4. [Description of the setInitialThemeObject method (constructor)](#theme-setinitialthemeobject-method)
 
-&nbsp; 3.5. Description of the createElements method (constructor)
+&nbsp; 3.5. [Description of the createElements method (constructor)](#theme-createelements-method)
 
-&nbsp; 3.6. Description of the createComponents method (constructor)
+&nbsp; 3.6. [Description of the createComponents method (constructor)](#theme-createcomponents-method)
 
-&nbsp; 3.7. Description of the setGlobalVariables method (constructor)
+&nbsp; 3.7. [Description of the setGlobalVariables method (constructor)](#theme-setglobalvariables-method)
 
-&nbsp; 3.8. Description of the createBackgroundAnimation method (constructor)
+&nbsp; 3.8. [Description of the createBackgroundAnimation method (constructor)](#theme-createbackgroundanimation-method)
 
-&nbsp; 3.9. Description of use the appendElementsToContainerFn helper (constructor)
+&nbsp; 3.9. [Description of use the appendElementsToContainerFn helper (constructor)](#theme-appendelementstocontainerfn-helper)
 
-&nbsp; 3.10. Description of the logic for changing the theme and the related handleDotClick method
+&nbsp; 3.10. [Description of the logic for changing the theme and the related handleDotClick method](#theme-changing-theme-logic)
 
 <br/>
 
-### 3.1. Code example of the constructor of the Theme object
+<h3 id="theme-code-example">3.1. Code example of the constructor of the Theme object</h3>
 
 The implementation of this Theme object is shown below:
 
@@ -2319,7 +2336,7 @@ class Theme {
 
 <br/>
 
-### 3.2. Description of the variables in the object constructor
+<h3 id="theme-constructor-variables">3.2. Description of the variables in the object constructor</h3>
 
 As we can see in the code example above, in the constructor we have following variables:
 
@@ -2330,7 +2347,7 @@ As we can see in the code example above, in the constructor we have following va
 
 <br/>
 
-### 3.3. Description of the setInitialThemeName method (constructor)
+<h3 id="theme-setinitialthemename-method">3.3. Description of the setInitialThemeName method (constructor)</h3>
 
 Implementation of the setInitialThemeNam method is presented below:
 
@@ -2348,7 +2365,7 @@ As we can see above, it is a simple method that either takes the theme name save
 
 <br/>
 
-### 3.4. Description of the setInitialThemeObject method (constructor)
+<h3 id="theme-setinitialthemeobject-method">3.4. Description of the setInitialThemeObject method (constructor)</h3>
 
 The implementation of the setInitialThemeObject method is below:
 
@@ -2364,7 +2381,7 @@ As we can see in code example above this method, based on the previously determi
 
 <br/>
 
-### 3.5. Description of the createElements method (constructor)
+<h3 id="theme-createelements-method">3.5. Description of the createElements method (constructor)</h3>
 
 Next, in the constructor logic, the createElements method is called, the implementation of which is below:
 
@@ -2421,7 +2438,7 @@ As we can see above, in this method at the very beginning, an instance of the ba
 
 <br/>
 
-### 3.6. Description of the createComponents method (constructor)
+<h3 id="theme-createcomponents-method">3.6. Description of the createComponents method (constructor)</h3>
 
 After calling the createElements method described above, the createComponents method is called, the implementation of which is below:
 
@@ -2445,7 +2462,7 @@ As we can see above, this method, based on previously created elements, combines
 
 <br/>
 
-### 3.7. Description of the setGlobalVariables method (constructor)
+<h3 id="theme-setglobalvariables-method">3.7. Description of the setGlobalVariables method (constructor)</h3>
 
 At the end part of the constructor logic of discussed object, the method setGlobalVariables responsible for overwriting the values of global variables with the properties of a given theme is called.
 
@@ -2470,7 +2487,7 @@ As we can see above, this method, depending on whether a given theme object has 
 
 <br/>
 
-### 3.8. Description of the createBackgroundAnimation method (constructor)
+<h3 id="theme-createbackgroundanimation-method">3.8. Description of the createBackgroundAnimation method (constructor)</h3>
 
 The last method in the constructor is createBackgroundAnimation method which is responsible for starting the background creation mechanism based on the selected theme are called (here the particles animation starts).
 
@@ -2490,13 +2507,13 @@ As we can see above, it is the method responsible for calling the start method o
 
 <br/>
 
-### 3.9. Description of use the appendElementsToContainerFn helper (constructor)
+<h3 id="theme-appendelementstocontainerfn-helper">3.9. Description of use the appendElementsToContainerFn helper (constructor)</h3>
 
 At the very end of the constructor logic the main component (this.mainComponent) are attached to the passed container using appendElementsToContainerFn helper (which was also used to combine individual elements into components).
 
 <br/>
 
-### 3.10. Description of the logic for changing the theme and the related handleDotClick method
+<h3 id="theme-changing-theme-logic">3.10. Description of the logic for changing the theme and the related handleDotClick method</h3>
 
 Describing the rest of the operation of the Theme object, changing the theme is possible through the so-called dots elements (created via the createElements method), which listen for a click and call the handleDotClick method, to which the appropriate name of the theme and the clicked element are passed.
 
@@ -2569,16 +2586,17 @@ At the very end of handleDotClick method we have a setClassesFn helper which set
 <br/>
 <br/>
 
-### 3.2.3. Functionalities on the website called through the buttons on the left side of the page
+<h3 id="left-buttons">3.2.3. Functionalities on the website called through the buttons on the left side of the page</h3>
 
 Table of content of this section:
 
-1. Introdution
-2. Description of the container for buttons
+1. [Introdution](#left-buttons-introduction)
+
+2. [Description of the container for buttons](#left-buttons-container)
 
 <br/>
 
-### 1. Introdution
+<h3 id="left-buttons-introduction">1. Introdution</h3>
 
 Each additional functionality on the page is triggered by buttons located on the left side of each page (eg turn background music on and off, which will be described in the next subsection, the form create handling and back to the main page option, which will be described later).
 
@@ -2590,7 +2608,7 @@ Below is a visual example of discussed buttons on the privacy policy page (this 
 
 <br/>
 
-### 2. Description of the container for buttons
+<h3 id="left-buttons-container">2. Description of the container for buttons</h3>
 
 The element of the container to which the buttons shown above are attached has appropriate styles, thanks to which the buttons inside take the right place next to each other. In turn, each button in the discussed container has the same styles, which facilitates the development process.
 
@@ -2657,17 +2675,19 @@ It also worth adding that the buttons container (with global-left-container id) 
 <br/>
 <br/>
 
-### 3.2.4. Audio support on the site by Audio object
+<h3 id="audio-object">3.2.4. Audio support on the site by Audio object</h3>
 
 Table of content of this section:
 
-1. Introdution
-2. Description of creating an instance of the Audio object
-3. Description of the Audio object logic
+1. [Introdution](#audio-introduction)
+
+2. [Description of creating an instance of the Audio object](#audio-instance)
+
+3. [Description of the Audio object logic](#audio-logic)
 
 <br/>
 
-### 1. Introdution
+<h3 id="audio-introduction">1. Introdution</h3>
 
 The first of the additional functionalities on the website which I would like to describe is related to audio support on the website.
 
@@ -2679,7 +2699,7 @@ Below is a visual example of turning audio on and off on the home page:
 
 <br/>
 
-### 2. Description of creating an instance of the Audio object
+<h3 id="audio-instance">2. Description of creating an instance of the Audio object</h3>
 
 Before I go on to the implementation of the Audio object, which is responsible for
 handling the audio on the page, I would like to focus on how to create an instance of this object.
@@ -2719,27 +2739,27 @@ As we can see in the two examples above, to the instance is passed the object wi
 
 <br/>
 
-### 3. Description of the Audio object logic
+<h3 id="audio-logic">3. Description of the Audio object logic</h3>
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
-&nbsp; 3.1. Code example of the constructor of the Audio object
+&nbsp; 3.1. [Code example of the constructor of the Audio object](#audio-code-example)
 
-&nbsp; 3.2. Description of the variables in the object constructor
+&nbsp; 3.2. [Description of the variables in the object constructor](#audio-constructor-variables)
 
-&nbsp; 3.3. Description of the createElements method (constructor)
+&nbsp; 3.3. [Description of the createElements method (constructor)](#audio-createelements-method)
 
-&nbsp; 3.4. Description of the createComponents method (constructor)
+&nbsp; 3.4. [Description of the createComponents method (constructor)](#audio-createcomponents-method)
 
-&nbsp; 3.5. Description of use the appendElementsToContainerFn helper (constructor
+&nbsp; 3.5. [Description of use the appendElementsToContainerFn helper (constructor)](#audio-appendelementstocontainerfn-helper)
 
-&nbsp; 3.6. Description of use the triggerActionOnWindowScrollFn helper with the related toggleBtnComponent method (constructor)
+&nbsp; 3.6. [Description of use the triggerActionOnWindowScrollFn helper with the related toggleBtnComponent method (constructor)](#audio-triggeractiononwindowscrollfn-helper)
 
-&nbsp; 3.7. Description of the handleAudio method
+&nbsp; 3.7. [Description of the handleAudio method](#audio-handleaudio-method)
 
 <br/>
 
-### 3.1. Code example of the constructor of the Audio object
+<h3 id="audio-code-example">3.1. Code example of the constructor of the Audio object</h3>
 
 After explaining how the instances of the Audio object are created for different pages, now I would like to present the implementation of this object below:
 
@@ -2770,7 +2790,7 @@ class Audio {
 
 <br/>
 
-### 3.2. Description of the variables in the object constructor
+<h3 id="audio-constructor-variables">3.2. Description of the variables in the object constructor</h3>
 
 As we can see in the code example above, in constructor of the object we have following variables:
 
@@ -2779,7 +2799,7 @@ As we can see in the code example above, in constructor of the object we have fo
 
 <br/>
 
-### 3.3. Description of the createElements method (constructor)
+<h3 id="audio-createelements-method">3.3. Description of the createElements method (constructor)</h3>
 
 After assigning values to variables, the createElements method is called, the implementation of which is below:
 
@@ -2813,7 +2833,7 @@ As we can see above, the discussed method uses the createElementFn helper to cre
 
 <br/>
 
-### 3.4. Description of the createComponents method (constructor)
+<h3 id="audio-createcomponents-method">3.4. Description of the createComponents method (constructor)</h3>
 
 Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below:
 
@@ -2832,13 +2852,13 @@ As we can see above, the discussed method based on previously created elements (
 
 <br/>
 
-### 3.5. Description of use the appendElementsToContainerFn helper (constructor)
+<h3 id="audio-appendelementstocontainerfn-helper">3.5. Description of use the appendElementsToContainerFn helper (constructor)</h3>
 
 At the end part of the constructor logic created component (this.btnComponent) are attached to the passed container using appendElementsToContainerFn helper.
 
 <br/>
 
-### 3.6. Description of use the triggerActionOnWindowScrollFn helper with the related toggleBtnComponent method (constructor)
+<h3 id="audio-triggeractiononwindowscrollfn-helper">3.6. Description of use the triggerActionOnWindowScrollFn helper with the related toggleBtnComponent method (constructor)</h3>
 
 At the very end in the constructor logic there is a conditional call (depending on whether the trigger element reference has been sent) of the triggerActionOnWindowScrollFn helper.
 
@@ -2905,7 +2925,7 @@ Summarizing, thanks to this solution, when the trigger element is crossed during
 
 <br/>
 
-### 3.7. Description of the handleAudio method
+<h3 id="audio-handleaudio-method">3.7. Description of the handleAudio method</h3>
 
 In the case of the created this.btn element in createElements method, we have an event listener that is set to event click, which calls the handleAudio method.
 
@@ -2934,16 +2954,17 @@ As we can see above, it is a simple method that first sets the opposite value in
 <br/>
 <br/>
 
-### 3.2.5. A Curtain object that allows to attach components dynamically
+<h3 id="curtain-object">3.2.5. A Curtain object that allows to attach components dynamically</h3>
 
 Table of content of this section:
 
-1. Introdution
-2. Description of the Curtain object logic
+1. [Introdution](#curtain-introduction)
+
+2. [Description of the Curtain object logic](#curtain-logic)
 
 <br/>
 
-### 1. Introdution
+<h3 id="curtain-introduction">1. Introdution</h3>
 
 Before I go on to the description of the next functionality related to the creation of a form component (which is called via the next button of the left side of page), the Curtain object, which plays a key role in the process of creating a form, must be described.
 
@@ -2965,45 +2986,45 @@ Thanks to this solution, some components (for example form component) can exists
 
 <br/>
 
-### 2. Description of the Curtain object logic
+<h3 id="curtain-logic">2. Description of the Curtain object logic</h3>
 
 For a better understanding of the logic behind the solution described above, below is explanation of the operation of the Curtain object.
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
-&nbsp; 2.1. Code example of the constructor of the Curtain object
+&nbsp; 2.1. [Code example of the constructor of the Curtain object](#curtain-code-example)
 
-&nbsp; 2.2. General description of the constructor
+&nbsp; 2.2. [General description of the constructor](#curtain-constructor-general)
 
-&nbsp; 2.3. Description of the variables in object constructor
+&nbsp; 2.3. [Description of the variables in object constructor](#curtain-constructor-variables)
 
-&nbsp; 2.4. Description of the createElements method (constructor)
+&nbsp; 2.4. [Description of the createElements method (constructor)](#curtain-createelements-method)
 
-&nbsp; 2.5. Description of use the appendElementsToContainerFn helper (constructor)
+&nbsp; 2.5. [Description of use the appendElementsToContainerFn helper (constructor)](#curtain-appendelementstocontainerfn-helper)
 
-&nbsp; 2.6. Description of the toggleShow method (toggle "on"
+&nbsp; 2.6. [Description of the toggleShow method (toggle "on")](#curtain-toggleshow-on-method)
 
-&nbsp; 2.7. Description of the addCbsToCallOnHidden method (inside the toggleShow method with passing the toggle parameter with "on" value
+&nbsp; 2.7. [Description of the addCbsToCallOnHidden method (inside the toggleShow method with passing the toggle parameter with "on" value](#curtain-addcbstocallonhidden-method)
 
-&nbsp; 2.8. Description of the appendElements and the related addElToChildren method (inside the toggleShow method with passing the toggle parameter with "on" value)
+&nbsp; 2.8. [Description of the appendElements and the related addElToChildren method (inside the toggleShow method with passing the toggle parameter with "on" value)](#curtain-appendelements-method)
 
-&nbsp; 2.9. Description of the toggleBodyFreeze (inside the toggleShow method with passing the toggle parameter with "on" value)
+&nbsp; 2.9. [Description of the toggleBodyFreeze (inside the toggleShow method with passing the toggle parameter with "on" value)](#curtain-togglebodyfreeze-method)
 
-&nbsp; 2.10. Description of the toggleActive method (inside the toggleShow method with passing the toggle parameter with "on" value)
+&nbsp; 2.10. [Description of the toggleActive method (inside the toggleShow method with passing the toggle parameter with "on" value)](#curtain-toggleactive-method)
 
-&nbsp; 2.11. A visual example of adding a form component to the curtain (the effect of calling the toggleShow method with the toggle parameter set to "on")
+&nbsp; 2.11. [A visual example of adding a form component to the curtain (the effect of calling the toggleShow method with the toggle parameter set to "on")](#curtain-adding-form-component)
 
-&nbsp; 2.12. Description of the togglePreventHidden method (inside the toggleShow method with passing the toggle parameter with "off" value)
+&nbsp; 2.12. [Description of the togglePreventHidden method (inside the toggleShow method with passing the toggle parameter with "off" value)](#curtain-togglepreventhidden-method)
 
-&nbsp; 2.13. Description of the callCbsOnHidden method (inside the toggleShow method with passing the toggle parameter with "off" value
+&nbsp; 2.13. [Description of the callCbsOnHidden method (inside the toggleShow method with passing the toggle parameter with "off" value](#curtain-callcbsonhidden-method)
 
-&nbsp; 2.14. Description of the clear method with the related clearChildren and the clearCbsToCallOnHidden methods (inside the toggleShow method with passing the toggle parameter with "off" value
+&nbsp; 2.14. [Description of the clear method with the related clearChildren and the clearCbsToCallOnHidden methods (inside the toggleShow method with passing the toggle parameter with "off" value](#curtain-clear-method)
 
-&nbsp; 2.15. A visual example of removing a form component from a curtain
+&nbsp; 2.15. [A visual example of removing a form component from a curtain](#curtain-remove-form-component)
 
 <br/>
 
-### 2.1. Code example of the constructor of the Curtain object
+<h3 id="curtain-code-example">2.1. Code example of the constructor of the Curtain object</h3>
 
 Below is an implementation of the Curtain object constructor:
 
@@ -3031,13 +3052,13 @@ export default curtain
 
 <br/>
 
-### 2.2. General description of the constructor
+<h3 id="curtain-constructor-general">2.2. General description of the constructor</h3>
 
 As we can see in the example above, in the constructor we are dealing with singleton design patter. Thanks to it, we can create only one instance of the Curtain object, which is the main source of saving various data (each time we want to create a new instance, the first one is returned (Curtain.instance = this)).
 
 <br/>
 
-### 2.3. Description of the variables in the object constructor
+<h3 id="curtain-constructor-variables">2.3. Description of the variables in the object constructor</h3>
 
 As we can see in the code example above in the object constructor we have following variables:
 
@@ -3047,7 +3068,7 @@ As we can see in the code example above in the object constructor we have follow
 
 <br/>
 
-### 2.4. Description of the createElements method (constructor)
+<h3 id="curtain-createelements-method">2.4. Description of the createElements method (constructor)</h3>
 
 Next, in the constructor logic, the createElements method is called the implementation of which is below:
 
@@ -3072,13 +3093,13 @@ As we can see, it is a simple method that creates the this.curtain element with 
 
 <br/>
 
-### 2.5. Description of use the appendElementsToContainerFn helper (constructor)
+<h3 id="curtain-appendelementstocontainerfn-helper">2.5. Description of use the appendElementsToContainerFn helper (constructor)</h3>
 
 At the end of the constructor logic created element (this.curtain) is attached to the passed container using appendElementsToContainerFn helper.
 
 <br/>
 
-### 2.6. Description of the toggleShow method
+<h3 id="curtain-toggleshow-on-method">2.6. Description of the toggleShow method</h3>
 
 The main method that calls the rest of the Curtain object methods is the toggleShow method, the implementation of which is shown below:
 
@@ -3120,7 +3141,7 @@ Then in this method, there may be two cases (toggle "on"/"off") where different 
 
 <br/>
 
-### 2.7. Description of the addCbsToCallOnHidden method (inside the toggleShow method with passing the toggle parameter with "on" value)
+<h3 id="curtain-addcbstocallonhidden-method">2.7. Description of the addCbsToCallOnHidden method (inside the toggleShow method with passing the toggle parameter with "on" value)</h3>
 
 In first scenario where toggleShow method is called with toggle value "on", the sent callbacks are added to the this.cbsToCallOnHidden array via the addCbsToCallOnHidden method.
 
@@ -3142,7 +3163,7 @@ As we can see above, this is a simple method that iterates through adds the pass
 
 <br/>
 
-### 2.8. Description of the appendElements and the related addElToChildren method (inside the toggleShow method with passing the toggle parameter with "on" value)
+<h3 id="curtain-appendelements-method">2.8. Description of the appendElements and the related addElToChildren method (inside the toggleShow method with passing the toggle parameter with "on" value)</h3>
 
 Next, in the toggleShow method (with the toggle parameter value set to "on") the appendElements method is called.
 
@@ -3177,7 +3198,7 @@ As we can see above, this method is only responsible for adding the passed eleme
 
 <br/>
 
-### 2.9. Description of the toggleBodyFreeze (inside the toggleShow method with passing the toggle parameter with "on" value)
+<h3 id="curtain-togglebodyfreeze-method">2.9. Description of the toggleBodyFreeze (inside the toggleShow method with passing the toggle parameter with "on" value)</h3>
 
 In the penultimate place in method toggleShow (with the toggle parameter value set to "on"), method toggleBodyFreeze is called.
 
@@ -3215,7 +3236,7 @@ As we can see in the example above, this method uses the setPropsFn helper (impl
 
 <br/>
 
-### 2.10. Description of the toggleActive method (inside the toggleShow method with passing the toggle parameter with "on" value)
+<h3 id="curtain-toggleactive-method">2.10. Description of the toggleActive method (inside the toggleShow method with passing the toggle parameter with "on" value)</h3>
 
 The last method that is called in toggleShow (with the toggle parameter value set to "on") is toggleActive method.
 
@@ -3258,7 +3279,7 @@ As we can see above, the toggleActive method through the helper setPropsFn, simi
 
 <br/>
 
-### 2.11. A visual example of adding a form component to the curtain (the effect of calling the toggleShow method with the toggle parameter set to "on")
+<h3 id="curtain-adding-form-component">2.11. A visual example of adding a form component to the curtain (the effect of calling the toggleShow method with the toggle parameter set to "on")</h3>
 
 Below is a visual example of adding a form component to a curtain by pressing the button with the form icon (this process will be discussed in the next section):
 
@@ -3268,7 +3289,7 @@ The above operation is possible by calling the toggleShow method, to which the t
 
 <br/>
 
-### 2.12. Description of the togglePreventHidden method (inside the toggleShow method with passing the toggle parameter with "off" value)
+<h3 id="curtain-togglepreventhidden-method">2.12. Description of the togglePreventHidden method (inside the toggleShow method with passing the toggle parameter with "off" value)</h3>
 
 In order to better understand this and the next description (with the toggle parameter value set to "off"), the toggleShow method has been quoted below once again to make it easier to refer to the described logic below:
 
@@ -3324,7 +3345,7 @@ Below is a visual example that shows the inability to close the form component w
 
 <br/>
 
-### 2.13. Description of the callCbsOnHidden method (inside the toggleShow method with passing the toggle parameter with "off" value)
+<h3 id="curtain-callcbsonhidden-method">2.13. Description of the callCbsOnHidden method (inside the toggleShow method with passing the toggle parameter with "off" value)</h3>
 
 If the value of this.preventHidden is false previously passed callbacks (sent when toggle value was "on") are called via callCbsOnHidden method.
 
@@ -3346,7 +3367,7 @@ As we can see above, it is a simple method that calls functions (callbacks) whil
 
 <br/>
 
-### 2.14. Description of the clear method with the related clearChildren and the clearCbsToCallOnHidden methods (inside the toggleShow method with passing the toggle parameter with "off" value)
+<h3 id="curtain-clear-method">2.14. Description of the clear method with the related clearChildren and the clearCbsToCallOnHidden methods (inside the toggleShow method with passing the toggle parameter with "off" value)</h3>
 
 The next method that is called in sequence is clear method.
 
@@ -3392,7 +3413,7 @@ In this section I will add that at the very end of toggleShow method (in the cas
 
 <br/>
 
-### 2.15. A visual example of removing a form component from a curtain
+<h3 id="curtain-remove-form-component">2.15. A visual example of removing a form component from a curtain</h3>
 
 Below is a visual example of removing the component form by clicking on the curtain and by clicking on the X button of the form component (in both cases the toggleShow method is called with the toggle parameter set to "off" - for the X button of the form component, this process will be discussed in the next section):
 
@@ -3401,17 +3422,19 @@ Below is a visual example of removing the component form by clicking on the curt
 <br/>
 <br/>
 
-### 3.2.6. Dynamic form creation by Form object
+<h3 id="form-object">3.2.6. Dynamic form creation by Form object</h3>
 
 Table of content of this section:
 
-1. Introdution
-2. Description of creating an instance of the Form object
-3. Description of the Form object logic
+1. [Introdution](#form-introduction)
+
+2. [Description of creating an instance of the Form object](#form-instance)
+
+3. [Description of the Form object logic](#form-logic)
 
 <br/>
 
-### 1. Introdution
+<h3 id="form-introduction">1. Introdution</h3>
 
 In this section, I would like to focus on explaining the creation of the form component along with its entire logic of operation along with sending data to the server (handled by my backend application [Emails Handler](https://github.com/damian-lis/Emails-handler)).
 
@@ -3423,7 +3446,7 @@ Below is one more visual example of the logic of form component which is create 
 
 <br/>
 
-### 2. Description of creating an instance of the Form object
+<h3 id="form-instance">2. Description of creating an instance of the Form object</h3>
 
 Before I go on to the implementation of the Form object, which is responsible for handling the form on the page, I would like to focus on how to create an instance of this object.
 
@@ -3449,7 +3472,7 @@ As we can see in above code example, we pass to the instance of the Form object 
 
 <br/>
 
-### 3. Description of the Form object logic
+<h3 id="form-logic">3. Description of the Form object logic</h3>
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
@@ -3457,103 +3480,103 @@ To make it easier to find yourself in the description below, there is a list of 
 
 FORM BUTTON CREATING PART:
 
-&nbsp; 3.1. Code example of the constructor of the Form object
+&nbsp; 3.1. [Code example of the constructor of the Form object](#form-code-example)
 
-&nbsp; 3.2. Description of the variables in object constructor
+&nbsp; 3.2. [Description of the variables in object constructor](#form-constructor-variables)
 
-&nbsp; 3.3. Description of the createInitialElements method (constructor)
+&nbsp; 3.3. [Description of the createInitialElements method (constructor)](#form-createinitialelements-method)
 
-&nbsp; 3.4. Description of the createInitialComponents method (constructor)
+&nbsp; 3.4. [Description of the createInitialComponents method (constructor)](#form-createinitialcomponents-method)
 
-&nbsp; 3.5. Description of use the appendElementsToContainerFn helper (constructor)
+&nbsp; 3.5. [Description of use the appendElementsToContainerFn helper (constructor)](#form-appendelementstocontainerfn-helper)
 
-&nbsp; 3.6. Description of use the triggerActionOnWindowScrollFn helper with the related toggleBtnComponent method (constructor)
+&nbsp; 3.6. [Description of use the triggerActionOnWindowScrollFn helper with the related toggleBtnComponent method (constructor)](#form-triggeractiononwindowscrollfn-helper)
 
 <br/>
 
 FORM COMPONENT CREATING PART:
 
-&nbsp; 3.7. Description of the handleMainComponentCreate method
+&nbsp; 3.7. [Description of the handleMainComponentCreate method](#form-handlemaincomponentcreate-method)
 
-&nbsp; 3.8 Description of the toggleBtnComponent method (toggle "off") (inside the handleMainComponentCreate method)
+&nbsp; 3.8 [Description of the toggleBtnComponent method (toggle "off") (inside the handleMainComponentCreate method)](#form-togglebtncomponent-off-method)
 
-&nbsp; 3.9 Description of the createMainElements method (inside the handleMainComponentCreate method)
+&nbsp; 3.9 [Description of the createMainElements method (inside the handleMainComponentCreate method)](#form-createmainelements-method)
 
-&nbsp; 3.10 Description of the data/informations/formField file which consist the data passed to the Form object which is closely related to the createMainElements method (inside the handleMainComponentCreate method)
+&nbsp; 3.10 [Description of the data/informations/formField file which consist the data passed to the Form object which is closely related to the createMainElements method (inside the handleMainComponentCreate method)](#form-field-data)
 
-&nbsp; 3.11 Description of the createFormFieldElements method which is closely related to the createMainElements method (inside the handleMainComponentCreate method)
+&nbsp; 3.11 [Description of the createFormFieldElements method which is closely related to the createMainElements method (inside the handleMainComponentCreate method)](#form-createformfieldelements-method)
 
-&nbsp; 3.12 Description of the createMainComponents method (inside the handleMainComponentCreate method)
+&nbsp; 3.12 [Description of the createMainComponents method (inside the handleMainComponentCreate method)](#form-createmaincomponents-method)
 
-&nbsp; 3.13 Description of the toggleShow Curtain object method (the last method inside the handleMainComponentCreate method)
+&nbsp; 3.13 [Description of the toggleShow Curtain object method (the last method inside the handleMainComponentCreate method)](#form-toggleshow-curtain-method)
 
 <br/>
 
 FORM INPUT LOGIC PART:
 
-&nbsp; 3.14 Description of the input (text, email and textarea) logic with the handleFormTextInputTyping and handleFormTextInputFocus methods
+&nbsp; 3.14 [Description of the inputs (text, email and textarea) logic with the handleFormTextInputTyping and handleFormTextInputFocus methods](#form-inputs-logic)
 
-&nbsp; 3.15 Description of the input (text, email and textarea) notifications logic with the handleFormTextInputNotificationClick method
+&nbsp; 3.15 [Description of the inputs (text, email and textarea) notifications logic with the handleFormTextInputNotificationClick method](#form-notifications-logic)
 
 <br/>
 
 FORM SUBMIT LOGIC PART:
 
-&nbsp; 3.16 Description of the form submit logic with the handleFormSubmit method
+&nbsp; 3.16 [Description of the form submit logic with the handleFormSubmit method](#form-submit-logic)
 
-&nbsp; 3.17. Description of the emailValidate method (inside the handleFormSubmit method)
+&nbsp; 3.17. [Description of the emailValidate method (inside the handleFormSubmit method)](#form-emailvalidate-method)
 
-&nbsp; 3.18. Description of the findEmptyFormTextInputs method (inside the handleFormSubmit method)
+&nbsp; 3.18. [Description of the findEmptyFormTextInputs method (inside the handleFormSubmit method)](#form-findemptyformtextinputs-method)
 
-&nbsp; 3.19. Description of the toggleFormTextInputsNotification method (toggle "on") (inside the handleFormSubmit method)
+&nbsp; 3.19. [Description of the toggleFormTextInputsNotification method (toggle "on") (inside the handleFormSubmit method)](#form-toggleformtextinputsnotification-on-method)
 
-&nbsp; 3.20. Description of the disableFormInputs method (inside the handleFormSubmit method)
+&nbsp; 3.20. [Description of the disableFormInputs method (inside the handleFormSubmit method)](#form-disableforminputs-method)
 
-&nbsp; 3.21. Description of the toggleDeleteBtnComponent method (toggle "off") (inside the handleFormSubmit method)
+&nbsp; 3.21. [Description of the toggleDeleteBtnComponent method (toggle "off") (inside the handleFormSubmit method)](#form-toggledeletebtncomponent-off-method)
 
-&nbsp; 3.22. Description of the toggleSpinnerComponent method (toggle "on") (inside the handleFormSubmit method)
+&nbsp; 3.22. [Description of the toggleSpinnerComponent method (toggle "on") (inside the handleFormSubmit method)](#form-togglespinnercomponent-on-method)
 
-&nbsp; 3.23. Description of the toggleFormSubmitInputlNotifications method (toggle "on") (inside the handleFormSubmit method)
+&nbsp; 3.23. [Description of the toggleFormSubmitInputlNotifications method (toggle "on") (inside the handleFormSubmit method)](#form-toggleformsubmitinputnotifications-on-method)
 
-&nbsp; 3.24. Description of the togglePreventHidden method (toggle "on") of Curtain object (inside the handleFormSubmit method)
+&nbsp; 3.24. [Description of the togglePreventHidden method (toggle "on") of Curtain object (inside the handleFormSubmit method)](#form-togglepreventhidden-on-method)
 
-&nbsp; 3.25. Description of handleEmailSent method (inside the handleFormSubmit method)
+&nbsp; 3.25. [Description of handleEmailSent method (inside the handleFormSubmit method)](#form-handleemailsent-method)
 
-&nbsp; 3.26. Description of the resetFormTextInputsValue method (inside the handleFormSubmit method)
+&nbsp; 3.26. [Description of the resetFormTextInputsValue method (inside the handleFormSubmit method)](#form-resetformtextinputsvalue-method)
 
-&nbsp; 3.27. Description of the toggleSpinnerComponent method (toggle "off") (inside the handleFormSubmit method)
+&nbsp; 3.27. [Description of the toggleSpinnerComponent method (toggle "off") (inside the handleFormSubmit method)](#form-togglespinnercomponent-off-method)
 
-&nbsp; 3.28. Description of the toggleFormSubmitInputlNotifications method (toggle "off") (inside the handleFormSubmit method)
+&nbsp; 3.28. [Description of the toggleFormSubmitInputlNotifications method (toggle "off") (inside the handleFormSubmit method)](#form-toggleformsubmitinputnotifications-off-method)
 
-&nbsp; 3.29. Description of the hideTitleInfo method (inside the handleFormSubmit method)
+&nbsp; 3.29. [Description of the hideTitleInfo method (inside the handleFormSubmit method)](#form-hidetitleinfo-method)
 
-&nbsp; 3.30. Description of the hideFormComponent method (inside the handleFormSubmit method)
+&nbsp; 3.30. [Description of the hideFormComponent method (inside the handleFormSubmit method)](#form-hideformcomponent-method)
 
-&nbsp; 3.31. Description of the replaceTitleText method (inside the handleFormSubmit method)
+&nbsp; 3.31. [Description of the replaceTitleText method (inside the handleFormSubmit method)](#form-replacetitletext-method)
 
-&nbsp; 3.32. Description of the reduceMainComponentHeight method (inside the handleFormSubmit method)
+&nbsp; 3.32. [Description of the reduceMainComponentHeight method (inside the handleFormSubmit method)](#form-reducemaincomponentheight-method)
 
-&nbsp; 3.33. Description of the moveTitleComponent method (inside the handleFormSubmit method)
+&nbsp; 3.33. [Description of the moveTitleComponent method (inside the handleFormSubmit method)](#form-movetitlecomponent-method)
 
-&nbsp; 3.34. Description of the revealTitleWhisper method with the visual animation example (inside the handleFormSubmit method)
+&nbsp; 3.34. [Description of the revealTitleWhisper method with the visual animation example (inside the handleFormSubmit method)](#form-revealtitlewhisper-method)
 
-&nbsp; 3.35. Description of the setDelayFn helper (inside the handleFormSubmit method)
+&nbsp; 3.35. [Description of the setDelayFn helper (inside the handleFormSubmit method)](#form-setdelayfn-helper)
 
 <br/>
 
 FORM DELETE LOGIC PART:
 
-&nbsp; 3.36. Description of the setSelfDestructEventToMainComponent method (inside the handleFormSubmit method)
+&nbsp; 3.36. [Description of the setSelfDestructEventToMainComponent method (inside the handleFormSubmit method)](#form-setselfdesctructeventtomaincomponent-method)
 
-&nbsp; 3.37. Description of the togglePreventHidden method (toggle "off") of Curtain object (inside the handleFormSubmit method)
+&nbsp; 3.37. [Description of the togglePreventHidden method (toggle "off") of Curtain object (inside the handleFormSubmit method)](#form-togglepreventhidden-off-method)
 
-&nbsp; 3.38. Description of delete a form component through the this.btnDelete element
+&nbsp; 3.38. [Description of delete a form component through the this.btnDelete element](#form-delete)
 
 <br/>
 
 ### FORM BUTTON CREATING PART:
 
-### 3.1. Code example of the constructor of the Form object
+<h3 id="form-code-example">3.1. Code example of the constructor of the Form object</h3>
 
 Moving on to the logic of the discussed object, first I would like to focus on the constructor of the object, which is very simple and is presented below:
 
@@ -3584,7 +3607,7 @@ class Form {
 
 <br/>
 
-### 3.2. Description of the variables in the object constructor
+<h3 id="form-constructor-variables">3.2. Description of the variables in the object constructor</h3>
 
 As we can see in the code example above we have following variables in the constructor:
 
@@ -3594,7 +3617,7 @@ As we can see in the code example above we have following variables in the const
 
 <br/>
 
-### 3.3. Description of the createInitialElements method (constructor)
+<h3 id="form-createinitialelements-method">3.3. Description of the createInitialElements method (constructor)</h3>
 
 Next, after variables in the constructor, the createInitialElements method is called, the implementation of which is below:
 
@@ -3627,7 +3650,7 @@ It should be added here that the this.btn element has a listener that calls the 
 
 <br/>
 
-### 3.4. Description of the createInitialComponents method (constructor)
+<h3 id="form-createinitialcomponents-method">3.4. Description of the createInitialComponents method (constructor)</h3>
 
 Going further in the logic of the discussed object constructor, we have a call the createInitialComponents method, which, based on previously created elements (this.btn and this.emailImg).
 
@@ -3650,13 +3673,13 @@ As we can see in the code example above this method combines this.emailImg with 
 
 <br/>
 
-### 3.5. Description of use the appendElementsToContainerFn helper (constructor)
+<h3 id="form-appendelementstocontainerfn-helper">3.5. Description of use the appendElementsToContainerFn helper (constructor)</h3>
 
 In the next part the previously created this.button Component is attached to the passed container to Form object by appendElementsToContainerFn helper.
 
 <br/>
 
-### 3.6. Description of use the triggerActionOnWindowScrollFn helper with the related toggleBtnComponent method (constructor)
+<h3 id="form-triggeractiononwindowscrollfn-helper">3.6. Description of use the triggerActionOnWindowScrollFn helper with the related toggleBtnComponent method (constructor)</h3>
 
 At the very end in the constructor logic there is a conditional call (depending on whether the trigger element reference has been sent) of the triggerActionOnWindowScrollFn helper.
 
@@ -3717,7 +3740,7 @@ Summarizing, thanks to this solution, when the trigger element is crossed during
 
 ### FORM COMPONENT CREATING PART:
 
-### 3.7. Description of the handleMainComponentCreate method
+<h3 id="form-handlemaincomponentcreate-method">3.7. Description of the handleMainComponentCreate method</h3>
 
 Now I would like to focus on explaining the handleMainComponentCreate method, which, as I mentioned before, is called via event click on the button with the form icon.
 
@@ -3761,13 +3784,13 @@ As we can see above, this.btn, when clicked, calls the x method, which includes 
 
 <br/>
 
-### 3.8 Description of the toggleBtnComponent method (toggle "off") (inside the handleMainComponentCreate method)
+<h3 id="form-togglebtncomponent-off-method">3.8 Description of the toggleBtnComponent method (toggle "off") (inside the handleMainComponentCreate method)</h3>
 
 First, the toggleBtnComponent method is called with passing the toggle argument with "off" value. This method has already been introduced when discussing the trigger helper, so I will just mention that thanks to it and the toggle argument that is "off", the form button on the left is hidden.
 
 <br/>
 
-### 3.9 Description of the createMainElements method (inside the handleMainComponentCreate method)
+<h3 id="form-createmainelements-method">3.9 Description of the createMainElements method (inside the handleMainComponentCreate method)</h3>
 
 Going forward, we have the createMainElements method which is responsible for creating form component elements.
 
@@ -3927,7 +3950,7 @@ Below I will try to briefly describe the most important elements of form compone
 
 <br/>
 
-### 3.10 Description of the data/informations/formField file which consist the data passed to the Form object which is closely related to the createMainElements method (inside the handleMainComponentCreate method)
+<h3 id="form-field-data">3.10 Description of the data/informations/formField file which consist the data passed to the Form object which is closely related to the createMainElements method (inside the handleMainComponentCreate method)</h3>
 
 Before I go over to the createFormFieldElements methods, I would like to mention a few words about the data passed to the Form object (assigned to this.formFieldsInfo variable) on the basis of which form field elements are created and form fields (containers for form field elements).
 
@@ -3982,7 +4005,7 @@ As we can see above, this file contains an array with objects that contain some 
 
 <br/>
 
-### 3.11 Description of the createFormFieldElements method which is closely related to the createMainElements method (inside the handleMainComponentCreate method)
+<h3 id="form-createformfieldelements-method">3.11 Description of the createFormFieldElements method which is closely related to the createMainElements method (inside the handleMainComponentCreate method)</h3>
 
 In this subsection I would like to move on to discuss the logic of the createFormFieldElements method which is responsible for creating individual form fields elements based on the passed data during iteration.
 
@@ -4090,7 +4113,7 @@ It should be added that in the case of an object of the textarea type, instead o
 
 <br/>
 
-### 3.12 Description of the createMainComponents method (inside the handleMainComponentCreate method)
+<h3 id="form-createmaincomponents-method">3.12 Description of the createMainComponents method (inside the handleMainComponentCreate method)</h3>
 
 Next, in the handleMainComponentCreate method, we call the createMainComponents method, which, based on previously created elements by createMainElements method and combines them into the so-called components.
 
@@ -4172,7 +4195,7 @@ Below is an visual example of the form component created:
 
 <br/>
 
-### 3.13 Description of the toggleShow Curtain object method (the last method inside the handleMainComponentCreate method)
+<h3 id="form-toggleshow-curtain-method">3.13 Description of the toggleShow Curtain object method (the last method inside the handleMainComponentCreate method)</h3>
 
 The last method that is called in the handleMainComponentCreate method is the toggleShow method of the Curtain object, which I will not describe in detail (this was done at the stage of discussing the Curtain object),I will just show how and with what arguments it is called.
 
@@ -4206,7 +4229,7 @@ As we can see in the above code example, the toggleShow method is called with:
 
 ### FORM INPUT LOGIC PART:
 
-### 3.14 Description of the input (text, email and textarea) logic with the handleFormTextInputTyping and the handleFormTextInputFocus methods
+<h3 id="form-inputs-logic">3.14 Description of the inputs (text, email and textarea) logic with the handleFormTextInputTyping and the handleFormTextInputFocus methods</h3>
 
 Now that we have the forms component created, I would like to move on to describing the logic that is present in it. First of all, I would like to focus on the logic of individual inputs in the form.
 
@@ -4350,7 +4373,7 @@ Below is a visual example of hiding notifications using the previously mentioned
 
 <br/>
 
-### 3.15 Description of the input (text, email and textarea) notifications logic with the handleFormTextInputNotificationClick method
+<h3 id="form-notifications-logic">3.15 Description of the inputs (text, email and textarea) notifications logic with the handleFormTextInputNotificationClick method</h3>
 
 As I explained before, each input created is closely related to a set (array) of notifications, which we also saw in the previous subsection.
 
@@ -4412,7 +4435,7 @@ Below is a visual example of this solution:
 
 ### FORM SUBMIT LOGIC PART:
 
-### 3.16. Description of the form submit logic with the handleFormSubmit method
+<h3 id="form-submit-logic">3.16. Description of the form submit logic with the handleFormSubmit method</h3>
 
 The handleFormSubmit method is responsible for handling the logic of sending data to the server and the behavior of the form component. This method is called by the event submit, which was set in the this.form element (the call is done directly by clicking the input type submit).
 
@@ -4486,7 +4509,7 @@ As we can see in the example above, the handleFormSubmit is an asynchronous meth
 
 <br/>
 
-### 3.17. Description of the emailValidate method (inside the handleFormSubmit method)
+<h3 id="form-emailvalidate-method">3.17. Description of the emailValidate method (inside the handleFormSubmit method)</h3>
 
 At the very beginning of the discussed handleFormSubmit method, we have the default event blocked by preventDefault method and then we have a method call that validates the email entered by the user (emailValidate) which is returned true/valse value to the isEmailValidate variable.
 
@@ -4513,7 +4536,7 @@ As we can see above, this is a simple method that uses the values assigned to th
 
 <br/>
 
-### 3.18. Description of the findEmptyFormTextInputs method (inside the handleFormSubmit method)
+<h3 id="form-findemptyformtextinputs-method">3.18. Description of the findEmptyFormTextInputs method (inside the handleFormSubmit method)</h3>
 
 Going further in the handleFormSubmit method, we call the findEmptyFormTextInputs method, which returns true/false value to the emptyTextInputs variable.
 
@@ -4541,7 +4564,7 @@ As we can see in the above example, it is a simple method that checks the value 
 
 <br/>
 
-### 3.19. Description of the toggleFormTextInputsNotification method (toggle "on") (inside the handleFormSubmit method)
+<h3 id="form-toggleformtextinputsnotification-on-method">3.19. Description of the toggleFormTextInputsNotification method (toggle "on") (inside the handleFormSubmit method)</h3>
 
 Next, in the handleFormSubmit method we have two conditional calls to the toggleFormTextInputsNotification method, which will be called when:
 
@@ -4643,7 +4666,7 @@ Below is a visual examples of the appearance of various notifications:
 
 <br/>
 
-### 3.20. Description of the disableFormInputs method (inside the handleFormSubmit method)
+<h3 id="form-disableforminputs-method">3.20. Description of the disableFormInputs method (inside the handleFormSubmit method)</h3>
 
 Going further in the logic of the handleFormSubmit method, when all the values have been entered correctly we have a disableFormInputs method call.
 
@@ -4692,7 +4715,7 @@ A visual example of excluding inputs from use is shown below:
 
 <br/>
 
-### 3.21. Description of the toggleDeleteBtnComponent method (toggle "off") (inside the handleFormSubmit method)
+<h3 id="form-toggledeletebtncomponent-off-method">3.21. Description of the toggleDeleteBtnComponent method (toggle "off") (inside the handleFormSubmit method)</h3>
 
 Then in the method handleFormSubmit we have a toggleDeleteBtnComponent method call with passing toggle value "off".
 
@@ -4737,7 +4760,7 @@ As we can see in the above example, through the setPropsFn helper, styles are se
 
 <br/>
 
-### 3.22. Description of the toggleSpinnerComponent method (toggle "on") (inside the handleFormSubmit method)
+<h3 id="form-togglespinnercomponent-on-method">3.22. Description of the toggleSpinnerComponent method (toggle "on") (inside the handleFormSubmit method)</h3>
 
 Going further in the logic of the handleFormSubmit method we have a toggleSpinnerComponent method call with passing toggle value "on".
 
@@ -4793,7 +4816,7 @@ Below is a visual example of this solution:
 
 <br/>
 
-### 3.23. Description of the toggleFormSubmitInputlNotifications method (toggle "on") (inside the handleFormSubmit method)
+<h3 id="form-toggleformsubmitinputnotifications-on-method">3.23. Description of the toggleFormSubmitInputlNotifications method (toggle "on") (inside the handleFormSubmit method)</h3>
 
 Then in the method handleFormSubmit we have a toggleFormSubmitInputlNotifications method call with passing "on" value of the toggle parameter and "5000" value of the notificationDuration parameter.
 
@@ -4908,7 +4931,7 @@ Below is an example of the discussed solution:
 
 <br/>
 
-### 3.24. Description of the togglePreventHidden method (toggle "on") of the Curtain object (inside the handleFormSubmit method)
+<h3 id="form-togglepreventhidden-on-method">3.24. Description of the togglePreventHidden method (toggle "on") of the Curtain object (inside the handleFormSubmit method)</h3>
 
 Next up, as we'll see in the handleFormSubmit method, we call the togglePreventHidden method of the Curtain object which prevents the form from being deleted through the curtain element (this method was explained at the time of describing the Curtain object).
 
@@ -4932,7 +4955,7 @@ Below is a visual example of this solution:
 
 <br/>
 
-### 3.25. Description of the handleEmailSent method (inside the handleFormSubmit method)
+<h3 id="form-handleemailsent-method">3.25. Description of the handleEmailSent method (inside the handleFormSubmit method)</h3>
 
 After blocking the possibility of removing the form, the method x is called, which is returned to the variable feedback.
 
@@ -4988,7 +5011,7 @@ Below are three examples of replies from the server:
 
 <br/>
 
-### 3.26. Description of the resetFormTextInputsValue method (inside the handleFormSubmit method)
+<h3 id="form-resetformtextinputsvalue-method">3.26. Description of the resetFormTextInputsValue method (inside the handleFormSubmit method)</h3>
 
 After receiving the response from the server, the resetFormTextInputsValue method is first called.
 
@@ -5016,7 +5039,7 @@ Below is a visual example of this method:
 
 <br/>
 
-### 3.27. Description of the toggleSpinnerComponent method (toggle "off") (inside the handleFormSubmit method)
+<h3 id="form-togglespinnercomponent-off-method">3.27. Description of the toggleSpinnerComponent method (toggle "off") (inside the handleFormSubmit method)</h3>
 
 Next, the handleFormSubmit method calls toggleSpinnerComponent with the toggle parameter set to "off".
 
@@ -5032,7 +5055,7 @@ this.toggleSpinnerComponent({ toggle: toggleValue.off })
 
 <br/>
 
-### 3.28. Description of the toggleFormSubmitInputlNotifications method (toggle "off") (inside the handleFormSubmit method)
+<h3 id="form-toggleformsubmitinputnotifications-off-method">3.28. Description of the toggleFormSubmitInputlNotifications method (toggle "off") (inside the handleFormSubmit method)</h3>
 
 Then, after replacing the spinner with input of type submit, the toggleFormSubmitInputlNotifications method is called:
 
@@ -5046,7 +5069,7 @@ I am not providing an implementation example here because the logic of this meth
 
 <br/>
 
-### 3.29. Description of the hideTitleInfo method (inside the handleFormSubmit method)
+<h3 id="form-hidetitleinfo-method">3.29. Description of the hideTitleInfo method (inside the handleFormSubmit method)</h3>
 
 Next, we have a series of methods that are responsible for the final animation of the form component.
 
@@ -5082,7 +5105,7 @@ As we can see above, it is a simple method that uses the setPropsFn helper, whic
 
 <br/>
 
-### 3.30. Description of the hideFormComponent method (inside the handleFormSubmit method)
+<h3 id="form-hideformcomponent-method">3.30. Description of the hideFormComponent method (inside the handleFormSubmit method)</h3>
 
 The next step is to call the hideFormComponent method, the calling example and implementation of which is shown below:
 
@@ -5118,7 +5141,7 @@ As we can see above this is a method which also uses the setPropsFn helper which
 
 <br/>
 
-### 3.31. Description of the replaceTitleText method (inside the handleFormSubmit method)
+<h3 id="form-replacetitletext-method">3.31. Description of the replaceTitleText method (inside the handleFormSubmit method)</h3>
 
 After hiding this.formMainComponent element, the method replaceTitleText is called, the calling example and implementation of which is shown below:
 
@@ -5152,7 +5175,7 @@ This method overrides the innerHTML property of this.title element with the sent
 
 <br/>
 
-### 3.32. Description of the reduceMainComponentHeight method (inside the handleFormSubmit method)
+<h3 id="form-reducemaincomponentheight-method">3.32. Description of the reduceMainComponentHeight method (inside the handleFormSubmit method)</h3>
 
 After the method I just described, the method reduceMainComponentHeight is called, the calling example and implementation of which is shown below:
 
@@ -5187,7 +5210,7 @@ This method reduces the size of this.mainComponent to 100px via the setPropsFn h
 
 <br/>
 
-### 3.33. Description of the moveTitleComponent method (inside the handleFormSubmit method)
+<h3 id="form-movetitlecomponent-method">3.33. Description of the moveTitleComponent method (inside the handleFormSubmit method)</h3>
 
 The penultimate method that applies to animating a form component is the moveTitleComponent method, the calling example and implementation of which is shown below:
 
@@ -5227,7 +5250,7 @@ As we can see above, this method through the setPropsFn helper sets a number of 
 
 <br/>
 
-### 3.34. Description of the revealTitleWhisper method with the visual animation example (inside the handleFormSubmit method)
+<h3 id="form-revealtitlewhisper-method">3.34. Description of the revealTitleWhisper method with the visual animation example (inside the handleFormSubmit method)</h3>
 
 The last method related to the animation of component forms is the revealTitleWhisper method, the calling example and implementation of which is shown below:
 
@@ -5266,7 +5289,7 @@ Below is a visual example of the form component animation methods discussed abov
 
 <br/>
 
-### 3.35. Description of the setDelayFn helper (inside the handleFormSubmit method)
+<h3 id="form-setdelayfn-helper">3.35. Description of the setDelayFn helper (inside the handleFormSubmit method)</h3>
 
 After the methods calling the animation the setDelayFn helper is called, the example of which is shown below:
 
@@ -5282,7 +5305,7 @@ The helper we see above (the logic of the helper shown above was discussed in th
 
 ### FORM DELETE LOGIC PART:
 
-### 3.36. Description of the setSelfDestructEventToMainComponent method (inside the handleFormSubmit method)
+<h3 id="form-setselfdesctructeventtomaincomponent-method">3.36. Description of the setSelfDestructEventToMainComponent method (inside the handleFormSubmit method)</h3>
 
 After the handleFormSubmit method is delayed via the setDelayFn helper, the setSelfDestructEventToMainComponent method is called, the calling example and implementation of which is shown below:
 
@@ -5320,7 +5343,7 @@ Below is a visual example of this solution:
 
 <br/>
 
-### 3.37. Description of the togglePreventHidden method (toggle "off") of the Curtain object (inside the handleFormSubmit method)
+<h3 id="form-togglepreventhidden-off-method">3.37. Description of the togglePreventHidden method (toggle "off") of the Curtain object (inside the handleFormSubmit method)</h3>
 
 At the very end of the handleFormSubmit method is the togglePreventHidden method of Curtain object, which is called as follows:
 
@@ -5340,7 +5363,7 @@ Below is a visual example of this solution
 
 <br/>
 
-### 3.38. Description of delete a form component through the this.btnDelete element
+<h3 id="form-delete">3.38. Description of delete a form component through the this.btnDelete element</h3>
 
 Removing the form component is also done through the this.btnDelete element, which is presented below as a part of the createMainElements method:
 
@@ -5373,17 +5396,19 @@ Below is a visual example of this solution (along with an example of clicking on
 <br/>
 <br/>
 
-### 3.2.7. Possibility to go back to the home page by Back object
+<h3 id="back-object">3.2.7. Possibility to go back to the home page by Back object</h3>
 
 Table of content of this section:
 
-1. Introdution
-2. Description of creating an instance of the Back object
-3. Description of the Back object logic
+1. [Introdution](#back-introduction)
+
+2. [Description of creating an instance of the Back object](#back-instance)
+
+3. [Description of the Back object logic](#back-logic)
 
 <br/>
 
-### 1. Introdution
+<h3 id="back-introduction">1. Introdution</h3>
 
 The functionality that I would like to describe here concerns the possibility of going back to the home page from each subpage.
 
@@ -5397,7 +5422,7 @@ Below is a visual example of this solution on the privacy policy page (the same 
 
 <br/>
 
-### 2. Description of creating an instance of the Back object
+<h3 id="back-instance">2. Description of creating an instance of the Back object</h3>
 
 In order to implement the logic we see above, an instance of the BackBtn object is created in the file, which constitutes the main script for the privacy policy page (the same operation as for the previous objects discussed).
 
@@ -5415,7 +5440,7 @@ As we can see in the example presented above, only the reference of the containe
 
 <br/>
 
-### 3. Description of the Back object logic
+<h3 id="back-logic">3. Description of the Back object logic</h3>
 
 After the presentation of creating an instance of a Back object, I can now move on to presenting the logic behind this object.
 
@@ -5423,13 +5448,15 @@ After the presentation of creating an instance of a Back object, I can now move 
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
-&nbsp; 3.1. Code example of the Back object constructor
-&nbsp; 3.2. Description of the createElements method (constructor)
-&nbsp; 3.3. Description of the createComponents method (constructor)
+&nbsp; 3.1. [Code example of the Back object constructor](#back-code-example)
+
+&nbsp; 3.2. [Description of the createElements method (constructor)](#back-createelements-method)
+
+&nbsp; 3.3. [Description of the createComponents method (constructor)](#back-createcomponents-method)
 
 <br/>
 
-### 3.1. Code example of the Back object constructor
+<h3 id="back-code-example">3.1. Code example of the Back object constructor</h3>
 
 ```js
 //scripts/objects/Back.js file:
@@ -5448,7 +5475,7 @@ export default BackBtn
 
 <br/>
 
-### 3.2. Description of the createElements method (constructor)
+<h3 id="back-createelements-method">3.2. Description of the createElements method (constructor)</h3>
 
 In the constructor, first, the createElements method is called, the implementation of which is below:
 
@@ -5472,7 +5499,7 @@ As we can see in the code example above, two elements this.link and this.arrowIm
 
 <br/>
 
-### 3.3. Description of the createComponents method (constructor)
+<h3 id="back-createcomponents-method">3.3. Description of the createComponents method (constructor)</h3>
 
 Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below:
 
@@ -5492,17 +5519,19 @@ As we can see in code example above, this method combines previously created ele
 <br/>
 <br/>
 
-### 3.2.8. Create project sneak peeks by SneakPeeks object
+<h3 id="sneakpeeks-object">3.2.8. Create project sneak peeks by SneakPeeks object</h3>
 
 Table of content of this section:
 
-1. Introdution
-2. Description of creating an instance of the SneakPeeks object
-3. Description of the SneakPeeks object logic
+1. [Introdution](#sneakpeeks-introduction)
+
+2. [Description of creating an instance of the SneakPeeks object](#sneakpeeks-instance)
+
+3. [Description of the SneakPeeks object logic](#sneakpeeks-logic)
 
 <br/>
 
-### 1. Introdution
+<h3 id="sneakpeeks-introduction">1. Introdution</h3>
 
 Sneak peeks of the projects that I have created appear at the bottom of the home page. It looks like this:
 
@@ -5510,7 +5539,7 @@ Sneak peeks of the projects that I have created appear at the bottom of the home
 
 <br/>
 
-### 2. Description of creating an instance of the SneakPeeks object
+<h3 id="sneakpeeks-instance">2. Description of creating an instance of the SneakPeeks object</h3>
 
 Before I go to the description of the logic of this object, which is responsible for creating the sneak peeks presented above, I would like to present the process of creating its instance with the pass of appropriate parameters.
 
@@ -5538,7 +5567,7 @@ As we can see in the example above, the following parameters (in object) are pas
 
 <br/>
 
-### 3. Description of the SneakPeeks object logic
+<h3 id="sneakpeeks-logic">3. Description of the SneakPeeks object logic</h3>
 
 After the presentation of creating an instance of a SneakPeeks object, I can now move on to presenting the logic behind this object.
 
@@ -5546,23 +5575,23 @@ After the presentation of creating an instance of a SneakPeeks object, I can now
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
-&nbsp; 3.1. Code example of the SneakPeeks object constructor
+&nbsp; 3.1. [Code example of the SneakPeeks object constructor](#sneakpeeks-code-example)
 
-&nbsp; 3.2. Description of the variables of the object constructor
+&nbsp; 3.2. [Description of the variables of the object constructor](#sneakpeeks-constructor-variables)
 
-&nbsp; 3.3. Description of the createElements method (constructor)
+&nbsp; 3.3. [Description of the createElements method (constructor)](#sneakpeeks-createelements-method)
 
-&nbsp; 3.4. Description of the createComponents method (constructor)
+&nbsp; 3.4. [Description of the createComponents method (constructor)](#sneakpeeks-createcomponents-method)
 
-&nbsp; 3.5. Description of use the appendElementsToContainerFn helper (constructor)
+&nbsp; 3.5. [Description of use the appendElementsToContainerFn helper (constructor)](#sneakpeeks-appendelementstocontainerfn-helper)
 
-&nbsp; 3.6. Code example and description of the data/informations/sneakPeeks.js file
+&nbsp; 3.6. [Code example and description of the data/informations/sneakPeeks.js file](#sneakpeeks-data)
 
-&nbsp; 3.7. Description of use the triggerActionOnWindowScrollFn helper with the related handleOnEnterTriggerEl method (constructor)
+&nbsp; 3.7. [Description of use the triggerActionOnWindowScrollFn helper with the related handleOnEnterTriggerEl method (constructor)](#sneakpeeks-triggeractiononwindowscrollfn-helper)
 
 <br/>
 
-### 3.1. Code example of the SneakPeeks object constructor
+<h3 id="sneakpeeks-code-example">3.1. Code example of the SneakPeeks object constructor</h3>
 
 Below is the constructor implementation of the discussed object:
 
@@ -5591,7 +5620,7 @@ class SneakPeeks {
 
 <br/>
 
-### 3.2. Description of the variables of the object constructor
+<h3 id="sneakpeeks-constructor-variables">3.2. Description of the variables of the object constructor</h3>
 
 As we can see in the code example above, in the object constructor we have following variables:
 
@@ -5601,7 +5630,7 @@ As we can see in the code example above, in the object constructor we have follo
 
 <br/>
 
-### 3.3. Description of the createElements method (constructor)
+<h3 id="sneakpeeks-createelements-method">3.3. Description of the createElements method (constructor)</h3>
 
 After assigning data to this.sneakPeeksInfo variable, the createElements method is called, the implementation of which is below:
 
@@ -5615,16 +5644,11 @@ createElements() {
     })
 
     this.elements = this.sneakPeeksInfo.map((sneakPeek) => {
-      const linkWrapper = sneakPeek.duringDevelopment
-        ? createElementFn({
-            element: elements.a,
-            classes: [classNames.sneakPeek.linkWrapper],
-          })
-        : createElementFn({
-            element: elements.a,
-            classes: [classNames.sneakPeek.linkWrapper],
-            href: sneakPeek.href,
-          })
+      const linkWrapper = createElementFn({
+        element: elements.a,
+        classes: [classNames.sneakPeek.linkWrapper],
+        href: sneakPeek.href,
+      })
 
       const container = createElementFn({
         element: elements.div,
@@ -5698,11 +5722,11 @@ createElements() {
   }
 ```
 
-As we can see above, this is large but very simple method, in which, through the createElementFn helper, a container element (this.mainContainer) and an array (this.elements) of objects with individual sneak peek elements are created.
+As we can see above, this is large but very simple method, in which, through the createElementFn helper, a container element (this.mainContainer) and an array of objects (this.elements) with individual sneak peek elements are created.
 
 <br/>
 
-### 3.4. Description of the createComponents method (constructor)
+<h3 id="sneakpeeks-createcomponents-method">3.4. Description of the createComponents method (constructor)</h3>
 
 Next, in the constructor of discussed object, we call the createComponents method, the implementation of which is below:
 
@@ -5775,13 +5799,13 @@ As we can see, it is a simple method which, through interactions on a previously
 
 <br/>
 
-### 3.5. Description of use the appendElementsToContainerFn helper (constructor)
+<h3 id="sneakpeeks-appendelementstocontainerfn-helper">3.5. Description of use the appendElementsToContainerFn helper (constructor)</h3>
 
 After the above-mentioned methods, the created this.mainComponent component is connected to the container by appendElementsToContainerFn helper.
 
 <br/>
 
-### 3.6. Code example and description of the data/informations/sneakPeeks.js file
+<h3 id="sneakpeeks-data">3.6. Code example and description of the data/informations/sneakPeeks.js file</h3>
 
 In order to understand well how given sneak peek elements are created, below is a file (data) with a collection of information on individual projects on the basis of which these elements were created:
 
@@ -5883,7 +5907,7 @@ As we can see in the above example, data is an array of objects, each of which h
 
 <br/>
 
-### 3.7. Description of use the triggerActionOnWindowScrollFn helper with the related handleOnEnterTriggerEl method (constructor)
+<h3 id="sneakpeeks-triggeractiononwindowscrollfn-helper">3.7. Description of use the triggerActionOnWindowScrollFn helper with the related handleOnEnterTriggerEl method (constructor)</h3>
 
 Finally, the triggerActionOnWindowScrollFn helper is executed in the object's constructor, which works a bit differently than the objects mentioned earlier.
 
@@ -5938,17 +5962,19 @@ The discussed handleOnEnterTriggerEl method using the setClassesFn helper and se
 <br/>
 <br/>
 
-### 3.2.9. Create descriptions by DescriptionArrange object
+<h3 id="descriptionarrange-object">3.2.9. Create descriptions by DescriptionArrange object</h3>
 
 Table of content of this section:
 
-1. Introdution
-2. Description of creating an instance of the DescriptionArrange object
-3. Description of the DescriptionArrange object logic
+1. [Introdution](#descriptionarrange-introduction)
+
+2. [Description of creating an instance of the DescriptionArrange object](#descriptionarrange-instance)
+
+3. [Description of the DescriptionArrange object logic](#descriptionarrange-logic)
 
 <br/>
 
-### 1. Introdution
+<h3 id="descriptionarrange-introduction">1. Introdution</h3>
 
 Most of the descriptions in the project were created using the DescriptionArrange object. This solution was introduced because creating descriptions in the html file itself is not readable.
 
@@ -5972,7 +5998,7 @@ Below is a visual example of the TalkToGisapiaAndTheOthers subpage description:
 
 <br/>
 
-### 2. Description of creating an instance of the DescriptionArrange object
+<h3 id="descriptionarrange-instance">2. Description of creating an instance of the DescriptionArrange object</h3>
 
 To understand the process that is responsible for creating descriptions, I will use the example of descriptions on the home site.
 
@@ -5999,21 +6025,21 @@ Created instances of the DescriptionArrange object, as we can see above, take th
 
 <br/>
 
-### 3. Description of the DescriptionArrange object logic
+<h3 id="descriptionarrange-logic">3. Description of the DescriptionArrange object logic</h3>
 
 To make it easier to find yourself in the description below, there is a list of topics covered:
 
-&nbsp; 3.1. Code example of the DescriptionArrange object constructor
+&nbsp; 3.1. [Code example of the DescriptionArrange object constructor](#descriptionarrange-code-example)
 
-&nbsp; 3.2. Description of the variables of the object constructor
+&nbsp; 3.2. [Description of the variables of the object constructor](#descriptionarrange-constructor-variables)
 
-&nbsp; 3.3. Description of the createElements method (constructor)
+&nbsp; 3.3. [Description of the createElements method (constructor)](#descriptionarrange-createelements-method)
 
-&nbsp; 3.4. Description of use the appendElementsToContainerFn helper (constructor)
+&nbsp; 3.4. [Description of use the appendElementsToContainerFn helper (constructor)](#descriptionarrange-appendelementstocontainerfn-helper)
 
 <br/>
 
-### 3.1. Code example of the DescriptionArrange object constructor
+<h3 id="descriptionarrange-code-example">3.1. Code example of the DescriptionArrange object constructor</h3>
 
 The object itself, which is responsible for creating the description is presented below:
 
@@ -6032,13 +6058,13 @@ class DescriptionArrange {
 
 <br/>
 
-### 3.2. Description of the variables of the object constructor
+<h3 id="descriptionarrange-constructor-variables">3.2. Description of the variables of the object constructor</h3>
 
 As we can see in the code example above, in the constructor we only have one variable this.description that takes an array with objects associated with a given description (data).
 
 <br/>
 
-### 3.3. Description of the createElements method (constructor)
+<h3 id="descriptionarrange-createelements-method">3.3. Description of the createElements method (constructor)</h3>
 
 The createElements method is responsible for creating elements, as in the previous objects, which in this case looks as follows:
 
@@ -6123,6 +6149,6 @@ I would like to mention here that the aforementioned data, which is processed by
 
 <br/>
 
-### 3.4. Description of use the appendElementsToContainerFn helper (constructor)
+<h3 id="descriptionarrange-appendelementstocontainerfn-helper">3.4. Description of use the appendElementsToContainerFn helper (constructor)</h3>
 
 At the very end of the constructor logic created elements (this.elements) are attached to the passed container using appendElementsToContainerFn helper (after this operation, the entire description is ready and visible on the website).
