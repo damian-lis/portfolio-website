@@ -23,12 +23,10 @@ const structure = {
       id,
       classes: (() => {
         const classesSet = []
-
         classesSet.push(m.t(mt))
         classesSet.push(m.b(mb))
         classesSet.push(text[align])
         classesSet.push(text.sm[smAlign])
-
         underline && classesSet.push(text.underline)
 
         return classesSet
@@ -53,7 +51,6 @@ const structure = {
       id,
       classes: (() => {
         const classesSet = []
-
         classesSet.push(m.y(my))
         classesSet.push(text[align])
         classesSet.push(text.lh(lh))
@@ -71,7 +68,6 @@ const structure = {
       path: `/images/projects/${imgPath}`,
       classes: (() => {
         const classesSet = []
-
         classesSet.push(border.rounded)
         classesSet.push(w.full)
         classesSet.push(m.t(mt))
@@ -126,7 +122,6 @@ const structure = {
         return {
           list: (() => {
             const classesSet = []
-
             classesSet.push(position[listPosition])
             classesSet.push(text[listAlign])
             classesSet.push(text.sm[listSmAlign])
@@ -171,6 +166,6 @@ const structure = {
   },
 }
 
-const { h, p, im, c, l, b, s, a } = structure
+const { h, p, im, c, l, b, a } = structure
 
-export { h, p, im, c, l, b, s, a }
+export { h, p, im, c, l, b, a }
