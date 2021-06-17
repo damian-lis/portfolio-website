@@ -154,6 +154,8 @@ const structure = {
     return { type: common.break }
   },
 
+  // only use within another tag:
+
   a: (label, path) => {
     return path && path.includes('#')
       ? `<a class="text-bold text-white" href=${path}>${label}</a>`
