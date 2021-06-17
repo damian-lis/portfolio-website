@@ -46,6 +46,14 @@
   letter-spacing: 1px;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
+.text-white {
+  color: #fff;
+}
+
 .text-dash::before {
   content: '-';
   display: inline-block;

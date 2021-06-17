@@ -156,7 +156,7 @@ const structure = {
 
   a: (label, path) => {
     return path && path.includes('#')
-      ? `<a style="color:white" href=${path}>${label}</a>`
+      ? `<a class="text-bold text-white" href=${path}>${label}</a>`
       : `<a href=${path} rel="noopener noreferrer nofollow" 
     target="_blank">${label}</a>`
   },
