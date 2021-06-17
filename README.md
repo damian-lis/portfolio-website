@@ -2,7 +2,7 @@
 
 This project provides information about me and projects that I have done and allows You to contact me via the contact form (the sent data is handled by my backend application [Emails Handler](https://github.com/damian-lis/Emails-handler), which is responsible for sending e-mails).
 
-_To facilitate navigation within the description, each section title links to the corresponding section. However, through the arrow (⬆) in the title of a specific section, you can refer to the closest list of specific sections._
+_To facilitate navigation within the description, each section title links to the corresponding section. However, through the arrow ⬆ in the title of a specific section, you can refer to the closest list of specific sections._
 
 <br/>
 
@@ -28,7 +28,7 @@ _To facilitate navigation within the description, each section title links to th
 
 2. [Setup](#setup)
 
-3. [Solutions](#solutions)
+3. [Features](#features)
 
 <br/>
 <br/>
@@ -49,7 +49,7 @@ You don't need any commands to run this project.
 
 <br/>
 
-<h2 id="solutions">3. Solutions <a href="#table-of-contents">⬆</a></h2>
+<h2 id="features">3. Features <a href="#table-of-contents">⬆</a></h2>
 
 The entire project is built using OOP javascript (for a very in-depth understanding of the language) and using its own framework that refers to the css frameworks like tailwindCSS (utility-first CSS) and Bootsrap for better understand how css works.
 
@@ -324,12 +324,14 @@ const structure = {
       align = txtAlign.left,
       smAlign = txtAlign.left,
       underline,
+      id,
     } = {}
   ) => {
     return {
       type: common.header,
       size,
       content,
+      id,
       classes: (() => {
         const classesSet = []
 
@@ -347,12 +349,19 @@ const structure = {
 
   p: (
     content,
-    { my = 10, align = txtAlign.justify, smAlign = txtAlign.left, lh = 25 } = {}
+    {
+      my = 10,
+      align = txtAlign.justify,
+      smAlign = txtAlign.left,
+      lh = 25,
+      id,
+    } = {}
   ) => {
     return {
       type: common.paragraph,
       element: elements.p,
       content,
+      id,
       classes: (() => {
         const classesSet = []
 
@@ -463,10 +472,14 @@ const structure = {
     return { type: common.break }
   },
 
-  s: (content) => `<strong>${content}</strong>`,
+  // only use within another tag:
 
-  a: (label, path) => `<a href=${path} rel="noopener noreferrer nofollow" 
-  target="_blank">${label}</a>`,
+  a: (label, path) => {
+    return path && path.includes('#')
+      ? `<a class="text-bold text-white" href=${path}>${label}</a>`
+      : `<a href=${path} rel="noopener noreferrer nofollow" 
+    target="_blank">${label}</a>`
+  },
 }
 
 const { h, p, im, c, l, b, s, a } = structure
@@ -474,11 +487,13 @@ const { h, p, im, c, l, b, s, a } = structure
 export { h, p, im, c, l, b, s, a }
 ```
 
-As we can see above, it is a file that contains the appropriate structure, which consists of functions that return objects with appropriate information (element to be created, content, classes, etc.).
+As we can see above, it is a file that contains the object named structure, which consists of functions that return objects with appropriate information (element to be created, content, classes, etc.).
+
+For a function assigned to the "a" key of structure object, html tag (a) is returned to make it easier to link somewhere inside another tag, for example inside header or paragraph text (it can only be used within another tag).
 
 <br/>
 
-These functions are assigned to variables, the names of which are associated with the following html elements:
+Presented above functions are assigned to variables (keys of structure object), the names of which are associated with the following html elements:
 
 ```
 h - <h></h>,
@@ -498,7 +513,7 @@ To understand well how to create descriptions using the above-mentioned solution
 ```js
 //data/descriptions/sites/talkToGisapiaAndTheOthers.js file:
 
-import { h, p, im, c, l, b, s, a } from '/data/descriptions/structure.js'
+import { h, p, im, c, l, b, a } from '/data/descriptions/structure.js'
 import { txtAlign, programmingLngs } from '/data/global/names.js'
 
 const folder = (path) => `TalkToGisapiaAndTheOthers/${path}`
@@ -511,20 +526,42 @@ export default [
     smAlign: txtAlign.center,
   }),
 
-  h(`Table of contents:`),
+  p([
+    'To facilitate navigation within the description, each section title links to the corresponding section. However, through the arrow ⬆ in the title of a specific section, you can refer to the closest list of specific sections.',
+  ]),
 
-  l([s('1. Introduction'), s('2. Technologies'), s('3. Features')], {
-    itemDash: false,
-    listSize: 20,
-    itemMl: 5,
-  }),
+  h(`Table of contents:`, { id: 'table-of-contents' }),
+
+  l(
+    [
+      a('1. Introduction', '#introduction'),
+      a('2. Technologies', '#technologies'),
+      a('3. Features', '#features'),
+    ],
+    {
+      itemDash: false,
+      listSize: 20,
+      itemMl: 5,
+    }
+  ),
 
   b(),
 
-  h(`1. Introduction`),
+  h(`1. Introduction ${a('⬆', '#table-of-contents')}`, { id: 'introduction' }),
 
   p([
     `The app allows You to write messages in two languages (PL/ENG) with 3 different characters who can collect information provided via the messenger by user, use them data during the conversation and send in an interesting form to the user e-mail.`,
+  ]),
+
+  b(),
+
+  p([
+    `Live version is ${a('here', 'https://talktogisapiaandtheothers.pl/')}.`,
+
+    `Github is ${a(
+      'here',
+      'https://github.com/damian-lis/talk-to-gisapia-and-the-others'
+    )}.`,
   ]),
 
   b(),
@@ -537,23 +574,22 @@ export default [
 
   im(folder(`introMobile.gif`)),
 
-  h(`2. Technologies`),
+  h(`2. Technologies ${a('⬆', '#table-of-contents')}`, { id: 'technologies' }),
 
   p([`The following technologies were used in the project:`]),
 
   l([`HTML`, `CSS`, ` Javascript (OOP)`, `GSAP`]),
 
-  h(`3. Features`),
+  h(`3. Features ${a('⬆', '#table-of-contents')}`, { id: 'features' }),
 
   p([
     `Most of the project is built in oop javascript for a very in-depth understanding of the language. The list of the most interesting solutions is presented below:`,
   ]),
-]
 ```
 
-As we can see above, using the discussed solution, we can easily create a description by using various functions that return appropriate objects with information about a given element (we can also modify the default objects that have been set in the structure.js file by sending appropriate parameters to the function) .
+As we can see above, creating the entire description is as simple as using appropriate functions (which we can modify for our own needs through the configuration object) that return specific information (objects) that are placed in the array.
 
-Next, such created description is processed by the DescriptionArrange object (scripts/objects/DescriptionArrange.js), which is explained at the end of the entire description of the project (3.2.9. subsection).
+Next, this data is processed by the DescriptionArrange object, which converts this information into a real description, which is added to the indicated place. The entire explanation of the DescriptionArrange object logic is (<a href="#descriptionarrange-object">here</a>).
 
 <br/>
 
@@ -6073,7 +6109,7 @@ The createElements method is responsible for creating elements, as in the previo
 ```js
 //scripts/objects/DescriptionArrange.js file:
 
-createElements() {
+  createElements() {
     this.elements = this.description.map((object) => {
       switch (object.type) {
         case common.header:
@@ -6081,6 +6117,7 @@ createElements() {
             element: elements.h(object.size),
             innerHTML: object.content,
             classes: object.classes,
+            id: object.id,
           })
 
         case common.paragraph:
@@ -6089,6 +6126,7 @@ createElements() {
               element: elements.p,
               classes: object.classes,
               innerHTML: paragraphContent,
+              id: object.id,
             })
           )
 
@@ -6147,7 +6185,7 @@ createElements() {
 
 As we can see in above code example, the createElements method has very simple logic and depending on the passed data (files from data/descriptions/sites folder), an appropriate description element is created using the switch statement and the createElementFn helper .
 
-I would like to mention here that the aforementioned data, which is processed by the discussed method, is described in the General section in subsection 3.1.1. (in the local section named "descriptions folder").
+I would like to mention that the aforementioned data, which is processed by the discussed method is <a href="#descriptions-folder">here</a>.
 
 <br/>
 
