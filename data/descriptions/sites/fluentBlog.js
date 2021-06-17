@@ -11,7 +11,11 @@ export default [
     smAlign: txtAlign.center,
   }),
 
-  h(`Table of contents:`),
+  p([
+    'To facilitate navigation within the description, each section title links to the corresponding section. However, through the arrow ⬆ in the title of a specific section, you can refer to the closest list of specific sections.',
+  ]),
+
+  h(`Table of contents:`, { id: 'table-of-contents' }),
 
   l(
     [
@@ -28,7 +32,7 @@ export default [
 
   b(),
 
-  h(`1. Introduction`, { id: 'introduction' }),
+  h(`1. Introduction ${a('⬆', '#table-of-contents')}`, { id: 'introduction' }),
 
   p([
     `The site is dedicated to blogging about the IT industry and it contains various articles, author's description and completed projects for the portfolio.`,
@@ -52,13 +56,13 @@ export default [
 
   im(folder(`mobile.gif`)),
 
-  h(`2. Technologies`, { id: 'technologies' }),
+  h(`2. Technologies ${a('⬆', '#table-of-contents')}`, { id: 'technologies' }),
 
   p([
     `The entire project was created using Next and TailwindCSS technologies due to the speed and ease of development, efficiency and the ability to render the code on the server side, which contributes to better SEO.`,
   ]),
 
-  h(`3. Features`, { id: 'features' }),
+  h(`3. Features ${a('⬆', '#table-of-contents')}`, { id: 'features' }),
 
   p([
     `In this section, I will focus on a more detailed description of the various functionalities that have been introduced in the project.`,
@@ -92,10 +96,16 @@ export default [
     { itemDash: false, itemMl: 5 }
   ),
 
-  h(`3.1. Adding data related to portfolio projects dynamically`, {
-    size: 5,
-    id: 'adding-data-dynamically',
-  }),
+  h(
+    `3.1. Adding data related to portfolio projects dynamically ${a(
+      '⬆',
+      '#features'
+    )}`,
+    {
+      size: 5,
+      id: 'adding-data-dynamically',
+    }
+  ),
 
   p([
     `Next js allows us to add data to the page in a dynamic way. For this process, files with the markdown extension will be used, in which we can write various texts as in a regular text editor, but we can also save different data as in a normal database.`,
@@ -231,10 +241,16 @@ export default [
 
   im(folder(`projectsExample.jpg`)),
 
-  h(`3.2. A dynamic way of creating a page with the content of an article`, {
-    size: 5,
-    id: 'creating-page-dynamically',
-  }),
+  h(
+    `3.2. A dynamic way of creating a page with the content of an article ${a(
+      '⬆',
+      '#features'
+    )}`,
+    {
+      size: 5,
+      id: 'creating-page-dynamically',
+    }
+  ),
 
   p([
     `In this subsection, I'd like to focus on extending the functionality that was discussed in the previous subsection.`,
@@ -505,10 +521,16 @@ export default [
 
   im(folder(`articleExample.gif`)),
 
-  h(`3.3. A button that allows to quickly return to the top of the page`, {
-    size: 5,
-    id: 'scroll-btn',
-  }),
+  h(
+    `3.3. A button that allows to quickly return to the top of the page ${a(
+      '⬆',
+      '#features'
+    )}`,
+    {
+      size: 5,
+      id: 'scroll-btn',
+    }
+  ),
 
   p([
     `The project uses the solution that if the user scrolls the page down, a so-called back button will appear on the right side of the page that will allow him to quickly return to the top of the page without scrolling.`,
@@ -616,10 +638,13 @@ export default () => {
     `As we can see in the example above, it is a component that appears alongside other major components such as Navbar and Footer, which are available on every page.`,
   ]),
 
-  h(`3.4. A loader before displaying a specific article`, {
-    size: 5,
-    id: 'loader',
-  }),
+  h(
+    `3.4. A loader before displaying a specific article ${a('⬆', '#features')}`,
+    {
+      size: 5,
+      id: 'loader',
+    }
+  ),
 
   p([
     `When the user uses weaker equipment or has access to weaker internet speed, a situation may arise that pages related to specific articles may load in a few seconds. To increase the user experience of using the application, the so-called loader has been created, which informs the user that the content is being loaded.`,

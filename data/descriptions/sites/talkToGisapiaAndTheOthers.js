@@ -11,7 +11,11 @@ export default [
     smAlign: txtAlign.center,
   }),
 
-  h(`Table of contents:`),
+  p([
+    'To facilitate navigation within the description, each section title links to the corresponding section. However, through the arrow ⬆ in the title of a specific section, you can refer to the closest list of specific sections.',
+  ]),
+
+  h(`Table of contents:`, { id: 'table-of-contents' }),
 
   l(
     [
@@ -28,7 +32,7 @@ export default [
 
   b(),
 
-  h(`1. Introduction`, { id: 'introduction' }),
+  h(`1. Introduction ${a('⬆', '#table-of-contents')}`, { id: 'introduction' }),
 
   p([
     `The app allows You to write messages in two languages (PL/ENG) with 3 different characters who can collect information provided via the messenger by user, use them data during the conversation and send in an interesting form to the user e-mail.`,
@@ -55,19 +59,19 @@ export default [
 
   im(folder(`introMobile.gif`)),
 
-  h(`2. Technologies`, { id: 'technologies' }),
+  h(`2. Technologies ${a('⬆', '#table-of-contents')}`, { id: 'technologies' }),
 
   p([`The following technologies were used in the project:`]),
 
   l([`HTML`, `CSS`, ` Javascript (OOP)`, `GSAP`]),
 
-  h(`3. Features`, { id: 'features' }),
+  h(`3. Features ${a('⬆', '#table-of-contents')}`, { id: 'features' }),
 
   p([
     `Most of the project is built in oop javascript for a very in-depth understanding of the language. The list of the most interesting solutions is presented below:`,
   ]),
 
-  h(a(`3.1. General`, '#general'), { size: 5 }),
+  h(a(`3.1. General`, '#general'), { id: 'general-main', size: 5 }),
 
   l(
     [
@@ -91,7 +95,7 @@ export default [
     { itemDash: false, itemMl: 5 }
   ),
 
-  h(a(`3.1. Specific`, '#specific'), { size: 5 }),
+  h(a(`3.1. Specific`, '#specific'), { id: 'specific-main', size: 5 }),
 
   l(
     [
@@ -143,13 +147,13 @@ export default [
     { itemDash: false, itemMl: 5 }
   ),
 
-  h('3.1. General', { size: 4, id: 'general' }),
+  h(`3.1. General ${a('⬆', '#general-main')}`, { size: 4, id: 'general' }),
 
   p([
     `In this section, I would like to describe the general elements of the app that will allow a better understanding of the app architecture and logic that will be discussed in the sepcific section.`,
   ]),
 
-  h(`3.1.1. String values in variables`, {
+  h(`3.1.1. String values in variables ${a('⬆', '#general-main')}`, {
     size: 5,
     id: 'string-variables',
   }),
@@ -248,7 +252,10 @@ export default [
     //more code here...
   }`),
 
-  h(`3.1.2. Helper functions`, { size: 5, id: 'helper-functions' }),
+  h(`3.1.2. Helper functions ${a('⬆', '#general-main')}`, {
+    size: 5,
+    id: 'helper-functions',
+  }),
 
   p([
     `All the so-called helper functions are in the helpers folder (scripts/helpers) which contains files with functions that are responsible for specific logic and are reusable throughout the project (they can also be used in other projects). They play the role of support functions that increase the readability of the code and the developer experience.`,
@@ -266,7 +273,7 @@ export default [
 
   b(),
 
-  p([`Helpers list:`]),
+  p([`Helpers list:`], { id: 'helpers-list' }),
 
   l(
     [
@@ -285,7 +292,7 @@ export default [
     { itemDash: false }
   ),
 
-  h(`1. appendElementsToContainerFn`, {
+  h(`1. appendElementsToContainerFn ${a('⬆', '#helpers-list')}`, {
     size: 5,
     id: 'appendElementsToContainerFn',
   }),
@@ -378,7 +385,10 @@ export default [
     `As we can see in the above example, we pass to the helper function an object with elements (this.lngButtons, this.headline, this.charButtons, this.startButton, this.talkAgainButton, this.privacyPolicyComponent) to be attached to container and a container (this.mainContainer) to which we want to attach these elements.`,
   ]),
 
-  h(`2. createElementFn`, { size: 5, id: 'createElementFn' }),
+  h(`2. createElementFn ${a('⬆', '#helpers-list')}`, {
+    size: 5,
+    id: 'createElementFn',
+  }),
 
   p([
     `Another helper that I would like to briefly describe is createElementFn, which is used most often within the logic of the app and is used to create any html element with various properties.`,
@@ -506,7 +516,10 @@ export default [
     `listeners (event and cb which will be set on created element)`,
   ]),
 
-  h(`3. removeElAmongElsFn`, { size: 5, id: 'removeElAmongElsFn' }),
+  h(`3. removeElAmongElsFn ${a('⬆', '#helpers-list')}`, {
+    size: 5,
+    id: 'removeElAmongElsFn',
+  }),
 
   p([
     `The next helper in the sequence is called removeElAmongElsFn for remove the selected element from among other specified elements.`,
@@ -585,7 +598,10 @@ export default [
     `elements from which the above-mentioned element will be removed (in this case, these elements will be searched in the helper function by the attribute name and value)`,
   ]),
 
-  h(`4. setClassesFn`, { size: 5, id: 'setClassesFn' }),
+  h(`4. setClassesFn ${a('⬆', '#helpers-list')}`, {
+    size: 5,
+    id: 'setClassesFn',
+  }),
 
   p([
     `The next helper in the order is setClassesFn which is responsible for setting different classes for different elements`,
@@ -734,7 +750,7 @@ export default [
     `Before going further, I would like to add that the toggle parameter does not need to be passed to the helper (without it, by the default classes will only be set to elements).`,
   ]),
 
-  h(`5. setPropsFn`, { size: 5, id: 'setPropsFn' }),
+  h(`5. setPropsFn ${a('⬆', '#helpers-list')}`, { size: 5, id: 'setPropsFn' }),
 
   p([
     `The penultimate helper in the sequence is called setPropsFn, whose logic is very similar to the previous setClassesFn helper and differs only in that instead of setting or removing classes on the passed elements, it sets various properties (also style properties).`,
@@ -853,7 +869,10 @@ export default [
     `As we can see above, the use of this helper is also very similar to the setClassesFn helper (for example, in this case, we are not passing the toggle parameter). The difference is that instead of classes, we list here various properties (in this case style properties) specifying the property name and its value to be set on the elements.`,
   ]),
 
-  h(`6. setUpperLetterFn`, { size: 5, id: 'setUpperLetterFn' }),
+  h(`6. setUpperLetterFn ${a('⬆', '#helpers-list')}`, {
+    size: 5,
+    id: 'setUpperLetterFn',
+  }),
 
   p([
     `The last helper in the heleprs folder is setUpperLetterFn helper which is responsible for changing the first letter of the passed text to uppercase.`,
@@ -873,7 +892,10 @@ export default [
     `As we can see above, this is a simple function that destructs an object into a text and, through a little logic, changing the first letter of this text to uppercase (if nothing was passed to the function, the logic would not execute).`,
   ]),
 
-  h(`3.1.3. The structure of styles`, { size: 5, id: 'styles-structure' }),
+  h(`3.1.3. The structure of styles ${a('⬆', '#general-main')}`, {
+    size: 5,
+    id: 'styles-structure',
+  }),
 
   p([
     `The styles (folder) have been grouped into two folders: main, in which there are styles for individual components on the page, and global, in which there are styles that are global for app.`,
@@ -915,10 +937,16 @@ export default [
     { lng: programmingLngs.html }
   ),
 
-  h(`3.1.4. The structure of js objects and their methods`, {
-    size: 5,
-    id: 'objects-structure',
-  }),
+  h(
+    `3.1.4. The structure of js objects and their methods ${a(
+      '⬆',
+      '#general-main'
+    )}`,
+    {
+      size: 5,
+      id: 'objects-structure',
+    }
+  ),
 
   p([
     `Due to the fact that most of the code was written in an object-oriented way, the structure of js files looks like this:
@@ -1051,7 +1079,7 @@ export default [
     `As we can see above, only the element with characters class containing object element is placed inside the container element with app id due to easier handling of animations which will be discussed later.`,
   ]),
 
-  h(`3.1.5. The structure of the app logic`, {
+  h(`3.1.5. The structure of the app logic ${a('⬆', '#general-main')}`, {
     size: 5,
     id: 'app-logic-structure',
   }),
@@ -1154,14 +1182,17 @@ export default [
 
   b(),
 
-  h(`3.2. Specific`, { size: 4, id: 'specific' }),
+  h(`3.2. Specific ${a('⬆', '#specific-main')}`, { size: 4, id: 'specific' }),
 
   p([
     `In this section, I would like to focus on describing the most important logic that occurs in the app.
   `,
   ]),
 
-  h(`3.2.1. Matrix background`, { size: 5, id: 'matrix-background' }),
+  h(`3.2.1. Matrix background ${a('⬆', '#specific-main')}`, {
+    size: 5,
+    id: 'matrix-background',
+  }),
 
   p([
     `In the project, to increase the user experience, a background was created that imitates the background of the matrix film in a slightly different color.
@@ -1247,7 +1278,10 @@ export default [
     `Due to the possible change of the screen width when using the apps, a method resize has been created that starts the character creation process from the beginning during changing screen to avoid resolution distortions.`,
   ]),
 
-  h(`3.2.2. GSAP for Gisapia animation`, { size: 5, id: 'gisapia-animation' }),
+  h(`3.2.2. GSAP for Gisapia animation ${a('⬆', '#specific-main')}`, {
+    size: 5,
+    id: 'gisapia-animation',
+  }),
 
   p([
     `The app uses GSAP animation to animate Gisapia svg image (one of the characters to talk to) to enhance user experiene.`,
@@ -1350,10 +1384,13 @@ export default [
     `We can see in the example above many methods (which use the TimelineMax object with methods) that are responsible for the looping movement of individual parts of the character. Animation involves the movement of the lips, hair, right hand and hair.`,
   ]),
 
-  h(`3.2.3. Inheritance of traits by any character`, {
-    size: 5,
-    id: 'traits-inheritance',
-  }),
+  h(
+    `3.2.3. Inheritance of traits by any character ${a('⬆', '#specific-main')}`,
+    {
+      size: 5,
+      id: 'traits-inheritance',
+    }
+  ),
 
   p([
     `There are 3 characters in the app that we can chat with. Due to the very high similarity of character traits, a general object called Character was created, from which each character inherits the traits.`,
@@ -1453,10 +1490,16 @@ export default [
     `As we can see above, it is a simple object that only contains the properties associated with the Gisapia character.`,
   ]),
 
-  h(`3.2.4. FACTORY DESIGN PATTERN when selecting a character`, {
-    size: 5,
-    id: 'factory-design-pattern',
-  }),
+  h(
+    `3.2.4. FACTORY DESIGN PATTERN when selecting a character ${a(
+      '⬆',
+      '#specific-main'
+    )}`,
+    {
+      size: 5,
+      id: 'factory-design-pattern',
+    }
+  ),
 
   p([
     `Each character object in the app is created when creating an instance of the CharsFactory object and passed outside using the getChar method when the character is selected by the user.`,
@@ -1525,10 +1568,16 @@ export default [
     `Summarizing, thanks to this design pattern, we can easily and in legible way obtain specific data (in this case instance of the character object), which we then use within the app.`,
   ]),
 
-  h(`3.2.5. SINGLETON DESIGN PATTERN while saving the settings`, {
-    size: 5,
-    id: 'singleton-design-pattern',
-  }),
+  h(
+    `3.2.5. SINGLETON DESIGN PATTERN while saving the settings ${a(
+      '⬆',
+      '#specific-main'
+    )}`,
+    {
+      size: 5,
+      id: 'singleton-design-pattern',
+    }
+  ),
 
   p([
     `To handle data and settings throughout the entire project, the Singleton design pattern was used. Thanks to this, we have one place that stores data (one instance of object) related to the use of the app.`,
@@ -1688,10 +1737,16 @@ export default [
     `Summarizing, the role of the memory object (singleton) is to save and store various app settings.`,
   ]),
 
-  h(`3.2.6. OBSERVER DESIGN PATTERN during various events`, {
-    size: 5,
-    id: 'observer-design-pattern',
-  }),
+  h(
+    `3.2.6. OBSERVER DESIGN PATTERN during various events ${a(
+      '⬆',
+      '#specific-main'
+    )}`,
+    {
+      size: 5,
+      id: 'observer-design-pattern',
+    }
+  ),
 
   p([
     `Due to the possibility of choosing several options, the design pattern called Observer was introduced in the project.`,
@@ -1798,10 +1853,16 @@ class MessengerInterface {
     `Thanks to this solution, the sent user message goes to the handleUserTalking function, where it is used for further app logic.`,
   ]),
 
-  h(`3.2.7. Character talk script and email templates`, {
-    size: 5,
-    id: 'character-scripts',
-  }),
+  h(
+    `3.2.7. Character talk script and email templates ${a(
+      '⬆',
+      '#specific-main'
+    )}`,
+    {
+      size: 5,
+      id: 'character-scripts',
+    }
+  ),
 
   p([
     `Each character (Gisapia, Hookin, Reduxon) in the app has its own talk script and email template in two languages (PL/ENG).`,
@@ -2194,7 +2255,10 @@ class MessengerInterface {
 
   im(folder(`reduxonMail.jpg`)),
 
-  h(`3.2.8. The way of writing a message`, { size: 5, id: 'writing-message' }),
+  h(`3.2.8. The way of writing a message ${a('⬆', '#specific-main')}`, {
+    size: 5,
+    id: 'writing-message',
+  }),
 
   p([
     `In the app introduced a feature that allows each character to imitate writing in the form of an animation of jumping dots which delays the display of the character's message.`,
@@ -2307,7 +2371,7 @@ class MessengerInterface {
     `As we can see in the example above, the handleUserTalking function uses similar solutions.`,
   ]),
 
-  h(`3.2.9. Adding words to character memory`, {
+  h(`3.2.9. Adding words to character memory ${a('⬆', '#specific-main')}`, {
     size: 5,
     id: 'character-memory',
   }),
@@ -2510,10 +2574,16 @@ class MessengerInterface {
     `At the moment when a given variant of the logic of the handleCharTalkingMain function is executed (after calling the appropriate functions, e.g. handleCharTalkingWhenCharFoundWord discussed above), the changed script template is returned by simple getScriptTalkMessages method of Character object and assigned to the scriptTalkMessages variable, which is then used to compose the message (handleCharTalkingDuringCharTyping function which was explained in 3.2.8. subsection).`,
   ]),
 
-  h(`3.2.10. Sending user data to user by e-mail of selected character`, {
-    size: 5,
-    id: 'sending-email',
-  }),
+  h(
+    `3.2.10. Sending user data to user by e-mail of selected character ${a(
+      '⬆',
+      '#specific-main'
+    )}`,
+    {
+      size: 5,
+      id: 'sending-email',
+    }
+  ),
 
   p([
     `During the conversation, the characters collect data about the user. Depending on whether the user wishes, such data can be sent to the given e-mail via my backend
@@ -2690,10 +2760,16 @@ class MessengerInterface {
 
   im(folder(`serverProblem.jpg`)),
 
-  h(`3.2.11. The ability to change characters during the conversation`, {
-    size: 5,
-    id: 'change-characters',
-  }),
+  h(
+    `3.2.11. The ability to change characters during the conversation ${a(
+      '⬆',
+      '#specific-main'
+    )}`,
+    {
+      size: 5,
+      id: 'change-characters',
+    }
+  ),
 
   p([
     `During the conversation, we have the option of changing a given character to another at every stage while the user has the option of writing a message.`,
@@ -2749,10 +2825,16 @@ class MessengerInterface {
     `As we can see above, the handleBackIconClick method calls on the event of a click on the this.backIcon element and this method mainly based on restoring the initial settings of various objects (due to the simple methods occurring in this method, I will not describe them in detail).`,
   ]),
 
-  h(`3.2.12. Opportunity to talk again with characters`, {
-    size: 5,
-    id: 'talk-again',
-  }),
+  h(
+    `3.2.12. Opportunity to talk again with characters ${a(
+      '⬆',
+      '#specific-main'
+    )}`,
+    {
+      size: 5,
+      id: 'talk-again',
+    }
+  ),
 
   p([
     `After the whole conversation with a choosen character, we have the opportunity to talk to any character again.`,
