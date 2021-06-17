@@ -154,8 +154,6 @@ const structure = {
     return { type: common.break }
   },
 
-  s: (content) => `<strong>${content}</strong>`,
-
   a: (label, path) => {
     return path && path.includes('#')
       ? `<a style="color:white" href=${path}>${label}</a>`

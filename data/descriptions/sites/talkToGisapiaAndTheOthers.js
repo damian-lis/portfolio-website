@@ -1,4 +1,4 @@
-import { h, p, im, c, l, b, s, a } from '/data/descriptions/structure.js'
+import { h, p, im, c, l, b, a } from '/data/descriptions/structure.js'
 import { txtAlign, programmingLngs } from '/data/global/names.js'
 
 const folder = (path) => `TalkToGisapiaAndTheOthers/${path}`
@@ -15,9 +15,9 @@ export default [
 
   l(
     [
-      s(a('1. Introduction', '#introduction')),
-      s(a('2. Technologies', '#technologies')),
-      s(a('3. Features', '#features')),
+      a('1. Introduction', '#introduction'),
+      a('2. Technologies', '#technologies'),
+      a('3. Features', '#features'),
     ],
     {
       itemDash: false,
