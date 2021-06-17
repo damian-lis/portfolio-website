@@ -38,12 +38,19 @@ const structure = {
 
   p: (
     content,
-    { my = 10, align = txtAlign.justify, smAlign = txtAlign.left, lh = 25 } = {}
+    {
+      my = 10,
+      align = txtAlign.justify,
+      smAlign = txtAlign.left,
+      lh = 25,
+      id,
+    } = {}
   ) => {
     return {
       type: common.paragraph,
       element: elements.p,
       content,
+      id,
       classes: (() => {
         const classesSet = []
 

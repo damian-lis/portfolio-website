@@ -29,6 +29,7 @@ class DataArrange {
               element: elements.p,
               classes: object.classes,
               innerHTML: paragraphContent,
+              id: object.id,
             })
           )
 
