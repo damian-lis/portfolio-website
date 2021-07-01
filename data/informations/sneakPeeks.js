@@ -62,14 +62,14 @@ export default [
     alt: 'Leafi',
     title: 'Leafi',
     intro:
-      'It is a fullstack project that aims to recreate many functionalities, structures and styles from apple.com.',
+      'It is a fullstack ecommerce project where you can buy and manage valuable items.',
     icons: [
       { image: '/images/icons/technologies/react.jpg' },
       { image: '/images/icons/technologies/redux.svg' },
-      { image: '/images/icons/technologies/nodejs.jpg' },
-      { image: '/images/icons/technologies/mongodb.jpg' },
+      { image: '/images/icons/technologies/graphql.svg' },
       { image: '/images/icons/technologies/stripe.svg' },
+      { image: '/images/icons/technologies/firebase.jpg' },
     ],
     duringDevelopment: true,
   },
-]
+];
