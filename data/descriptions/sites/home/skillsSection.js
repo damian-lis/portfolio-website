@@ -1,5 +1,5 @@
-import { h, l } from '/data/descriptions/structure.js'
-import { txtAlign } from '/data/global/names.js'
+import { h, l } from '/data/descriptions/structure.js';
+import { txtAlign } from '/data/global/names.js';
 
 export default [
   h('Skills', {
@@ -15,11 +15,12 @@ export default [
   l(
     [
       'HTML (semantic),',
-      'CSS (RWD, SASS, BEM, TailwindCSS, Bootstrap),',
-      'JavaScript (OOP, Design Patterns),',
-      'React (Redux, Hooks, Styled Components, Compound Components, Atomic Design),',
+      'CSS (RWD, SASS, BEM, TailwindCSS, Bootstrap, Bulma),',
+      'JavaScript (OOP, Design Patterns, GSAP),',
+      'React (Redux, Hooks, Formik, Styled Components, Compound Components, Material-UI, Atomic Design),',
       'Next (basic knowledge of the concept of server side rendering and how to use it),',
-      'TypeScript (basic knowledge of types).',
+      'TypeScript (basic knowledge of types and how to use it in React),',
+      'GraphQL (basic queries).',
     ],
     { listAlign: txtAlign.left }
   ),
@@ -28,10 +29,9 @@ export default [
 
   l(
     [
-      `Node/Express (e-commerce REST API's),`,
+      `Node/Express (e-commerce REST API's, handling services: SendGrid, Mailgun and Nodemailer),`,
       'MongoDB (basic handling with Express),',
-      'PHP (basic syntax and logic).',
     ],
     { listAlign: txtAlign.left }
   ),
-]
+];
