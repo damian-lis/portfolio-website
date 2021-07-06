@@ -15,7 +15,7 @@ export default [
 
   {
     href: '/sites/talkToGisapiaAndTheOthers.html',
-    image: '/images/projects/TalkToGisapiaAndTheOthers/introDesktop.gif',
+    image: '/images/projects/talkToGisapiaAndTheOthers/introDesktop.gif',
     alt: 'Talk to Gisapia and the Others',
     title: 'Talk to Gisapia and the Others (OOP)',
     intro:
@@ -30,7 +30,7 @@ export default [
 
   {
     href: '/sites/emailsHandler.html',
-    image: '/images/projects/EmailsHandler/emailsHandlerIntro.gif',
+    image: '/images/projects/emailsHandler/emailsHandlerIntro.gif',
     alt: 'Emails Handler',
     title: 'Emails Handler',
     intro:
@@ -45,7 +45,7 @@ export default [
 
   {
     href: '/sites/fluentBlog.html',
-    image: '/images/projects/FluentBlog/browseArticle.gif',
+    image: '/images/projects/fluentBlog/browseArticle.gif',
     alt: 'FluentBlog',
     title: 'FluentBlog',
     intro:
@@ -58,7 +58,7 @@ export default [
 
   {
     href: '/sites/smallerApps.html',
-    image: '/images/projects/SmallerApps/intro.gif',
+    image: '/images/projects/smallerApps/intro.gif',
     alt: 'Smaller apps',
     title: 'Smaller apps',
     intro:
@@ -76,7 +76,7 @@ export default [
 
   {
     href: '/sites/leafi.html',
-    image: '/images/projects/Leafi/logo.jpg',
+    image: '/images/projects/leafi/logo.jpg',
     alt: 'Leafi',
     title: 'Leafi',
     intro:
