@@ -76,11 +76,11 @@ export default [
 
   {
     href: '/sites/leafi.html',
-    image: '/images/icons/projects/leafi.jpg',
+    image: '/images/projects/Leafi/logo.jpg',
     alt: 'Leafi',
     title: 'Leafi',
     intro:
-      'It is a fullstack ecommerce project where you can buy and manage valuable items.',
+      'It is ecommerce project where you can buy items and manage through the admin panel.',
     icons: [
       { image: '/images/icons/technologies/react.jpg' },
       { image: '/images/icons/technologies/redux.svg' },
