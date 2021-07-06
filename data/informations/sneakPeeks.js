@@ -57,6 +57,24 @@ export default [
   },
 
   {
+    href: '/sites/smallerApps.html',
+    image: '/images/projects/SmallerApps/intro.gif',
+    alt: 'Smaller apps',
+    title: 'Smaller apps',
+    intro:
+      'A set of smaller projects, thanks to which I practiced various design patterns and technologies.',
+    icons: [
+      { image: '/images/icons/technologies/react.jpg' },
+      { image: '/images/icons/technologies/redux.svg' },
+      { image: '/images/icons/technologies/graphql.svg' },
+      { image: '/images/icons/technologies/typescript.svg' },
+      { image: '/images/icons/technologies/material-ui.svg' },
+      { image: '/images/icons/technologies/nodejs.jpg' },
+      { image: '/images/icons/technologies/mongodb.jpg' },
+    ],
+  },
+
+  {
     href: '/sites/leafi.html',
     image: '/images/icons/projects/leafi.jpg',
     alt: 'Leafi',

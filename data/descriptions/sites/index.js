@@ -6,6 +6,7 @@ import talkToGisapiaAndTheOthers from './talkToGisapiaAndTheOthers.js'
 import leafi from './leafi.js'
 import aboutSection from './home/aboutSection.js'
 import skillsSection from './home/skillsSection.js'
+import smallerApps from './smallerApps.js'
 
 export {
   fluentBlog,
@@ -16,4 +17,5 @@ export {
   leafi,
   aboutSection,
   skillsSection,
+  smallerApps,
 }

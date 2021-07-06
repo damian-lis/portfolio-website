@@ -7,6 +7,7 @@ import {
   portfolioWebsite,
   talkToGisapiaAndTheOthers,
   leafi,
+  smallerApps,
 } from './sites/index.js'
 
 export {
@@ -18,4 +19,5 @@ export {
   portfolioWebsite as portfolioWebsiteDescription,
   talkToGisapiaAndTheOthers as talkToGisapiaAndTheOthersDescription,
   leafi as leafiDescription,
+  smallerApps as smallerAppsDescription,
 }

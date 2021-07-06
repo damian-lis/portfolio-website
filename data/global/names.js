@@ -357,6 +357,7 @@ export const paths = {
   talkToGisapiaAndTheOthersIntroduction:
     '/audio/talkToGisapiaAndTheOthersIntroduction.mp3',
   leafiIntroduction: '/audio/leafiIntroduction.mp3',
+  smallerAppsIntroduction: '/audio/appsForPracticeIntroduction.mp3',
 }
 
 export const emailValidationRegexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
