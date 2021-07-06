@@ -29,7 +29,7 @@ export default [
 
   l(
     [
-      `Node/Express (e-commerce REST API's, handling services: SendGrid, Mailgun and Nodemailer),`,
+      `Node/Express (REST API, handling services: SendGrid, Mailgun and Nodemailer),`,
       'MongoDB (basic handling with Express),',
     ],
     { listAlign: txtAlign.left }
