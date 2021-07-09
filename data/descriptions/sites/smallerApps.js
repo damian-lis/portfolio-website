@@ -14,11 +14,16 @@ export default [
   ]),
 
   p([
-    `Live version is ${a('here', 'https://www.leafi.pl/')}.`,
+    `Live version is ${a('here', 'https://contact-book-frontend.vercel.app/')}.`,
 
-    `Github is ${a(
+    `Github (frontend) is ${a(
       'here',
-      'https://github.com/damian-lis/fullstack-contact-book-with-React-Redux-Material-UI-GoogleLogin-Express-MongoDB'
+      'https://github.com/damian-lis/contact-book-frontend'
+    )}.`,
+
+    `Github (backend) is ${a(
+      'here',
+      'https://github.com/damian-lis/contact-book-backend'
     )}.`,
   ]),
 
@@ -31,7 +36,7 @@ export default [
   p(['A website that maps navbar and footer from apple.com']),
 
   p([
-    `Live version is ${a('here', 'https://www.leafi.pl/')}.`,
+    `Live version is ${a('here', 'https://apple-navbar-footer.vercel.app/')}.`,
 
     `Github is ${a(
       'here',
@@ -39,7 +44,7 @@ export default [
     )}.`,
   ]),
 
-  h(`3. Task app`),
+  h(`3. Task list app`),
 
   p(['Technologies: React/Redux/TypeScript/Material-UI']),
 
@@ -50,11 +55,11 @@ export default [
   ]),
 
   p([
-    `Live version is ${a('here', 'https://www.leafi.pl/')}.`,
+    `Live version is ${a('here', 'https://task-list-app-ts.herokuapp.com/')}.`,
 
     `Github is ${a(
       'here',
-      'https://github.com/damian-lis/task-list-app-with-react-redux-typescript'
+      'https://github.com/damian-lis/task-list-app'
     )}.`,
   ]),
 
@@ -67,7 +72,7 @@ export default [
   p(['An extensive form with various fields to fill in.']),
 
   p([
-    `Live version is ${a('here', 'https://www.leafi.pl/')}.`,
+    `Live version is ${a('here', 'https://extended-form-with-formik-yup-and-material-ui.vercel.app/')}.`,
 
     `Github is ${a(
       'here',
@@ -84,7 +89,7 @@ export default [
   p(['An application thanks to which we can search for a specific country.']),
 
   p([
-    `Live version is ${a('here', 'https://www.leafi.pl/')}.`,
+    `Live version is ${a('here', 'https://graphql-countries-exercise.vercel.app/')}.`,
 
     `Github is ${a(
       'here',
