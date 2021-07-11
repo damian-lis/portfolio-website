@@ -14,7 +14,10 @@ export default [
   ]),
 
   p([
-    `Live version is ${a('here', 'https://my-contact-book-frontend-app.vercel.app/')}.`,
+    `Live version is ${a(
+      'here',
+      'https://my-contact-book-frontend-app.vercel.app/'
+    )}.`,
 
     `Github (frontend) is ${a(
       'here',
@@ -38,10 +41,7 @@ export default [
   p([
     `Live version is ${a('here', 'https://my-apple-app.vercel.app/')}.`,
 
-    `Github is ${a(
-      'here',
-      'https://github.com/damian-lis/my-apple-app'
-    )}.`,
+    `Github is ${a('here', 'https://github.com/damian-lis/my-apple-app')}.`,
   ]),
 
   h(`3. My Task List TS App`),
@@ -55,7 +55,10 @@ export default [
   ]),
 
   p([
-    `Live version is ${a('here', 'https://my-task-list-ts-app.herokuapp.com/')}.`,
+    `Live version is ${a(
+      'here',
+      'https://my-task-list-ts-app.herokuapp.com/'
+    )}.`,
 
     `Github is ${a(
       'here',
@@ -74,10 +77,7 @@ export default [
   p([
     `Live version is ${a('here', 'https://my-formik-app.vercel.app/')}.`,
 
-    `Github is ${a(
-      'here',
-      'https://github.com/damian-lis/my-formik-app'
-    )}.`,
+    `Github is ${a('here', 'https://github.com/damian-lis/my-formik-app')}.`,
   ]),
 
   h(`5. My Countries App`),
@@ -91,9 +91,6 @@ export default [
   p([
     `Live version is ${a('here', 'https://my-countries-app.vercel.app/')}.`,
 
-    `Github is ${a(
-      'here',
-      'https://github.com/damian-lis/my-countries-app'
-    )}.`,
+    `Github is ${a('here', 'https://github.com/damian-lis/my-countries-app')}.`,
   ]),
 ];

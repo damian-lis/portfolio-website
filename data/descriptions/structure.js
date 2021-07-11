@@ -1,7 +1,7 @@
-import { classNames, common, elements } from '/data/global/names.js'
-import { txtAlign, elPosition, programmingLngs } from '/data/global/names.js'
+import { classNames, common, elements } from '/data/global/names.js';
+import { txtAlign, elPosition, programmingLngs } from '/data/global/names.js';
 
-const { m, text, border, w, position } = classNames.utilities
+const { m, text, border, w, position } = classNames.utilities;
 
 const structure = {
   h: (
@@ -22,16 +22,16 @@ const structure = {
       content,
       id,
       classes: (() => {
-        const classesSet = []
-        classesSet.push(m.t(mt))
-        classesSet.push(m.b(mb))
-        classesSet.push(text[align])
-        classesSet.push(text.sm[smAlign])
-        underline && classesSet.push(text.underline)
+        const classesSet = [];
+        classesSet.push(m.t(mt));
+        classesSet.push(m.b(mb));
+        classesSet.push(text[align]);
+        classesSet.push(text.sm[smAlign]);
+        underline && classesSet.push(text.underline);
 
-        return classesSet
+        return classesSet;
       })(),
-    }
+    };
   },
 
   p: (
@@ -50,15 +50,15 @@ const structure = {
       content,
       id,
       classes: (() => {
-        const classesSet = []
-        classesSet.push(m.y(my))
-        classesSet.push(text[align])
-        classesSet.push(text.lh(lh))
-        classesSet.push(text.sm[smAlign])
+        const classesSet = [];
+        classesSet.push(m.y(my));
+        classesSet.push(text[align]);
+        classesSet.push(text.lh(lh));
+        classesSet.push(text.sm[smAlign]);
 
-        return classesSet
+        return classesSet;
       })(),
-    }
+    };
   },
 
   im: (imgPath, { mt = 10, mb = 20, maxWidth } = {}) => {
@@ -67,16 +67,16 @@ const structure = {
       element: elements.img,
       path: `/images/projects/${imgPath}`,
       classes: (() => {
-        const classesSet = []
-        classesSet.push(border.rounded)
-        classesSet.push(w.full)
-        classesSet.push(m.t(mt))
-        classesSet.push(m.b(mb))
-        maxWidth && classesSet.push(w.max(maxWidth))
+        const classesSet = [];
+        classesSet.push(border.rounded);
+        classesSet.push(w.full);
+        classesSet.push(m.t(mt));
+        classesSet.push(m.b(mb));
+        maxWidth && classesSet.push(w.max(maxWidth));
 
-        return classesSet
+        return classesSet;
       })(),
-    }
+    };
   },
 
   c: (content, { lng } = {}) => {
@@ -96,7 +96,7 @@ const structure = {
             : `${common.language}-${programmingLngs.js}`,
         ],
       },
-    }
+    };
   },
 
   l: (
@@ -121,39 +121,39 @@ const structure = {
       classes: (() => {
         return {
           list: (() => {
-            const classesSet = []
-            classesSet.push(position[listPosition])
-            classesSet.push(text[listAlign])
-            classesSet.push(text.sm[listSmAlign])
+            const classesSet = [];
+            classesSet.push(position[listPosition]);
+            classesSet.push(text[listAlign]);
+            classesSet.push(text.sm[listSmAlign]);
 
-            listSize && classesSet.push(text.size(listSize))
+            listSize && classesSet.push(text.size(listSize));
 
-            return classesSet
+            return classesSet;
           })(),
 
           item: (() => {
-            const classesSet = []
-            classesSet.push(m.b(itemMb))
-            classesSet.push(m.l(itemMl))
-            itemDash && classesSet.push(text.dash)
+            const classesSet = [];
+            classesSet.push(m.b(itemMb));
+            classesSet.push(m.l(itemMl));
+            itemDash && classesSet.push(text.dash);
 
-            return classesSet
+            return classesSet;
           })(),
 
           lastItem: (() => {
-            const classesSet = []
-            classesSet.push(m.l(itemMl))
-            itemDash && classesSet.push(text.dash)
+            const classesSet = [];
+            classesSet.push(m.l(itemMl));
+            itemDash && classesSet.push(text.dash);
 
-            return classesSet
+            return classesSet;
           })(),
-        }
+        };
       })(),
-    }
+    };
   },
 
   b: () => {
-    return { type: common.break }
+    return { type: common.break };
   },
 
   // only use within another tag:
@@ -162,10 +162,10 @@ const structure = {
     return path && path.includes('#')
       ? `<a class="text-bold text-white" href=${path}>${label}</a>`
       : `<a href=${path} rel="noopener noreferrer nofollow" 
-    target="_blank">${label}</a>`
+    target="_blank">${label}</a>`;
   },
-}
+};
 
-const { h, p, im, c, l, b, a } = structure
+const { h, p, im, c, l, b, a } = structure;
 
-export { h, p, im, c, l, b, a }
+export { h, p, im, c, l, b, a };

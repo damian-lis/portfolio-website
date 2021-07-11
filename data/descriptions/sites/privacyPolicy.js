@@ -1,4 +1,4 @@
-import { h, p, l } from '/data/descriptions/structure.js'
+import { h, p, l } from '/data/descriptions/structure.js';
 
 export default [
   p([
@@ -19,4 +19,4 @@ export default [
     ],
     { itemDash: false, itemMl: 0 }
   ),
-]
+];

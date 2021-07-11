@@ -1,7 +1,7 @@
-import { h, p, im, c, l, b, a } from '/data/descriptions/structure.js'
-import { txtAlign, programmingLngs } from '/data/global/names.js'
+import { h, p, im, c, l, b, a } from '/data/descriptions/structure.js';
+import { txtAlign, programmingLngs } from '/data/global/names.js';
 
-const folder = (path) => `FluentBlog/${path}`
+const folder = (path) => `FluentBlog/${path}`;
 
 export default [
   h(`App description`, {
@@ -858,4 +858,4 @@ export default () => {
       'https://github.com/damian-lis/fluent-blog/blob/master/README.md'
     )}.`,
   ]),
-]
+];

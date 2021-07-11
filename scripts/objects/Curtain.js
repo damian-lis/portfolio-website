@@ -2,7 +2,7 @@ import {
   createElementFn,
   appendElementsToContainerFn,
   setPropsFn,
-} from '/scripts/helpers/index.js'
+} from '/scripts/helpers/index.js';
 
 import {
   classNames,
@@ -12,20 +12,20 @@ import {
   events,
   styleProps,
   toggleValue,
-} from '/data/global/names.js'
+} from '/data/global/names.js';
 
 class Curtain {
   constructor(container) {
     if (Curtain.instance == null) {
-      Curtain.instance = this
-      this.preventHidden = false
-      this.cbsToCallOnHidden = []
-      this.children = []
+      Curtain.instance = this;
+      this.preventHidden = false;
+      this.cbsToCallOnHidden = [];
+      this.children = [];
 
-      this.createElements()
-      appendElementsToContainerFn({ elements: [this.curtain], container })
+      this.createElements();
+      appendElementsToContainerFn({ elements: [this.curtain], container });
     }
-    return (Curtain.instance = this)
+    return (Curtain.instance = this);
   }
 
   createElements() {
@@ -38,29 +38,29 @@ class Curtain {
           cb: () => this.toggleShow({ toggle: toggleValue.off }),
         },
       ],
-    })
+    });
   }
 
   toggleShow({ toggle, appendElements, cbsToCallOnHidden } = {}) {
     switch (toggle) {
       case toggleValue.on:
-        this.addCbsToCallOnHidden({ cbs: cbsToCallOnHidden })
-        this.appendElements({ elements: appendElements })
-        break
+        this.addCbsToCallOnHidden({ cbs: cbsToCallOnHidden });
+        this.appendElements({ elements: appendElements });
+        break;
 
       case toggleValue.off:
-        if (this.preventHidden) return
-        this.callCbsOnHidden()
-        this.clear({ after: 200 })
+        if (this.preventHidden) return;
+        this.callCbsOnHidden();
+        this.clear({ after: 200 });
 
-        break
+        break;
 
       default:
-        break
+        break;
     }
 
-    this.toggleBodyFreeze({ toggle })
-    this.toggleActive({ toggle })
+    this.toggleBodyFreeze({ toggle });
+    this.toggleActive({ toggle });
   }
 
   toggleBodyFreeze({ toggle }) {
@@ -80,7 +80,7 @@ class Curtain {
           ],
         },
       ],
-    })
+    });
   }
 
   toggleActive({ toggle }) {
@@ -107,49 +107,49 @@ class Curtain {
           ],
         },
       ],
-    })
+    });
   }
 
   togglePreventHidden({ toggle }) {
-    this.preventHidden = toggle === toggleValue.on ? true : false
+    this.preventHidden = toggle === toggleValue.on ? true : false;
   }
 
   addElToChildren({ element }) {
-    this.children.push(element)
+    this.children.push(element);
   }
 
   appendElements({ elements }) {
     elements.map((element) => {
-      this.curtain.appendChild(element)
-      this.addElToChildren({ element })
-    })
+      this.curtain.appendChild(element);
+      this.addElToChildren({ element });
+    });
   }
 
   addCbsToCallOnHidden({ cbs }) {
-    cbs.map((cb) => this.cbsToCallOnHidden.push(cb))
+    cbs.map((cb) => this.cbsToCallOnHidden.push(cb));
   }
 
   callCbsOnHidden() {
-    this.cbsToCallOnHidden.map((cb) => cb())
+    this.cbsToCallOnHidden.map((cb) => cb());
   }
 
   clearCbsToCallOnHidden() {
-    this.cbsToCallOnHidden = []
+    this.cbsToCallOnHidden = [];
   }
 
   clearChildren() {
-    this.children = []
+    this.children = [];
   }
 
   clear({ after }) {
-    this.clearCbsToCallOnHidden()
+    this.clearCbsToCallOnHidden();
     setTimeout(() => {
-      this.children.map((child) => child.remove())
-      this.clearChildren()
-    }, after)
+      this.children.map((child) => child.remove());
+      this.clearChildren();
+    }, after);
   }
 }
 
-const curtain = new Curtain(idReferences.global.mainContainer)
+const curtain = new Curtain(idReferences.global.mainContainer);
 
-export default curtain
+export default curtain;

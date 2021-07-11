@@ -2,49 +2,49 @@ import {
   createElementFn,
   appendElementsToContainerFn,
   setClassesFn,
-} from '/scripts/helpers/index.js'
+} from '/scripts/helpers/index.js';
 import {
   classNames,
   common,
   info,
   elements,
   events,
-} from '/data/global/names.js'
+} from '/data/global/names.js';
 
 class Theme {
   constructor({ container, themesObj, background }) {
-    this.themesObj = themesObj
-    this.background = background
-    this.initialThemeName = this.setInitialThemeName()
-    this.initialThemeObject = this.setInitialThemeObject()
+    this.themesObj = themesObj;
+    this.background = background;
+    this.initialThemeName = this.setInitialThemeName();
+    this.initialThemeObject = this.setInitialThemeObject();
 
-    this.createElements()
-    this.createComponents()
-    this.setGlobalVariables()
-    this.createBackgroundAnimation()
+    this.createElements();
+    this.createComponents();
+    this.setGlobalVariables();
+    this.createBackgroundAnimation();
 
-    appendElementsToContainerFn({ elements: [this.mainComponent], container })
+    appendElementsToContainerFn({ elements: [this.mainComponent], container });
   }
 
   createElements() {
     this.background = new this.background.Object({
       container: this.background.objContainer,
-    })
+    });
 
     this.mainContainer = createElementFn({
       element: elements.div,
       classes: [classNames.theme.container],
-    })
+    });
 
     this.title = createElementFn({
       element: elements.h(5),
       textContent: info.personalizeTheme,
-    })
+    });
 
     this.optionsContainer = createElementFn({
       element: elements.div,
       classes: [classNames.theme.optionsContainer],
-    })
+    });
 
     this.optionsDots = Object.keys(this.themesObj).map((themeName) =>
       createElementFn({
@@ -62,33 +62,33 @@ class Theme {
           },
         ],
       })
-    )
+    );
 
     this.note = createElementFn({
       element: elements.p,
       classes: [classNames.theme.note],
       textContent: info.themeNote,
-    })
+    });
   }
 
   createComponents() {
     this.optionsComponent = appendElementsToContainerFn({
       elements: this.optionsDots,
       container: this.optionsContainer,
-    })
+    });
 
     this.mainComponent = appendElementsToContainerFn({
       elements: [this.title, this.optionsComponent, this.note],
       container: this.mainContainer,
-    })
+    });
   }
 
   handleDotClick({ element, themeName }) {
-    const themeObj = this.themesObj[themeName]
+    const themeObj = this.themesObj[themeName];
 
-    this.setGlobalVariables({ themeObj })
-    this.background.setTheme({ themeObj })
-    this.saveThemeNameInLocalStorage({ themeName })
+    this.setGlobalVariables({ themeObj });
+    this.background.setTheme({ themeObj });
+    this.saveThemeNameInLocalStorage({ themeName });
 
     setClassesFn({
       objs: [
@@ -98,7 +98,7 @@ class Theme {
           classes: [classNames.theme.optionsDotActive],
         },
       ],
-    })
+    });
   }
 
   setGlobalVariables({ themeObj } = {}) {
@@ -106,25 +106,25 @@ class Theme {
       document.documentElement.style.setProperty(
         `--${property}`,
         themeObj ? themeObj[property] : this.initialThemeObject[property]
-      )
+      );
     }
   }
 
   setInitialThemeName() {
-    return localStorage.getItem(common.theme) || Object.keys(this.themesObj)[1]
+    return localStorage.getItem(common.theme) || Object.keys(this.themesObj)[1];
   }
 
   setInitialThemeObject() {
-    return this.themesObj[this.initialThemeName]
+    return this.themesObj[this.initialThemeName];
   }
 
   saveThemeNameInLocalStorage({ themeName }) {
-    localStorage.setItem(common.theme, themeName)
+    localStorage.setItem(common.theme, themeName);
   }
 
   createBackgroundAnimation() {
-    this.background.start({ themeObj: this.initialThemeObject })
+    this.background.start({ themeObj: this.initialThemeObject });
   }
 }
 
-export default Theme
+export default Theme;

@@ -1,4 +1,4 @@
-import { common } from '/data/global/names.js'
+import { common } from '/data/global/names.js';
 
 export default [
   {
@@ -35,4 +35,4 @@ export default [
       'almost, almost! 🚀',
     ],
   },
-]
+];

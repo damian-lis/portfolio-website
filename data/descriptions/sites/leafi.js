@@ -1,4 +1,4 @@
-import { p, a } from '/data/descriptions/structure.js'
+import { p, a } from '/data/descriptions/structure.js';
 
 export default [
   p([
@@ -8,4 +8,4 @@ export default [
 
     `Github is ${a('here', 'https://github.com/damian-lis/leafi')}.`,
   ]),
-]
+];

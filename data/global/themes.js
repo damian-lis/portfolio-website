@@ -67,4 +67,4 @@ export default {
 
     buttonColor: 'rgb(92,54,105)',
   },
-}
+};

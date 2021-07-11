@@ -1,5 +1,5 @@
-import { h, p, c, l, b, a } from '/data/descriptions/structure.js'
-import { txtAlign } from '/data/global/names.js'
+import { h, p, c, l, b, a } from '/data/descriptions/structure.js';
+import { txtAlign } from '/data/global/names.js';
 
 export default [
   h(`App description`, {
@@ -227,4 +227,4 @@ app.use('/api/mail/gisapia', sendGisapiaMail)`,
       'https://github.com/damian-lis/emails-handler/blob/main/README.md'
     )}`,
   ]),
-]
+];

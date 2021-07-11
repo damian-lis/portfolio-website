@@ -1,4 +1,4 @@
-import { p, a, b, im } from '/data/descriptions/structure.js'
+import { p, a, b, im } from '/data/descriptions/structure.js';
 
 export default [
   p([
@@ -15,4 +15,4 @@ export default [
   p([`This is what the description looks like on my github:`]),
 
   im(`portfolioWebsite/portfolioWebsiteGitHub.gif`, { mb: 0 }),
-]
+];

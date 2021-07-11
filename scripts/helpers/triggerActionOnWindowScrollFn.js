@@ -1,4 +1,4 @@
-import { types, events } from '/data/global/names.js'
+import { types, events } from '/data/global/names.js';
 
 export default ({
   onWhatElement: trigerElement,
@@ -6,13 +6,13 @@ export default ({
   cbOnExitTriggerEl = () => {},
   modifier = 0,
 }) => {
-  if (!trigerElement) return
+  if (!trigerElement) return;
 
-  let flag = true
-  let element = trigerElement
+  let flag = true;
+  let element = trigerElement;
 
   if (typeof trigerElement === types.string) {
-    element = document.querySelector(trigerElement)
+    element = document.querySelector(trigerElement);
   }
 
   window.addEventListener(events.scroll, () => {
@@ -20,11 +20,11 @@ export default ({
       window.innerHeight + window.pageYOffset - modifier >
       element.offsetTop
     ) {
-      flag && cbOnEnterTriggerEl(element)
-      flag = false
+      flag && cbOnEnterTriggerEl(element);
+      flag = false;
     } else {
-      !flag && cbOnExitTriggerEl(element)
-      flag = true
+      !flag && cbOnExitTriggerEl(element);
+      flag = true;
     }
-  })
-}
+  });
+};

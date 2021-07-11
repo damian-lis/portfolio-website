@@ -30,31 +30,31 @@ export const common = {
   text: 'text',
   submit: 'submit',
   Send: 'Send',
-}
+};
 
 export const programmingLngs = {
   js: 'js',
   html: 'html',
-}
+};
 
 export const elPosition = {
   relative: 'relative',
-}
+};
 
 export const txtAlign = {
   center: 'center',
   left: 'left',
   justify: 'justify',
-}
+};
 
 export const types = {
   string: 'string',
-}
+};
 
 export const toggleValue = {
   on: 'on',
   off: 'off',
-}
+};
 
 export const elements = {
   canvas: 'canvas',
@@ -75,7 +75,7 @@ export const elements = {
   ul: 'ul',
   li: 'li',
   br: 'br',
-}
+};
 
 export const elementProps = {
   names: {
@@ -86,7 +86,7 @@ export const elementProps = {
   values: {
     blank: '_blank',
   },
-}
+};
 
 export const styleProps = {
   names: {
@@ -113,7 +113,7 @@ export const styleProps = {
     translateX: (value) => `translateX(${value}%)`,
     translateY: (value) => `translateY(${value}%)`,
   },
-}
+};
 
 export const events = {
   click: 'click',
@@ -124,7 +124,7 @@ export const events = {
   focus: 'focus',
   input: 'input',
   scroll: 'scroll',
-}
+};
 
 export const fetchProps = {
   methods: {
@@ -138,7 +138,7 @@ export const fetchProps = {
       applicationJson: 'application/json',
     },
   },
-}
+};
 
 export const info = {
   clickAnywhereToClose: '(click anywhere to close)',
@@ -153,7 +153,7 @@ export const info = {
   messageSent: `Message sent! 😎`,
   somethingWentWrong: 'Error, try again! 😬',
   unableToConnect: 'No connection 😔',
-}
+};
 
 export const idNames = {
   global: {
@@ -176,7 +176,7 @@ export const idNames = {
   theme: {
     canvas: 'theme-canvas',
   },
-}
+};
 
 export const classNames = {
   curtain: {
@@ -314,7 +314,7 @@ export const classNames = {
   prism: {
     languageJS: 'language-js',
   },
-}
+};
 
 export const idReferences = {
   global: {
@@ -341,7 +341,7 @@ export const idReferences = {
   privacyPolicy: {
     description: '#privacyPolicy-description',
   },
-}
+};
 
 export const paths = {
   playImg: '/images/icons/stopMusic.svg',
@@ -358,8 +358,9 @@ export const paths = {
     '/audio/talkToGisapiaAndTheOthersIntroduction.mp3',
   leafiIntroduction: '/audio/leafiIntroduction.mp3',
   smallerAppsIntroduction: '/audio/appsForPracticeIntroduction.mp3',
-}
+};
 
-export const emailValidationRegexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+export const emailValidationRegexp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export const mailEndPoint = 'https://dirt-ten-risk.glitch.me/api/mail/portfolio'
+export const mailEndPoint =
+  'https://dirt-ten-risk.glitch.me/api/mail/portfolio';

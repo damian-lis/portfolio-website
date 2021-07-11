@@ -1,7 +1,7 @@
-import { h, p, im, c, l, b, a } from '/data/descriptions/structure.js'
-import { txtAlign, programmingLngs } from '/data/global/names.js'
+import { h, p, im, c, l, b, a } from '/data/descriptions/structure.js';
+import { txtAlign, programmingLngs } from '/data/global/names.js';
 
-const folder = (path) => `TalkToGisapiaAndTheOthers/${path}`
+const folder = (path) => `TalkToGisapiaAndTheOthers/${path}`;
 
 export default [
   h(`App description`, {
@@ -2900,4 +2900,4 @@ class MessengerInterface {
       'https://github.com/damian-lis/emails-handler/blob/main/README.md'
     )}`,
   ]),
-]
+];

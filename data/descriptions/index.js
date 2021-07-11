@@ -8,7 +8,7 @@ import {
   talkToGisapiaAndTheOthers,
   leafi,
   smallerApps,
-} from './sites/index.js'
+} from './sites/index.js';
 
 export {
   aboutSection as aboutSectionDescription,
@@ -20,4 +20,4 @@ export {
   talkToGisapiaAndTheOthers as talkToGisapiaAndTheOthersDescription,
   leafi as leafiDescription,
   smallerApps as smallerAppsDescription,
-}
+};

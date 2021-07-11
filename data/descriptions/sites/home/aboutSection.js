@@ -1,5 +1,5 @@
-import { h, p } from '/data/descriptions/structure.js'
-import { txtAlign } from '/data/global/names.js'
+import { h, p } from '/data/descriptions/structure.js';
+import { txtAlign } from '/data/global/names.js';
 
 export default [
   h('About me', { mb: 20, mt: 10, underline: true, smAlign: txtAlign.center }),
@@ -12,4 +12,4 @@ export default [
     ],
     { my: 20 }
   ),
-]
+];
