@@ -83,6 +83,7 @@ export default [
       'It is ecommerce project where you can buy items and manage through the admin panel.',
     icons: [
       { image: '/images/icons/technologies/react.jpg' },
+      { image: '/images/icons/technologies/sass.svg' },
       { image: '/images/icons/technologies/redux.svg' },
       { image: '/images/icons/technologies/graphql.svg' },
       { image: '/images/icons/technologies/stripe.svg' },
