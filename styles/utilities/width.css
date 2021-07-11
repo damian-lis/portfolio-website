@@ -1,5 +1,6 @@
 .w-fit {
-  width: max-content;
+  width: fit-content;
+  width: -moz-fit-content;
 }
 
 .w-full {
