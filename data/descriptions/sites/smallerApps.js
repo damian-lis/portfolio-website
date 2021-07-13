@@ -55,10 +55,7 @@ export default [
   ]),
 
   p([
-    `Live version is ${a(
-      'here',
-      'https://my-task-list-ts-app.herokuapp.com/'
-    )}.`,
+    `Live version is ${a('here', 'https://my-task-list-ts-app.netlify.app/')}.`,
 
     `Github is ${a(
       'here',
