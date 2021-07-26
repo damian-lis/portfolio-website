@@ -90,4 +90,45 @@ export default [
 
     `Github is ${a('here', 'https://github.com/damian-lis/my-countries-app')}.`,
   ]),
+
+  h(`6. Star Wars App`),
+
+  p(['Technologies: React(Styled Components/React Table)']),
+
+  im(folder('starWars'), { mb: 0 }),
+
+  p([
+    'An app that displays information about planets that appear in 6 movies of the Star Wars series.',
+  ]),
+
+  p([
+    `Live version is ${a('here', 'https://star-wars-app-murex.vercel.app/')}.`,
+
+    `Github is ${a('here', 'https://github.com/damian-lis/star-wars-app')}.`,
+  ]),
+
+  h(`7. Best Blog`),
+
+  p(['Technologies: React without CRA(CSS modules)/Redux/JSONplaceholder']),
+
+  im(folder('bestBlog'), { mb: 0 }),
+
+  p([
+    `A Blog that presents articles and comments downloaded from ${a(
+      'JSONPlaceholder',
+      'https://jsonplaceholder.typicode.com/'
+    )}.`,
+  ]),
+
+  p([
+    `Live version is ${a(
+      'here',
+      'https://youthful-pasteur-4ea549.netlify.app/'
+    )}.`,
+
+    `Github is ${a(
+      'here',
+      'https://github.com/damian-lis/best-blog-with-webpack'
+    )}.`,
+  ]),
 ];
